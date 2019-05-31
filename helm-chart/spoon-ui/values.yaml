@@ -1,0 +1,33 @@
+replicaCount: 1
+
+image:
+    repository: gbl-baobab-docker-virtual.jfrog.io/spoon-ui
+    tag: latest
+    pullPolicy: IfNotPresent
+    pullSecrets:
+        secret: baobab-artifactory-registry
+
+service:
+    type: ClusterIP
+    port: 80
+
+ingress:
+    enabled: false
+    annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+    path: /
+    hosts:
+    - spoon-ui.local
+    tls: []
+    #  - secretName: chart-example-tls
+    #    hosts:
+    #      - chart-example.local
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

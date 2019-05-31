@@ -1,0 +1,31 @@
+.alert {
+  color: var(--white-text);
+  min-height: 36px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: unset;
+  display: flex;
+  align-items: center;
+  padding-right: 20px;
+  padding-left: 10px;
+
+  button.close {
+    color: var(--white-text);
+    padding: unset;
+    min-width: unset;
+    position: unset;
+    margin: unset;
+    order: 3;
+    margin-right: 11px;
+    flex-grow: 0;
+    flex-shrink: 1;
+  }
+  .alert-icon {
+    margin-left: 11px;
+    margin-right: 12px;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .alert-text {
+    flex-grow: 10;
+  }
+}

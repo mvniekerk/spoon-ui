@@ -1,0 +1,10 @@
+{
+  "bbSkeletonApp": {
+    "HttpMethod": {
+      "null": "",
+      "Post": "Post",
+      "Put": "Put",
+      "Get": "Get"
+    }
+  }
+}

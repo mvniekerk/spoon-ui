@@ -1,0 +1,105 @@
+.side-menu-logo {
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  height: 53px;
+  display: flex;
+
+  border-bottom: 1px solid var(--menu-border);
+  img {
+    margin: 0;
+    padding: 0;
+  }
+
+  .side-menu-close {
+    position: absolute;
+    left: 226px;
+    top: 4px;
+    cursor: pointer;
+    color: var(--menu-close-color);
+  }
+}
+
+.side-menu-hamburger {
+  .material-icons {
+    cursor: pointer;
+  }
+}
+
+.side-menu-container {
+  z-index: 10000;
+  background-color: var(--menu-background-color);
+  height: calc(100vh - 0px);
+  width: 250px;
+  min-width: 250px;
+  padding-right: 0;
+  padding-left: 0;
+  margin-left: 0;
+  margin-right: 0;
+  border-right: 1px solid var(--menu-border);
+  transition: all 0.15s linear;
+  position: fixed;
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding-inline-start: 0;
+  }
+  li {
+    border-left: var(--menu-border-opaque) solid 4px;
+    border-top: var(--menu-border-opaque) solid 1px;
+    border-bottom: var(--menu-border-opaque) solid 1px;
+  }
+  li a {
+    transition: all 0.4s linear;
+    text-decoration: none;
+    opacity: 1;
+  }
+  ul:hover li:not(:hover) a {
+    opacity: 0.3;
+  }
+
+  ul:hover li:hover {
+    transition: all 0.5s linear;
+    border-left: var(--primary-active-lighter) solid 4px;
+    background-color: var(--menu-border-opaque-25);
+    border-top: var(--menu-border-opaque-8) solid 1px;
+    border-bottom: var(--menu-border-opaque-8) solid 1px;
+  }
+
+  ul:hover li:not(:hover) {
+    border-left: var(--menu-border-opaque) solid 4px;
+    background-color: var(--menu-border-opaque);
+
+    border-top: var(--menu-border-opaque) solid 1px;
+    border-bottom: var(--menu-border-opaque) solid 1px;
+  }
+
+  li {
+    .menu-item-selected {
+      position: relative;
+      border-left: var(--primary) solid 4px;
+      left: -4px;
+      color: var(--menu-list-item-selected-color);
+
+      .material-icons {
+        color: var(--primary);
+      }
+    }
+  }
+}
+
+.side-menu-container-mini {
+  width: 70px;
+  min-width: 70px;
+  transition: all 0.15s linear;
+}
+
+@media only screen and (max-width: 580px) {
+  .side-menu-container {
+    display: none;
+  }
+}
+
+.menu-item-header {
+  padding-left: 30px;
+}

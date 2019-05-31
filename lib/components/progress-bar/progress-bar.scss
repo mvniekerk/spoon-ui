@@ -1,0 +1,32 @@
+.progress {
+  .progress-bar {
+    border-radius: 30px;
+  }
+}
+
+.progress-header {
+  display: flex;
+  align-items: center;
+
+  .progress-bar-text {
+    flex-grow: 1;
+    color: var(--gray-darker);
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .progress-value {
+    color: var(--gray-darker);
+    font-size: 12px;
+    opacity: 50%;
+    font-weight: 600;
+  }
+  margin-bottom: 1px;
+}
+
+.progress-container {
+  .progress {
+    height: 10px;
+    border-radius: 30px;
+  }
+}

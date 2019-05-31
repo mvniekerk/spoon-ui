@@ -1,0 +1,39 @@
+@import '../../bootstrap-variables';
+
+.item-per-page {
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+
+  .item-per-page-text {
+    flex: 2;
+    justify-items: center;
+    align-items: center;
+    flex-grow: 1;
+    text-align: right;
+    margin-right: 8px;
+    height: 100%;
+    color: var(--gray-darker);
+    position: relative;
+    top: -8px;
+  }
+
+  .dropdown {
+    .dropdown-toggle.btn.toggle,
+    .caret-right.btn {
+      min-width: 80px;
+    }
+  }
+  .dropdown-item {
+    min-width: 80px;
+    width: 80px;
+  }
+  .dropdown-item-container {
+    min-width: 80px;
+    width: 80px;
+  }
+  .dropdown-menu {
+    width: 80px;
+    min-width: 80px;
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "menus": {
+    "dashboard": "Instrumententafel",
+    "typography": "Typografie",
+    "buttons": "Knöpfe",
+    "forms": "Formen",
+    "dropdowns": "Dropdown-Tasten",
+    "selection": "Auswahl",
+    "navigation": "Navigation",
+    "tables": "Tabelle",
+    "theme": "Farbthema"
+  }
+}

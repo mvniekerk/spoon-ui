@@ -1,0 +1,9 @@
+FROM nginx:alpine
+
+# Patch image
+RUN apk update
+RUN apk upgrade
+
+RUN rm -rf /usr/share/nginx/html; find ./
+COPY docker/skeleton.conf /etc/nginx/conf.d/
+COPY target/resources/main/public /usr/share/nginx/html

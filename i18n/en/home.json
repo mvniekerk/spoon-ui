@@ -1,0 +1,10 @@
+{
+  "home": {
+    "title": "Welcome to spoon-ui",
+    "subtitle": "Homepage",
+    "typography": "Typography",
+    "logged": {
+      "message": "You are logged in as user \"{{username}}\"."
+    }
+  }
+}
