@@ -1,0 +1,54 @@
+@import '../../bootstrap-variables';
+
+.progression {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: left;
+  font-weight: 600;
+}
+
+.progression-item {
+  display: flex;
+  flex-direction: row;
+  padding-right: 20px;
+  color: var(--progression-color);
+  justify-content: left;
+  align-items: center;
+  flex: 1;
+  margin-bottom: 8px;
+  .counter {
+    min-width: 28px;
+    min-height: 28px;
+    border-radius: 14px;
+    border: 1px solid var(--progression-border-color);
+    margin-right: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+  }
+}
+
+.progression-item.done {
+  .counter {
+    color: var(--primary);
+    font-size: 12px;
+
+    svg {
+      width: 14px;
+    }
+  }
+}
+
+.progression-item.current {
+  color: var(--black-text);
+  .counter {
+    background-image: linear-gradient(to bottom, var(--primary-lighter), var(--primary));
+    color: var(--white-text);
+    font-weight: 600;
+    box-shadow: 0 0 0 1px var(--progression-current-shadow) inset;
+    border: 1px;
+  }
+}

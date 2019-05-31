@@ -1,0 +1,344 @@
+@import '../../bootstrap-variables';
+
+.toggle-container {
+  display: inline;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 37px;
+  height: 20px;
+  margin-top: 8px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--selection-color-background);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+input:checked + .slider {
+  background-color: var(--selection-color-checked);
+}
+
+input:focus + .slider {
+  //box-shadow: 0 0 1px #364458;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(17px);
+  -ms-transform: translateX(17px);
+  transform: translateX(17px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.slider {
+  box-shadow: inset 0px 1px 7px rgba(0, 0, 0, 0.15);
+}
+
+.switch.checked {
+  font-weight: 600;
+}
+
+.selection-text {
+  //padding-top: -7px;
+  position: relative;
+
+  font-weight: normal;
+}
+
+.toggle-container {
+  .selection-text {
+    top: -7px;
+    left: 14px;
+  }
+}
+
+.selection-container.disabled {
+  .slider {
+    background-color: #e9edf1;
+    box-shadow: unset;
+  }
+
+  .slider:before {
+    opacity: 0.5;
+  }
+
+  .selection-text {
+    opacity: 0.5;
+  }
+
+  .styled-checkbox {
+    & + label:before {
+      background-color: #e9edf1;
+      box-shadow: 0 0 0 1px #dfe3e9 inset;
+    }
+  }
+}
+
+.radiobutton-container.disabled {
+  .selection-text:before {
+    background-color: #e9edf1;
+    box-shadow: 0 0 0 1px #dfe3e9 inset;
+  }
+}
+
+.selection-container {
+  cursor: pointer;
+  margin-top: 13px;
+}
+
+.styled-checkbox {
+  position: absolute; // take it out of document flow
+  display: none;
+
+  & + label {
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  // Box.
+  & + label:before {
+    content: '';
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: text-top;
+    width: 16px;
+    height: 16px;
+    background: white;
+  }
+
+  // Box hover
+  //&:hover + label:before {
+  //  background: #f35429;
+  //}
+
+  & + label:before {
+    background-image: linear-gradient(to bottom, #fefefe, #f4f5f8);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
+    border-radius: 3px;
+  }
+
+  // Box focus
+  &:focus + label:before {
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+  }
+
+  // Disabled state label.
+  &:disabled + label {
+    color: #b8b8b8;
+    cursor: auto;
+  }
+
+  // Disabled box.
+  &:disabled + label:before {
+    box-shadow: none;
+    background: #ddd;
+  }
+}
+.styled-radio {
+  position: absolute; // take it out of document flow
+  display: none;
+
+  & + label {
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  // Box.
+  & + label:before {
+    content: '';
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: text-top;
+    width: 16px;
+    height: 16px;
+    background: white;
+  }
+
+  // Box hover
+  //&:hover + label:before {
+  //  background: #f35429;
+  //}
+
+  & + label:before {
+    background-image: linear-gradient(to bottom, #fefefe, #f4f5f8);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
+    border-radius: 8px;
+  }
+
+  // Box focus
+  &:focus + label:before {
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+  }
+
+  // Disabled state label.
+  &:disabled + label {
+    color: #b8b8b8;
+    cursor: auto;
+  }
+
+  // Disabled box.
+  &:disabled + label:before {
+    box-shadow: none;
+    background: #ddd;
+  }
+}
+
+.selection-container.selected {
+  .selection-text {
+    font-weight: 600;
+  }
+}
+
+.radiobutton-container.selected,
+.checkbox-container.selected {
+  // Box checked
+  //&:checked + label:before {
+  label:before {
+    background-image: linear-gradient(to bottom, var(--selection-color-checked), var(--selection-color-checked-darker));
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
+  }
+}
+
+.checkbox-container.selected {
+  .checkbox-check {
+    position: relative;
+    z-index: 100000;
+    left: 15px;
+    font-size: 14px;
+    color: var(--white-text);
+    top: -2px;
+    font-weight: 800;
+  }
+
+  margin-left: -14px;
+}
+
+.checkbox-container.disabled.selected {
+  // Box checked
+  //&:checked + label:before {
+  label:before {
+    background-image: unset;
+    background-color: #e9edf1;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
+  }
+
+  .checkbox-check {
+    color: var(--black-text);
+    opacity: 0.5;
+  }
+  margin-left: -14px;
+}
+
+.radiobutton-container.disabled.selected {
+  label:before {
+    background-image: unset;
+    background-color: #e9edf1;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
+  }
+
+  label:after {
+    background-color: var(--dark);
+  }
+}
+
+.radiobutton-container.selected {
+  .selection-text::after {
+    background: unset;
+    background-color: white;
+    height: 6px;
+    width: 6px;
+    border-radius: 6px;
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 6.5px;
+  }
+}
+
+.radiobutton-container .selection-text:before {
+  margin-top: 1px;
+}
+
+.selection-container::selection {
+  background: none;
+}
+
+.selection-text::selection {
+  background: none;
+}
+
+.checkbox-container {
+  height: 18px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.dropdown-item-container.selected.tag {
+  .selection-text {
+    font-weight: 600;
+  }
+  animation: fadeIn 800ms;
+}
+
+@keyframes slideOut {
+  from {
+    transform: scaleY(0.3) translateY(-100px);
+    opacity: 0.3;
+  }
+  to {
+    transform: scaleY(1) translateY(40px);
+    opacity: 1;
+  }
+}
+
+.dropdown.show .dropdown-menu.show,
+.arrow-up-left {
+  animation: slideOut 200ms ease-out;
+}

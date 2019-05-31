@@ -1,0 +1,13 @@
+.idea/
+.git/
+docker/
+helm-chart/
+webpack/
+.gitattributes
+.git*
+*.iml
+Dockerfile
+Jenkinsfile*
+.scannerwork/
+target/
+build/

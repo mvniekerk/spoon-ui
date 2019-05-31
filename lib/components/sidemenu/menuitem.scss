@@ -1,0 +1,48 @@
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 54px;
+  cursor: pointer;
+  .menu-item-icon {
+    margin: 0;
+  }
+  p {
+    vertical-align: center;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    color: unset;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-underline: none;
+    text-decoration: none;
+  }
+
+  color: var(--menu-item-color);
+
+  outline: none;
+
+  .menu-item-icon {
+    color: var(--menu-item-icon-color);
+  }
+}
+
+.menu-item.menu-item-selected .menu-item-icon {
+  color: var(--primary);
+}
+
+.menu-item-with-text {
+  align-items: center;
+  justify-content: left;
+
+  .menu-item-icon {
+    margin-left: 30px;
+    margin-right: 20px;
+  }
+}

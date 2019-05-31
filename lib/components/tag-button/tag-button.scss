@@ -1,0 +1,52 @@
+.tag-button-container {
+  min-width: 125px;
+  background-color: var(--tertiary);
+  opacity: 0.5;
+  color: var(--white-text);
+  border-radius: 4px;
+  height: 25px;
+  font-size: 13px;
+  margin-right: 8px;
+  button {
+    height: 25px;
+    color: unset;
+    text-transform: uppercase;
+  }
+}
+
+:-moz-focusring {
+  outline: unset;
+}
+
+.tag-button-container::before {
+  text-transform: lowercase;
+}
+
+.tag-button-container:hover {
+  color: var(--white-text);
+  opacity: 0.75;
+}
+
+.tag-button-container.selected {
+  background-color: var(--tertiary);
+  opacity: 1;
+}
+
+.tag-button-container.selected {
+  background-color: var(--tertiary);
+  color: var(--white-text);
+  button {
+    color: unset;
+    background-color: unset;
+  }
+  .select-icon-container {
+    margin-top: -22px;
+    text-align: right;
+    padding-right: 8px;
+    margin-bottom: 0;
+
+    .material-icons {
+      font-size: 16px;
+    }
+  }
+}

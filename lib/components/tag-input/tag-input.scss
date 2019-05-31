@@ -1,0 +1,32 @@
+@import '../../bootstrap-variables';
+
+.tag-input {
+  .dropdown.show {
+    .arrow-up-left {
+      position: relative;
+      top: -32px;
+    }
+  }
+
+  .tags-container {
+    cursor: pointer;
+  }
+
+  .tags-container.selected-tags {
+    position: relative;
+    top: -32px;
+
+    .select-icon-container {
+      position: relative;
+      top: 2px;
+    }
+  }
+
+  .right-caret {
+    position: absolute;
+    right: 20px;
+    margin-top: -40px;
+    color: var(--gray-lighter);
+    cursor: pointer;
+  }
+}

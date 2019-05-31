@@ -1,0 +1,808 @@
+// Override Bootstrap variables
+@import '_bootstrap-variables';
+// Import Bootstrap source files from node_modules
+@import 'node_modules/bootstrap/scss/bootstrap';
+
+body {
+  background: #eff3f6;
+  margin: 0;
+}
+
+* {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  &:after,
+  &::before {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+}
+
+.app-container {
+  box-sizing: border-box;
+  display: inline-flex;
+  .view-container {
+    min-width: calc(100vw - 270px);
+    width: calc(100vw - 270px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 1rem;
+    margin-left: 250px;
+    margin-top: 54px;
+    transition: all 300ms linear;
+
+    @media only screen and (max-width: 580px) {
+      min-width: calc(100vw - 20px);
+      margin-left: 4px;
+    }
+    //background-color: blue;
+
+    .card {
+      padding: 1rem;
+    }
+    .view-routes {
+      height: 100%;
+      > div {
+        height: 100%;
+      }
+    }
+  }
+
+  .view-container-mini-menu {
+    min-width: calc(100vw - 90px);
+    width: calc(100vw - 90px);
+    margin-left: 70px;
+    transition: all 300ms linear;
+
+    @media only screen and (max-width: 580px) {
+      min-width: calc(100vw - 20px);
+      margin-left: 4px;
+    }
+  }
+}
+
+.view-container-hidden-menu {
+  min-width: 100vw;
+  width: 100vw;
+}
+
+.fullscreen {
+  position: fixed;
+  top: 100px;
+  left: 0;
+  width: 99% !important;
+  height: calc(100vh - 110px) !important;
+  margin: 5px;
+  z-index: 1000;
+  padding: 5px 25px 50px 25px !important;
+}
+
+/* ==========================================================================
+Browser Upgrade Prompt
+========================================================================== */
+
+.browserupgrade {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+/* ==========================================================================
+Custom button styles
+========================================================================== */
+
+.icon-button > .btn {
+  background-color: transparent;
+  border-color: transparent;
+  padding: 0.5rem;
+  line-height: 1rem;
+  &:hover {
+    background-color: transparent;
+    border-color: transparent;
+  }
+  &:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+}
+
+/* ==========================================================================
+Generic styles
+========================================================================== */
+
+/* Temporary workaround for availity-reactstrap-validation */
+.invalid-feedback {
+  display: inline;
+}
+
+/* other generic styles */
+
+.title {
+  font-size: 1.25em;
+  margin: 1px 10px 1px 10px;
+}
+
+.description {
+  font-size: 0.9em;
+  margin: 1px 10px 1px 10px;
+}
+
+.shadow {
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+  border-radius: 2px;
+}
+
+.error {
+  color: var(--white-text);
+  background-color: var(--error);
+}
+
+.break {
+  white-space: normal;
+  word-break: break-all;
+}
+
+.break-word {
+  white-space: normal;
+  word-break: keep-all;
+}
+
+.preserve-space {
+  white-space: pre-wrap;
+}
+
+/* padding helpers */
+
+@mixin pad($size, $side) {
+  @if $size== '' {
+    @if $side== '' {
+      .pad {
+        padding: 10px !important;
+      }
+    } @else {
+      .pad {
+        padding-#{$side}: 10px !important;
+      }
+    }
+  } @else {
+    @if $side== '' {
+      .pad-#{$size} {
+        padding: #{$size}px !important;
+      }
+    } @else {
+      .pad-#{$side}-#{$size} {
+        padding-#{$side}: #{$size}px !important;
+      }
+    }
+  }
+}
+
+@include pad('', '');
+@include pad('2', '');
+@include pad('3', '');
+@include pad('5', '');
+@include pad('10', '');
+@include pad('20', '');
+@include pad('25', '');
+@include pad('30', '');
+@include pad('50', '');
+@include pad('75', '');
+@include pad('100', '');
+@include pad('4', 'top');
+@include pad('5', 'top');
+@include pad('10', 'top');
+@include pad('20', 'top');
+@include pad('25', 'top');
+@include pad('30', 'top');
+@include pad('50', 'top');
+@include pad('75', 'top');
+@include pad('100', 'top');
+@include pad('4', 'bottom');
+@include pad('5', 'bottom');
+@include pad('10', 'bottom');
+@include pad('20', 'bottom');
+@include pad('25', 'bottom');
+@include pad('30', 'bottom');
+@include pad('50', 'bottom');
+@include pad('75', 'bottom');
+@include pad('100', 'bottom');
+@include pad('5', 'right');
+@include pad('10', 'right');
+@include pad('20', 'right');
+@include pad('25', 'right');
+@include pad('30', 'right');
+@include pad('50', 'right');
+@include pad('75', 'right');
+@include pad('100', 'right');
+@include pad('5', 'left');
+@include pad('10', 'left');
+@include pad('20', 'left');
+@include pad('25', 'left');
+@include pad('30', 'left');
+@include pad('50', 'left');
+@include pad('75', 'left');
+@include pad('100', 'left');
+
+@mixin no-padding($side) {
+  @if $side== 'all' {
+    .no-padding {
+      padding: 0 !important;
+    }
+  } @else {
+    .no-padding-#{$side} {
+      padding-#{$side}: 0 !important;
+    }
+  }
+}
+
+@include no-padding('left');
+@include no-padding('right');
+@include no-padding('top');
+@include no-padding('bottom');
+@include no-padding('all');
+
+/* end of padding helpers */
+
+.no-margin {
+  margin: 0px;
+}
+@mixin voffset($size) {
+  @if $size== '' {
+    .voffset {
+      margin-top: 2px !important;
+    }
+  } @else {
+    .voffset-#{$size} {
+      margin-top: #{$size}px !important;
+    }
+  }
+}
+
+@include voffset('');
+@include voffset('5');
+@include voffset('10');
+@include voffset('15');
+@include voffset('30');
+@include voffset('40');
+@include voffset('60');
+@include voffset('80');
+@include voffset('100');
+@include voffset('150');
+
+.readonly {
+  background-color: #eee;
+  opacity: 1;
+}
+
+/* ==========================================================================
+make sure browsers use the pointer cursor for anchors, even with no href
+========================================================================== */
+
+a:hover {
+  cursor: pointer;
+}
+
+.hand {
+  cursor: pointer;
+}
+
+button.anchor-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  align-items: initial;
+  text-align: initial;
+  width: 100%;
+}
+
+a.anchor-btn:hover {
+  text-decoration: none;
+}
+
+/* ==========================================================================
+Metrics and Health styles
+========================================================================== */
+
+#threadDump .popover,
+#healthCheck .popover {
+  top: inherit;
+  display: block;
+  font-size: 10px;
+  max-width: 1024px;
+}
+
+.thread-dump-modal-lock {
+  max-width: 450px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#healthCheck .popover {
+  margin-left: -50px;
+}
+
+.health-details {
+  min-width: 400px;
+}
+
+/* bootstrap 3 input-group 100% width
+http://stackoverflow.com/questions/23436430/bootstrap-3-input-group-100-width */
+
+.width-min {
+  width: 1% !important;
+}
+
+// Fix checkbox alignment https://github.com/jhipster/generator-jhipster/issues/8463
+.form-check-input {
+  margin-top: -0.5rem;
+}
+
+h1 {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  line-height: 44px;
+  font-size: 32px;
+  color: var(--black-text);
+}
+
+h2 {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+  line-height: 32px;
+  font-size: 22px;
+  color: var(--black-text);
+}
+
+h3 {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+  line-height: 28px;
+  font-size: 20px;
+  color: var(--black-text);
+}
+
+p {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+  line-height: 20px;
+  font-size: 16px;
+  color: var(--gray-darker);
+}
+
+footer {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+  line-height: 22px;
+  font-size: 14px;
+  color: var(--gray-darker);
+}
+
+a {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+a:hover {
+  color: var(--primary-active-darker);
+}
+
+.gbl-navbar {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0.2em 1em;
+  max-height: 53px;
+  min-height: 53px;
+  border-bottom: 1px solid rgba(197, 208, 222, 0.125);
+  .profile-image {
+    margin: -10px 0px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+  }
+  .dropdown-item.active,
+  .dropdown-item.active:focus,
+  .dropdown-item.active:hover {
+    background-color: #353d47;
+  }
+  .dropdown-toggle::after {
+    margin-left: 0.15em;
+  }
+  ul.navbar-nav {
+    padding: 0.5em;
+    .nav-item {
+      margin-left: 1.5rem;
+    }
+  }
+  a {
+    color: var(--gray-darker);
+    font-weight: normal;
+  }
+  a.nav-link {
+    font-weight: 400;
+    > span {
+      margin-left: 5px;
+    }
+    color: var(--black-text);
+  }
+  .jh-navbar-toggler {
+    color: #ccc;
+    font-size: 1.5em;
+    padding: 10px;
+    &:hover {
+      color: var(--white-text);
+    }
+  }
+}
+
+.desktophide {
+  display: none;
+}
+
+.small-header {
+  text-transform: uppercase;
+  padding-top: 40px;
+  color: var(--gray-darker);
+}
+
+//Removes the dotted outline when clicking on a menu
+
+:-moz-focusring {
+  outline: unset;
+}
+
+.form-control {
+  padding: 20px;
+  margin-bottom: 8px;
+  border: var(--gray-lighter) solid 0.1em;
+  color: var(--black-text);
+  font-weight: 600;
+  height: 32px;
+}
+
+.input-group {
+  margin-bottom: 8px;
+}
+
+.form-control::placeholder {
+  color: var(--gray-lighter);
+}
+
+.form-control:focus {
+  border-color: $primary;
+  box-shadow: none;
+}
+
+.form-control.is-valid:focus {
+  box-shadow: none;
+  border-color: $primary;
+}
+
+.form-control.is-invalid:focus {
+  box-shadow: none;
+  border-color: $primary;
+}
+
+.form-control {
+  border-radius: 4px;
+}
+
+.input-group > .form-control:not(:last-child) {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.input-group {
+  .material-icons {
+    display: none;
+    position: absolute;
+    top: 8px;
+    color: gray;
+  }
+}
+
+.input-group.is-valid {
+  .material-icons.valid-icon {
+    color: green;
+    display: inherit;
+    right: 9px;
+  }
+}
+
+.input-group.is-invalid {
+  .material-icons.invalid-icon {
+    color: var(--error);
+    display: inherit;
+    right: 9px;
+  }
+  .form-control {
+    color: var(--error);
+  }
+
+  .form-control:focus {
+    color: unset;
+  }
+}
+
+.input-group-icon-left {
+  .material-icons.left-icon {
+    display: inherit;
+    left: 8px;
+    color: var(--gray-lighter);
+    z-index: 5;
+  }
+
+  .form-control {
+    padding-left: 38px;
+  }
+}
+
+.input-group.input-group-icon-right {
+  .material-icons.right-icon {
+    display: inherit;
+    right: 8px;
+    color: var(--gray-lighter);
+    z-index: 5;
+  }
+
+  .form-control {
+    padding-right: 38px;
+  }
+
+  .material-icons.valid-icon {
+    display: none;
+  }
+  .material-icons.invalid-icon {
+    display: none;
+  }
+}
+
+.form-control:disabled {
+  background-color: #e9edf1;
+  color: var(--gray-lighter);
+  border: #dfe3e9 solid 1px;
+  height: 32px;
+}
+
+label {
+  padding-top: 8px;
+  margin-bottom: 0;
+  color: var(--gray-darker);
+  font-weight: 600;
+}
+
+div.valid-feedback,
+small.form-text,
+div.invalid-feedback {
+  font-size: 12px;
+  margin-top: -6px;
+  vertical-align: middle;
+}
+
+div.valid-feedback,
+div.invalid-feedback,
+small.form-text {
+  .material-icons {
+    font-size: 15px;
+    vertical-align: middle;
+    padding-right: 2px;
+  }
+}
+
+.app-container .view-container {
+  overflow-y: visible;
+  overflow-x: unset;
+}
+
+.nav.nav-tabs {
+  color: var(--gray-lighter);
+  font-size: 20px;
+  font-weight: normal;
+  margin-bottom: 21px;
+}
+
+.nav.nav-tabs {
+  .active {
+    color: $dark;
+    background-color: unset;
+    border: unset;
+    border-bottom: 3px var(--primary) solid;
+    font-weight: 600;
+  }
+
+  .nav-link:hover {
+    border-color: #ddd rgba(221, 221, 221, 0) rgba(238, 238, 238, 0);
+  }
+}
+
+.tooltip {
+  .tooltip-inner {
+    font-size: 16px;
+    padding: 8px 16px 11px;
+    background-color: #353c48;
+  }
+
+  span.arrow::before {
+    border-top-color: #353c48;
+  }
+}
+.breadcrumb-item + .breadcrumb-item::before {
+  background: transparent url('../static/images/chevron-right.svg');
+  background: transparent inline('../static/images/chevron-right.svg');
+  background-repeat: no-repeat;
+  background-size: 4px 11px;
+  color: transparent;
+  margin-left: 8px;
+  margin-right: 6px;
+  position: relative;
+  top: 6px;
+}
+
+.breadcrumb-item:not(.active) {
+  color: var(--gray-darker);
+}
+
+.breadcrumb-item.active {
+  color: var(--black-text);
+}
+
+.breadcrumb-item {
+  font-weight: 600;
+  font-size: 14px;
+  background-color: transparent;
+}
+
+table.table {
+  border-collapse: collapse;
+  border-radius: 4px;
+  border-style: hidden; /* hide standard table (collapsed) border */
+  box-shadow: 0 0 0 1px #dfe2e5; /* this draws the table border  */
+  color: var(--gray-darker);
+  tr {
+    border: unset;
+    td,
+    th {
+      border: unset;
+    }
+  }
+
+  tr {
+    height: 50px;
+    padding-left: 30px;
+    vertical-align: center;
+  }
+  tbody tr:hover {
+    background-color: #f1f4f8;
+  }
+
+  tbody tr th {
+    color: var(--black-text);
+  }
+
+  tr td:first-child,
+  th:first-child {
+    padding-left: 30px;
+  }
+
+  tr td:last-child,
+  th:last-child {
+    padding-right: 30px;
+  }
+
+  thead tr th.sortable:first-child {
+    padding-left: 21px;
+  }
+
+  tbody tr {
+    border-bottom: 1px #dfe2e5 solid;
+  }
+
+  thead th {
+    border-bottom: 1px #dfe2e5 solid;
+  }
+
+  tr th,
+  td {
+    vertical-align: middle;
+  }
+}
+
+ul.pagination {
+  color: rgba(53, 64, 82, 0.5);
+
+  .page-link {
+    color: rgba(53, 64, 82, 0.5);
+  }
+
+  .page-link.left,
+  .page-link.right {
+    padding: 4px;
+  }
+
+  .page-link.left:before {
+    color: rgba(53, 64, 82, 0.5);
+    content: url("data:image/svg+xml; utf8, <svg xmlns='http://www.w3.org/2000/svg' class='MuiSvgIcon-root-28' focusable='false' viewBox='0 0 24 24' aria-hidden='true' role='presentation'><path fill='rgba(53, 64, 82, 0.5)' d='M14 7l-5 5 5 5V7z'></path><path fill='none' d='M24 0v24H0V0h24z'></path></svg>");
+    display: block;
+    width: 24px;
+    height: 24px;
+    margin: 0;
+  }
+
+  .page-link.right:before {
+    color: rgba(53, 64, 82, 0.5);
+    content: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" class="MuiSvgIcon-root-10" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation"><path fill="rgba(53, 64, 82, 0.5)"  d="M10 17l5-5-5-5v10z"></path><path fill="none" d="M0 24V0h24v24H0z"></path></svg>');
+    display: block;
+    width: 24px;
+    height: 24px;
+    margin: 0;
+  }
+
+  .page-item.active .page-link {
+    background-color: unset;
+    color: var(--black-text);
+    border-color: var(--pagination-border-color);
+    //border-color: pink;
+    font-weight: 600;
+  }
+
+  .page-item:not(.active) .page-link:hover {
+    color: var(--white-text);
+  }
+}
+
+nav ul.pagination {
+  height: 36px;
+}
+
+.side-menu-container {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.was-validated .form-control:invalid,
+.form-control.is-invalid,
+.form-control:valid,
+.form-control.is-valid {
+  background-image: none;
+}
+
+.alert {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.alert-success {
+  background-color: var(--success);
+  color: var(--white-text);
+}
+
+.alert-warning {
+  background-color: var(--warning);
+  color: var(--white-text);
+}
+
+.alert-info {
+  background-color: var(--primary);
+  color: var(--white-text);
+}
+
+.alert-danger {
+  background-color: var(--danger);
+  color: var(--white-text);
+}
+
+.context-menu-btn:hover {
+  background-color: transparent;
+}
+
+.context-menu {
+  .dropdown.show .arrow-up-left {
+    top: -7px;
+    left: 16px;
+  }
+}
+
+#breadcrumb,
+.breadcrumb {
+  background-color: unset;
+}

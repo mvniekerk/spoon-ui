@@ -1,0 +1,95 @@
+@keyframes fadeActionBannerIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.action-banner {
+  margin-top: -18px;
+  margin-right: 4px;
+  background-color: white;
+  width: 100vw;
+  padding-bottom: 12px;
+  margin-bottom: 18px;
+  animation: fadeActionBannerIn 300ms;
+
+  .action-banner-bread-crumb .breadcrumb {
+    padding-left: 0;
+    margin-bottom: 0;
+    margin-right: 0;
+    padding-right: 0;
+  }
+
+  .action-buttons {
+    display: flex;
+    flex-direction: row-reverse;
+    position: relative;
+    right: 16px;
+    height: auto;
+    align-items: center;
+    .btn-spoon-ui {
+      margin-left: 10px;
+      height: auto;
+    }
+
+    @media only screen and (max-width: 580px) {
+      min-width: calc(100vw - 54px);
+      margin-left: 4px;
+      flex-direction: column;
+
+      .btn-spoon-ui {
+        width: calc(100vw - 40px);
+        margin-bottom: 8px;
+      }
+    }
+  }
+}
+
+.action-banner.max {
+  margin-left: -274px;
+  padding-left: 282px;
+  width: calc(100vw - 30px);
+  transition: all 300ms linear;
+
+  .action-banner-bread-crumb {
+    width: calc(100vw - 300px);
+  }
+
+  .nav-header-text {
+    width: calc(100vw - 300px);
+  }
+}
+
+.action-banner.mini {
+  margin-left: -90px;
+  padding-left: 102px;
+  width: calc(100vw - 30px);
+  transition: all 300ms linear;
+
+  .action-banner-bread-crumb {
+    width: calc(100vw - 120px);
+  }
+
+  .nav-header-text {
+    width: calc(100vw - 120px);
+  }
+}
+
+.action-banner.mini.breadcrumbed {
+  width: calc(100vw + -12px);
+}
+
+.action-banner .nav-header-text {
+  margin-top: 32px;
+}
+
+.action-banner.breadcrumbed .nav-header-text {
+  margin-top: -12px;
+}
+
+.action-banner.max.breadcrumbed {
+  width: calc(100vw - 8px);
+}

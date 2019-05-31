@@ -1,0 +1,137 @@
+button.btn {
+  border: 1px;
+  box-shadow: 0 0 0 1px #373a3c14 inset;
+  background-color: unset;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 2px;
+  text-decoration: none;
+  min-height: 32px;
+  margin-bottom: 0;
+  min-width: 100px;
+  padding-left: 30px;
+  padding-right: 30px;
+
+  letter-spacing: normal;
+  font-kerning: normal;
+  display: flex;
+  align-items: center;
+}
+
+button.btn:focus {
+  border: 1px;
+  box-shadow: 0 0 0 1px rgba(197, 208, 222, 0.1) inset;
+}
+
+button.btn.btn-primary {
+  font-weight: 600;
+  color: var(--white-text);
+  border: 1px;
+  background-image: linear-gradient(to bottom, var(--primary-lighter), var(--primary));
+}
+
+button.btn.btn-primary:hover {
+  background-image: linear-gradient(to bottom, var(--primary-active), var(--primary-active-lighter));
+}
+
+button.btn.btn-primary:active {
+  background-image: linear-gradient(to bottom, var(--primary-active-lighter), var(--primary-active));
+}
+
+button.btn-primary:not(:disabled):not(.disabled):active:focus,
+.btn-primary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+  box-shadow: none;
+}
+
+button.btn.btn-secondary {
+  font-weight: 600;
+  color: var(--black-text);
+  background-image: linear-gradient(to bottom, #fefefe, #f4f5f8);
+}
+
+button.btn.btn-secondary:active {
+  background-image: linear-gradient(to bottom, #f4f5f8, #e4e5e8);
+}
+
+button.btn.btn-green {
+  font-weight: 600;
+  color: var(--white-text);
+  background-image: linear-gradient(to bottom, var(--tertiary), var(--tertiary-darker));
+}
+
+button.btn.btn-green:hover {
+  //background-color: var(--tertiary);
+  background-image: linear-gradient(to bottom, var(--tertiary-active), var(--tertiary-active-darker));
+}
+
+button.btn.btn-green:active {
+  background-color: var(--tertiary-darker);
+  background-image: linear-gradient(to bottom, #09a780, #097d5f);
+  transition: background-color 0.3s;
+}
+
+button.btn.btn-dark {
+  border: 1px solid var(--dark);
+  font-weight: 600;
+  color: var(--white-text);
+  background-image: linear-gradient(to bottom, var(--dark), var(--dark-darker));
+}
+
+button.btn.btn-dark:hover {
+  background-color: var(--dark);
+  background-image: linear-gradient(to bottom, var(--dark-lighter), var(--dark));
+  outline-color: transparent;
+}
+
+button.btn.btn-dark:active {
+  background-color: var(--dark-darker);
+  background-image: linear-gradient(to bottom, var(--dark), var(--dark));
+  outline-color: transparent;
+}
+
+button.btn {
+  outline-color: transparent;
+  box-shadow: transparent;
+}
+
+button:disabled {
+  background-color: #e9edf1 !important;
+  color: var(--gray-lighter) !important;
+  //border: #dfe3e9 solid 0.5px !important;
+  border-color: #dfe3e9 !important;
+  background-image: none !important;
+}
+
+button .material-icons {
+  vertical-align: middle;
+  font-size: 18px;
+  padding-right: 8px;
+  padding-left: 8px;
+}
+
+button .material-icons.show-selected {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+}
+
+.btn-spoon-ui {
+  .btn-icon {
+    svg {
+      font-size: 18px;
+    }
+  }
+  .btn-icon.icon-left {
+    svg {
+      margin-right: 4px;
+    }
+  }
+  .btn-icon.icon-right {
+    svg {
+      margin-left: 4px;
+    }
+  }
+  margin-top: 0;
+}

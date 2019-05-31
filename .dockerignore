@@ -1,0 +1,15 @@
+.gradle/
+.idea/
+
+build/
+doc/
+
+
+node_modules/
+Dockerfile
+.git
+
+Dockerfile.runimage
+Dockerfile.sonarqube
+
+Jenkinsfile.groovy

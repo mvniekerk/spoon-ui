@@ -1,0 +1,16 @@
+thead th {
+  cursor: pointer;
+}
+
+thead th.sortable {
+  position: relative;
+  left: -2px;
+  padding-left: 4px;
+
+  .sort-icon {
+    font-size: 14px;
+    position: relative;
+    left: -7px;
+    margin-right: -4px;
+  }
+}

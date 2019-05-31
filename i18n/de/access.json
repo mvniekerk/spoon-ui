@@ -1,0 +1,10 @@
+{
+  "bbSkeletonApp": {
+    "Access": {
+      "null": "",
+      "None": "None",
+      "Read": "Read",
+      "Write": "Write"
+    }
+  }
+}

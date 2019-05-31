@@ -1,0 +1,123 @@
+.color-dropdown {
+  padding-bottom: 12px;
+  .dropdown {
+    button {
+      background-color: transparent;
+    }
+  }
+
+  .color-display {
+    height: 32px;
+    width: 32px;
+    border-radius: 16px;
+    cursor: pointer;
+    margin: auto;
+  }
+
+  .dropdown.show {
+    .arrow-up-left {
+      position: relative;
+      left: 142px;
+      top: -7px;
+      width: 18px;
+      height: 18px;
+      background-size: 100% 100%;
+      margin-bottom: -18px;
+      transition: unset;
+      animation: unset;
+    }
+
+    .dropdown-menu {
+      z-index: 10000;
+      width: 300px;
+      max-width: 300px;
+      left: var(--color-picker-menu-left) !important;
+      //left: unset !important;
+      //transform: unset !important;
+      transform: translate3d(0px, 36px, 0px) !important;
+    }
+  }
+
+  .color-picker-container {
+    height: 288px;
+    width: 300px;
+    z-index: 10003;
+    .--mb--color-picker {
+      .color-picker-header {
+        display: none;
+      }
+      background: unset;
+      background-color: unset;
+      box-shadow: unset;
+
+      .color-picker-body {
+        padding: 0;
+      }
+      .s-v-plane {
+        width: 260px;
+        height: 150px !important;
+        border-radius: 6px !important;
+      }
+      .color-picker-body {
+        border-radius: 16px;
+        z-index: 10002;
+      }
+    }
+
+    .preview-container {
+      width: 32px !important;
+      height: 32px !important;
+      box-shadow: inset 0 0 0 10px #00000022;
+      border-radius: 18px !important;
+      //border: 2px solid rgba(0,0,0,0.2) !important;
+      overflow: hidden;
+    }
+
+    .hsv-picker {
+      padding: 20px;
+      .row {
+        width: 276px;
+      }
+      .h-band,
+      .a-band {
+        margin-left: 14px;
+        width: 228px;
+        box-sizing: border-box;
+        border-radius: 12px !important;
+        box-shadow: inset 0 0 0 2px #00000022;
+        overflow: hidden;
+      }
+      .h-band {
+        padding-bottom: 12px;
+      }
+      .a-band {
+        height: 12px !important;
+      }
+      .h-a-bands {
+        margin-right: unset !important;
+
+        .rail {
+          .slider {
+            background-color: red !important;
+          }
+          .slider::before {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .input-section {
+      padding-left: 20px;
+      padding-right: 20px;
+      margin-top: -10px !important;
+      width: 278px;
+    }
+    .color-input {
+      text-transform: uppercase;
+      font-size: 14px !important;
+      font-weight: normal;
+      color: #979797 !important;
+    }
+  }
+}

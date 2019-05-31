@@ -1,0 +1,26 @@
+{
+  "bbSkeletonApp": {
+    "receiver": {
+      "home": {
+        "title": "Receivers",
+        "createLabel": "Create a new Receiver",
+        "createOrEditLabel": "Create or edit a Receiver"
+      },
+      "created": "A new Receiver is created with identifier {{ param }}",
+      "updated": "A Receiver is updated with identifier {{ param }}",
+      "deleted": "A Receiver is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Receiver {{ id }}?"
+      },
+      "detail": {
+        "title": "Receiver"
+      },
+      "host": "Host",
+      "serial": "Serial",
+      "enabled": "Enabled",
+      "name": "Name",
+      "topic": "Topic",
+      "coords": "Coords"
+    }
+  }
+}
