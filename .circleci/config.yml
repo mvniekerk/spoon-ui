@@ -108,6 +108,7 @@ workflows:
         - deploy:
               requires:
               - test
+              - vulnerability-test
               filters:
                   tags:
                       only: /^v*.*.*/
