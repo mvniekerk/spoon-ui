@@ -72,6 +72,7 @@ jobs:
               name: Publish package
               command: npm publish dist/
     vulnerability-test:
+        <<: *defaults
         steps:
         - attach_workspace:
               at: ~/repo
