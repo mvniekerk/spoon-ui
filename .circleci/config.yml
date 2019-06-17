@@ -71,15 +71,35 @@ jobs:
         - run:
               name: Publish package
               command: npm publish dist/
-
+    vulnerability-test:
+        steps:
+        - attach_workspace:
+              at: ~/repo
+        - run:
+              name: update-npm
+              command: 'sudo npm install -g npm@latest'
+        - run:
+              name: install-snyk
+              command: 'sudo npm install -g snyk'     
+        - run: # run snyk help - test snyk is installed and working
+              name: snyk-help
+              command: snyk --help
+        - run: # run snyk auth - authenticate snyk use environment variables to add token
+              name: snyk auth
+              command: snyk auth $SNYK_TOKEN
+        - run: # run snyk test - run snyk test
+             name: snyk test
+             command: snyk test
 workflows:
     version: 2
     build-commit:
         jobs:
         - test
+        - vulnerability-test
         - docker-build:
               requires:
               - test
+              - vulnerability-test
               filters:
                   tags:
                       only: /^v*.*.*/
