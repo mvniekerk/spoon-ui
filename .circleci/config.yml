@@ -99,7 +99,7 @@ workflows:
         - docker-build:
               requires:
               - test
-              - vulnerability-test
+#              - vulnerability-test
               filters:
                   tags:
                       only: /^v*.*.*/
