@@ -89,7 +89,7 @@ jobs:
               command: snyk auth $SNYK_TOKEN
         - run: # run snyk test - run snyk test
              name: snyk test
-             command: pwd && find . && snyk test
+             command: snyk test
 workflows:
     version: 2
     build-commit:
