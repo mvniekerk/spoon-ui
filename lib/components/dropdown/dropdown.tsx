@@ -199,7 +199,7 @@ export class Dropdown extends React.Component<IDropdownProps, IDropdownState> {
           </DropdownToggle>
           <this.ArrowUpLeft />
 
-          <DropdownMenu className={menuClassName}>
+          <DropdownMenu className={menuClassName} flip={false}>
             <div className="top-spacer" />
             {searchBar}
             <PerfectScrollbar>
