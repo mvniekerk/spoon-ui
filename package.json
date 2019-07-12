@@ -51,7 +51,8 @@
     "styled-components": "^4.1.1",
     "tslib": "1.9.3",
     "uuid": "3.3.2",
-    "webstomp-client": "1.2.6"
+    "webstomp-client": "1.2.6",
+    "snyk": "^1.189.0"
   },
   "devDependencies": {
     "@types/color": "^3.0.0",
@@ -179,7 +180,9 @@
     "lib:stage": "cp -r lib dist && cp tsconfig-lib.json dist/tsconfig.json && cp -r static dist/ && ln -s ../node_modules dist/node_modules && cp package.json dist/",
     "lib:importfix": "cd dist/; find . -type f | xargs sed -i 's/..\\/static/static/g'",
     "lib:typescript": "cd dist/; tsc; rm node_modules",
-    "lib": "npm run cleanup && npm run lib:stage && npm run lib:importfix && npm run lib:typescript"
+    "lib": "npm run cleanup && npm run lib:stage && npm run lib:importfix && npm run lib:typescript",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "jestSonar": {
     "reportPath": "target/test-results/jest",
@@ -187,5 +190,6 @@
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
-  }
+  },
+  "snyk": true
 }
