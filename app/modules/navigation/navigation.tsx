@@ -3,7 +3,7 @@ import './navigation.scss';
 import React from 'react';
 import { Row, Col, Nav, NavItem, NavLink, ButtonGroup, UncontrolledTooltip, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 
-import { Info } from '@material-ui/icons';
+import { Info, Edit, SubdirectoryArrowRight } from '@material-ui/icons';
 
 /* tslint:disable:no-submodule-imports */
 import {
@@ -147,14 +147,16 @@ export default class Navigation extends React.Component {
           <Col md="6">
             <div className="small-header">Progression vertical</div>
             <Progression vertical>
-              <ProgressionItem step={1} current>
+              <ProgressionItem step={1} current icon={<Edit />}>
                 Personal Details
               </ProgressionItem>
               <ProgressionItem step={2} done>
                 Contact Details
               </ProgressionItem>
               <ProgressionItem step={3}>Client Profile</ProgressionItem>
-              <ProgressionItem step={4}>Submit for approval</ProgressionItem>
+              <ProgressionItem step={4} icon={<SubdirectoryArrowRight />}>
+                Submit for approval
+              </ProgressionItem>
             </Progression>
           </Col>
           <Col md="4">

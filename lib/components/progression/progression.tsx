@@ -6,7 +6,7 @@ export interface IProgression {
 }
 
 export default class Progression extends React.Component<IProgression> {
-  defaultProps: IProgression = {
+  static defaultProps: IProgression = {
     vertical: false
   };
 
