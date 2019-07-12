@@ -1,8 +1,16 @@
 import './progression.scss';
 import React from 'react';
 
-export default class Progression extends React.Component {
+export interface IProgression {
+  vertical: boolean;
+}
+
+export default class Progression extends React.Component<IProgression> {
+  defaultProps: IProgression = {
+    vertical: false
+  };
+
   render() {
-    return <div className="progression">{this.props.children}</div>;
+    return <div className={`progression ${this.props.vertical ? 'vertical' : ''}`}>{this.props.children}</div>;
   }
 }

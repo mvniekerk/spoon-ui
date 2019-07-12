@@ -6,6 +6,7 @@ export interface IProgressionProps {
   done: boolean;
   current: boolean;
   step: number;
+  icon?: JSX.Element;
 }
 
 export default class ProgressionItem extends React.Component<IProgressionProps> {
@@ -16,12 +17,8 @@ export default class ProgressionItem extends React.Component<IProgressionProps> 
   };
 
   render() {
-    const counter = this.props.done ? (
-      <div className="counter">
-        <CheckRounded />
-      </div>
-    ) : (
-      <div className="counter">{this.props.step}</div>
+    const counter = (
+      <div className="counter">{!!this.props.icon ? this.props.icon : this.props.done ? <CheckRounded /> : this.props.step}</div>
     );
     return (
       <div className={`progression-item  ${this.props.done ? 'done' : ''} ${this.props.current ? 'current' : ''}`}>

@@ -9,6 +9,10 @@
   font-weight: 600;
 }
 
+.progression.vertical {
+  flex-direction: column;
+}
+
 .progression-item {
   display: flex;
   flex-direction: row;
