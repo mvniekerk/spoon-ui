@@ -62,6 +62,7 @@ jobs:
         steps:
         - attach_workspace:
               at: ~/repo
+        - run: yarn
         - run: yarn global add snyk
         - run:
               name: Build
