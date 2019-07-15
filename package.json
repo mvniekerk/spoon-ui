@@ -181,7 +181,7 @@
     "lib:typescript": "cd dist/; tsc; rm node_modules",
     "lib": "npm run cleanup && npm run lib:stage && npm run lib:importfix && npm run lib:typescript",
     "snyk-protect": "snyk protect",
-    "prepublish": "npm run snyk-protect"
+    "prepublishOnly": "snyk protect"
   },
   "jestSonar": {
     "reportPath": "target/test-results/jest",
