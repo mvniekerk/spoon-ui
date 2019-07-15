@@ -9,7 +9,7 @@ import AddToFromList from 'lib/components/add-to-from-list/add-to-from-list';
 
 export default class Selection extends React.Component {
   render() {
-    const radioGroupVals: IRadioButtonValue[] = [
+    const radioGroupVals = [
       {
         label: 'Option 1',
         id: 'option1',
@@ -33,7 +33,7 @@ export default class Selection extends React.Component {
       }
     ];
 
-    const lonesomeChecked: IRadioButtonValue[] = [
+    const lonesomeChecked: Array<IRadioButtonValue<string>> = [
       {
         label: 'Option 4',
         id: 'option4',

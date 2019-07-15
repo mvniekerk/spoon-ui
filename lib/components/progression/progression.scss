@@ -9,6 +9,10 @@
   font-weight: 600;
 }
 
+.progression.vertical {
+  flex-direction: column;
+}
+
 .progression-item {
   display: flex;
   flex-direction: row;
@@ -51,4 +55,8 @@
     box-shadow: 0 0 0 1px var(--progression-current-shadow) inset;
     border: 1px;
   }
+}
+
+.progression-item .counter svg {
+  font-size: 13px;
 }

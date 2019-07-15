@@ -1,7 +1,7 @@
-export interface IRadioButtonValue {
+export interface IRadioButtonValue<T> {
   label: string;
   id: string;
-  value: string;
+  value: T;
   disabled: boolean;
   checked: boolean;
 }
