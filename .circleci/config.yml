@@ -63,7 +63,12 @@ jobs:
         - attach_workspace:
               at: ~/repo
         - run: yarn
-        - run: yarn global add snyk
+        - run:
+              name: update-npm
+              command: 'sudo npm install -g npm@latest'
+        - run:
+              name: install-snyk
+              command: 'sudo npm install -g snyk'
         - run:
               name: Build
               command: npm run lib
