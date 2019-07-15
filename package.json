@@ -179,9 +179,7 @@
     "lib:stage": "cp -r lib dist && cp tsconfig-lib.json dist/tsconfig.json && cp -r static dist/ && ln -s ../node_modules dist/node_modules && cp package.json dist/",
     "lib:importfix": "cd dist/; find . -type f | xargs sed -i 's/..\\/static/static/g'",
     "lib:typescript": "cd dist/; tsc; rm node_modules",
-    "lib": "npm run cleanup && npm run lib:stage && npm run lib:importfix && npm run lib:typescript",
-    "snyk-protect": "snyk protect",
-    "prepublishOnly": "snyk protect"
+    "lib": "npm run cleanup && npm run lib:stage && npm run lib:importfix && npm run lib:typescript"
   },
   "jestSonar": {
     "reportPath": "target/test-results/jest",
