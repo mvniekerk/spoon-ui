@@ -40,7 +40,6 @@ jobs:
                   - dist
                   - target
                   - .
-
     docker-build:
         docker:
         - image: docker
