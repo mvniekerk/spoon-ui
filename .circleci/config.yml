@@ -21,6 +21,7 @@ jobs:
                   export VERSION=`cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]'`
                   echo Version: $VERSION
         - run: yarn
+        - run: npm install -g snyk
         - run:
               name: Build prod
               command: npm run webpack:prod
