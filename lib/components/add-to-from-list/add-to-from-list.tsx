@@ -13,13 +13,13 @@ export interface IAddToFromListProps {
   destinationListHeader: string;
   onSearchChanged?: (string) => void;
   listHeight?: string;
-  sourceList: ITextTranslationAndValue[];
-  selectedListChanged?: (selected: ITextTranslationAndValue[]) => void;
-  selected?: ITextTranslationAndValue[];
+  sourceList: Array<ITextTranslationAndValue<string>>;
+  selectedListChanged?: (selected: Array<ITextTranslationAndValue<string>>) => void;
+  selected?: Array<ITextTranslationAndValue<string>>;
 }
 
 export interface IAddToFromListState {
-  selected: ITextTranslationAndValue[];
+  selected: Array<ITextTranslationAndValue<string>>;
 }
 
 class AddToFromList extends React.Component<IAddToFromListProps, IAddToFromListState> {
@@ -39,7 +39,7 @@ class AddToFromList extends React.Component<IAddToFromListProps, IAddToFromListS
     }
   }
 
-  addSelected(val: ITextTranslationAndValue) {
+  addSelected(val) {
     const selected = [...this.state.selected.filter(b => b.value !== val.value), val];
     this.setState({ selected });
     if (!!this.props.selectedListChanged) {
@@ -47,7 +47,7 @@ class AddToFromList extends React.Component<IAddToFromListProps, IAddToFromListS
     }
   }
 
-  removeSelected(val: ITextTranslationAndValue) {
+  removeSelected(val) {
     const selected = this.state.selected.filter(b => b.value !== val.value);
     this.setState({ selected });
   }

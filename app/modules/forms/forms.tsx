@@ -15,7 +15,7 @@ import Info from '@material-ui/icons/Info';
 import Cancel from '@material-ui/icons/Cancel';
 
 export interface IFormsState {
-  values: ITextTranslationAndValue[];
+  values: Array<ITextTranslationAndValue<string>>;
   search?: string;
 }
 
@@ -31,7 +31,7 @@ export default class Forms extends React.Component<{}, IFormsState> {
     this.searchChanged = this.searchChanged.bind(this);
   }
 
-  onAddTag(a: ITextTranslationAndValue) {
+  onAddTag(a: ITextTranslationAndValue<string>) {
     if (!!a) {
       this.setState(p => ({
         values: [...p.values, a]

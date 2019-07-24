@@ -15,15 +15,15 @@ const triangleImage = `url("${triangle}")`;
 
 export interface ITagInputProps {
   searching: boolean;
-  values: ITextTranslationAndValue[];
+  values: Array<ITextTranslationAndValue<string>>;
   message?: string;
   placeholder?: string;
-  onAddTag?: (s: ITextTranslationAndValue) => void;
-  onSelectionChanged?: (s: ITextTranslationAndValue) => void;
+  onAddTag?: (s: ITextTranslationAndValue<string>) => void;
+  onSelectionChanged?: (s: ITextTranslationAndValue<string>) => void;
 }
 
 export interface ITagInputState {
-  selection: ITextTranslationAndValue[];
+  selection: Array<ITextTranslationAndValue<string>>;
   dropdownOpen: boolean;
   search?: string;
 }
@@ -107,7 +107,7 @@ export class TagInput extends React.Component<ITagInputProps, ITagInputState> {
     };
 
     const a = () => this.toggle();
-    const valSelected = (val: ITextTranslationAndValue, sender: DropdownItem) => {
+    const valSelected = (val: ITextTranslationAndValue<string>, sender: DropdownItem<string>) => {
       this.setState(prevState => {
         const vals = prevState.selection;
         if (!vals.includes(val)) {
@@ -117,7 +117,7 @@ export class TagInput extends React.Component<ITagInputProps, ITagInputState> {
       });
     };
 
-    const valDeselected = (val: ITextTranslationAndValue, sender: DropdownItem) => {
+    const valDeselected = (val: ITextTranslationAndValue<string>, sender: DropdownItem<string>) => {
       val.selected = false;
       this.setState(prevState => {
         const vals = prevState.selection;

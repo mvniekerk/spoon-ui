@@ -1,7 +1,7 @@
 import './items-per-page.scss';
 
 import React from 'react';
-import { Dropdown, DropdownItem, ITextTranslationAndValue } from '../dropdown';
+import { Dropdown, ITextTranslationAndValue } from '../dropdown';
 
 export interface IItemsPerPageProps {
   amounts: number[];
@@ -28,7 +28,7 @@ export class ItemsPerPage extends React.Component<IItemsPerPageProps, IItemsPerP
     selectedDefault: false
   };
 
-  private _dropdown: Dropdown;
+  private _dropdown: Dropdown<number>;
 
   constructor(props) {
     super(props);
@@ -46,8 +46,8 @@ export class ItemsPerPage extends React.Component<IItemsPerPageProps, IItemsPerP
   }
 
   render() {
-    const onValueSelected = (e: ITextTranslationAndValue) => this.props.onChange(e.value);
-    const vals: ITextTranslationAndValue[] = this.props.amounts.map(a => ({
+    const onValueSelected = (e: ITextTranslationAndValue<number>) => this.props.onChange(e.value);
+    const vals: Array<ITextTranslationAndValue<number>> = this.props.amounts.map(a => ({
       display: `${a}`,
       value: a
     }));
@@ -55,7 +55,7 @@ export class ItemsPerPage extends React.Component<IItemsPerPageProps, IItemsPerP
       <div className="item-per-page">
         <div className="item-per-page-text">{this.props.text}</div>
         <div style={{ flex: 0, flexGrow: 0 }}>
-          <Dropdown ref={ref => (this._dropdown = ref)} onValueSelected={onValueSelected} initialValues={vals} disableDeselect />
+          <Dropdown<number> ref={ref => (this._dropdown = ref)} onValueSelected={onValueSelected} initialValues={vals} disableDeselect />
         </div>
       </div>
     );
