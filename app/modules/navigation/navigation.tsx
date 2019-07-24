@@ -21,11 +21,7 @@ import {
 
 export default class Navigation extends React.Component {
   render() {
-    const val: ITextTranslationAndValue[] = [
-      { display: 'Your account', value: 'first' },
-      { display: 'Settings', value: 'second' },
-      { display: 'Map', value: 'third' }
-    ];
+    const val = [{ display: 'Your account', value: 'first' }, { display: 'Settings', value: 'second' }, { display: 'Map', value: 'third' }];
     return (
       <>
         <Row>

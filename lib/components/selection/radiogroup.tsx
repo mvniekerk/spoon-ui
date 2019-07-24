@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup } from 'reactstrap';
+import { Col, Row } from 'reactstrap';
 import { RadioButton } from './radiobutton';
 import { IRadioButtonValue } from './radio-button-value';
 
@@ -7,6 +7,11 @@ export interface IRadioGroupProps<T> {
   values?: Array<IRadioButtonValue<T>>;
   name: string;
   onChanged?: (value: any) => void;
+  vertical?: boolean;
+  colWidth?: number;
+  xs?: number;
+  md?: number;
+  lg?: number;
 }
 
 export interface IRadioGroupState {
@@ -16,7 +21,9 @@ export interface IRadioGroupState {
 export class RadioGroup<T> extends React.Component<IRadioGroupProps<T>, IRadioGroupState> {
   static defaultProps: IRadioGroupProps<any> = {
     values: [],
-    name: ''
+    name: '',
+    vertical: false,
+    colWidth: 12
   };
 
   state: IRadioGroupState = {
@@ -45,16 +52,17 @@ export class RadioGroup<T> extends React.Component<IRadioGroupProps<T>, IRadioGr
 
   render() {
     const vals = this.props.values.map(v => (
-      <RadioButton
-        key={v.id}
-        {...v}
-        value={`${v.value}`}
-        handleChange={this.handleChange}
-        checked={v.value === this.state.selected}
-        name={this.props.name}
-      />
+      <Col xs={this.props.xs} lg={this.props.lg} md={this.props.md} key={v.id}>
+        <RadioButton
+          {...v}
+          value={`${v.value}`}
+          handleChange={this.handleChange}
+          checked={v.value === this.state.selected}
+          name={this.props.name}
+        />
+      </Col>
     ));
-    return <>{vals}</>;
+    return <div className={`radio-group ${this.props.vertical ? 'vertical' : ''}`}>{this.props.vertical ? vals : <Row>{vals}</Row>}</div>;
   }
 }
 
