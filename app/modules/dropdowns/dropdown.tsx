@@ -12,31 +12,32 @@ import { Dropdown, ITextTranslationAndValue } from 'lib/components';
 import PowerSettingsNew from '@material-ui/icons/PowerSettingsNew';
 
 /* tslint:enable:no-submodule-imports */
+const singleSelection = [
+  { display: 'First', value: 'first' },
+  { display: 'Second', value: 'second' },
+  { display: 'Third', value: 'third' }
+];
 
-export default class DropdownDemo extends React.Component {
-  get singleSelection(): ITextTranslationAndValue[] {
-    return [{ display: 'First', value: 'first' }, { display: 'Second', value: 'second' }, { display: 'Third', value: 'third' }];
-  }
+const multipleSelection = [
+  { display: 'First', value: 'first' },
+  { display: 'Second', value: 'second' },
+  { display: 'Third', value: 'third' }
+];
 
-  get multipleSelection(): ITextTranslationAndValue[] {
-    return [{ display: 'First', value: 'first' }, { display: 'Second', value: 'second' }, { display: 'Third', value: 'third' }];
-  }
+const singleSelectionWithIcon = [
+  { display: 'Your account', value: 'first', icon: <PersonOutline /> },
+  { display: 'Settings', value: 'second', icon: <Settings /> },
+  { display: 'Map', value: 'third', icon: <Place /> },
+  { display: 'Logout', value: 'logout', icon: <PowerSettingsNew />, splitTop: true }
+];
 
-  get singleSelectionWithIcon(): ITextTranslationAndValue[] {
-    return [
-      { display: 'Your account', value: 'first', icon: <PersonOutline /> },
-      { display: 'Settings', value: 'second', icon: <Settings /> },
-      { display: 'Map', value: 'third', icon: <Place /> },
-      { display: 'Logout', value: 'logout', icon: <PowerSettingsNew />, splitTop: true }
-    ];
-  }
+const searchSingleSelection = [
+  { display: 'Your account', value: 'first' },
+  { display: 'Settings', value: 'second' },
+  { display: 'Map', value: 'third' }
+];
 
-  get searchSingleSelection(): ITextTranslationAndValue[] {
-    return [{ display: 'Your account', value: 'first' }, { display: 'Settings', value: 'second' }, { display: 'Map', value: 'third' }];
-  }
-
-  get searchMultipleTooLongSelection(): ITextTranslationAndValue[] {
-    return `
+const searchMultipleTooLongSelection = `
     As I was saying the mother of this particular hobbit of Bilbo Baggins that is was the famous Belladonna Took one of the three remarkable daughters of the Old Took head
      of the hobbits who lived across The Water the small river that ran on the foot of The Hill It was often said (in other families) that long ago one of the Took ancestors must
       have taken a fairy wife That was of course, absurd but certainly there was still something not entirely hobbitlike about them and once in a while members of the Took-clan
@@ -45,12 +46,12 @@ export default class DropdownDemo extends React.Component {
     We are plain quiet folk and have no use for adventures Nasty disturbing uncomfortable things Make you late for dinner I can't think what anybody sees in them said
      our Mr. Baggins and stuck one thumb behind his braces and blew out another even bigger smoke-ring Then he took out his morning letters and began to read pretending to take
     no more notice of Gandalf He had decided that he was not quite his sort and wanted him to go away But the old man did not move`
-      .split(' ')
-      .map(a => a.trim())
-      .filter(a => !!a)
-      .map((v, i) => ({ display: v, value: `val${i}` }));
-  }
+  .split(' ')
+  .map(a => a.trim())
+  .filter(a => !!a)
+  .map((v, i) => ({ display: v, value: `val${i}` }));
 
+export default class DropdownDemo extends React.Component {
   render() {
     return (
       <div>
@@ -59,7 +60,7 @@ export default class DropdownDemo extends React.Component {
             <div className="small-header">Dropdown selects</div>
           </Col>
           <Col md="4">
-            <Dropdown.Dropdown {...this.props} key="dropdown1" placeholder="Single selection" initialValues={this.singleSelection} />
+            <Dropdown.Dropdown {...this.props} key="dropdown1" placeholder="Single selection" initialValues={singleSelection} />
             <br />
           </Col>
           <Col md="4">
@@ -67,7 +68,7 @@ export default class DropdownDemo extends React.Component {
               {...this.props}
               key="dropdown1"
               placeholder="Multiple selection"
-              initialValues={this.multipleSelection}
+              initialValues={multipleSelection}
               multiple
             />
             <br />
@@ -77,7 +78,7 @@ export default class DropdownDemo extends React.Component {
               {...this.props}
               key="dropdown1"
               placeholder="Single with icon"
-              initialValues={this.singleSelectionWithIcon}
+              initialValues={singleSelectionWithIcon}
               iconLeft
             />
             <br />
@@ -87,7 +88,7 @@ export default class DropdownDemo extends React.Component {
               {...this.props}
               key="dropdown1"
               placeholder="Multiple with icon"
-              initialValues={this.singleSelectionWithIcon}
+              initialValues={singleSelectionWithIcon}
               iconLeft
               multiple
             />
@@ -98,7 +99,7 @@ export default class DropdownDemo extends React.Component {
               {...this.props}
               key="dropdown1"
               placeholder="Single with search"
-              initialValues={this.searchSingleSelection}
+              initialValues={searchSingleSelection}
               search
             />
             <br />
@@ -108,7 +109,7 @@ export default class DropdownDemo extends React.Component {
               {...this.props}
               key="dropdown1"
               placeholder="Multiple with search"
-              initialValues={this.searchSingleSelection}
+              initialValues={searchSingleSelection}
               search
               multiple
             />
@@ -119,7 +120,7 @@ export default class DropdownDemo extends React.Component {
               {...this.props}
               key="dropdown1"
               placeholder="Multiple, overflow with search"
-              initialValues={this.searchMultipleTooLongSelection}
+              initialValues={searchMultipleTooLongSelection}
               search
               multiple
             />
@@ -136,7 +137,7 @@ export default class DropdownDemo extends React.Component {
               {...this.props}
               key="dropdown1"
               placeholder="Multiple, overflow with search"
-              initialValues={this.searchMultipleTooLongSelection}
+              initialValues={searchMultipleTooLongSelection}
               search
               multiple
               tags
@@ -148,7 +149,7 @@ export default class DropdownDemo extends React.Component {
               {...this.props}
               key="dropdown1"
               placeholder="Multiple, smaller, overflow with search"
-              initialValues={this.searchMultipleTooLongSelection}
+              initialValues={searchMultipleTooLongSelection}
               search
               multiple
               tags

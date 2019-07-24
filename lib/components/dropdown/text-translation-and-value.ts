@@ -1,7 +1,7 @@
-export interface ITextTranslationAndValue {
+export interface ITextTranslationAndValue<T> {
   name?: string;
   display: string;
-  value: any;
+  value: T;
   icon?: JSX.Element;
   iconUrl?: string;
   splitTop?: boolean;

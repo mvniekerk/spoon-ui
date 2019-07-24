@@ -13,21 +13,21 @@ export interface IDropdownItemState {
   color: string;
 }
 
-export interface IDropdownItemProps {
+export interface IDropdownItemProps<T> {
   iconLeft?: boolean;
   iconRight?: boolean;
   selectable: boolean;
   tag: boolean;
-  value: ITextTranslationAndValue;
-  onSelected?: (val: ITextTranslationAndValue, sender: DropdownItem) => void;
-  onDeselected?: (val: ITextTranslationAndValue, sender: DropdownItem) => void;
+  value: ITextTranslationAndValue<T>;
+  onSelected?: (val: ITextTranslationAndValue<T>, sender: DropdownItem<T>) => void;
+  onDeselected?: (val: ITextTranslationAndValue<T>, sender: DropdownItem<T>) => void;
   checkNotCross: boolean;
 }
 
 export const TAG_CHOICE = [1, 2, 3, 4].map(v => `tags-color-${v}`);
 export const TAG_DESELECTED = '#d8e1e9';
 
-export class DropdownItem extends React.Component<IDropdownItemProps, IDropdownItemState> {
+export class DropdownItem<T> extends React.Component<IDropdownItemProps<T>, IDropdownItemState> {
   static defaultProps = {
     tag: false,
     selectable: false,
@@ -40,7 +40,7 @@ export class DropdownItem extends React.Component<IDropdownItemProps, IDropdownI
     color: getRootColorVariable(TAG_CHOICE[Math.floor(Math.random() * TAG_CHOICE.length)])
   };
 
-  constructor(props: IDropdownItemProps) {
+  constructor(props: IDropdownItemProps<T>) {
     super(props);
     this.setState(_ => ({ selected: !!props.value && props.value.selected }));
   }
@@ -98,7 +98,7 @@ export class DropdownItem extends React.Component<IDropdownItemProps, IDropdownI
   }
 }
 
-export function translateItem(item: ITextTranslationAndValue): string {
+export function translateItem<T>(item: ITextTranslationAndValue<T>): string {
   let displayText = item.display;
   if (!!item.name) {
     try {

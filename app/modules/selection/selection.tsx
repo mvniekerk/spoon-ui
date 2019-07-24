@@ -43,11 +43,12 @@ export default class Selection extends React.Component {
       }
     ];
 
-    const sourceList: ITextTranslationAndValue[] = ['Audit', 'Credit', 'Development', 'Devops', 'Graduates', 'HR', 'Management'].map(b => ({
+    const sourceList = ['Audit', 'Credit', 'Development', 'Devops', 'Graduates', 'HR', 'Management'].map(b => ({
       display: b,
       name: b,
       value: b
     }));
+
     return (
       <>
         <Row>
