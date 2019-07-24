@@ -4,7 +4,7 @@
 @import 'node_modules/bootstrap/scss/bootstrap';
 
 body {
-  background: #eff3f6;
+  background: var(--body-background);
   margin: 0;
 }
 
