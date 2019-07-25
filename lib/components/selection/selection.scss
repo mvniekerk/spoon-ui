@@ -342,3 +342,11 @@ input:checked + .slider:before {
 .arrow-up-left {
   animation: slideOut 200ms ease-out;
 }
+
+.radio-group {
+  display: flex;
+  flex-direction: row;
+}
+.radio-group.vertical {
+  flex-direction: column;
+}

@@ -13,6 +13,7 @@
     "white": "White",
     "gray": "Gray",
     "gray-dark": "Darker gray",
+    "body-background": "Background color",
     "primary": "Primary",
     "secondary": "Secondary",
     "success": "Success",

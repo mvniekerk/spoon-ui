@@ -16,8 +16,8 @@ const triangleImage = `url("${triangle}")`;
 export interface IDropdownProps {
   multiple?: boolean;
   search?: boolean;
-  searchFunction?: (state: IDropdownState, search: string) => Promise<ITextTranslationAndValue[]>;
-  initialValues?: ITextTranslationAndValue[];
+  searchFunction?: (state: IDropdownState, search: string) => Promise<Array<ITextTranslationAndValue<string>>>;
+  initialValues?: Array<ITextTranslationAndValue<string>>;
   iconLeft?: boolean;
   iconRight?: boolean;
   selectAll?: boolean;
@@ -30,9 +30,9 @@ export interface IDropdownProps {
 }
 
 export interface IDropdownState {
-  selection: ITextTranslationAndValue[];
+  selection: Array<ITextTranslationAndValue<string>>;
   searching: boolean;
-  values: ITextTranslationAndValue[];
+  values: Array<ITextTranslationAndValue<string>>;
   dropdownOpen: boolean;
   search?: string;
 }
@@ -86,7 +86,7 @@ export class ContextMenu extends React.Component<IDropdownProps, IDropdownState>
     }
   }
 
-  public get selection(): ITextTranslationAndValue[] {
+  public get selection(): Array<ITextTranslationAndValue<string>> {
     return this.state.selection;
   }
 
@@ -94,7 +94,7 @@ export class ContextMenu extends React.Component<IDropdownProps, IDropdownState>
 
   render() {
     const a = () => this.toggle();
-    const valSelected = (val: ITextTranslationAndValue, sender: DropdownItem) => {
+    const valSelected = (val: ITextTranslationAndValue<string>, sender: DropdownItem<string>) => {
       if (!this.props.multiple) {
         a.call([]);
         this.state.values.filter(i => i !== val).forEach(i => (i.selected = false));
@@ -111,7 +111,7 @@ export class ContextMenu extends React.Component<IDropdownProps, IDropdownState>
       this.props.onValueSelected(val, sender);
     };
 
-    const valDeselected = (val: ITextTranslationAndValue, sender: DropdownItem) => {
+    const valDeselected = (val: ITextTranslationAndValue<string>, sender: DropdownItem<string>) => {
       if (!this.props.multiple) {
         a.call([]);
         this.setState(_ => ({ selection: [] }));

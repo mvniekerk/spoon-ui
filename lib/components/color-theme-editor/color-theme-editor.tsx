@@ -12,6 +12,11 @@ export interface IColorThemeEditorProps {
   groups: IColorGroup[];
 }
 
+export const colorsBackground: IColorGroup = {
+  groupName: 'Background',
+  names: ['body-background']
+};
+
 export const colorsPrimary: IColorGroup = {
   groupName: 'Primary',
   names: ['primary', 'primary-lighter', 'primary-active', 'primary-active-lighter', 'primary-active-darker']
@@ -78,6 +83,7 @@ export const colorsTags: IColorGroup = {
 };
 
 export const colorsAllGroups = [
+  colorsBackground,
   colorsPrimary,
   colorsSecondary,
   colorsTertiary,

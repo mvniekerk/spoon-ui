@@ -43,11 +43,12 @@ export default class Selection extends React.Component {
       }
     ];
 
-    const sourceList: ITextTranslationAndValue[] = ['Audit', 'Credit', 'Development', 'Devops', 'Graduates', 'HR', 'Management'].map(b => ({
+    const sourceList = ['Audit', 'Credit', 'Development', 'Devops', 'Graduates', 'HR', 'Management'].map(b => ({
       display: b,
       name: b,
       value: b
     }));
+
     return (
       <>
         <Row>
@@ -70,8 +71,16 @@ export default class Selection extends React.Component {
             <div className="small-header">Radio buttons</div>
             <FormGroup>
               <Label for="exampleCheckbox">Radio button label</Label>
-              <RadioGroup values={radioGroupVals} name="radGroup1" />
-              <RadioGroup values={lonesomeChecked} name="radGroup2" />
+              <RadioGroup md={6} values={radioGroupVals} name="radGroup1" />
+              <RadioGroup md={6} values={lonesomeChecked} name="radGroup2" />
+            </FormGroup>
+          </Col>
+          <Col md="4">
+            <div className="small-header">Radio buttons vertical</div>
+            <FormGroup>
+              <Label for="exampleCheckbox">Radio button label</Label>
+              <RadioGroup vertical values={radioGroupVals} name="radGroup1" />
+              <RadioGroup vertical values={lonesomeChecked} name="radGroup2" />
             </FormGroup>
           </Col>
           <Col md="4">

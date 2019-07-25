@@ -12,12 +12,12 @@ import Search from '@material-ui/icons/Search';
 import triangle from '../../../static/images/triangle.svg';
 const triangleImage = `url("${triangle}")`;
 
-export interface IDropdownProps {
+export interface IDropdownProps<T> {
   multiple?: boolean;
   search?: boolean;
-  searchFunction?: (state: IDropdownState, search: string) => Promise<ITextTranslationAndValue[]>;
-  initialValues?: ITextTranslationAndValue[];
-  initialSelection?: ITextTranslationAndValue[];
+  searchFunction?: (state: IDropdownState<T>, search: string) => Promise<Array<ITextTranslationAndValue<T>>>;
+  initialValues?: Array<ITextTranslationAndValue<T>>;
+  initialSelection?: Array<ITextTranslationAndValue<T>>;
   iconLeft?: boolean;
   iconRight?: boolean;
   selectAll?: boolean;
@@ -30,20 +30,22 @@ export interface IDropdownProps {
   disableDeselect: boolean;
 }
 
-export interface IDropdownState {
-  selection: ITextTranslationAndValue[];
+export interface IDropdownState<T> {
+  selection: Array<ITextTranslationAndValue<T>>;
   searching: boolean;
-  values: ITextTranslationAndValue[];
+  values: Array<ITextTranslationAndValue<T>>;
   dropdownOpen: boolean;
   search?: string;
 }
 
-export class Dropdown extends React.Component<IDropdownProps, IDropdownState> {
+const ArrowUpLeft = props => <div className="arrow-up-left" style={{ backgroundImage: triangleImage }} />;
+
+export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownState<T>> {
   static defaultProps = {
     alignRight: false,
     multiple: false,
     search: false,
-    searchFunction: (state: IDropdownState, search: string) =>
+    searchFunction: (state: IDropdownState<any>, search: string) =>
       Promise.resolve(
         state.values
           .map(m => '' + m)
@@ -59,7 +61,7 @@ export class Dropdown extends React.Component<IDropdownProps, IDropdownState> {
     disableDeselect: false
   };
 
-  state: IDropdownState = {
+  state: IDropdownState<T> = {
     selection: [],
     searching: false,
     values: [],
@@ -73,7 +75,7 @@ export class Dropdown extends React.Component<IDropdownProps, IDropdownState> {
     }));
   }
 
-  constructor(props: IDropdownProps) {
+  constructor(props: IDropdownProps<T>) {
     super(props);
   }
 
@@ -83,21 +85,19 @@ export class Dropdown extends React.Component<IDropdownProps, IDropdownState> {
     }
   }
 
-  componentDidUpdate(oldProps: IDropdownProps, oldState: IDropdownState) {
+  componentDidUpdate(oldProps: IDropdownProps<T>, oldState: IDropdownState<T>) {
     if (oldProps.initialValues !== this.props.initialValues) {
       this.setState(_ => ({ values: this.props.initialValues }));
     }
   }
 
-  public get selection(): ITextTranslationAndValue[] {
+  public get selection(): Array<ITextTranslationAndValue<T>> {
     return this.state.selection;
   }
 
-  ArrowUpLeft = props => <div className="arrow-up-left" style={{ backgroundImage: triangleImage }} />;
-
   render() {
     const a = () => this.toggle();
-    const valSelected = (val: ITextTranslationAndValue, sender: DropdownItem) => {
+    const valSelected = (val: ITextTranslationAndValue<T>, sender: DropdownItem<T>) => {
       if (!this.props.multiple) {
         a.call([]);
         this.state.values.filter(i => i !== val).forEach(i => (i.selected = false));
@@ -114,7 +114,7 @@ export class Dropdown extends React.Component<IDropdownProps, IDropdownState> {
       this.props.onValueSelected(val, sender);
     };
 
-    const valDeselected = (val: ITextTranslationAndValue, sender: DropdownItem) => {
+    const valDeselected = (val: ITextTranslationAndValue<T>, sender: DropdownItem<T>) => {
       if (!this.props.multiple && !this.props.disableDeselect) {
         a.call([]);
         this.setState(_ => ({ selection: [] }));
@@ -197,7 +197,7 @@ export class Dropdown extends React.Component<IDropdownProps, IDropdownState> {
             {showIcon && <span className="dropdown-selection-icon">{this.state.selection[0].icon}</span>}
             <span className="button-text">{showIcon ? <span className="icon-with-text">{displayText}</span> : displayText}</span>
           </DropdownToggle>
-          <this.ArrowUpLeft />
+          <ArrowUpLeft />
 
           <DropdownMenu className={menuClassName} flip={false}>
             <div className="top-spacer" />
