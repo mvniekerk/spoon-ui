@@ -8,7 +8,6 @@ export interface IRadioGroupProps<T> {
   name: string;
   onChanged?: (value: any) => void;
   vertical?: boolean;
-  colWidth?: number;
   xs?: number;
   md?: number;
   lg?: number;
@@ -22,8 +21,7 @@ export class RadioGroup<T> extends React.Component<IRadioGroupProps<T>, IRadioGr
   static defaultProps: IRadioGroupProps<any> = {
     values: [],
     name: '',
-    vertical: false,
-    colWidth: 12
+    vertical: false
   };
 
   state: IRadioGroupState = {
