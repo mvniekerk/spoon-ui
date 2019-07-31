@@ -10,6 +10,7 @@ import ContextMenu from './context-menu/context-menu';
 import ErrorBoundaryRoute from './error/error-boundary-route';
 import ErrorBoundary from './error/error-boundary';
 import Footer from './footer/footer';
+import { FormError } from './form-error/form-error';
 import Header from './header/header';
 import ItemsPerPage from './items-per-page/items-per-page';
 import { Brand, BrandIcon, NavDropdown, Notification } from './header/header-components';
@@ -53,6 +54,7 @@ export {
   ErrorBoundary,
   ErrorBoundaryRoute,
   Footer,
+  FormError,
   Header,
   ItemsPerPage,
   MenuItem,
