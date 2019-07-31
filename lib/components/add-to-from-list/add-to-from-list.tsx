@@ -4,7 +4,7 @@ import { Add, ArrowBack, ArrowForward, DeleteRounded } from '@material-ui/icons'
 import SearchBar from '../search-bar/search-bar';
 import { Col } from 'reactstrap';
 import PerfectScrollbar from '@opuscapita/react-perfect-scrollbar';
-import { ITextTranslationAndValue } from '../dropdown/text-translation-and-value';
+import { ITextTranslationAndValue } from '../../util/text-translation-and-value';
 import { translateItem } from '../dropdown/dropdown-item';
 
 export interface IAddToFromListProps {

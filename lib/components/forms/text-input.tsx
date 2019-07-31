@@ -2,7 +2,12 @@ import React, { ChangeEvent } from 'react';
 import { IDirtyInput } from '../../util/dirty-input';
 import { ITextTranslationAndValue, translateItem } from '../dropdown';
 import { validationErrors } from '../../validation/validate';
-import { Input } from 'reactstrap';
+import { Input, InputGroup, Label } from 'reactstrap';
+import { FormError, FormValid } from '../form-error/form-error';
+
+import Check from '@material-ui/icons/Check';
+import Clear from '@material-ui/icons/Clear';
+import { TranslatedValueOrKey } from '../../util/translation';
 
 interface ITextInputState {
   valid: boolean;
@@ -10,14 +15,14 @@ interface ITextInputState {
 }
 
 export interface ITextInputProps extends IDirtyInput<string> {
-  label: ITextTranslationAndValue<string>;
+  label: TranslatedValueOrKey<string>;
   id: string;
-  placeHolder: ITextTranslationAndValue<string>;
+  placeHolder: TranslatedValueOrKey<string>;
   value: string;
-  checkmarks?: boolean;
+  checkmark?: boolean;
 }
 
-export class TextInput extends React.Component<ITextInputProps, ITextInputState> {
+class TextInputComponent extends React.Component<ITextInputProps, ITextInputState> {
   state: ITextInputState = {
     valid: true,
     errors: []
@@ -54,14 +59,25 @@ export class TextInput extends React.Component<ITextInputProps, ITextInputState>
         this.props.onMadeDirty();
       }
     };
+    const isInvalid = this.state.valid ? '' : 'is-invalid';
+    const isValid = this.state.valid ? 'is-valid' : '';
     return (
-      <Input
-        id={this.props.id}
-        placeholder={translateItem(this.props.placeHolder)}
-        value={this.props.value}
-        onChange={onChange}
-        invalid={!this.state.valid}
-      />
+      <InputGroup className={`${isInvalid} ${isValid} input-group-icon-left`}>
+        <Label for={this.props.id}>{translateItem(this.props.label)}</Label>
+        <Input
+          id={this.props.id}
+          placeholder={translateItem(this.props.placeHolder)}
+          value={this.props.value}
+          onChange={onChange}
+          invalid={!this.state.valid}
+          onBlur={this.props.onMadeDirty}
+          valid={this.props.dirty && this.state.valid}
+        />
+        {this.props.dirty && !this.state.valid && <Clear className="material-icons invalid-icon" />}
+        {this.props.dirty && this.state.valid && <Check className="material-icons valid-icon" />}
+        {this.props.dirty && !this.state.valid && <FormError errors={this.state.errors} />}
+        {this.props.dirty && this.state.valid && !!this.props.validMessage && <FormValid {...this.props} />}
+      </InputGroup>
     );
   }
 }
