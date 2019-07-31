@@ -3,8 +3,9 @@ import './tag-input.scss';
 import React, { ChangeEvent } from 'react';
 import { Dropdown, DropdownMenu, DropdownToggle, FormGroup, Input, Label } from 'reactstrap';
 import PerfectScrollbar from '@opuscapita/react-perfect-scrollbar';
-import { DropdownItem, translateItem } from '../dropdown/dropdown-item';
-import { ITextTranslationAndValue } from '../../util/text-translation-and-value';
+import { ITextTranslationAndValue, translateItem } from '../../util/translation';
+import { DropdownItem } from '../dropdown/dropdown-item';
+
 /* tslint:disable:no-submodule-imports*/
 import ExpandMoreRounded from '@material-ui/icons/ExpandMoreRounded';
 import ExpandLessRounded from '@material-ui/icons/ExpandLessRounded';

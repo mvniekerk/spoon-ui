@@ -1,10 +1,17 @@
 import { convertDateTimeFromServer } from './date-utils';
 import { cleanEntity, mapIdList } from './entity-utils';
-import * as DirtyInput from './dirty-input';
+import { IDirtyInput } from './dirty-input';
+import { ITranslatedValue, translateItem, TranslatedValueOrKey, translatedValue, ITextTranslationAndValue } from './translation';
 
-export default {
+export {
   convertDateTimeFromServer,
   cleanEntity,
   mapIdList,
-  DirtyInput
+  IDirtyInput,
+  // Translation
+  ITranslatedValue,
+  translateItem,
+  TranslatedValueOrKey,
+  translatedValue,
+  ITextTranslationAndValue
 };

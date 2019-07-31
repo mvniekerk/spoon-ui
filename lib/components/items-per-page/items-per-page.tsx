@@ -1,7 +1,8 @@
 import './items-per-page.scss';
 
 import React from 'react';
-import { Dropdown, ITextTranslationAndValue } from '../dropdown';
+import { Dropdown } from '../dropdown';
+import { ITextTranslationAndValue } from '../../util/translation';
 
 export interface IItemsPerPageProps {
   amounts: number[];
