@@ -1,13 +1,12 @@
 import React, { ChangeEvent } from 'react';
 import { IDirtyInput } from '../../util/dirty-input';
-import { ITextTranslationAndValue, translateItem } from '../dropdown';
+import { ITextTranslationAndValue, translateItem, TranslatedValueOrKey } from '../../util/translation';
 import { validationErrors } from '../../validation/validate';
 import { Input, InputGroup, Label } from 'reactstrap';
 import { FormError, FormValid } from '../form-error/form-error';
 
 import Check from '@material-ui/icons/Check';
 import Clear from '@material-ui/icons/Clear';
-import { TranslatedValueOrKey } from '../../util/translation';
 
 interface ITextInputState {
   valid: boolean;

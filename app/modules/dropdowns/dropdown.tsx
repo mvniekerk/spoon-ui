@@ -8,7 +8,7 @@ import Settings from '@material-ui/icons/Settings';
 import Place from '@material-ui/icons/Place';
 
 /* tslint:disable:no-submodule-imports */
-import { Dropdown, ITextTranslationAndValue } from 'lib/components';
+import { Dropdown } from 'lib/components';
 import PowerSettingsNew from '@material-ui/icons/PowerSettingsNew';
 
 /* tslint:enable:no-submodule-imports */

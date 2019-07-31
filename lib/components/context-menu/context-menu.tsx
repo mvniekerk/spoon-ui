@@ -1,14 +1,11 @@
 import '../dropdown/dropdown.scss';
 import React, { ChangeEvent } from 'react';
 import { Dropdown as RDropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
-import { DropdownItem, translateItem } from '../dropdown/dropdown-item';
-import { ITextTranslationAndValue } from '../../util/text-translation-and-value';
+import { DropdownItem } from '../dropdown/dropdown-item';
+import { translateItem, ITextTranslationAndValue } from '../../util/translation';
 import PerfectScrollbar from '@opuscapita/react-perfect-scrollbar';
-/* tslint:disable:no-submodule-imports */
-import ExpandMoreRounded from '@material-ui/icons/ExpandMoreRounded';
-/* tslint:enable:no-submodule-imports */
+
 import triangle from '../../../static/images/triangle.svg';
-import IconButton from '@material-ui/core/IconButton/IconButton';
 import { MoreVert } from '@material-ui/icons';
 
 const triangleImage = `url("${triangle}")`;

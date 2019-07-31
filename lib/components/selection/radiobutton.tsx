@@ -1,6 +1,5 @@
 import './selection.scss';
 import React from 'react';
-import { IRadioButtonValue } from './radio-button-value';
 
 export interface IRadioProps {
   name: string;

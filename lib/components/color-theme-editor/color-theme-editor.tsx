@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, Row } from 'reactstrap';
 import ColorVariableSetter, { getRootColorVariable } from '../color-variable-setter/color-variable-setter';
-import { translateItem } from '../dropdown/dropdown-item';
+import { translateItem } from '../../util/translation';
 
 export interface IColorGroup {
   groupName: string;
