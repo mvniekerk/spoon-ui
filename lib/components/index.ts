@@ -30,14 +30,10 @@ import TagButton from './tag-button/tag-button';
 import TagInput from './tag-input/tag-input';
 import Toggle from './selection/toggle';
 /* tslint:disable:no-duplicate-imports */
-import { ITextTranslationAndValue, translateItem } from './dropdown';
 
 export {
-  // Functions
-  translateItem,
   // Interfaces
   IRadioButtonValue,
-  ITextTranslationAndValue,
   // Components
   ActionBanner,
   AddToFromList,

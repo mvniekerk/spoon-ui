@@ -3,7 +3,7 @@ import './selection.scss';
 import React from 'react';
 import { Row, Col, FormGroup, Label, Card } from 'reactstrap';
 /* tslint:disable:no-submodule-imports */
-import { RadioGroup, Toggle, Checkbox, IRadioButtonValue, ITextTranslationAndValue } from 'lib/components';
+import { RadioGroup, Toggle, Checkbox, IRadioButtonValue } from 'lib/components';
 import AddToFromList from 'lib/components/add-to-from-list/add-to-from-list';
 /* tslint:enable:no-submodule-imports */
 

@@ -4,7 +4,8 @@ import React from 'react';
 import { Row, Col, Input, InputGroup, FormText, FormFeedback, FormGroup, Label, Card } from 'reactstrap';
 
 /* tslint:disable:no-submodule-imports */
-import { TagInput, ITextTranslationAndValue, SearchBar } from 'lib/components';
+import { TagInput, SearchBar } from 'lib/components';
+import { ITextTranslationAndValue } from 'lib/util';
 /* tslint:enable:no-submodule-imports */
 
 import Check from '@material-ui/icons/Check';
