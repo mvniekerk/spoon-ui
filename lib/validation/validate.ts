@@ -11,3 +11,7 @@ export interface IValidateAndI18nKey<T> {
   func: Validate<T>;
   i18n: string;
 }
+
+export function validationErrors<T>(val: T, validators: Array<IValidateAndI18nKey<T>>): Array<ITextTranslationAndValue<T>> {
+  return validators.reduce((prev, cur) => (prev.length > 0 ? prev : cur.func(cur.i18n, val)), []);
+}
