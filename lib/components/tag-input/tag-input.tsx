@@ -4,7 +4,7 @@ import React, { ChangeEvent } from 'react';
 import { Dropdown, DropdownMenu, DropdownToggle, FormGroup, Input, Label } from 'reactstrap';
 import PerfectScrollbar from '@opuscapita/react-perfect-scrollbar';
 import { DropdownItem, translateItem } from '../dropdown/dropdown-item';
-import { ITextTranslationAndValue } from '../dropdown/text-translation-and-value';
+import { ITextTranslationAndValue } from '../../util/text-translation-and-value';
 /* tslint:disable:no-submodule-imports*/
 import ExpandMoreRounded from '@material-ui/icons/ExpandMoreRounded';
 import ExpandLessRounded from '@material-ui/icons/ExpandLessRounded';

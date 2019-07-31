@@ -1,9 +1,8 @@
 import './dropdown-item.scss';
 
 import React from 'react';
-import { translate } from 'react-jhipster';
 import { connect } from 'react-redux';
-import { ITextTranslationAndValue } from './text-translation-and-value';
+import { ITextTranslationAndValue, translateItem } from '../../util/translation';
 import Check from '@material-ui/icons/Check';
 import Clear from '@material-ui/icons/Clear';
 import { getRootColorVariable } from '../color-variable-setter/color-variable-setter';
@@ -96,22 +95,6 @@ export class DropdownItem<T> extends React.Component<IDropdownItemProps<T>, IDro
       </div>
     );
   }
-}
-
-export function translateItem<T>(item: ITextTranslationAndValue<T>): string {
-  let displayText = item.display;
-  if (!!item.name) {
-    try {
-      displayText = translate(item.name);
-    } catch (e) {
-      console.error('Error with translation', e);
-    }
-    displayText =
-      !displayText || typeof displayText !== 'string' || displayText.toString().startsWith('translation-not-found[')
-        ? item.display
-        : displayText;
-  }
-  return displayText;
 }
 
 export default connect()(DropdownItem);
