@@ -6,17 +6,7 @@ import { Row, Col, Nav, NavItem, NavLink, ButtonGroup, UncontrolledTooltip, Brea
 import { Info, Edit, SubdirectoryArrowRight } from '@material-ui/icons';
 
 /* tslint:disable:no-submodule-imports */
-import {
-  Button,
-  Alert,
-  ItemsPerPage,
-  Pagination,
-  ProgressBar,
-  Progression,
-  ProgressionItem,
-  ContextMenu,
-  ITextTranslationAndValue
-} from 'lib/components';
+import { Button, Alert, ItemsPerPage, Pagination, ProgressBar, Progression, ProgressionItem, ContextMenu } from 'lib/components';
 /* tslint:enable:no-submodule-imports */
 
 export default class Navigation extends React.Component {

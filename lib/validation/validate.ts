@@ -3,7 +3,7 @@
  * If it validates correctly then it returns an empty array
  * If it is invalid then it returns an array of translateable errors
  */
-import { ITextTranslationAndValue } from '../components';
+import { ITextTranslationAndValue } from '../util/translation';
 
 export type Validate<T> = (i18nKey: string, val: T) => Array<ITextTranslationAndValue<T>>;
 
