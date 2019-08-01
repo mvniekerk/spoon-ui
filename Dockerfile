@@ -1,11 +1,16 @@
-FROM node as build
+FROM node:alpine as build
+# patch build image
+#patch
+RUN apk update
+RUN apk upgrade
+
 COPY ./ /project
 WORKDIR /project
 RUN yarn; npm run webpack:prod
 
 FROM nginx:alpine
 
-# Patch image
+# Patch runtime image
 RUN apk update
 RUN apk upgrade
 
