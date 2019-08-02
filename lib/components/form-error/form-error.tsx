@@ -2,10 +2,10 @@ import React from 'react';
 import { FormFeedback } from 'reactstrap';
 import Cancel from '@material-ui/icons/Cancel';
 import Info from '@material-ui/icons/Info';
-import { ITextTranslationAndValue, translateItem } from '../../util/translation';
+import { ITranslatedValue, translateItem } from '../../util/translation';
 
 export interface IFormErrorProps {
-  errors: Array<ITextTranslationAndValue<string>>;
+  errors: Array<ITranslatedValue<string>>;
 }
 
 export const FormError = (props: IFormErrorProps) => (
@@ -20,7 +20,7 @@ export const FormError = (props: IFormErrorProps) => (
 );
 
 export interface IFormValidProps {
-  validMessage?: ITextTranslationAndValue<string>;
+  validMessage?: ITranslatedValue<string>;
 }
 
 export const FormValid = (props: IFormValidProps) => (

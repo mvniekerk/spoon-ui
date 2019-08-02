@@ -9,37 +9,37 @@ import AddToFromList from 'lib/components/add-to-from-list/add-to-from-list';
 
 export default class Selection extends React.Component {
   render() {
-    const radioGroupVals = [
+    const radioGroupVals: Array<IRadioButtonValue<string>> = [
       {
-        label: 'Option 1',
+        name: 'Option 1',
         id: 'option1',
         value: 'value1',
         disabled: false,
-        checked: true
+        selected: true
       },
       {
-        label: 'Option 2',
+        name: 'Option 2',
         id: 'option2',
         value: 'value2',
         disabled: false,
-        checked: true
+        selected: true
       },
       {
-        label: 'Option 3',
+        name: 'Option 3',
         id: 'option3',
         value: 'value3',
         disabled: true,
-        checked: true
+        selected: true
       }
     ];
 
     const lonesomeChecked: Array<IRadioButtonValue<string>> = [
       {
-        label: 'Option 4',
+        name: 'Option 4',
         id: 'option4',
         value: 'value4',
         disabled: true,
-        checked: true
+        selected: true
       }
     ];
 

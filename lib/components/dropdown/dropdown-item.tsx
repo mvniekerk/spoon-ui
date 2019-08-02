@@ -2,10 +2,16 @@ import './dropdown-item.scss';
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { ITextTranslationAndValue, translateItem } from '../../util/translation';
+import { ITranslatedSelectableValue, translateItem } from '../../util/translation';
 import Check from '@material-ui/icons/Check';
 import Clear from '@material-ui/icons/Clear';
 import { getRootColorVariable } from '../color-variable-setter/color-variable-setter';
+
+export interface IDropdownItem<T> extends ITranslatedSelectableValue<T> {
+  icon?: JSX.Element;
+  iconUrl?: string;
+  splitTop?: boolean;
+}
 
 export interface IDropdownItemState {
   selected: boolean;
@@ -17,9 +23,9 @@ export interface IDropdownItemProps<T> {
   iconRight?: boolean;
   selectable: boolean;
   tag: boolean;
-  value: ITextTranslationAndValue<T>;
-  onSelected?: (val: ITextTranslationAndValue<T>, sender: DropdownItem<T>) => void;
-  onDeselected?: (val: ITextTranslationAndValue<T>, sender: DropdownItem<T>) => void;
+  value: IDropdownItem<T>;
+  onSelected?: (val: IDropdownItem<T>, sender: DropdownItem<T>) => void;
+  onDeselected?: (val: IDropdownItem<T>, sender: DropdownItem<T>) => void;
   checkNotCross: boolean;
 }
 

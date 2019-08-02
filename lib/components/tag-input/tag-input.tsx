@@ -3,7 +3,7 @@ import './tag-input.scss';
 import React, { ChangeEvent } from 'react';
 import { Dropdown, DropdownMenu, DropdownToggle, FormGroup, Input, Label } from 'reactstrap';
 import PerfectScrollbar from '@opuscapita/react-perfect-scrollbar';
-import { ITextTranslationAndValue, translateItem } from '../../util/translation';
+import { ITranslatedSelectableValue, translateItem } from '../../util/translation';
 import { DropdownItem } from '../dropdown/dropdown-item';
 
 /* tslint:disable:no-submodule-imports*/
@@ -16,15 +16,15 @@ const triangleImage = `url("${triangle}")`;
 
 export interface ITagInputProps {
   searching: boolean;
-  values: Array<ITextTranslationAndValue<string>>;
+  values: Array<ITranslatedSelectableValue<string>>;
   message?: string;
   placeholder?: string;
-  onAddTag?: (s: ITextTranslationAndValue<string>) => void;
-  onSelectionChanged?: (s: ITextTranslationAndValue<string>) => void;
+  onAddTag?: (s: ITranslatedSelectableValue<string>) => void;
+  onSelectionChanged?: (s: ITranslatedSelectableValue<string>) => void;
 }
 
 export interface ITagInputState {
-  selection: Array<ITextTranslationAndValue<string>>;
+  selection: Array<ITranslatedSelectableValue<string>>;
   dropdownOpen: boolean;
   search?: string;
 }
@@ -108,7 +108,7 @@ export class TagInput extends React.Component<ITagInputProps, ITagInputState> {
     };
 
     const a = () => this.toggle();
-    const valSelected = (val: ITextTranslationAndValue<string>, sender: DropdownItem<string>) => {
+    const valSelected = (val: ITranslatedSelectableValue<string>, sender: DropdownItem<string>) => {
       this.setState(prevState => {
         const vals = prevState.selection;
         if (!vals.includes(val)) {
@@ -118,7 +118,7 @@ export class TagInput extends React.Component<ITagInputProps, ITagInputState> {
       });
     };
 
-    const valDeselected = (val: ITextTranslationAndValue<string>, sender: DropdownItem<string>) => {
+    const valDeselected = (val: ITranslatedSelectableValue<string>, sender: DropdownItem<string>) => {
       val.selected = false;
       this.setState(prevState => {
         const vals = prevState.selection;

@@ -2,7 +2,7 @@ import '../dropdown/dropdown.scss';
 import React, { ChangeEvent } from 'react';
 import { Dropdown as RDropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
 import { DropdownItem } from '../dropdown/dropdown-item';
-import { translateItem, ITextTranslationAndValue } from '../../util/translation';
+import { ITranslatedSelectableValue, translateItem } from '../../util/translation';
 import PerfectScrollbar from '@opuscapita/react-perfect-scrollbar';
 
 import triangle from '../../../static/images/triangle.svg';
@@ -13,8 +13,8 @@ const triangleImage = `url("${triangle}")`;
 export interface IDropdownProps {
   multiple?: boolean;
   search?: boolean;
-  searchFunction?: (state: IDropdownState, search: string) => Promise<Array<ITextTranslationAndValue<string>>>;
-  initialValues?: Array<ITextTranslationAndValue<string>>;
+  searchFunction?: (state: IDropdownState, search: string) => Promise<Array<ITranslatedSelectableValue<string>>>;
+  initialValues?: Array<ITranslatedSelectableValue<string>>;
   iconLeft?: boolean;
   iconRight?: boolean;
   selectAll?: boolean;
@@ -27,9 +27,9 @@ export interface IDropdownProps {
 }
 
 export interface IDropdownState {
-  selection: Array<ITextTranslationAndValue<string>>;
+  selection: Array<ITranslatedSelectableValue<string>>;
   searching: boolean;
-  values: Array<ITextTranslationAndValue<string>>;
+  values: Array<ITranslatedSelectableValue<string>>;
   dropdownOpen: boolean;
   search?: string;
 }
@@ -83,7 +83,7 @@ export class ContextMenu extends React.Component<IDropdownProps, IDropdownState>
     }
   }
 
-  public get selection(): Array<ITextTranslationAndValue<string>> {
+  public get selection(): Array<ITranslatedSelectableValue<string>> {
     return this.state.selection;
   }
 
@@ -91,7 +91,7 @@ export class ContextMenu extends React.Component<IDropdownProps, IDropdownState>
 
   render() {
     const a = () => this.toggle();
-    const valSelected = (val: ITextTranslationAndValue<string>, sender: DropdownItem<string>) => {
+    const valSelected = (val: ITranslatedSelectableValue<string>, sender: DropdownItem<string>) => {
       if (!this.props.multiple) {
         a.call([]);
         this.state.values.filter(i => i !== val).forEach(i => (i.selected = false));
@@ -108,7 +108,7 @@ export class ContextMenu extends React.Component<IDropdownProps, IDropdownState>
       this.props.onValueSelected(val, sender);
     };
 
-    const valDeselected = (val: ITextTranslationAndValue<string>, sender: DropdownItem<string>) => {
+    const valDeselected = (val: ITranslatedSelectableValue<string>, sender: DropdownItem<string>) => {
       if (!this.props.multiple) {
         a.call([]);
         this.setState(_ => ({ selection: [] }));
