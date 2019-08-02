@@ -34,7 +34,7 @@ export class RadioGroup<T> extends React.Component<IRadioGroupProps<T>, IRadioGr
   }
 
   componentDidMount() {
-    const v = this.props.values.find(a => a.checked);
+    const v = this.props.values.find(a => a.selected);
     if (!!v) {
       this.setState(_ => ({ selected: v.value }));
     }

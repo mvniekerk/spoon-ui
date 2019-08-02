@@ -5,7 +5,7 @@ import { Row, Col, Input, InputGroup, FormText, FormFeedback, FormGroup, Label, 
 
 /* tslint:disable:no-submodule-imports */
 import { TagInput, SearchBar } from 'lib/components';
-import { ITextTranslationAndValue } from 'lib/util';
+import { ITranslatedSelectableValue } from 'lib/util';
 /* tslint:enable:no-submodule-imports */
 
 import Check from '@material-ui/icons/Check';
@@ -16,7 +16,7 @@ import Info from '@material-ui/icons/Info';
 import Cancel from '@material-ui/icons/Cancel';
 
 export interface IFormsState {
-  values: Array<ITextTranslationAndValue<string>>;
+  values: Array<ITranslatedSelectableValue<string>>;
   search?: string;
 }
 
@@ -32,7 +32,7 @@ export default class Forms extends React.Component<{}, IFormsState> {
     this.searchChanged = this.searchChanged.bind(this);
   }
 
-  onAddTag(a: ITextTranslationAndValue<string>) {
+  onAddTag(a: ITranslatedSelectableValue<string>) {
     if (!!a) {
       this.setState(p => ({
         values: [...p.values, a]
