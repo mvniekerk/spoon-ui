@@ -11,21 +11,21 @@ export default class Selection extends React.Component {
   render() {
     const radioGroupVals: Array<IRadioButtonValue<string>> = [
       {
-        name: 'Option 1',
+        display: 'Option 1',
         id: 'option1',
         value: 'value1',
         disabled: false,
         selected: true
       },
       {
-        name: 'Option 2',
+        display: 'Option 2',
         id: 'option2',
         value: 'value2',
         disabled: false,
         selected: true
       },
       {
-        name: 'Option 3',
+        display: 'Option 3',
         id: 'option3',
         value: 'value3',
         disabled: true,
@@ -35,7 +35,7 @@ export default class Selection extends React.Component {
 
     const lonesomeChecked: Array<IRadioButtonValue<string>> = [
       {
-        name: 'Option 4',
+        display: 'Option 4',
         id: 'option4',
         value: 'value4',
         disabled: true,
@@ -88,11 +88,11 @@ export default class Selection extends React.Component {
             <FormGroup>
               <Label for="toggle1">Toggle buttons</Label>
               <div>
-                <Toggle name="toggle1" label="Enabled" />
+                <Toggle name="toggle1" display="Enabled" value />
                 <br />
-                <Toggle name="toggle1" label="Disabled off" disabled />
+                <Toggle name="toggle1" display="Disabled off" disabled value={false} />
                 <br />
-                <Toggle name="toggle1" label="Disabled on" disabled checked />
+                <Toggle name="toggle1" display="Disabled on" disabled selected value />
                 <br />
               </div>
             </FormGroup>
