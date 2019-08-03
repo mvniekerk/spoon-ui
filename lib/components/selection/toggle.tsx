@@ -1,25 +1,12 @@
 import './selection.scss';
 import React from 'react';
-
-export interface IToggleProps {
-  name: string;
-  label: string;
-  disabled: boolean;
-  checked: boolean;
-}
+import { ITranslatedSelectableValue, translateItem } from '../../util/translation';
 
 export interface IToggleState {
   checked: boolean;
 }
 
-export class Toggle extends React.Component<IToggleProps, IToggleState> {
-  static defaultProps = {
-    name: 'default',
-    label: '',
-    disabled: false,
-    checked: false
-  };
-
+export class Toggle extends React.Component<ITranslatedSelectableValue<boolean>, IToggleState> {
   state: IToggleState = {
     checked: false
   };
@@ -31,7 +18,7 @@ export class Toggle extends React.Component<IToggleProps, IToggleState> {
   }
 
   componentDidMount() {
-    this.setState(_ => ({ checked: this.props.checked }));
+    this.setState(_ => ({ checked: this.props.selected }));
   }
 
   handleChange(event) {
@@ -47,14 +34,14 @@ export class Toggle extends React.Component<IToggleProps, IToggleState> {
         <label className={labelClass}>
           <input
             type="checkbox"
-            name={this.props.name}
+            name={this.props.id}
             checked={this.state.checked}
             onChange={this.handleChange}
             disabled={this.props.disabled}
           />
           <span className="slider round" />
         </label>
-        <label className="selection-text">{this.props.label}</label>
+        <label className="selection-text">{translateItem(this.props)}</label>
       </div>
     );
   }

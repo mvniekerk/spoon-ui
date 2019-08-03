@@ -1,31 +1,14 @@
 import './selection.scss';
 import React from 'react';
-
-export interface IRadioProps {
-  name: string;
-  label: string;
-  disabled: boolean;
-  checked: boolean;
-  id: string;
-  value: string;
-  handleChange: (val) => void;
-}
+import { translateItem } from '../../util/translation';
+import { IRadioButtonValue } from './radio-button-value';
+import { IOnChange } from '../../util/on-change';
 
 export interface IRadioState {
   checked: boolean;
 }
 
-export class RadioButton extends React.Component<IRadioProps, IRadioState> {
-  static defaultProps = {
-    name: 'default',
-    label: '',
-    disabled: false,
-    checked: false,
-    id: '',
-    value: '',
-    handleChange: val => {}
-  };
-
+export class RadioButton<T> extends React.Component<IRadioButtonValue<T> & IOnChange<T>, IRadioState> {
   state: IRadioState = {
     checked: false
   };
@@ -34,25 +17,23 @@ export class RadioButton extends React.Component<IRadioProps, IRadioState> {
 
   constructor(props) {
     super(props);
-    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
-    this.setState(_ => ({ checked: this.props.checked }));
-  }
-
-  handleChange(event) {
-    if (!!this.props.handleChange) {
-      this.props.handleChange(event);
-    }
+    this.setState(_ => ({ checked: this.props.selected }));
   }
 
   render() {
-    const selected = (this.state && this.state.checked) || this.props.checked;
+    const selected = (this.state && this.state.checked) || this.props.selected;
 
     let i = null;
 
-    const handleChange = event => this.handleChange(event);
+    const handleChange = event => {
+      if (!!this.props.onChange) {
+        this.props.onChange(this.props.value);
+      }
+    };
+
     this.input = (
       <input
         ref={ii => (i = ii)}
@@ -62,7 +43,7 @@ export class RadioButton extends React.Component<IRadioProps, IRadioState> {
         onChange={handleChange}
         disabled={this.props.disabled}
         name={this.props.name}
-        value={this.props.value}
+        value={`${this.props.value}`}
       />
     );
 
@@ -78,7 +59,7 @@ export class RadioButton extends React.Component<IRadioProps, IRadioState> {
         {dot}
         {this.input}
         <label htmlFor={this.props.id} className="selection-text">
-          {this.props.label}
+          {translateItem(this.props)}
         </label>
       </div>
     );

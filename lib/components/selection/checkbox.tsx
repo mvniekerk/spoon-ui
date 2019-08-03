@@ -1,6 +1,7 @@
 import './selection.scss';
 import React from 'react';
 import Check from '@material-ui/icons/Check';
+import { translateItem } from '../../util/translation';
 
 export interface ICheckboxProps {
   name: string;
@@ -67,7 +68,7 @@ export class Checkbox extends React.Component<ICheckboxProps, ICheckboxState> {
         {checkbox}
         {input}
         <label htmlFor={this.props.id} className="selection-text">
-          {this.props.label}
+          {translateItem(this.props.label)}
         </label>
       </div>
     );
