@@ -1,14 +1,15 @@
 import './selection.scss';
 import React from 'react';
-import { translateItem } from '../../util/translation';
-import { IRadioButtonValue } from './radio-button-value';
+import { ITranslatedSelectableValue, translateItem } from '../../util/translation';
 import { IOnChange } from '../../util/on-change';
+
+export type IRadioButtonValue<T> = ITranslatedSelectableValue<T> & IOnChange<T>;
 
 export interface IRadioState {
   checked: boolean;
 }
 
-export class RadioButton<T> extends React.Component<IRadioButtonValue<T> & IOnChange<T>, IRadioState> {
+export class RadioButton<T> extends React.Component<IRadioButtonValue<T>, IRadioState> {
   state: IRadioState = {
     checked: false
   };

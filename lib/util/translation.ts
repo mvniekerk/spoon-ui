@@ -3,7 +3,7 @@ import { translate } from 'react-jhipster';
 export interface ITranslatedValue<T> {
   name?: string;
   display?: string;
-  value: T;
+  value?: T;
 }
 
 export interface ITranslatedSelectableValue<T> extends ITranslatedValue<T> {

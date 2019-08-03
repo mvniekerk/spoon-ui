@@ -1,29 +1,16 @@
 import './selection.scss';
 import React from 'react';
 import Check from '@material-ui/icons/Check';
-import { translateItem } from '../../util/translation';
+import { ITranslatedSelectableValue, translateItem } from '../../util/translation';
+import { IOnChange } from '../../util/on-change';
 
-export interface ICheckboxProps {
-  name: string;
-  label: string;
-  disabled: boolean;
-  checked: boolean;
-  id: string;
-}
+export type CheckboxProps<T> = ITranslatedSelectableValue<T> & IOnChange<T>;
 
 export interface ICheckboxState {
   checked: boolean;
 }
 
-export class Checkbox extends React.Component<ICheckboxProps, ICheckboxState> {
-  static defaultProps = {
-    name: 'default',
-    label: '',
-    disabled: false,
-    checked: false,
-    id: ''
-  };
-
+export class Checkbox<T> extends React.Component<CheckboxProps<T>, ICheckboxState> {
   state: ICheckboxState = {
     checked: false
   };
@@ -34,11 +21,15 @@ export class Checkbox extends React.Component<ICheckboxProps, ICheckboxState> {
   }
 
   componentDidMount() {
-    this.setState(_ => ({ checked: this.props.checked }));
+    this.setState(_ => ({ checked: this.props.selected }));
   }
 
   handleChange(event) {
-    this.setState({ checked: event.target.checked });
+    const checked = event.target.checked;
+    if (!!this.props.onChange) {
+      this.props.onChange(checked ? this.props.value : undefined);
+    }
+    this.setState({ checked });
   }
 
   render() {
@@ -68,7 +59,7 @@ export class Checkbox extends React.Component<ICheckboxProps, ICheckboxState> {
         {checkbox}
         {input}
         <label htmlFor={this.props.id} className="selection-text">
-          {translateItem(this.props.label)}
+          {translateItem(this.props)}
         </label>
       </div>
     );
