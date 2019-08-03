@@ -1,7 +1,6 @@
 import React from 'react';
 import { Col, Row } from 'reactstrap';
-import { RadioButton } from './radiobutton';
-import { IRadioButtonValue } from './radio-button-value';
+import { RadioButton, IRadioButtonValue } from './radiobutton';
 
 export interface IRadioGroupProps<T> {
   values?: Array<IRadioButtonValue<T>>;

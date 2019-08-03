@@ -58,12 +58,10 @@ export default class Selection extends React.Component {
             <FormGroup>
               <Label for="exampleCheckbox">Checkboxes label</Label>
               <div>
-                <Checkbox name="checkbox" label="Label" checked />
-                <Checkbox name="checkbox" label="Label" />
-                <Checkbox name="checkbox" label="Disabled unchecked" disabled />
-                <Checkbox name="checkbox" label="Disabled checked" checked disabled />
-                {/*<CustomInput type="checkbox" id="exampleCustomCheckbox2" label="Or this one" />*/}
-                {/*<CustomInput type="checkbox" id="exampleCustomCheckbox3" label="But not this disabled one" disabled />*/}
+                <Checkbox name="checkbox" display="Label" selected />
+                <Checkbox name="checkbox" display="Label" />
+                <Checkbox name="checkbox" display="Disabled unchecked" disabled />
+                <Checkbox name="checkbox" display="Disabled checked" selected disabled />
               </div>
             </FormGroup>
           </Col>
