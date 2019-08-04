@@ -1,27 +1,28 @@
+import './text-input.scss';
 import React, { ChangeEvent } from 'react';
 import { IDirtyInput } from '../../util/dirty-input';
-import { ITextTranslationAndValue, translateItem, TranslatedValueOrKey } from '../../util/translation';
+import { translateItem, TranslatedValueOrKey, ITranslatedValue } from '../../util/translation';
 import { validationErrors } from '../../validation/validate';
-import { Input, InputGroup, Label } from 'reactstrap';
-import { FormError, FormValid } from '../form-error/form-error';
+import { FormGroup, Input, Label } from 'reactstrap';
+import { FormHelp, FormValid } from '../form-error/form-error';
 
 import Check from '@material-ui/icons/Check';
 import Clear from '@material-ui/icons/Clear';
 
 interface ITextInputState {
   valid: boolean;
-  errors: Array<ITextTranslationAndValue<string>>;
+  errors: Array<ITranslatedValue<string>>;
 }
 
 export interface ITextInputProps extends IDirtyInput<string> {
-  label: TranslatedValueOrKey<string>;
+  label?: TranslatedValueOrKey<string>;
   id: string;
   placeHolder: TranslatedValueOrKey<string>;
   value: string;
   checkmark?: boolean;
 }
 
-class TextInputComponent extends React.Component<ITextInputProps, ITextInputState> {
+export class TextInput extends React.Component<ITextInputProps, ITextInputState> {
   state: ITextInputState = {
     valid: true,
     errors: []
@@ -37,7 +38,7 @@ class TextInputComponent extends React.Component<ITextInputProps, ITextInputStat
       const valid = errors.length === 0;
       this.setState({ valid, errors });
     } else {
-      this.setState({ valid: true, errors: [] });
+      this.setState({ valid: false, errors: [] });
     }
   }
 
@@ -58,25 +59,26 @@ class TextInputComponent extends React.Component<ITextInputProps, ITextInputStat
         this.props.onMadeDirty();
       }
     };
-    const isInvalid = this.state.valid ? '' : 'is-invalid';
-    const isValid = this.state.valid ? 'is-valid' : '';
+    const isInvalid = this.props.dirty && !this.state.valid;
+    const isValid = this.props.dirty && this.state.valid;
     return (
-      <InputGroup className={`${isInvalid} ${isValid} input-group-icon-left`}>
-        <Label for={this.props.id}>{translateItem(this.props.label)}</Label>
-        <Input
-          id={this.props.id}
-          placeholder={translateItem(this.props.placeHolder)}
-          value={this.props.value}
-          onChange={onChange}
-          invalid={!this.state.valid}
-          onBlur={this.props.onMadeDirty}
-          valid={this.props.dirty && this.state.valid}
-        />
-        {this.props.dirty && !this.state.valid && <Clear className="material-icons invalid-icon" />}
-        {this.props.dirty && this.state.valid && <Check className="material-icons valid-icon" />}
-        {this.props.dirty && !this.state.valid && <FormError errors={this.state.errors} />}
-        {this.props.dirty && this.state.valid && !!this.props.validMessage && <FormValid {...this.props} />}
-      </InputGroup>
+      <FormGroup className={`${isInvalid ? 'is-invalid' : ''} ${isValid ? 'is-valid' : ''}`} valid>
+        {!!this.props.label && <Label for={this.props.id}>{translateItem(this.props.label)}</Label>}
+        <div className="input-group">
+          <Input
+            id={this.props.id}
+            placeholder={translateItem(this.props.placeHolder)}
+            value={this.props.value}
+            onChange={onChange}
+            onBlur={this.props.onMadeDirty}
+            valid
+          />
+          {isInvalid && <Clear className="material-icons invalid-icon" />}
+          {isValid && <Check className="material-icons valid-icon" />}
+          {isValid && !!this.props.validMessage && <FormValid {...this.props} />}
+          {!isValid && !isInvalid && !!this.props.helpMessage && <FormHelp helpMessage={this.props.helpMessage} />}
+        </div>
+      </FormGroup>
     );
   }
 }
