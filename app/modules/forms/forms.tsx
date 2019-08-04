@@ -4,8 +4,9 @@ import React from 'react';
 import { Row, Col, Input, InputGroup, FormText, FormFeedback, FormGroup, Label, Card } from 'reactstrap';
 
 /* tslint:disable:no-submodule-imports */
-import { TagInput, SearchBar } from 'lib/components';
+import { TagInput, SearchBar, TextInput } from 'lib/components';
 import { ITranslatedSelectableValue } from 'lib/util';
+import { requiredString, stringIsNumber } from 'lib/validation';
 /* tslint:enable:no-submodule-imports */
 
 import Check from '@material-ui/icons/Check';
@@ -18,12 +19,16 @@ import Cancel from '@material-ui/icons/Cancel';
 export interface IFormsState {
   values: Array<ITranslatedSelectableValue<string>>;
   search?: string;
+  numberInput: string;
+  numberInputDirty: boolean;
 }
 
 export default class Forms extends React.Component<{}, IFormsState> {
   state: IFormsState = {
     values: [],
-    search: ''
+    search: '',
+    numberInput: '',
+    numberInputDirty: false
   };
 
   constructor(props) {
@@ -45,6 +50,8 @@ export default class Forms extends React.Component<{}, IFormsState> {
   }
 
   render() {
+    const onNumberInputChange = numberInput => this.setState({ numberInput });
+    const onNumberInputMadeDirty = () => this.setState({ numberInputDirty: true });
     return (
       <>
         <Row>
@@ -133,8 +140,10 @@ export default class Forms extends React.Component<{}, IFormsState> {
               <Label for="inputwithoutvalidation">Required field</Label>
               <Input id="inputwithoutvalidation" placeholder="Placeholder" />
               <FormText>
-                <Info className="material-icons" />
-                Example help text that remains unchanged.
+                <span>
+                  <Info className="material-icons" />
+                  Example help text that remains unchanged.
+                </span>
               </FormText>
             </FormGroup>
           </Col>
@@ -162,6 +171,25 @@ export default class Forms extends React.Component<{}, IFormsState> {
                 Error notification
               </FormFeedback>
             </FormGroup>
+          </Col>
+        </Row>
+        <Row>
+          <Col md="12">
+            <div className="small-header">Text using TextInput component and validations</div>
+          </Col>
+          <Col md="4">
+            <TextInput
+              label="This is my label"
+              id="textInputExample"
+              placeHolder="Value is required and must be a number"
+              dirty={this.state.numberInputDirty}
+              onMadeDirty={onNumberInputMadeDirty}
+              value={this.state.numberInput}
+              onChange={onNumberInputChange}
+              helpMessage="This field is required"
+              validMessage="Well done"
+              validation={[{ func: requiredString, i18n: 'Value is required' }, { func: stringIsNumber, i18n: 'Must be a number' }]}
+            />
           </Col>
         </Row>
         <Row>

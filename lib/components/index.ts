@@ -28,6 +28,7 @@ import SideMenu from './sidemenu/sidemenu';
 import TableHeader from './table/table-header';
 import TagButton from './tag-button/tag-button';
 import TagInput from './tag-input/tag-input';
+import { TextInput } from './forms/text-input';
 import Toggle from './selection/toggle';
 /* tslint:disable:no-duplicate-imports */
 
@@ -67,5 +68,6 @@ export {
   TableHeader,
   TagButton,
   TagInput,
+  TextInput,
   Toggle
 };

@@ -1,11 +1,22 @@
-import * as Date from './date';
-export { Date };
+import { dateIsYyMmDd } from './date';
+import { stringIsNumber, stringIsLuhnNumber } from './number';
 
-import * as Number from './number';
-export { Number };
+import { requiredBoolean, requiredNumber, requiredString } from './required';
 
-import * as Required from './required';
-export { Required };
+import { IValidateAndI18nKey, Validate, validationErrors } from './validate';
 
-import * as Validate from './validate';
-export { Validate };
+export {
+  // Date
+  dateIsYyMmDd,
+  // Number
+  stringIsNumber,
+  stringIsLuhnNumber,
+  // Required
+  requiredBoolean,
+  requiredNumber,
+  requiredString,
+  // Validate
+  IValidateAndI18nKey,
+  Validate,
+  validationErrors
+};

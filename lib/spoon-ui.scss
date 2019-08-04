@@ -492,7 +492,8 @@ a:hover {
   border-bottom-right-radius: 4px;
 }
 
-.input-group {
+.input-group,
+.form-group {
   .material-icons {
     display: none;
     position: absolute;
@@ -501,7 +502,8 @@ a:hover {
   }
 }
 
-.input-group.is-valid {
+.input-group.is-valid,
+.form-group.is-valid {
   .material-icons.valid-icon {
     color: green;
     display: inherit;
@@ -509,7 +511,8 @@ a:hover {
   }
 }
 
-.input-group.is-invalid {
+.input-group.is-invalid,
+.form-group.is-invalid {
   .material-icons.invalid-icon {
     color: var(--error);
     display: inherit;
@@ -537,7 +540,8 @@ a:hover {
   }
 }
 
-.input-group.input-group-icon-right {
+.input-group.input-group-icon-right,
+.form-group.input-group-icon-right {
   .material-icons.right-icon {
     display: inherit;
     right: 8px;
