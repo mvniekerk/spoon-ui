@@ -1,6 +1,6 @@
-//.form
 .input-group {
-  .valid-feedback {
+  .valid-feedback,
+  .invalid-feedback {
     display: inline;
     margin-top: 2px;
     svg {
