@@ -1,3 +1,4 @@
+import './form-feedback.scss';
 import React from 'react';
 import { FormFeedback } from 'reactstrap';
 import Cancel from '@material-ui/icons/Cancel';
@@ -48,8 +49,8 @@ export interface IFormHelpProps {
 export const FormHelp = (props: IFormHelpProps) => (
   <>
     {!!props.helpMessage && (
-      <FormFeedback>
-        <span>
+      <FormFeedback invalid={false}>
+        <span className="form-help">
           <Info className="material-icons" />
           {translateItem(props.helpMessage)}
         </span>

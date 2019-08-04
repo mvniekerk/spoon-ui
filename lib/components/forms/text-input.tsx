@@ -4,7 +4,7 @@ import { IDirtyInput } from '../../util/dirty-input';
 import { translateItem, TranslatedValueOrKey, ITranslatedValue } from '../../util/translation';
 import { validationErrors } from '../../validation/validate';
 import { FormGroup, Input, Label } from 'reactstrap';
-import { FormHelp, FormValid } from '../form-error/form-error';
+import { FormError, FormHelp, FormValid } from '../form-feedback/form-feedback';
 
 import Check from '@material-ui/icons/Check';
 import Clear from '@material-ui/icons/Clear';
@@ -61,21 +61,25 @@ export class TextInput extends React.Component<ITextInputProps, ITextInputState>
     };
     const isInvalid = this.props.dirty && !this.state.valid;
     const isValid = this.props.dirty && this.state.valid;
+    const justHelp = !isInvalid && !isValid;
+    const className = `${isInvalid ? 'is-invalid' : ''} ${isValid ? 'is-valid' : ''} ${justHelp ? 'just-help' : ''}`;
     return (
-      <FormGroup className={`${isInvalid ? 'is-invalid' : ''} ${isValid ? 'is-valid' : ''}`} valid>
+      <FormGroup className={className} valid>
         {!!this.props.label && <Label for={this.props.id}>{translateItem(this.props.label)}</Label>}
-        <div className="input-group">
+        <div className={`input-group ${className}`}>
           <Input
             id={this.props.id}
             placeholder={translateItem(this.props.placeHolder)}
             value={this.props.value}
             onChange={onChange}
             onBlur={this.props.onMadeDirty}
-            valid
+            valid={isValid}
+            invalid={isInvalid}
           />
           {isInvalid && <Clear className="material-icons invalid-icon" />}
           {isValid && <Check className="material-icons valid-icon" />}
           {isValid && !!this.props.validMessage && <FormValid {...this.props} />}
+          {isInvalid && <FormError errors={this.state.errors} />}
           {!isValid && !isInvalid && !!this.props.helpMessage && <FormHelp helpMessage={this.props.helpMessage} />}
         </div>
       </FormGroup>

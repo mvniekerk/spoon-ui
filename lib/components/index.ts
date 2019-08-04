@@ -10,7 +10,7 @@ import ContextMenu from './context-menu/context-menu';
 import ErrorBoundaryRoute from './error/error-boundary-route';
 import ErrorBoundary from './error/error-boundary';
 import Footer from './footer/footer';
-import { FormError } from './form-error/form-error';
+import { FormError, FormHelp, FormValid } from './form-feedback/form-feedback';
 import Header from './header/header';
 import ItemsPerPage from './items-per-page/items-per-page';
 import { Brand, BrandIcon, NavDropdown, Notification } from './header/header-components';
@@ -52,6 +52,8 @@ export {
   ErrorBoundaryRoute,
   Footer,
   FormError,
+  FormHelp,
+  FormValid,
   Header,
   ItemsPerPage,
   MenuItem,
