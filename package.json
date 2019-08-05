@@ -1,6 +1,6 @@
 {
   "name": "@grindrodbank/spoon-ui",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "A set of reusable React UI components and reducers",
   "license": "MIT",
   "cacheDirectories": [
