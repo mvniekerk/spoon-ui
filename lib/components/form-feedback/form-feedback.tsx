@@ -14,7 +14,7 @@ export const FormError = (props: IFormErrorProps) => (
     {!!props.errors &&
       props.errors.length > 0 && (
         <FormFeedback invalid>
-          <span>
+          <span className="form-feedback-span">
             <Cancel className="material-icons" />
             {translateItem(props.errors[0])}
           </span>
@@ -32,7 +32,7 @@ export const FormValid = (props: IFormValidProps) => (
     {!!props.validMessage && (
       <>
         <FormFeedback valid>
-          <span>
+          <span className="form-feedback-span">
             <Info className="material-icons" />
             {translateItem(props.validMessage)}
           </span>
@@ -50,7 +50,7 @@ export const FormHelp = (props: IFormHelpProps) => (
   <>
     {!!props.helpMessage && (
       <FormFeedback invalid={false}>
-        <span className="form-help">
+        <span className="form-help form-feedback-span">
           <Info className="material-icons" />
           {translateItem(props.helpMessage)}
         </span>
