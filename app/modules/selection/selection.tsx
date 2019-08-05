@@ -3,43 +3,43 @@ import './selection.scss';
 import React from 'react';
 import { Row, Col, FormGroup, Label, Card } from 'reactstrap';
 /* tslint:disable:no-submodule-imports */
-import { RadioGroup, Toggle, Checkbox, IRadioButtonValue, ITextTranslationAndValue } from 'lib/components';
+import { RadioGroup, Toggle, Checkbox, IRadioButtonValue } from 'lib/components';
 import AddToFromList from 'lib/components/add-to-from-list/add-to-from-list';
 /* tslint:enable:no-submodule-imports */
 
 export default class Selection extends React.Component {
   render() {
-    const radioGroupVals = [
+    const radioGroupVals: Array<IRadioButtonValue<string>> = [
       {
-        label: 'Option 1',
+        display: 'Option 1',
         id: 'option1',
         value: 'value1',
         disabled: false,
-        checked: true
+        selected: true
       },
       {
-        label: 'Option 2',
+        display: 'Option 2',
         id: 'option2',
         value: 'value2',
         disabled: false,
-        checked: true
+        selected: true
       },
       {
-        label: 'Option 3',
+        display: 'Option 3',
         id: 'option3',
         value: 'value3',
         disabled: true,
-        checked: true
+        selected: true
       }
     ];
 
     const lonesomeChecked: Array<IRadioButtonValue<string>> = [
       {
-        label: 'Option 4',
+        display: 'Option 4',
         id: 'option4',
         value: 'value4',
         disabled: true,
-        checked: true
+        selected: true
       }
     ];
 
@@ -58,12 +58,10 @@ export default class Selection extends React.Component {
             <FormGroup>
               <Label for="exampleCheckbox">Checkboxes label</Label>
               <div>
-                <Checkbox name="checkbox" label="Label" checked />
-                <Checkbox name="checkbox" label="Label" />
-                <Checkbox name="checkbox" label="Disabled unchecked" disabled />
-                <Checkbox name="checkbox" label="Disabled checked" checked disabled />
-                {/*<CustomInput type="checkbox" id="exampleCustomCheckbox2" label="Or this one" />*/}
-                {/*<CustomInput type="checkbox" id="exampleCustomCheckbox3" label="But not this disabled one" disabled />*/}
+                <Checkbox name="checkbox" display="Label" selected />
+                <Checkbox name="checkbox" display="Label" />
+                <Checkbox name="checkbox" display="Disabled unchecked" disabled />
+                <Checkbox name="checkbox" display="Disabled checked" selected disabled />
               </div>
             </FormGroup>
           </Col>
@@ -88,11 +86,11 @@ export default class Selection extends React.Component {
             <FormGroup>
               <Label for="toggle1">Toggle buttons</Label>
               <div>
-                <Toggle name="toggle1" label="Enabled" />
+                <Toggle name="toggle1" display="Enabled" value />
                 <br />
-                <Toggle name="toggle1" label="Disabled off" disabled />
+                <Toggle name="toggle1" display="Disabled off" disabled value={false} />
                 <br />
-                <Toggle name="toggle1" label="Disabled on" disabled checked />
+                <Toggle name="toggle1" display="Disabled on" disabled selected value />
                 <br />
               </div>
             </FormGroup>

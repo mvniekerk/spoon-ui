@@ -4,8 +4,7 @@ import { Add, ArrowBack, ArrowForward, DeleteRounded } from '@material-ui/icons'
 import SearchBar from '../search-bar/search-bar';
 import { Col } from 'reactstrap';
 import PerfectScrollbar from '@opuscapita/react-perfect-scrollbar';
-import { ITextTranslationAndValue } from '../dropdown/text-translation-and-value';
-import { translateItem } from '../dropdown/dropdown-item';
+import { ITranslatedSelectableValue, translateItem } from '../../util/translation';
 
 export interface IAddToFromListProps {
   helpText?: string;
@@ -13,13 +12,13 @@ export interface IAddToFromListProps {
   destinationListHeader: string;
   onSearchChanged?: (string) => void;
   listHeight?: string;
-  sourceList: Array<ITextTranslationAndValue<string>>;
-  selectedListChanged?: (selected: Array<ITextTranslationAndValue<string>>) => void;
-  selected?: Array<ITextTranslationAndValue<string>>;
+  sourceList: Array<ITranslatedSelectableValue<string>>;
+  selectedListChanged?: (selected: Array<ITranslatedSelectableValue<string>>) => void;
+  selected?: Array<ITranslatedSelectableValue<string>>;
 }
 
 export interface IAddToFromListState {
-  selected: Array<ITextTranslationAndValue<string>>;
+  selected: Array<ITranslatedSelectableValue<string>>;
 }
 
 class AddToFromList extends React.Component<IAddToFromListProps, IAddToFromListState> {

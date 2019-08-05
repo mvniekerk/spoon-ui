@@ -2,7 +2,7 @@ import './color-picker.scss';
 import React, { createRef } from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, FormGroup, Label } from 'reactstrap';
 import MbColorPicker from 'mb-react-color-picker';
-import { translateItem } from '../dropdown/dropdown-item';
+import { translateItem } from '../../util/translation';
 
 import triangle from '../../../static/images/triangle.svg';
 import { getRootVariable } from '../color-variable-setter/color-variable-setter';

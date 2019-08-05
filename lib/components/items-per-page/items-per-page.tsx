@@ -1,7 +1,8 @@
 import './items-per-page.scss';
 
 import React from 'react';
-import { Dropdown, ITextTranslationAndValue } from '../dropdown';
+import { Dropdown } from '../dropdown';
+import { ITranslatedSelectableValue } from '../../util/translation';
 
 export interface IItemsPerPageProps {
   amounts: number[];
@@ -46,8 +47,8 @@ export class ItemsPerPage extends React.Component<IItemsPerPageProps, IItemsPerP
   }
 
   render() {
-    const onValueSelected = (e: ITextTranslationAndValue<number>) => this.props.onChange(e.value);
-    const vals: Array<ITextTranslationAndValue<number>> = this.props.amounts.map(a => ({
+    const onValueSelected = (e: ITranslatedSelectableValue<number>) => this.props.onChange(e.value);
+    const vals: Array<ITranslatedSelectableValue<number>> = this.props.amounts.map(a => ({
       display: `${a}`,
       value: a
     }));

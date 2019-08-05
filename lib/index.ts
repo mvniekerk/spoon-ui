@@ -4,5 +4,7 @@ import * as Reducers from './reducers';
 export { Reducers };
 import * as Config from './config';
 export { Config };
+import * as Validation from './validation';
+export { Validation };
 import * as Util from './util';
 export { Util };

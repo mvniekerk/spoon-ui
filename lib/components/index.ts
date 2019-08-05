@@ -10,6 +10,7 @@ import ContextMenu from './context-menu/context-menu';
 import ErrorBoundaryRoute from './error/error-boundary-route';
 import ErrorBoundary from './error/error-boundary';
 import Footer from './footer/footer';
+import { FormError, FormHelp, FormValid } from './form-feedback/form-feedback';
 import Header from './header/header';
 import ItemsPerPage from './items-per-page/items-per-page';
 import { Brand, BrandIcon, NavDropdown, Notification } from './header/header-components';
@@ -27,16 +28,13 @@ import SideMenu from './sidemenu/sidemenu';
 import TableHeader from './table/table-header';
 import TagButton from './tag-button/tag-button';
 import TagInput from './tag-input/tag-input';
+import { TextInput } from './forms/text-input';
 import Toggle from './selection/toggle';
 /* tslint:disable:no-duplicate-imports */
-import { ITextTranslationAndValue, translateItem } from './dropdown';
 
 export {
-  // Functions
-  translateItem,
   // Interfaces
   IRadioButtonValue,
-  ITextTranslationAndValue,
   // Components
   ActionBanner,
   AddToFromList,
@@ -53,6 +51,9 @@ export {
   ErrorBoundary,
   ErrorBoundaryRoute,
   Footer,
+  FormError,
+  FormHelp,
+  FormValid,
   Header,
   ItemsPerPage,
   MenuItem,
@@ -69,5 +70,6 @@ export {
   TableHeader,
   TagButton,
   TagInput,
+  TextInput,
   Toggle
 };

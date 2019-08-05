@@ -1,8 +1,8 @@
 import './dropdown.scss';
 import React, { ChangeEvent } from 'react';
 import { Dropdown as RDropdown, DropdownToggle, DropdownMenu, FormGroup } from 'reactstrap';
-import { DropdownItem, translateItem } from './dropdown-item';
-import { ITextTranslationAndValue } from './text-translation-and-value';
+import { DropdownItem, IDropdownItem } from './dropdown-item';
+import { translateItem } from '../../util/translation';
 import PerfectScrollbar from '@opuscapita/react-perfect-scrollbar';
 /* tslint:disable:no-submodule-imports */
 import ExpandMoreRounded from '@material-ui/icons/ExpandMoreRounded';
@@ -15,9 +15,9 @@ const triangleImage = `url("${triangle}")`;
 export interface IDropdownProps<T> {
   multiple?: boolean;
   search?: boolean;
-  searchFunction?: (state: IDropdownState<T>, search: string) => Promise<Array<ITextTranslationAndValue<T>>>;
-  initialValues?: Array<ITextTranslationAndValue<T>>;
-  initialSelection?: Array<ITextTranslationAndValue<T>>;
+  searchFunction?: (state: IDropdownState<T>, search: string) => Promise<Array<IDropdownItem<T>>>;
+  initialValues?: Array<IDropdownItem<T>>;
+  initialSelection?: Array<IDropdownItem<T>>;
   iconLeft?: boolean;
   iconRight?: boolean;
   selectAll?: boolean;
@@ -31,9 +31,9 @@ export interface IDropdownProps<T> {
 }
 
 export interface IDropdownState<T> {
-  selection: Array<ITextTranslationAndValue<T>>;
+  selection: Array<IDropdownItem<T>>;
   searching: boolean;
-  values: Array<ITextTranslationAndValue<T>>;
+  values: Array<IDropdownItem<T>>;
   dropdownOpen: boolean;
   search?: string;
 }
@@ -91,13 +91,13 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
     }
   }
 
-  public get selection(): Array<ITextTranslationAndValue<T>> {
+  public get selection(): Array<IDropdownItem<T>> {
     return this.state.selection;
   }
 
   render() {
     const a = () => this.toggle();
-    const valSelected = (val: ITextTranslationAndValue<T>, sender: DropdownItem<T>) => {
+    const valSelected = (val: IDropdownItem<T>, sender: DropdownItem<T>) => {
       if (!this.props.multiple) {
         a.call([]);
         this.state.values.filter(i => i !== val).forEach(i => (i.selected = false));
@@ -114,7 +114,7 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
       this.props.onValueSelected(val, sender);
     };
 
-    const valDeselected = (val: ITextTranslationAndValue<T>, sender: DropdownItem<T>) => {
+    const valDeselected = (val: IDropdownItem<T>, sender: DropdownItem<T>) => {
       if (!this.props.multiple && !this.props.disableDeselect) {
         a.call([]);
         this.setState(_ => ({ selection: [] }));
