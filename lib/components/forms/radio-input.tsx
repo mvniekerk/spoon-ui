@@ -2,18 +2,13 @@ import './radio-input.scss';
 import React from 'react';
 import {
   checkValidAndErrorState,
-  defaultFormInputState,
+  defaultStateForSelectableFormInput,
   formInputGroup,
   handleFormDidUpdate,
-  IFormInputState,
-  ISelectableFormInput
+  ISelectableFormInput,
+  ISelectableFormInputState
 } from './form-input';
-import { ITranslatedSelectableValue } from '../../util';
 import { RadioGroup } from '../selection/radiogroup';
-
-interface IRadioInputState<T> extends IFormInputState<T> {
-  choices: Array<ITranslatedSelectableValue<T>>;
-}
 
 export interface IRadioInputProps<T> extends ISelectableFormInput<T> {
   xs?: number;
@@ -22,28 +17,17 @@ export interface IRadioInputProps<T> extends ISelectableFormInput<T> {
   vertical?: boolean;
 }
 
-export class RadioInput<T> extends React.Component<IRadioInputProps<T>, IRadioInputState<T>> {
+export class RadioInput<T> extends React.Component<IRadioInputProps<T>, ISelectableFormInputState<T>> {
   constructor(props) {
     super(props);
-    const choiceVals = this.props.choices();
-    const choices: Array<ITranslatedSelectableValue<T>> = !!choiceVals
-      ? Array.from(choiceVals.keys()).map(k => ({
-          name: choiceVals.get(k),
-          display: choiceVals.get(k),
-          id: `${this.props.id}_${choiceVals.get(k)}`,
-          value: k,
-          disabled: false,
-          selected: false
-        }))
-      : [];
-    this.state = { ...defaultFormInputState<T>(), choices };
+    this.state = defaultStateForSelectableFormInput<T>(this.props);
   }
 
   componentDidMount() {
     checkValidAndErrorState(this);
   }
 
-  componentDidUpdate(prevProps: Readonly<IRadioInputProps<T>>, prevState: Readonly<IRadioInputState<T>>, snapshot?: any) {
+  componentDidUpdate(prevProps: Readonly<IRadioInputProps<T>>, prevState: Readonly<ISelectableFormInputState<T>>, snapshot?: any) {
     handleFormDidUpdate(this, prevProps, prevState);
   }
 

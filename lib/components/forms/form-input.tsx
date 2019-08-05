@@ -1,5 +1,5 @@
 import React from 'react';
-import { ITranslatedValue, TranslatedValueOrKey, translateItem } from '../../util/translation';
+import { ITranslatedSelectableValue, ITranslatedValue, TranslatedValueOrKey, translateItem } from '../../util/translation';
 import { IDirtyInput } from '../../util/dirty-input';
 import { validationErrors } from '../../validation/validate';
 import { FormGroup, Label } from 'reactstrap';
@@ -22,6 +22,25 @@ export interface IFormInputState<T> {
   invalidAndDirty: boolean;
   justHelp: boolean;
   errors: Array<ITranslatedValue<T>>;
+}
+
+export interface ISelectableFormInputState<T> extends IFormInputState<T> {
+  choices: Array<ITranslatedSelectableValue<T>>;
+}
+
+export function defaultStateForSelectableFormInput<T>(props: ISelectableFormInput<T>): ISelectableFormInputState<T> {
+  const choiceVals = props.choices();
+  const choices: Array<ITranslatedSelectableValue<T>> = !!choiceVals
+    ? Array.from(choiceVals.keys()).map(k => ({
+        name: choiceVals.get(k),
+        display: choiceVals.get(k),
+        id: `${props.id}_${choiceVals.get(k)}`,
+        value: k,
+        disabled: false,
+        selected: false
+      }))
+    : [];
+  return { ...defaultFormInputState<T>(), choices };
 }
 
 export function defaultFormInputState<T>(): IFormInputState<T> {
