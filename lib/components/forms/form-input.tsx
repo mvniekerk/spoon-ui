@@ -1,0 +1,88 @@
+import React from 'react';
+import { ITranslatedValue, TranslatedValueOrKey, translateItem } from '../../util/translation';
+import { IDirtyInput } from '../../util/dirty-input';
+import { validationErrors } from '../../validation/validate';
+import { FormGroup, Label } from 'reactstrap';
+import { FormError, FormHelp, FormValid } from '../form-feedback/form-feedback';
+
+export interface IFormInput<T> extends IDirtyInput<T> {
+  label?: TranslatedValueOrKey<T>;
+  placeholder?: TranslatedValueOrKey<T>;
+  id: string;
+  value: T;
+}
+
+export interface ISelectableFormInput<T> extends IFormInput<T> {
+  choices: () => Map<T, string>;
+}
+
+export interface IFormInputState<T> {
+  valid: boolean;
+  validAndDirty: boolean;
+  invalidAndDirty: boolean;
+  justHelp: boolean;
+  errors: Array<ITranslatedValue<T>>;
+}
+
+export function defaultFormInputState<T>(): IFormInputState<T> {
+  return {
+    valid: false,
+    validAndDirty: false,
+    invalidAndDirty: false,
+    justHelp: false,
+    errors: []
+  };
+}
+
+export type FormInput<T> = React.Component<IFormInput<T>, IFormInputState<T>>;
+
+export function checkValidAndErrorState<T>(form: FormInput<T>) {
+  if (form.props.dirty) {
+    const errors = validationErrors(form.props.value, form.props.validation);
+    const valid = errors.length === 0;
+    form.setState({ valid, errors });
+  } else {
+    form.setState({ valid: false, errors: [] });
+  }
+}
+
+export function handleFormDidUpdate<T>(form: FormInput<T>, prevProps: IFormInput<T>, prevState: IFormInputState<T>) {
+  if (form.props.dirty !== prevProps.dirty || (form.props.dirty && form.props.value !== prevProps.value)) {
+    checkValidAndErrorState(form);
+  }
+  if (form.state.valid !== prevState.valid && !!form.props.onValidChange) {
+    form.props.onValidChange(form.state.valid);
+  }
+  const isInvalid = form.props.dirty && !form.state.valid;
+  const isValid = form.props.dirty && form.state.valid;
+  const justHelp = !isInvalid && !isValid && !!form.props.helpMessage;
+  if (form.state.invalidAndDirty !== isInvalid) {
+    form.setState({ invalidAndDirty: isInvalid });
+  }
+  if (form.state.validAndDirty !== isValid) {
+    form.setState({ validAndDirty: isValid });
+  }
+  if (form.state.justHelp !== justHelp) {
+    form.setState({ justHelp });
+  }
+}
+
+export class FormInputGroup<T> extends React.Component<IFormInput<T>, IFormInputState<T>> {
+  render() {
+    const isInvalid = this.state.invalidAndDirty;
+    const isValid = this.state.validAndDirty;
+    const justHelp = this.state.justHelp;
+    const className = `${isInvalid ? 'is-invalid' : ''} ${isValid ? 'is-valid' : ''} ${justHelp ? 'just-help' : ''}`;
+    return (
+      <FormGroup className={className} valid>
+        {!!this.props.label && <Label for={this.props.id}>{translateItem(this.props.label)}</Label>}
+        <div className={`input-group ${className}`}>
+          {this.props.children}
+          {isValid && !!this.props.validMessage && <FormValid {...this.props} />}
+          {isInvalid && <FormError errors={this.state.errors} />}
+          {!isValid && !isInvalid && !!this.props.helpMessage && <FormHelp helpMessage={this.props.helpMessage} />}
+        </div>
+      </FormGroup>
+    );
+  }
+}
