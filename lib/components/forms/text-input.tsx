@@ -1,25 +1,22 @@
 import './text-input.scss';
 import React, { ChangeEvent } from 'react';
 import { IDirtyInput } from '../../util/dirty-input';
-import { translateItem, TranslatedValueOrKey, ITranslatedValue } from '../../util/translation';
+import { translateItem, ITranslatedValue } from '../../util/translation';
 import { validationErrors } from '../../validation/validate';
 import { FormGroup, Input, Label } from 'reactstrap';
 import { FormError, FormHelp, FormValid } from '../form-feedback/form-feedback';
 
 import Check from '@material-ui/icons/Check';
 import Clear from '@material-ui/icons/Clear';
+import { IFormInput } from './form-input';
 
 interface ITextInputState {
   valid: boolean;
   errors: Array<ITranslatedValue<string>>;
 }
 
-export interface ITextInputProps extends IDirtyInput<string> {
-  label?: TranslatedValueOrKey<string>;
-  id: string;
-  placeHolder: TranslatedValueOrKey<string>;
-  value: string;
-  checkmark?: boolean;
+export interface ITextInputProps extends IDirtyInput<string>, IFormInput<string> {
+  check?: boolean;
 }
 
 export class TextInput extends React.Component<ITextInputProps, ITextInputState> {
@@ -69,7 +66,7 @@ export class TextInput extends React.Component<ITextInputProps, ITextInputState>
         <div className={`input-group ${className}`}>
           <Input
             id={this.props.id}
-            placeholder={translateItem(this.props.placeHolder)}
+            placeholder={translateItem(this.props.placeholder)}
             value={this.props.value}
             onChange={onChange}
             onBlur={this.props.onMadeDirty}
