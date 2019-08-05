@@ -23,6 +23,7 @@ import Progression from './progression/progression';
 import RadioButton from './selection/radiobutton';
 import { IRadioButtonValue } from './selection/radio-button-value';
 import RadioGroup from './selection/radiogroup';
+import { RadioInput } from './forms/radio-input';
 import SearchBar from './search-bar/search-bar';
 import SideMenu from './sidemenu/sidemenu';
 import TableHeader from './table/table-header';
@@ -65,6 +66,7 @@ export {
   Progression,
   RadioButton,
   RadioGroup,
+  RadioInput,
   SearchBar,
   SideMenu,
   TableHeader,

@@ -1,37 +1,70 @@
+import './radio-input.scss';
 import React from 'react';
-import { ISelectableFormInput } from './form-input';
+import {
+  checkValidAndErrorState,
+  defaultFormInputState,
+  formInputGroup,
+  handleFormDidUpdate,
+  IFormInputState,
+  ISelectableFormInput
+} from './form-input';
 import { ITranslatedSelectableValue } from '../../util';
 import { RadioGroup } from '../selection/radiogroup';
-import { FormGroup, Label } from 'reactstrap';
 
-interface IRadioInputState<T> {
+interface IRadioInputState<T> extends IFormInputState<T> {
   choices: Array<ITranslatedSelectableValue<T>>;
 }
 
-export class RadioInput<T> extends React.Component<ISelectableFormInput<T>, IRadioInputState<T>> {
+export interface IRadioInputProps<T> extends ISelectableFormInput<T> {
+  xs?: number;
+  md?: number;
+  lg?: number;
+  vertical?: boolean;
+}
+
+export class RadioInput<T> extends React.Component<IRadioInputProps<T>, IRadioInputState<T>> {
   constructor(props) {
     super(props);
-    const choices = this.props.choices();
-    this.state = {
-      choices: !!choices
-        ? Array.from(choices.keys()).map(k => ({
-            name: choices.get(k),
-            display: choices.get(k),
-            id: `${this.props.id}_${choices.get(k)}`,
-            value: k,
-            disabled: false,
-            selected: false
-          }))
-        : []
-    };
+    const choiceVals = this.props.choices();
+    const choices: Array<ITranslatedSelectableValue<T>> = !!choiceVals
+      ? Array.from(choiceVals.keys()).map(k => ({
+          name: choiceVals.get(k),
+          display: choiceVals.get(k),
+          id: `${this.props.id}_${choiceVals.get(k)}`,
+          value: k,
+          disabled: false,
+          selected: false
+        }))
+      : [];
+    this.state = { ...defaultFormInputState<T>(), choices };
+  }
+
+  componentDidMount() {
+    checkValidAndErrorState(this);
+  }
+
+  componentDidUpdate(prevProps: Readonly<IRadioInputProps<T>>, prevState: Readonly<IRadioInputState<T>>, snapshot?: any) {
+    handleFormDidUpdate(this, prevProps, prevState);
   }
 
   render() {
-    return (
-      <FormGroup style={{ width: '100%' }}>
-        <Label>{this.props.label}</Label>
-        <RadioGroup md={6} values={this.state.choices} onChanged={this.props.onChange} name={this.props.id} />
-      </FormGroup>
+    const onChange = t => {
+      this.props.onChange(t);
+      if (!!this.props.onMadeDirty) {
+        this.props.onMadeDirty();
+      }
+    };
+    const inputs = (
+      <RadioGroup
+        xs={this.props.xs}
+        md={this.props.md}
+        lg={this.props.lg}
+        vertical={this.props.vertical}
+        values={this.state.choices}
+        onChanged={onChange}
+        name={this.props.id}
+      />
     );
+    return formInputGroup<T>(this, inputs);
   }
 }
