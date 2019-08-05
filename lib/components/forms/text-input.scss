@@ -11,3 +11,15 @@
     }
   }
 }
+
+.form-group,
+.input-group {
+  .form-feedback-span {
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+    .material-icons {
+      padding-top: 2px;
+    }
+  }
+}
