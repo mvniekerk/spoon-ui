@@ -67,22 +67,20 @@ export function handleFormDidUpdate<T>(form: FormInput<T>, prevProps: IFormInput
   }
 }
 
-export class FormInputGroup<T> extends React.Component<IFormInput<T>, IFormInputState<T>> {
-  render() {
-    const isInvalid = this.state.invalidAndDirty;
-    const isValid = this.state.validAndDirty;
-    const justHelp = this.state.justHelp;
-    const className = `${isInvalid ? 'is-invalid' : ''} ${isValid ? 'is-valid' : ''} ${justHelp ? 'just-help' : ''}`;
-    return (
-      <FormGroup className={className} valid>
-        {!!this.props.label && <Label for={this.props.id}>{translateItem(this.props.label)}</Label>}
-        <div className={`input-group ${className}`}>
-          {this.props.children}
-          {isValid && !!this.props.validMessage && <FormValid {...this.props} />}
-          {isInvalid && <FormError errors={this.state.errors} />}
-          {!isValid && !isInvalid && !!this.props.helpMessage && <FormHelp helpMessage={this.props.helpMessage} />}
-        </div>
-      </FormGroup>
-    );
-  }
+export function formInputGroup<T>(form: FormInput<T>, children: JSX.Element) {
+  const isInvalid = form.state.invalidAndDirty;
+  const isValid = form.state.validAndDirty;
+  const justHelp = form.state.justHelp;
+  const className = `${isInvalid ? 'is-invalid' : ''} ${isValid ? 'is-valid' : ''} ${justHelp ? 'just-help' : ''}`;
+  return (
+    <FormGroup className={className} valid>
+      {!!form.props.label && <Label for={form.props.id}>{translateItem(form.props.label)}</Label>}
+      <div className={`input-group ${className}`}>
+        {children}
+        {isValid && !!form.props.validMessage && <FormValid {...form.props} />}
+        {isInvalid && <FormError errors={form.state.errors} />}
+        {justHelp && !!form.props.helpMessage && <FormHelp helpMessage={form.props.helpMessage} />}
+      </div>
+    </FormGroup>
+  );
 }

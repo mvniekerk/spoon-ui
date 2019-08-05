@@ -12,11 +12,11 @@ import {
   checkValidAndErrorState,
   handleFormDidUpdate,
   defaultFormInputState,
-  FormInputGroup
+  formInputGroup
 } from './form-input';
 
 export interface ITextInputProps extends IDirtyInput<string>, IFormInput<string> {
-  check?: boolean;
+  enableTicks?: boolean;
 }
 
 export class TextInput extends React.Component<ITextInputProps, IFormInputState<string>> {
@@ -39,8 +39,8 @@ export class TextInput extends React.Component<ITextInputProps, IFormInputState<
     };
     const isInvalid = this.state.invalidAndDirty;
     const isValid = this.state.validAndDirty;
-    return (
-      <FormInputGroup {...this.props}>
+    const input = (
+      <>
         <Input
           id={this.props.id}
           placeholder={translateItem(this.props.placeholder)}
@@ -50,9 +50,10 @@ export class TextInput extends React.Component<ITextInputProps, IFormInputState<
           valid={this.state.validAndDirty}
           invalid={this.state.invalidAndDirty}
         />
-        {isInvalid && this.props.check && <Clear id="clear" className="material-icons invalid-icon" />}
-        {isValid && this.props.check && <Check id="check" className="material-icons valid-icon" />}
-      </FormInputGroup>
+        {isInvalid && this.props.enableTicks && <Clear id="clear" className="material-icons invalid-icon" />}
+        {isValid && this.props.enableTicks && <Check id="check" className="material-icons valid-icon" />}
+      </>
     );
+    return formInputGroup(this, input);
   }
 }

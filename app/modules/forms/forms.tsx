@@ -179,9 +179,10 @@ export default class Forms extends React.Component<{}, IFormsState> {
           </Col>
           <Col md="4">
             <TextInput
+              enableTicks
               label="This is my label"
               id="textInputExample"
-              placeHolder="Value is required and must be a number"
+              placeholder="Value is required and must be a number"
               dirty={this.state.numberInputDirty}
               onMadeDirty={onNumberInputMadeDirty}
               value={this.state.numberInput}
