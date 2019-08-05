@@ -4,7 +4,7 @@ import React from 'react';
 import { Row, Col, Input, InputGroup, FormText, FormFeedback, FormGroup, Label, Card } from 'reactstrap';
 
 /* tslint:disable:no-submodule-imports */
-import { TagInput, SearchBar, TextInput, RadioInput } from 'lib/components';
+import { TagInput, SearchBar, TextInput, RadioInput, ComboboxInput } from 'lib/components';
 import { ITranslatedSelectableValue, translatedValue } from 'lib/util';
 import { IValidateAndI18nKey, requiredString, stringIsNumber } from 'lib/validation';
 /* tslint:enable:no-submodule-imports */
@@ -23,6 +23,8 @@ export interface IFormsState {
   numberInputDirty: boolean;
   radInput: string;
   radDirty: boolean;
+  comboVal: { name: string; smart: boolean };
+  comboDirty: boolean;
 }
 
 export default class Forms extends React.Component<{}, IFormsState> {
@@ -32,7 +34,9 @@ export default class Forms extends React.Component<{}, IFormsState> {
     numberInput: '',
     numberInputDirty: false,
     radInput: '',
-    radDirty: false
+    radDirty: false,
+    comboVal: undefined,
+    comboDirty: false
   };
 
   constructor(props) {
@@ -112,6 +116,31 @@ export default class Forms extends React.Component<{}, IFormsState> {
             validMessage="Some coffee on its way"
             validation={[notMaybe, notNo]}
           />
+        </Col>
+      </Row>
+    );
+  }
+
+  renderComboboxInput() {
+    const choices = () =>
+      new Map([
+        [{ name: 'sheep', smart: false }, 'Sheep'],
+        [{ name: 'dog', smart: true }, 'Dog'],
+        [{ name: 'horse', smart: true }, 'Horse'],
+        [{ name: 'cow', smart: false }, 'Cow']
+      ]);
+    const isSmart: IValidateAndI18nKey<{ name: string; smart: boolean }> = {
+      func: (v: { name: string; smart: boolean }) =>
+        v.smart ? [] : [translatedValue<{ name: string; smart: boolean }>('Not a smart animal')],
+      i18n: ''
+    };
+    return (
+      <Row>
+        <Col md="12">
+          <div className="small-header">Using RadioInput component and validations</div>
+        </Col>
+        <Col md="4">
+          <ComboboxInput choices={choices} id="smartAnimal" value={this.state.comboVal} onChange={} validation={[isSmart]} />
         </Col>
       </Row>
     );
