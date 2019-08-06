@@ -16,6 +16,11 @@ import PersonOutline from '@material-ui/icons/PersonOutline';
 import Info from '@material-ui/icons/Info';
 import Cancel from '@material-ui/icons/Cancel';
 
+interface IsSmartAnimal {
+  name: string;
+  smart: boolean;
+}
+
 export interface IFormsState {
   values: Array<ITranslatedSelectableValue<string>>;
   search?: string;
@@ -23,7 +28,7 @@ export interface IFormsState {
   numberInputDirty: boolean;
   radInput: string;
   radDirty: boolean;
-  comboVal: { name: string; smart: boolean };
+  comboVal?: IsSmartAnimal;
   comboDirty: boolean;
 }
 
@@ -35,7 +40,7 @@ export default class Forms extends React.Component<{}, IFormsState> {
     numberInputDirty: false,
     radInput: '',
     radDirty: false,
-    comboVal: undefined,
+    comboVal: null,
     comboDirty: false
   };
 
@@ -129,18 +134,28 @@ export default class Forms extends React.Component<{}, IFormsState> {
         [{ name: 'horse', smart: true }, 'Horse'],
         [{ name: 'cow', smart: false }, 'Cow']
       ]);
-    const isSmart: IValidateAndI18nKey<{ name: string; smart: boolean }> = {
-      func: (v: { name: string; smart: boolean }) =>
-        v.smart ? [] : [translatedValue<{ name: string; smart: boolean }>('Not a smart animal')],
+    const onChange = comboVal => this.setState({ comboVal });
+    const onDirty = () => this.setState({ comboDirty: true });
+    const isSmart: IValidateAndI18nKey<IsSmartAnimal> = {
+      func: (i18nKey: string, v: IsSmartAnimal) => (v.smart ? [] : [translatedValue<IsSmartAnimal>('Not a smart animal')]),
       i18n: ''
     };
     return (
       <Row>
         <Col md="12">
-          <div className="small-header">Using RadioInput component and validations</div>
+          <div className="small-header">Using ComboInput component and validations</div>
         </Col>
         <Col md="4">
-          <ComboboxInput choices={choices} id="smartAnimal" value={this.state.comboVal} onChange={} validation={[isSmart]} />
+          <ComboboxInput
+            choices={choices}
+            id="smartAnimal"
+            value={this.state.comboVal}
+            onChange={onChange}
+            dirty={this.state.comboDirty}
+            onMadeDirty={onDirty}
+            validation={[isSmart]}
+            helpMessage="Try to select a smart animal"
+          />
         </Col>
       </Row>
     );
@@ -270,7 +285,11 @@ export default class Forms extends React.Component<{}, IFormsState> {
         </Row>
         {this.renderTextInput()}
         {this.renderRadioButtonInput()}
+        {this.renderComboboxInput()}
         <Row>
+          <Col md="12">
+            <div className="small-header">Search bar</div>
+          </Col>
           <Col md="8">
             <SearchBar onSearchChanged={this.searchChanged} />
             <FormFeedback valid>
