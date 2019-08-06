@@ -22,6 +22,7 @@ export interface IDropdownItemProps<T> {
   iconLeft?: boolean;
   iconRight?: boolean;
   selectable: boolean;
+  unselectable: boolean;
   tag: boolean;
   value: IDropdownItem<T>;
   onSelected?: (val: IDropdownItem<T>, sender: DropdownItem<T>) => void;
@@ -37,7 +38,8 @@ export class DropdownItem<T> extends React.Component<IDropdownItemProps<T>, IDro
     tag: false,
     selectable: false,
     value: { name: 'Not set', display: '', value: -1 },
-    checkNotCross: true
+    checkNotCross: true,
+    unselectable: true
   };
 
   state: IDropdownItemState = {
@@ -51,6 +53,10 @@ export class DropdownItem<T> extends React.Component<IDropdownItemProps<T>, IDro
   }
 
   handleOnClick = () => {
+    if (this.props.value.selected && !this.props.unselectable) {
+      return;
+    }
+
     const isSelected = !this.props.value.selected;
     this.props.value.selected = isSelected;
     this.setState(prevState => {

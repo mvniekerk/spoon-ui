@@ -1,4 +1,4 @@
-import { requiredBoolean, requiredNumber, requiredString } from '../../../../lib/validation/required';
+import { requiredBoolean, requiredNumber, requiredString, requiredAsString, required } from '../../../../lib/validation/required';
 
 describe('Required string validation', () => {
     it('An empty string should return validation errors', () => {
@@ -16,6 +16,21 @@ describe('Required string validation', () => {
         const errors = requiredString('', val);
         expect(errors.length).toBe(0);
     });
+});
+
+type SomeStringType = undefined | 'some' | 'string' | 'type';
+
+describe('Required as string validation', () => {
+  it('An empty string should return validation errors', () => {
+    const val: SomeStringType = undefined;
+    const errors = requiredAsString('', val);
+    expect(errors.length).toBeGreaterThan(0);
+  });
+  it('A non-empty string should not return validation errors', () => {
+    const val: SomeStringType = 'some';
+    const errors = requiredAsString('', val);
+    expect(errors.length).toBe(0);
+  });
 });
 
 describe('Required boolean validation', () => {
@@ -67,4 +82,26 @@ describe('Required number value validation', () => {
        const errors = requiredNumber('', val);
        expect(errors.length).toBe(0);
     });
+});
+
+interface ISomeObject {
+  thisField: boolean;
+}
+
+describe('Required value object validation', () => {
+  it('An undefined object should return validation errors', () => {
+    const val: ISomeObject = undefined;
+    const errors = required('', val);
+    expect(errors.length).toBeGreaterThan(0);
+  });
+  it('A null object should return validation errors', () => {
+    const val: ISomeObject = null;
+    const errors = required('', val);
+    expect(errors.length).toBeGreaterThan(0);
+  });
+  it('A non empty object should not return validation errors', () => {
+    const val: ISomeObject = { thisField: true };
+    const errors = required('', val);
+    expect(errors.length).toBe(0);
+  });
 });
