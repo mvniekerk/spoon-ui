@@ -1,17 +1,21 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8aa6df0bd13c002481c98db1e202ec8a",
-    "url": "content/images/frame.svg"
+    "revision": "c2a4ba6ef374ac789bfb111957e2ae79",
+    "url": "content/css/loading.css"
   },
   {
-    "url": "content/main.bb63677ab4f315e4f14d.css"
+    "url": "content/main.3524ac1f70c81453cf72.css"
   },
   {
-    "url": "content/vendors.bb63677ab4f315e4f14d.css"
+    "url": "content/vendors.3524ac1f70c81453cf72.css"
   },
   {
-    "revision": "0819d5a799bf28d8dc90b39739327c34",
+    "revision": "d9fb4bae0b8eb48349d65f072d1e11a1",
     "url": "index.html"
+  },
+  {
+    "revision": "d4a5d598e8510d03a187a3a2b8bda2e0",
+    "url": "robots.txt"
   },
   {
     "revision": "a67b8d690ca9b440a338ef9e34194b93",
@@ -22,10 +26,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "manifest.webapp"
   },
   {
-    "revision": "d4a5d598e8510d03a187a3a2b8bda2e0",
-    "url": "robots.txt"
-  },
-  {
     "revision": "eaba5d155a40b6d7ac603cfdcb4eb5af",
     "url": "content/images/spoon-ui.svg"
   },
@@ -34,8 +34,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "content/images/triangle.svg"
   },
   {
-    "revision": "d001004f765a00ec6cd7f89c782e506a",
-    "url": "content/images/spoon-ui256.png"
+    "revision": "6cf500559403ed8d5c9d4c59ed889132",
+    "url": "content/images/spoon-ui192.png"
   },
   {
     "url": "content/72fd8c159e274e016b28ac1b46a34f02.svg"
@@ -43,6 +43,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "b77cd177df9e44a1d3eb06e1cafce30d",
     "url": "content/images/spoon-ui512.png"
+  },
+  {
+    "revision": "8aa6df0bd13c002481c98db1e202ec8a",
+    "url": "content/images/frame.svg"
   },
   {
     "revision": "0eea500455ef35cc8e4eb18a4b041541",
@@ -53,36 +57,32 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "content/images/spoon-ui.png"
   },
   {
-    "revision": "6cf500559403ed8d5c9d4c59ed889132",
-    "url": "content/images/spoon-ui192.png"
-  },
-  {
     "revision": "11a35b6eb658d35f2467e49235c4e70c",
     "url": "content/images/chevron-right.svg"
-  },
-  {
-    "revision": "c2a4ba6ef374ac789bfb111957e2ae79",
-    "url": "content/css/loading.css"
   },
   {
     "revision": "b8bec99789f3b935c26c36ac3658ca18",
     "url": "content/images/spoon-ui384.png"
   },
   {
+    "revision": "d001004f765a00ec6cd7f89c782e506a",
+    "url": "content/images/spoon-ui256.png"
+  },
+  {
     "url": "content/11a35b6eb658d35f2467e49235c4e70c.svg"
   },
   {
-    "url": "app/vendors.bb63677ab4f315e4f14d.chunk.js"
+    "url": "app/vendors.3524ac1f70c81453cf72.chunk.js"
   },
   {
-    "url": "app/main.bb63677ab4f315e4f14d.bundle.js"
+    "url": "app/main.3524ac1f70c81453cf72.bundle.js"
   },
   {
-    "revision": "c1d7baf881fac4e6ec9d86b1c607f7cb",
+    "revision": "0a6993265e08a44840561acb255a0720",
     "url": "./i18n/en.json"
   },
   {
-    "revision": "1a68f46eb8af24fc1b6b5c4025c25f30",
+    "revision": "ef3e55b7ddef7de04a5e73a60e508ffd",
     "url": "./i18n/de.json"
   }
 ]);
