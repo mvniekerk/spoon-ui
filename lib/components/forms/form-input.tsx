@@ -8,7 +8,7 @@ import { FormError, FormHelp, FormValid } from '../form-feedback/form-feedback';
 export interface IFormInput<T> extends IDirtyInput<T> {
   label?: TranslatedValueOrKey<T>;
   placeholder?: TranslatedValueOrKey<T>;
-  id: string;
+  id?: string;
   value: T;
 }
 

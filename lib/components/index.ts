@@ -12,6 +12,17 @@ import ErrorBoundaryRoute from './error/error-boundary-route';
 import ErrorBoundary from './error/error-boundary';
 import Footer from './footer/footer';
 import { FormError, FormHelp, FormValid } from './form-feedback/form-feedback';
+import {
+  FormInput,
+  IFormInput,
+  ISelectableFormInput,
+  ISelectableFormInputState,
+  IFormInputState,
+  handleFormDidUpdate,
+  checkValidAndErrorState,
+  defaultFormInputState,
+  defaultStateForSelectableFormInput
+} from './forms/form-input';
 import Header from './header/header';
 import ItemsPerPage from './items-per-page/items-per-page';
 import { Brand, BrandIcon, NavDropdown, Notification } from './header/header-components';
@@ -54,6 +65,16 @@ export {
   ErrorBoundary,
   ErrorBoundaryRoute,
   Footer,
+  // FormInput
+  FormInput,
+  IFormInput,
+  ISelectableFormInput,
+  ISelectableFormInputState,
+  IFormInputState,
+  handleFormDidUpdate,
+  checkValidAndErrorState,
+  defaultFormInputState,
+  defaultStateForSelectableFormInput,
   FormError,
   FormHelp,
   FormValid,

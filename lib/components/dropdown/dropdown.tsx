@@ -28,6 +28,7 @@ export interface IDropdownProps<T> {
   disabled: boolean;
   alignRight: boolean;
   disableDeselect: boolean;
+  unselectable: boolean;
 }
 
 export interface IDropdownState<T> {
@@ -58,7 +59,8 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
     onValueDeselected: (v, i) => {},
     disabled: false,
     direction: 'down',
-    disableDeselect: false
+    disableDeselect: false,
+    unselectable: true
   };
 
   state: IDropdownState<T> = {
