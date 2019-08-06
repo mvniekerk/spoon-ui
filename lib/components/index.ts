@@ -5,6 +5,7 @@ import Button from './button/button';
 import Checkbox from './selection/checkbox';
 import ColorPicker from './color-picker/color-picker';
 import ColorThemeEditor from './color-theme-editor/color-theme-editor';
+import { ComboboxInput } from './forms/combobox-input';
 import ColorVariableSetter from './color-variable-setter/color-variable-setter';
 import ContextMenu from './context-menu/context-menu';
 import ErrorBoundaryRoute from './error/error-boundary-route';
@@ -23,6 +24,7 @@ import Progression from './progression/progression';
 import RadioButton from './selection/radiobutton';
 import { IRadioButtonValue } from './selection/radio-button-value';
 import RadioGroup from './selection/radiogroup';
+import { RadioInput } from './forms/radio-input';
 import SearchBar from './search-bar/search-bar';
 import SideMenu from './sidemenu/sidemenu';
 import TableHeader from './table/table-header';
@@ -46,6 +48,7 @@ export {
   ColorPicker,
   ColorThemeEditor,
   ColorVariableSetter,
+  ComboboxInput,
   ContextMenu,
   Dropdown,
   ErrorBoundary,
@@ -65,6 +68,7 @@ export {
   Progression,
   RadioButton,
   RadioGroup,
+  RadioInput,
   SearchBar,
   SideMenu,
   TableHeader,

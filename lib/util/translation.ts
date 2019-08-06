@@ -14,8 +14,8 @@ export interface ITranslatedSelectableValue<T> extends ITranslatedValue<T> {
 
 export type TranslatedValueOrKey<T> = ITranslatedValue<T> | string;
 
-export function translatedValue<T>(i18nKey: string): ITranslatedValue<T> {
-  return { name: i18nKey, value: undefined, display: i18nKey };
+export function translatedValue<T>(i18nKey: TranslatedValueOrKey<T>): ITranslatedValue<T> {
+  return typeof i18nKey === 'string' ? { name: i18nKey, value: undefined, display: i18nKey } : (i18nKey as ITranslatedValue<T>);
 }
 
 export function translateItem<T>(i: TranslatedValueOrKey<T>): string {

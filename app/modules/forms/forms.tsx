@@ -4,9 +4,9 @@ import React from 'react';
 import { Row, Col, Input, InputGroup, FormText, FormFeedback, FormGroup, Label, Card } from 'reactstrap';
 
 /* tslint:disable:no-submodule-imports */
-import { TagInput, SearchBar, TextInput } from 'lib/components';
-import { ITranslatedSelectableValue } from 'lib/util';
-import { requiredString, stringIsNumber } from 'lib/validation';
+import { TagInput, SearchBar, TextInput, RadioInput, ComboboxInput } from 'lib/components';
+import { ITranslatedSelectableValue, translatedValue } from 'lib/util';
+import { IValidateAndI18nKey, requiredString, stringIsNumber } from 'lib/validation';
 /* tslint:enable:no-submodule-imports */
 
 import Check from '@material-ui/icons/Check';
@@ -16,11 +16,20 @@ import PersonOutline from '@material-ui/icons/PersonOutline';
 import Info from '@material-ui/icons/Info';
 import Cancel from '@material-ui/icons/Cancel';
 
+interface IsSmartAnimal {
+  name: string;
+  smart: boolean;
+}
+
 export interface IFormsState {
   values: Array<ITranslatedSelectableValue<string>>;
   search?: string;
   numberInput: string;
   numberInputDirty: boolean;
+  radInput: string;
+  radDirty: boolean;
+  comboVal?: IsSmartAnimal;
+  comboDirty: boolean;
 }
 
 export default class Forms extends React.Component<{}, IFormsState> {
@@ -28,7 +37,11 @@ export default class Forms extends React.Component<{}, IFormsState> {
     values: [],
     search: '',
     numberInput: '',
-    numberInputDirty: false
+    numberInputDirty: false,
+    radInput: '',
+    radDirty: false,
+    comboVal: null,
+    comboDirty: false
   };
 
   constructor(props) {
@@ -49,9 +62,106 @@ export default class Forms extends React.Component<{}, IFormsState> {
     this.setState({ search });
   }
 
-  render() {
+  renderTextInput() {
     const onNumberInputChange = numberInput => this.setState({ numberInput });
     const onNumberInputMadeDirty = () => this.setState({ numberInputDirty: true });
+    return (
+      <Row>
+        <Col md="12">
+          <div className="small-header">Text using TextInput component and validations</div>
+        </Col>
+        <Col md="4">
+          <TextInput
+            enableTicks
+            label="This is my label"
+            id="textInputExample"
+            placeholder="Value is required and must be a number"
+            dirty={this.state.numberInputDirty}
+            onMadeDirty={onNumberInputMadeDirty}
+            value={this.state.numberInput}
+            onChange={onNumberInputChange}
+            helpMessage="This field is required"
+            validMessage="Well done"
+            validation={[{ func: requiredString, i18n: 'Value is required' }, { func: stringIsNumber, i18n: 'Must be a number' }]}
+          />
+        </Col>
+      </Row>
+    );
+  }
+
+  renderRadioButtonInput() {
+    const choices = () => new Map<string, string>([['Yes', 'Yes'], ['No', 'No'], ['Maybe', 'Maybe']]);
+    const onChange = radInput => this.setState({ radInput });
+    const onDirty = () => this.setState({ radDirty: true });
+    const notMaybe: IValidateAndI18nKey<string> = {
+      func: (i18nKey, val) => (val !== 'Maybe' ? [] : [translatedValue('Maybe you should choose')]),
+      i18n: ''
+    };
+    const notNo: IValidateAndI18nKey<string> = {
+      func: (i18nKey, val) => (val !== 'No' ? [] : [translatedValue('Not taking no for an answer')]),
+      i18n: ''
+    };
+
+    return (
+      <Row>
+        <Col md="12">
+          <div className="small-header">Using RadioInput component and validations</div>
+        </Col>
+        <Col md="4">
+          <RadioInput
+            md={4}
+            choices={choices}
+            id="radInput"
+            value={this.state.radInput}
+            onChange={onChange}
+            dirty={this.state.radDirty}
+            onMadeDirty={onDirty}
+            label="Do you want coffee?"
+            helpMessage="Maybe is not allowed"
+            validMessage="Some coffee on its way"
+            validation={[notMaybe, notNo]}
+          />
+        </Col>
+      </Row>
+    );
+  }
+
+  renderComboboxInput() {
+    const choices = () =>
+      new Map([
+        [{ name: 'sheep', smart: false }, 'Sheep'],
+        [{ name: 'dog', smart: true }, 'Dog'],
+        [{ name: 'horse', smart: true }, 'Horse'],
+        [{ name: 'cow', smart: false }, 'Cow']
+      ]);
+    const onChange = comboVal => this.setState({ comboVal });
+    const onDirty = () => this.setState({ comboDirty: true });
+    const isSmart: IValidateAndI18nKey<IsSmartAnimal> = {
+      func: (i18nKey: string, v: IsSmartAnimal) => (v.smart ? [] : [translatedValue<IsSmartAnimal>('Not a smart animal')]),
+      i18n: ''
+    };
+    return (
+      <Row>
+        <Col md="12">
+          <div className="small-header">Using ComboInput component and validations</div>
+        </Col>
+        <Col md="4">
+          <ComboboxInput
+            choices={choices}
+            id="smartAnimal"
+            value={this.state.comboVal}
+            onChange={onChange}
+            dirty={this.state.comboDirty}
+            onMadeDirty={onDirty}
+            validation={[isSmart]}
+            helpMessage="Try to select a smart animal"
+          />
+        </Col>
+      </Row>
+    );
+  }
+
+  render() {
     return (
       <>
         <Row>
@@ -173,26 +283,13 @@ export default class Forms extends React.Component<{}, IFormsState> {
             </FormGroup>
           </Col>
         </Row>
+        {this.renderTextInput()}
+        {this.renderRadioButtonInput()}
+        {this.renderComboboxInput()}
         <Row>
           <Col md="12">
-            <div className="small-header">Text using TextInput component and validations</div>
+            <div className="small-header">Search bar</div>
           </Col>
-          <Col md="4">
-            <TextInput
-              label="This is my label"
-              id="textInputExample"
-              placeHolder="Value is required and must be a number"
-              dirty={this.state.numberInputDirty}
-              onMadeDirty={onNumberInputMadeDirty}
-              value={this.state.numberInput}
-              onChange={onNumberInputChange}
-              helpMessage="This field is required"
-              validMessage="Well done"
-              validation={[{ func: requiredString, i18n: 'Value is required' }, { func: stringIsNumber, i18n: 'Must be a number' }]}
-            />
-          </Col>
-        </Row>
-        <Row>
           <Col md="8">
             <SearchBar onSearchChanged={this.searchChanged} />
             <FormFeedback valid>

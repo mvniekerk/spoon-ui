@@ -2,7 +2,7 @@ import './dropdown.scss';
 import React, { ChangeEvent } from 'react';
 import { Dropdown as RDropdown, DropdownToggle, DropdownMenu, FormGroup } from 'reactstrap';
 import { DropdownItem, IDropdownItem } from './dropdown-item';
-import { translateItem } from '../../util/translation';
+import { TranslatedValueOrKey, translateItem } from '../../util/translation';
 import PerfectScrollbar from '@opuscapita/react-perfect-scrollbar';
 /* tslint:disable:no-submodule-imports */
 import ExpandMoreRounded from '@material-ui/icons/ExpandMoreRounded';
@@ -21,7 +21,7 @@ export interface IDropdownProps<T> {
   iconLeft?: boolean;
   iconRight?: boolean;
   selectAll?: boolean;
-  placeholder?: string;
+  placeholder?: TranslatedValueOrKey<T>;
   tags?: boolean;
   onValueSelected: Function;
   onValueDeselected: Function;
@@ -164,7 +164,7 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
       ? this.props.placeholder
       : this.state.selection.length === 1 && !!this.state.selection[0].value
         ? translateItem(this.state.selection[0])
-        : this.props.placeholder;
+        : translateItem(this.props.placeholder);
 
     const onSearchChanged = (val: ChangeEvent<HTMLInputElement>) => {
       if (val.target) {
