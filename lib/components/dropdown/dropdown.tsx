@@ -169,7 +169,7 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
         : [];
 
     const displayText = mustShowPlaceholder
-      ? this.props.placeholder
+      ? translateItem(this.props.placeholder)
       : this.state.selection.length === 1 && !!this.state.selection[0].value
         ? translateItem(this.state.selection[0])
         : translateItem(this.props.placeholder);

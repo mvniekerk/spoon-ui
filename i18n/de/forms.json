@@ -4,6 +4,9 @@
       "yes": "Ja",
       "no": "Nein",
       "maybe": "Könnte sein"
+    },
+    "comboInput": {
+      "placeholder": "Select a smart animal"
     }
   }
 }
