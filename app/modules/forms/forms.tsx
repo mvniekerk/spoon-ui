@@ -90,7 +90,8 @@ export default class Forms extends React.Component<{}, IFormsState> {
   }
 
   renderRadioButtonInput() {
-    const choices = () => new Map<string, string>([['Yes', 'Yes'], ['No', 'No'], ['Maybe', 'Maybe']]);
+    const choices = () =>
+      new Map<string, string>([['Yes', 'forms.radioInput.yes'], ['No', 'forms.radioInput.no'], ['Maybe', 'forms.radioInput.maybe']]);
     const onChange = radInput => this.setState({ radInput });
     const onDirty = () => this.setState({ radDirty: true });
     const notMaybe: IValidateAndI18nKey<string> = {

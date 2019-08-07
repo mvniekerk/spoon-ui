@@ -1,0 +1,9 @@
+{
+  "forms": {
+    "radioInput": {
+      "yes": "Ja",
+      "no": "Nein",
+      "maybe": "Könnte sein"
+    }
+  }
+}

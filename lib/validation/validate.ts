@@ -13,5 +13,5 @@ export interface IValidateAndI18nKey<T> {
 }
 
 export function validationErrors<T>(val: T, validators: Array<IValidateAndI18nKey<T>>): Array<ITranslatedSelectableValue<T>> {
-  return validators.reduce((prev, cur) => (prev.length > 0 ? prev : cur.func(cur.i18n, val)), []);
+  return !!validators ? validators.reduce((prev, cur) => (prev.length > 0 ? prev : cur.func(cur.i18n, val)), []) : [];
 }

@@ -49,7 +49,7 @@ export class RadioGroup<T> extends React.Component<IRadioGroupProps<T>, IRadioGr
   render() {
     const vals = this.props.values.map(v => (
       <Col xs={this.props.xs} lg={this.props.lg} md={this.props.md} key={v.id}>
-        <RadioButton {...v} onChange={this.handleChange} selected={v.value === this.state.selected} name={this.props.name} />
+        <RadioButton {...v} onChange={this.handleChange} selected={v.value === this.state.selected} groupName={this.props.name} />
       </Col>
     ));
     return <div className={`radio-group ${this.props.vertical ? 'vertical' : ''}`}>{this.props.vertical ? vals : <Row>{vals}</Row>}</div>;
