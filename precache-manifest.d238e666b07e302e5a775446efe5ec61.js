@@ -4,13 +4,13 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "content/images/frame.svg"
   },
   {
-    "url": "content/main.a38a946cc2809f369a72.css"
+    "url": "content/main.3e2d3c0979785823d95b.css"
   },
   {
-    "url": "content/vendors.a38a946cc2809f369a72.css"
+    "url": "content/vendors.3e2d3c0979785823d95b.css"
   },
   {
-    "revision": "845d4ac769f7b9c48323ddc7356f647b",
+    "revision": "970d18d252291c0307ff0a469e047291",
     "url": "index.html"
   },
   {
@@ -18,16 +18,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "favicon.ico"
   },
   {
-    "revision": "be66612e582d0f05047a7cf3e3ddc606",
-    "url": "manifest.webapp"
-  },
-  {
     "revision": "d4a5d598e8510d03a187a3a2b8bda2e0",
     "url": "robots.txt"
   },
   {
-    "revision": "0eea500455ef35cc8e4eb18a4b041541",
-    "url": "content/images/Spoon_favicon.svg"
+    "revision": "be66612e582d0f05047a7cf3e3ddc606",
+    "url": "manifest.webapp"
+  },
+  {
+    "revision": "6cf500559403ed8d5c9d4c59ed889132",
+    "url": "content/images/spoon-ui192.png"
   },
   {
     "revision": "72fd8c159e274e016b28ac1b46a34f02",
@@ -41,20 +41,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "content/72fd8c159e274e016b28ac1b46a34f02.svg"
   },
   {
-    "revision": "b77cd177df9e44a1d3eb06e1cafce30d",
-    "url": "content/images/spoon-ui512.png"
-  },
-  {
     "revision": "b8bec99789f3b935c26c36ac3658ca18",
     "url": "content/images/spoon-ui384.png"
   },
   {
-    "revision": "b23e519aae8b780cefcb9c74103b485b",
-    "url": "content/images/spoon-ui.png"
+    "revision": "b77cd177df9e44a1d3eb06e1cafce30d",
+    "url": "content/images/spoon-ui512.png"
   },
   {
-    "revision": "6cf500559403ed8d5c9d4c59ed889132",
-    "url": "content/images/spoon-ui192.png"
+    "revision": "0eea500455ef35cc8e4eb18a4b041541",
+    "url": "content/images/Spoon_favicon.svg"
+  },
+  {
+    "revision": "b23e519aae8b780cefcb9c74103b485b",
+    "url": "content/images/spoon-ui.png"
   },
   {
     "revision": "11a35b6eb658d35f2467e49235c4e70c",
@@ -72,10 +72,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "content/11a35b6eb658d35f2467e49235c4e70c.svg"
   },
   {
-    "url": "app/vendors.a38a946cc2809f369a72.chunk.js"
+    "url": "app/vendors.3e2d3c0979785823d95b.chunk.js"
   },
   {
-    "url": "app/main.a38a946cc2809f369a72.bundle.js"
+    "url": "app/main.3e2d3c0979785823d95b.bundle.js"
   },
   {
     "revision": "1d3b85fde1882f6bb6449d8740d3dc5d",
