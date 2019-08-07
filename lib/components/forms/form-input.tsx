@@ -37,7 +37,8 @@ export function defaultStateForSelectableFormInput<T>(props: ISelectableFormInpu
         id: `${props.id}_${choiceVals.get(k)}`,
         value: k,
         disabled: false,
-        selected: false
+        selected: false,
+        groupName: props.id
       }))
     : [];
   return { ...defaultFormInputState<T>(), choices };

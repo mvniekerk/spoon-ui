@@ -10,6 +10,7 @@ export interface ITranslatedSelectableValue<T> extends ITranslatedValue<T> {
   selected?: boolean;
   id?: string;
   disabled?: boolean;
+  groupName?: string;
 }
 
 export type TranslatedValueOrKey<T> = ITranslatedValue<T> | string;

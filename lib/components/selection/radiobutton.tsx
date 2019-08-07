@@ -3,7 +3,7 @@ import React from 'react';
 import { ITranslatedSelectableValue, translateItem } from '../../util/translation';
 import { IOnChange } from '../../util/on-change';
 
-export type IRadioButtonValue<T> = ITranslatedSelectableValue<T> & IOnChange<T>;
+export interface IRadioButtonValue<T> extends ITranslatedSelectableValue<T>, IOnChange<T> {}
 
 export interface IRadioState {
   checked: boolean;
@@ -43,7 +43,7 @@ export class RadioButton<T> extends React.Component<IRadioButtonValue<T>, IRadio
         type="radio"
         onChange={handleChange}
         disabled={this.props.disabled}
-        name={this.props.name}
+        name={this.props.groupName}
         value={`${this.props.value}`}
       />
     );
