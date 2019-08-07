@@ -138,7 +138,7 @@ export default class Forms extends React.Component<{}, IFormsState> {
     const onChange = comboVal => this.setState({ comboVal });
     const onDirty = () => this.setState({ comboDirty: true });
     const isSmart: IValidateAndI18nKey<IsSmartAnimal> = {
-      func: (i18nKey: string, v: IsSmartAnimal) => (v.smart ? [] : [translatedValue<IsSmartAnimal>('Not a smart animal')]),
+      func: (i18nKey: string, v: IsSmartAnimal) => (!!v && v.smart ? [] : [translatedValue<IsSmartAnimal>('Not a smart animal')]),
       i18n: ''
     };
     return (
