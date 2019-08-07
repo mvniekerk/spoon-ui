@@ -29,6 +29,8 @@ export interface IDropdownProps<T> {
   alignRight: boolean;
   disableDeselect: boolean;
   unselectable: boolean;
+  onOpen?: () => void;
+  onClose?: () => void;
 }
 
 export interface IDropdownState<T> {
@@ -71,10 +73,14 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
   };
 
   toggle() {
-    this.setState(prevState => ({
-      dropdownOpen: !prevState.dropdownOpen,
-      search: ''
-    }));
+    const dropdownOpen = !this.state.dropdownOpen;
+    this.setState({ dropdownOpen, search: '' });
+    if (dropdownOpen && !!this.props.onOpen) {
+      this.props.onOpen();
+    }
+    if (!dropdownOpen && !!this.props.onClose) {
+      this.props.onClose();
+    }
   }
 
   constructor(props: IDropdownProps<T>) {

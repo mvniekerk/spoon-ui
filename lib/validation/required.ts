@@ -13,7 +13,7 @@ export const requiredString: Validate<string> = (i18nKey, val) =>
 
 export function requiredAsString<T>(i18nKey: string, val: T) {
   // @ts-ignore
-  return requiredString(i18nKey, val as string);
+  return requiredString(i18nKey, val as string) as Validate<T>;
 }
 
 export const requiredBoolean: Validate<boolean> = (i18nKey, val) =>
