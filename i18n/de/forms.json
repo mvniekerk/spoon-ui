@@ -4,6 +4,9 @@
       "yes": "Ja",
       "no": "Nein",
       "maybe": "Könnte sein"
+    },
+    "comboInput": {
+      "placeholder": "Wählen Sie ein intelligentes Tier"
     }
   }
 }

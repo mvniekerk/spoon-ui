@@ -156,6 +156,7 @@ export default class Forms extends React.Component<{}, IFormsState> {
             onMadeDirty={onDirty}
             validation={[isSmart]}
             helpMessage="Try to select a smart animal"
+            placeholder="forms.comboInput.placeholder"
           />
         </Col>
       </Row>
