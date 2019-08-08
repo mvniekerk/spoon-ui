@@ -20,7 +20,7 @@ export function translatedValue<T>(i18nKey: TranslatedValueOrKey<T>): ITranslate
 }
 
 export function translateItem<T>(i: TranslatedValueOrKey<T>): string {
-  if (!!i) {
+  if (!i) {
     return '';
   }
   const item: ITranslatedValue<T> = typeof i === 'string' ? translatedValue(i as string) : (i as ITranslatedValue<T>);
