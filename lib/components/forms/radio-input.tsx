@@ -49,6 +49,6 @@ export class RadioInput<T> extends React.Component<IRadioInputProps<T>, ISelecta
         name={this.props.id}
       />
     );
-    return formInputGroup<T>(this, inputs);
+    return formInputGroup(this, inputs);
   }
 }
