@@ -4,9 +4,18 @@ import React from 'react';
 import { Row, Col, Input, InputGroup, FormText, FormFeedback, FormGroup, Label } from 'reactstrap';
 
 /* tslint:disable:no-submodule-imports */
-import { TagInput, SearchBar, TextInput, RadioInput, ComboboxInput, IValueDirtyAndValid, iformInput } from 'lib/components';
+import {
+  TagInput,
+  SearchBar,
+  TextInput,
+  RadioInput,
+  ComboboxInput,
+  IValueDirtyAndValid,
+  iformInput,
+  MultipleSelectionInput
+} from 'lib/components';
 import { ITranslatedSelectableValue, translatedValue } from 'lib/util';
-import { IValidateAndI18nKey, requiredString, stringIsNumber } from 'lib/validation';
+import { IValidateAndI18nKey, required, requiredString, stringIsNumber } from 'lib/validation';
 /* tslint:enable:no-submodule-imports */
 
 import Check from '@material-ui/icons/Check';
@@ -29,6 +38,7 @@ export interface IFormsState {
   radInput: string;
   radDirty: boolean;
   comboVal?: IValueDirtyAndValid<IsSmartAnimal>;
+  multipleVal?: IValueDirtyAndValid<string[]>;
 }
 
 export default class Forms extends React.Component<{}, IFormsState> {
@@ -39,7 +49,8 @@ export default class Forms extends React.Component<{}, IFormsState> {
     numberInputDirty: false,
     radInput: '',
     radDirty: false,
-    comboVal: { value: undefined }
+    comboVal: { value: undefined },
+    multipleVal: { value: undefined }
   };
 
   constructor(props) {
@@ -151,6 +162,30 @@ export default class Forms extends React.Component<{}, IFormsState> {
             validation={[isSmart]}
             helpMessage="Try to select a smart animal"
             placeholder="forms.comboInput.placeholder"
+          />
+        </Col>
+      </Row>
+    );
+  }
+
+  renderMultipleSelectionInput() {
+    const vals = iformInput(b => b.multipleVal, this);
+    const choices = () => new Map<string, string>([['one', 'One'], ['two', 'Two'], ['three', 'Three']]);
+    const only2: IValidateAndI18nKey<string[]> = {
+      func: (k, v) => (!!v && v.length === 2 ? [] : [translatedValue<string[]>('Must select exactly two')]),
+      i18n: 'Must select exactly two'
+    };
+    return (
+      <Row>
+        <Col md="12">
+          <div className="small-header">Multiple selections</div>
+        </Col>
+        <Col md="4">
+          <MultipleSelectionInput
+            label="Select any 2"
+            {...vals}
+            choices={choices}
+            validation={[{ func: required, i18n: 'Please select a value' }, only2]}
           />
         </Col>
       </Row>
@@ -282,6 +317,7 @@ export default class Forms extends React.Component<{}, IFormsState> {
         {this.renderTextInput()}
         {this.renderRadioButtonInput()}
         {this.renderComboboxInput()}
+        {this.renderMultipleSelectionInput()}
         <Row>
           <Col md="12">
             <div className="small-header">Search bar</div>

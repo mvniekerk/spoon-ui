@@ -26,6 +26,7 @@ import {
   defaultFormInputState,
   defaultStateForSelectableFormInput
 } from './forms/form-input';
+import { MultipleSelectionInput, IMultipleSelectionInputProps } from './forms/multiple-selection-input';
 import Header from './header/header';
 import ItemsPerPage from './items-per-page/items-per-page';
 import { Brand, BrandIcon, NavDropdown, Notification } from './header/header-components';
@@ -84,6 +85,9 @@ export {
   FormError,
   FormHelp,
   FormValid,
+  // Multiple selection input
+  MultipleSelectionInput,
+  IMultipleSelectionInputProps,
   Header,
   ItemsPerPage,
   MenuItem,

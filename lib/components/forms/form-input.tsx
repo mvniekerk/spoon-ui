@@ -95,7 +95,7 @@ export function handleFormDidUpdate<T>(form: FormInput<T>, prevProps: IFormInput
   }
 }
 
-export function formInputGroup<T>(form: FormInput<T>, children: JSX.Element) {
+export function formInputGroup(form: FormInput<any>, children: JSX.Element) {
   const isInvalid = form.state.invalidAndDirty;
   const isValid = form.state.validAndDirty;
   const justHelp = form.state.justHelp;
@@ -103,7 +103,7 @@ export function formInputGroup<T>(form: FormInput<T>, children: JSX.Element) {
   return (
     <FormGroup className={className} valid>
       {!!form.props.label && <Label for={form.props.id}>{translateItem(form.props.label)}</Label>}
-      <div className={`input-group ${className}`}>
+      <div className={`input-group ${className} form-input`}>
         {children}
         {isValid && !!form.props.validMessage && <FormValid {...form.props} />}
         {isInvalid && <FormError errors={form.state.errors} />}

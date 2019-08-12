@@ -45,6 +45,6 @@ export class ComboboxInput<T> extends React.Component<IComboboxInputProps<T>, IS
     };
     const choices: Array<IDropdownItem<T>> = this.state.choices.map(b => b as IDropdownItem<T>);
     const input = <Dropdown {...this.props} initialValues={choices} onValueSelected={onChange} unselectable={false} onClose={onClose} />;
-    return formInputGroup<T>(this, input);
+    return formInputGroup(this, input);
   }
 }
