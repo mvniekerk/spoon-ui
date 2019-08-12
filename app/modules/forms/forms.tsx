@@ -1,10 +1,10 @@
 import './forms.scss';
 
 import React from 'react';
-import { Row, Col, Input, InputGroup, FormText, FormFeedback, FormGroup, Label, Card } from 'reactstrap';
+import { Row, Col, Input, InputGroup, FormText, FormFeedback, FormGroup, Label } from 'reactstrap';
 
 /* tslint:disable:no-submodule-imports */
-import { TagInput, SearchBar, TextInput, RadioInput, ComboboxInput } from 'lib/components';
+import { TagInput, SearchBar, TextInput, RadioInput, ComboboxInput, IValueDirtyAndValid, iformInput } from 'lib/components';
 import { ITranslatedSelectableValue, translatedValue } from 'lib/util';
 import { IValidateAndI18nKey, requiredString, stringIsNumber } from 'lib/validation';
 /* tslint:enable:no-submodule-imports */
@@ -28,8 +28,7 @@ export interface IFormsState {
   numberInputDirty: boolean;
   radInput: string;
   radDirty: boolean;
-  comboVal?: IsSmartAnimal;
-  comboDirty: boolean;
+  comboVal?: IValueDirtyAndValid<IsSmartAnimal>;
 }
 
 export default class Forms extends React.Component<{}, IFormsState> {
@@ -40,8 +39,7 @@ export default class Forms extends React.Component<{}, IFormsState> {
     numberInputDirty: false,
     radInput: '',
     radDirty: false,
-    comboVal: null,
-    comboDirty: false
+    comboVal: { value: undefined }
   };
 
   constructor(props) {
@@ -128,6 +126,7 @@ export default class Forms extends React.Component<{}, IFormsState> {
   }
 
   renderComboboxInput() {
+    const comboVals = iformInput(a => a.comboVal, this);
     const choices = () =>
       new Map([
         [{ name: 'sheep', smart: false }, 'Sheep'],
@@ -135,8 +134,6 @@ export default class Forms extends React.Component<{}, IFormsState> {
         [{ name: 'horse', smart: true }, 'Horse'],
         [{ name: 'cow', smart: false }, 'Cow']
       ]);
-    const onChange = comboVal => this.setState({ comboVal });
-    const onDirty = () => this.setState({ comboDirty: true });
     const isSmart: IValidateAndI18nKey<IsSmartAnimal> = {
       func: (i18nKey: string, v: IsSmartAnimal) => (!!v && v.smart ? [] : [translatedValue<IsSmartAnimal>('Not a smart animal')]),
       i18n: ''
@@ -150,10 +147,7 @@ export default class Forms extends React.Component<{}, IFormsState> {
           <ComboboxInput
             choices={choices}
             id="smartAnimal"
-            value={this.state.comboVal}
-            onChange={onChange}
-            dirty={this.state.comboDirty}
-            onMadeDirty={onDirty}
+            {...comboVals}
             validation={[isSmart]}
             helpMessage="Try to select a smart animal"
             placeholder="forms.comboInput.placeholder"
