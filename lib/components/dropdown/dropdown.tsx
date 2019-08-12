@@ -211,7 +211,21 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
       </div>
     ) : null;
 
-    const selectionBar = this.props.selectionBar && <div />;
+    const selectionBar = this.props.selectionBar && (
+      <div className="tags-container selected-tags">
+        {this.state.selection.map(v => (
+          <DropdownItem
+            selectable
+            tag
+            value={v}
+            // key={!!v.name ? v.name : v.value}
+            onSelected={valSelected}
+            onDeselected={valDeselected}
+            checkNotCross={false}
+          />
+        ))}
+      </div>
+    );
     const menuClassName =
       (this.props.multiple ? 'multiple' : '') + (this.props.tags ? ' tags' : '') + (this.props.alignRight ? ' align-right' : '');
 

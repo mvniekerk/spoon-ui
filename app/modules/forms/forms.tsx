@@ -178,7 +178,7 @@ export default class Forms extends React.Component<{}, IFormsState> {
     return (
       <Row>
         <Col md="12">
-          <div className="small-header">Multiple selections</div>
+          <div className="small-header">Multiple selections with selection bar</div>
         </Col>
         <Col md="4">
           <MultipleSelectionInput
@@ -186,6 +186,7 @@ export default class Forms extends React.Component<{}, IFormsState> {
             {...vals}
             choices={choices}
             validation={[{ func: required, i18n: 'Please select a value' }, only2]}
+            selectionBar
           />
         </Col>
       </Row>
