@@ -1,7 +1,7 @@
 import React from 'react';
 import { ITranslatedSelectableValue, ITranslatedValue, TranslatedValueOrKey, translateItem } from '../../util/translation';
 import { IDirtyInput } from '../../util/dirty-input';
-import { validationErrors } from '../../validation/validate';
+import { IValidateAndI18nKey, validationErrors } from '../../validation/validate';
 import { FormGroup, Label } from 'reactstrap';
 import { FormError, FormHelp, FormValid } from '../form-feedback/form-feedback';
 
@@ -9,6 +9,7 @@ export interface IValueDirtyAndValid<T> {
   value: T;
   dirty?: boolean;
   valid?: boolean;
+  validation?: Array<IValidateAndI18nKey<T>>;
 }
 
 export type GetValueInObject<T, U> = (state: U) => IValueDirtyAndValid<T>;
@@ -140,11 +141,39 @@ function changeValid<T, U>(getValue: GetValueInObject<T, U>, component: React.Co
   };
 }
 
-export function iformInput<T, U>(getValue: GetValueInObject<T, U>, component: React.Component<any, U>): IFormInput<T> {
+export function iformInput<T, U>(
+  getValue: GetValueInObject<T, U>,
+  component: React.Component<any, U>,
+  validation?: Array<IValidateAndI18nKey<T>>
+): IFormInput<T> {
+  const value = getValue(component.state);
+  value.validation = validation;
   return {
-    ...getValue(component.state),
+    ...value,
+    validation,
     onChange: setValue(getValue, component),
     onMadeDirty: markDirty(getValue, component),
     onValidChange: changeValid(getValue, component)
+  };
+}
+
+export type TestValidity = () => boolean;
+export type OnChange<T> = () => T;
+
+export function wrapChanges<T, U>(input: IFormInput<T>, wrapped: IFormInput<U>, valid: TestValidity, change: OnChange<U>): IFormInput<T> {
+  return {
+    ...input,
+    onMadeDirty: () => {
+      input.onMadeDirty();
+      wrapped.onMadeDirty();
+    },
+    onValidChange: isValid => {
+      input.onValidChange(isValid);
+      wrapped.onValidChange(valid());
+    },
+    onChange: t => {
+      input.onChange(t);
+      wrapped.onChange(change());
+    }
   };
 }
