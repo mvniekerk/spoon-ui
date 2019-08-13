@@ -18,11 +18,15 @@ import {
   ISelectableFormInput,
   ISelectableFormInputState,
   IFormInputState,
+  GetValueInObject,
+  IValueDirtyAndValid,
+  iformInput,
   handleFormDidUpdate,
   checkValidAndErrorState,
   defaultFormInputState,
   defaultStateForSelectableFormInput
 } from './forms/form-input';
+import { MultipleSelectionInput, IMultipleSelectionInputProps } from './forms/multiple-selection-input';
 import Header from './header/header';
 import ItemsPerPage from './items-per-page/items-per-page';
 import { Brand, BrandIcon, NavDropdown, Notification } from './header/header-components';
@@ -66,11 +70,14 @@ export {
   ErrorBoundaryRoute,
   Footer,
   // FormInput
+  GetValueInObject,
   FormInput,
   IFormInput,
   ISelectableFormInput,
   ISelectableFormInputState,
   IFormInputState,
+  IValueDirtyAndValid,
+  iformInput,
   handleFormDidUpdate,
   checkValidAndErrorState,
   defaultFormInputState,
@@ -78,6 +85,9 @@ export {
   FormError,
   FormHelp,
   FormValid,
+  // Multiple selection input
+  MultipleSelectionInput,
+  IMultipleSelectionInputProps,
   Header,
   ItemsPerPage,
   MenuItem,

@@ -10,12 +10,14 @@ import ExpandLessRounded from '@material-ui/icons/ExpandLessRounded';
 /* tslint:enable:no-submodule-imports */
 import Search from '@material-ui/icons/Search';
 import triangle from '../../../static/images/triangle.svg';
+import selection from 'app/modules/selection/selection';
 const triangleImage = `url("${triangle}")`;
 
 export interface IDropdownProps<T> {
   multiple?: boolean;
   search?: boolean;
   searchFunction?: (state: IDropdownState<T>, search: string) => Promise<Array<IDropdownItem<T>>>;
+  selectionBar?: boolean;
   initialValues?: Array<IDropdownItem<T>>;
   initialSelection?: Array<IDropdownItem<T>>;
   iconLeft?: boolean;
@@ -23,8 +25,9 @@ export interface IDropdownProps<T> {
   selectAll?: boolean;
   placeholder?: TranslatedValueOrKey<T>;
   tags?: boolean;
-  onValueSelected: Function;
-  onValueDeselected: Function;
+  onValueSelected?: (v: IDropdownItem<T>, sender: DropdownItem<T>) => void;
+  onValueDeselected?: (v: IDropdownItem<T>, sender: DropdownItem<T>) => void;
+  onSelectionChanged?: (selection: Array<IDropdownItem<T>>) => void;
   disabled: boolean;
   alignRight: boolean;
   disableDeselect: boolean;
@@ -109,6 +112,10 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
       if (!this.props.multiple) {
         a.call([]);
         this.state.values.filter(i => i !== val).forEach(i => (i.selected = false));
+
+        if (!!this.props.onSelectionChanged) {
+          this.props.onSelectionChanged([val]);
+        }
         this.setState(_ => ({ selection: [val] }));
       } else {
         this.setState(prevState => {
@@ -116,6 +123,11 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
           if (!vals.includes(val)) {
             vals.push(val);
           }
+
+          if (!!this.props.onSelectionChanged) {
+            this.props.onSelectionChanged(vals);
+          }
+
           return { selection: vals };
         });
       }
@@ -127,12 +139,21 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
         a.call([]);
         this.setState(_ => ({ selection: [] }));
         this.props.onValueDeselected(val, sender);
+
+        if (!!this.props.onSelectionChanged) {
+          this.props.onSelectionChanged([]);
+        }
       } else if (this.props.multiple) {
         this.setState(prevState => {
           const vals = prevState.selection;
-          if (!vals.includes(val)) {
+          if (vals.includes(val)) {
             vals.splice(vals.indexOf(val), 1);
           }
+
+          if (!!this.props.onSelectionChanged) {
+            this.props.onSelectionChanged(vals);
+          }
+
           return { selection: vals };
         });
         this.props.onValueDeselected(val, sender);
@@ -190,6 +211,21 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
       </div>
     ) : null;
 
+    const selectionBar = this.props.selectionBar && (
+      <div className="tags-container selected-tags">
+        {this.state.selection.map(v => (
+          <DropdownItem
+            selectable
+            tag
+            value={v}
+            // key={!!v.name ? v.name : v.value}
+            onSelected={valSelected}
+            onDeselected={valDeselected}
+            checkNotCross={false}
+          />
+        ))}
+      </div>
+    );
     const menuClassName =
       (this.props.multiple ? 'multiple' : '') + (this.props.tags ? ' tags' : '') + (this.props.alignRight ? ' align-right' : '');
 
@@ -210,6 +246,7 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
           <DropdownMenu className={menuClassName} flip={false}>
             <div className="top-spacer" />
             {searchBar}
+            {selectionBar}
             <PerfectScrollbar>
               {this.props.tags ? <div className="tags-container">{searchingOrItems}</div> : searchingOrItems}
             </PerfectScrollbar>

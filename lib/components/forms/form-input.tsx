@@ -5,6 +5,14 @@ import { validationErrors } from '../../validation/validate';
 import { FormGroup, Label } from 'reactstrap';
 import { FormError, FormHelp, FormValid } from '../form-feedback/form-feedback';
 
+export interface IValueDirtyAndValid<T> {
+  value: T;
+  dirty?: boolean;
+  valid?: boolean;
+}
+
+export type GetValueInObject<T, U> = (state: U) => IValueDirtyAndValid<T>;
+
 export interface IFormInput<T> extends IDirtyInput<T> {
   label?: TranslatedValueOrKey<T>;
   placeholder?: TranslatedValueOrKey<T>;
@@ -87,7 +95,7 @@ export function handleFormDidUpdate<T>(form: FormInput<T>, prevProps: IFormInput
   }
 }
 
-export function formInputGroup<T>(form: FormInput<T>, children: JSX.Element) {
+export function formInputGroup(form: FormInput<any>, children: JSX.Element) {
   const isInvalid = form.state.invalidAndDirty;
   const isValid = form.state.validAndDirty;
   const justHelp = form.state.justHelp;
@@ -95,7 +103,7 @@ export function formInputGroup<T>(form: FormInput<T>, children: JSX.Element) {
   return (
     <FormGroup className={className} valid>
       {!!form.props.label && <Label for={form.props.id}>{translateItem(form.props.label)}</Label>}
-      <div className={`input-group ${className}`}>
+      <div className={`input-group ${className} form-input`}>
         {children}
         {isValid && !!form.props.validMessage && <FormValid {...form.props} />}
         {isInvalid && <FormError errors={form.state.errors} />}
@@ -103,4 +111,40 @@ export function formInputGroup<T>(form: FormInput<T>, children: JSX.Element) {
       </div>
     </FormGroup>
   );
+}
+
+function markDirty<T, U>(getValue: GetValueInObject<T, U>, component: React.Component<any, U>): () => void {
+  return () => {
+    const val = getValue(component.state);
+    val.dirty = true;
+    // @ts-ignore
+    component.setState((p: U) => ({ ...p, ...val }));
+  };
+}
+
+function setValue<T, U>(getValue: GetValueInObject<T, U>, component: React.Component<any, U>): (t: T) => void {
+  return (value: T) => {
+    const val = getValue(component.state);
+    val.value = value;
+    // @ts-ignore
+    component.setState(p => ({ ...p, ...val }));
+  };
+}
+
+function changeValid<T, U>(getValue: GetValueInObject<T, U>, component: React.Component<any, U>): (valid: boolean) => void {
+  return (valid: boolean) => {
+    const val = getValue(component.state);
+    val.valid = valid;
+    // @ts-ignore
+    component.setState(p => ({ ...p, ...val }));
+  };
+}
+
+export function iformInput<T, U>(getValue: GetValueInObject<T, U>, component: React.Component<any, U>): IFormInput<T> {
+  return {
+    ...getValue(component.state),
+    onChange: setValue(getValue, component),
+    onMadeDirty: markDirty(getValue, component),
+    onValidChange: changeValid(getValue, component)
+  };
 }

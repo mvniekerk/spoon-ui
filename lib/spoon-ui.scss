@@ -492,8 +492,7 @@ a:hover {
   border-bottom-right-radius: 4px;
 }
 
-.input-group,
-.form-group {
+.input-group {
   .material-icons {
     display: none;
     position: absolute;
@@ -502,8 +501,7 @@ a:hover {
   }
 }
 
-.input-group.is-valid,
-.form-group.is-valid {
+.input-group.is-valid {
   .material-icons.valid-icon {
     color: green;
     display: inherit;
@@ -511,8 +509,7 @@ a:hover {
   }
 }
 
-.input-group.is-invalid,
-.form-group.is-invalid {
+.input-group.is-invalid {
   .material-icons.invalid-icon {
     color: var(--error);
     display: inherit;
@@ -558,6 +555,13 @@ a:hover {
   }
   .material-icons.invalid-icon {
     display: none;
+  }
+}
+
+.input-group.form-input {
+  .dropdown.show .select-icon-container .material-icons {
+    display: unset;
+    position: unset;
   }
 }
 
