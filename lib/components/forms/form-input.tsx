@@ -165,11 +165,15 @@ export function wrapChanges<T, U>(input: IFormInput<T>, wrapped: IFormInput<U>, 
     ...input,
     onMadeDirty: () => {
       input.onMadeDirty();
-      wrapped.onMadeDirty();
+      if (!!wrapped.onMadeDirty()) {
+        wrapped.onMadeDirty();
+      }
     },
     onValidChange: isValid => {
       input.onValidChange(isValid);
-      wrapped.onValidChange(valid());
+      if (!!wrapped.onValidChange) {
+        wrapped.onValidChange(valid());
+      }
     },
     onChange: t => {
       input.onChange(t);
