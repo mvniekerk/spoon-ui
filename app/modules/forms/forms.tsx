@@ -169,25 +169,20 @@ export default class Forms extends React.Component<{}, IFormsState> {
   }
 
   renderMultipleSelectionInput() {
-    const vals = iformInput(b => b.multipleVal, this);
-    const choices = () => new Map<string, string>([['one', 'One'], ['two', 'Two'], ['three', 'Three']]);
     const only2: IValidateAndI18nKey<string[]> = {
       func: (k, v) => (!!v && v.length === 2 ? [] : [translatedValue<string[]>('Must select exactly two')]),
       i18n: 'Must select exactly two'
     };
+    const requiredVal = { func: required, i18n: 'Please select a value' };
+    const vals = iformInput(b => b.multipleVal, this, [requiredVal, only2]);
+    const choices = () => new Map<string, string>([['one', 'One'], ['two', 'Two'], ['three', 'Three']]);
     return (
       <Row>
         <Col md="12">
           <div className="small-header">Multiple selections with selection bar</div>
         </Col>
         <Col md="4">
-          <MultipleSelectionInput
-            label="Select any 2"
-            {...vals}
-            choices={choices}
-            validation={[{ func: required, i18n: 'Please select a value' }, only2]}
-            selectionBar
-          />
+          <MultipleSelectionInput label="Select any 2" {...vals} choices={choices} selectionBar />
         </Col>
       </Row>
     );
@@ -196,10 +191,14 @@ export default class Forms extends React.Component<{}, IFormsState> {
   render() {
     return (
       <>
+        {this.renderTextInput()}
+        {this.renderRadioButtonInput()}
+        {this.renderComboboxInput()}
+        {this.renderMultipleSelectionInput()}
         <Row>
           <Col md="4">
-            <Input placeholder="Placeholder" />
             <div className="small-header">Text Inputs</div>
+            <Input placeholder="Placeholder" />
             <Input text="Text" value="Has Text" />
 
             <InputGroup className="is-valid">
@@ -315,10 +314,6 @@ export default class Forms extends React.Component<{}, IFormsState> {
             </FormGroup>
           </Col>
         </Row>
-        {this.renderTextInput()}
-        {this.renderRadioButtonInput()}
-        {this.renderComboboxInput()}
-        {this.renderMultipleSelectionInput()}
         <Row>
           <Col md="12">
             <div className="small-header">Search bar</div>
