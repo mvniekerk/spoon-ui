@@ -9,6 +9,7 @@ export interface IValueDirtyAndValid<T> {
   value: T;
   dirty?: boolean;
   valid?: boolean;
+  validation?: Array<IValidateAndI18nKey<T>>;
 }
 
 export type GetValueInObject<T, U> = (state: U) => IValueDirtyAndValid<T>;
@@ -145,8 +146,10 @@ export function iformInput<T, U>(
   component: React.Component<any, U>,
   validation?: Array<IValidateAndI18nKey<T>>
 ): IFormInput<T> {
+  const value = getValue(component.state);
+  value.validation = validation;
   return {
-    ...getValue(component.state),
+    ...value,
     validation,
     onChange: setValue(getValue, component),
     onMadeDirty: markDirty(getValue, component),
