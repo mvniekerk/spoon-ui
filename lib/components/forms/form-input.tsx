@@ -147,7 +147,7 @@ export function iformInput<T, U>(
   validation?: Array<IValidateAndI18nKey<T>>
 ): IFormInput<T> {
   const value = getValue(component.state);
-  value.validation = validation;
+  value.validation = !!validation ? validation : value.validation;
   return {
     ...value,
     validation,
