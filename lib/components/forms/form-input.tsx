@@ -150,7 +150,6 @@ export function iformInput<T, U>(
   value.validation = !!validation ? validation : value.validation;
   return {
     ...value,
-    validation,
     onChange: setValue(getValue, component),
     onMadeDirty: markDirty(getValue, component),
     onValidChange: changeValid(getValue, component)
