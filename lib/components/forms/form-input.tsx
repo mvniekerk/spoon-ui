@@ -147,7 +147,7 @@ export function iformInput<T, U>(
   validation?: Array<IValidateAndI18nKey<T>>
 ): IFormInput<T> {
   const value = getValue(component.state);
-  value.validation = !!validation ? validation : value.validation;
+  value.validation = validation === undefined || validation === null ? validation : value.validation;
   return {
     ...value,
     onChange: setValue(getValue, component),
@@ -164,7 +164,7 @@ export function wrapChanges<T, U>(input: IFormInput<T>, wrapped: IFormInput<U>, 
     ...input,
     onMadeDirty: () => {
       input.onMadeDirty();
-      if (!!wrapped.onMadeDirty()) {
+      if (!!wrapped.onMadeDirty) {
         wrapped.onMadeDirty();
       }
     },
