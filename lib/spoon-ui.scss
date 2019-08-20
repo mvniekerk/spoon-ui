@@ -366,8 +366,8 @@ h3 {
 p {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 400;
-  line-height: 20px;
-  font-size: 16px;
+  line-height: 26px;
+  font-size: 21px;
   color: var(--gray-darker);
 }
 
@@ -582,7 +582,7 @@ label {
 div.valid-feedback,
 small.form-text,
 div.invalid-feedback {
-  font-size: 12px;
+  font-size: 14px;
   margin-top: -6px;
   vertical-align: middle;
 }
@@ -724,7 +724,7 @@ ul.pagination {
 
   .page-link.left,
   .page-link.right {
-    padding: 4px;
+    padding: 6px;
   }
 
   .page-link.left:before {
@@ -774,6 +774,9 @@ nav ul.pagination {
   background-image: none;
 }
 
+.form-control {
+  font-size: 18px;
+}
 .alert {
   padding-right: 10px;
   padding-left: 10px;

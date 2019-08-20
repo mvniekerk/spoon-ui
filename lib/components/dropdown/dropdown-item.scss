@@ -72,7 +72,7 @@
   color: var(--white-text);
   border-radius: 16px;
   height: 25px;
-  font-size: 13px;
+  font-size: 16px;
   margin-right: 8px;
 
   display: flex;
@@ -81,6 +81,7 @@
   margin-top: 7px;
 
   button {
+    margin-top: -8px;
     height: 25px;
     color: unset;
     font-size: 13px;
@@ -191,7 +192,8 @@
       min-width: 24px;
       margin-bottom: 0;
       flex-shrink: 1;
-      top: -2px;
+      margin-top: -1px;
+      //top: -2px;
       position: relative;
 
       .select-icon {
@@ -208,5 +210,22 @@
   outline-color: transparent;
   button:focus {
     outline-color: transparent;
+  }
+}
+
+.tags-container.selected-tags {
+  .dropdown-item-container.tag.selected button {
+    margin-top: 0;
+  }
+}
+
+.tags-container.selected-tags.selection-container {
+  .button-content {
+    position: relative;
+    top: -8px;
+  }
+  .select-icon-container {
+    position: relative;
+    top: -10px;
   }
 }

@@ -212,7 +212,7 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
     ) : null;
 
     const selectionBar = this.props.selectionBar && (
-      <div className="tags-container selected-tags">
+      <div className="tags-container selected-tags selection-container">
         {this.state.selection.map(v => (
           <DropdownItem
             selectable

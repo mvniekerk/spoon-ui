@@ -10,7 +10,7 @@
   .right-caret {
     position: absolute;
     right: 6px;
-    top: 4px;
+    top: 10px;
     color: var(--gray-lighter);
     cursor: pointer;
   }
@@ -69,6 +69,7 @@
 
   button {
     height: unset;
+    min-height: 42px;
 
     .dropdown-selection-icon {
       font-family: 'Material Icons';
