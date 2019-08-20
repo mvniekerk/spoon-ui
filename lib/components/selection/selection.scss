@@ -85,7 +85,7 @@ input:checked + .slider:before {
 
 .toggle-container {
   .selection-text {
-    top: -7px;
+    top: -11px;
     left: 14px;
   }
 }
@@ -246,7 +246,7 @@ input:checked + .slider:before {
     left: 15px;
     font-size: 14px;
     color: var(--white-text);
-    top: -2px;
+    top: -4px;
     font-weight: 800;
   }
 
@@ -291,7 +291,7 @@ input:checked + .slider:before {
     content: '';
     position: absolute;
     left: 5px;
-    top: 6.5px;
+    top: 8px;
   }
 }
 
