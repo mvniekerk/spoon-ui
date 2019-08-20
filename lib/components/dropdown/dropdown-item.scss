@@ -192,7 +192,8 @@
       min-width: 24px;
       margin-bottom: 0;
       flex-shrink: 1;
-      top: -2px;
+      margin-top: -1px;
+      //top: -2px;
       position: relative;
 
       .select-icon {
@@ -215,5 +216,16 @@
 .tags-container.selected-tags {
   .dropdown-item-container.tag.selected button {
     margin-top: 0;
+  }
+}
+
+.tags-container.selected-tags.selection-container {
+  .button-content {
+    position: relative;
+    top: -8px;
+  }
+  .select-icon-container {
+    position: relative;
+    top: -10px;
   }
 }
