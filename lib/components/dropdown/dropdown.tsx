@@ -10,7 +10,6 @@ import ExpandLessRounded from '@material-ui/icons/ExpandLessRounded';
 /* tslint:enable:no-submodule-imports */
 import Search from '@material-ui/icons/Search';
 import triangle from '../../../static/images/triangle.svg';
-import selection from 'app/modules/selection/selection';
 const triangleImage = `url("${triangle}")`;
 
 export interface IDropdownProps<T> {
