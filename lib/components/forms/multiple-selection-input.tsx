@@ -12,16 +12,13 @@ import { IDropdownItem } from '../dropdown/dropdown-item';
 import { Dropdown } from '../dropdown';
 import { validationErrors } from '../../validation';
 
-export interface IMultipleSelectionInputProps<T extends any> extends IFormInput<T[]> {
+export interface IMultipleSelectionInputProps<T> extends IFormInput<T[]> {
   choices: () => Map<T, string>;
   search?: boolean;
   selectionBar?: boolean;
 }
 
-export class MultipleSelectionInput<T extends any> extends React.Component<
-  IMultipleSelectionInputProps<T>,
-  ISelectableFormInputState<T[]>
-> {
+export class MultipleSelectionInput<T> extends React.Component<IMultipleSelectionInputProps<T>, ISelectableFormInputState<T[]>> {
   componentDidMount() {
     if (this.props.dirty) {
       const errors = validationErrors(this.props.value, this.props.validation);
@@ -59,8 +56,8 @@ export class MultipleSelectionInput<T extends any> extends React.Component<
   }
 
   render() {
-    const onChange = (t: Array<ITranslatedSelectableValue<T>>) => {
-      this.props.onChange(t.map(b => b.value));
+    const onChange = (t: Array<ITranslatedSelectableValue<T[]>>) => {
+      this.props.onChange(Array.prototype.concat(...t.map(b => b.value))); // Flatmap doesn't exist
       if (!!this.props.onMadeDirty) {
         this.props.onMadeDirty();
       }
