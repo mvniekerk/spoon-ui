@@ -35,6 +35,21 @@ export class MultipleSelectionInput<T> extends React.Component<IMultipleSelectio
     snapshot?: any
   ): void {
     handleFormDidUpdate(this, prevProps, prevState);
+    if (this.props.choices !== prevProps.choices) {
+      const choiceVals = this.props.choices();
+      const choices: Array<ITranslatedSelectableValue<T[]>> = !!choiceVals
+        ? Array.from(choiceVals.keys()).map(k => ({
+            name: choiceVals.get(k),
+            display: choiceVals.get(k),
+            id: `${this.props.id}_${choiceVals.get(k)}`,
+            value: [k],
+            disabled: false,
+            selected: false,
+            groupName: this.props.id
+          }))
+        : [];
+      this.setState({ ...defaultFormInputState<T[]>(), choices });
+    }
   }
 
   constructor(props: IMultipleSelectionInputProps<T>) {

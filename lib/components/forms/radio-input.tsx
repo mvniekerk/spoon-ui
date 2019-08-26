@@ -29,6 +29,9 @@ export class RadioInput<T> extends React.Component<IRadioInputProps<T>, ISelecta
 
   componentDidUpdate(prevProps: Readonly<IRadioInputProps<T>>, prevState: Readonly<ISelectableFormInputState<T>>, snapshot?: any) {
     handleFormDidUpdate(this, prevProps, prevState);
+    if (this.props.choices !== prevProps.choices) {
+      this.setState(defaultStateForSelectableFormInput(this.props));
+    }
   }
 
   render() {
