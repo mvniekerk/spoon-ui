@@ -42,14 +42,12 @@ export class DropdownItem<T> extends React.Component<IDropdownItemProps<T>, IDro
     unselectable: true
   };
 
-  state: IDropdownItemState = {
-    selected: false,
-    color: getRootColorVariable(TAG_CHOICE[Math.floor(Math.random() * TAG_CHOICE.length)])
-  };
-
   constructor(props: IDropdownItemProps<T>) {
     super(props);
-    this.setState(_ => ({ selected: !!props.value && props.value.selected }));
+    this.state = {
+      selected: !!props.value && props.value.selected,
+      color: getRootColorVariable(TAG_CHOICE[Math.floor(Math.random() * TAG_CHOICE.length)])
+    };
   }
 
   handleOnClick = () => {
