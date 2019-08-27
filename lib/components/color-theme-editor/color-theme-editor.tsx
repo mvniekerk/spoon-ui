@@ -37,7 +37,8 @@ export const colorsMenu: IColorGroup = {
   names: [
     'menu-list-item-selected-color',
     'menu-close-color',
-    'menu-background-color',
+    'menu-background-color-from',
+    'menu-background-color-to',
     'menu-item-color',
     'menu-item-icon-color',
     'menu-border',
