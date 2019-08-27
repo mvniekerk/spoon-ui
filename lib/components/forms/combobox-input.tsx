@@ -5,7 +5,6 @@ import {
   checkValidAndErrorState,
   defaultStateForSelectableFormInput,
   formInputGroup,
-  handleFormDidUpdate,
   handleSelectableFormDidUpdate,
   ISelectableFormInput,
   ISelectableFormInputState
@@ -14,7 +13,6 @@ import { Dropdown } from '../dropdown/dropdown';
 import { IRadioInputProps } from './radio-input';
 import { ITranslatedSelectableValue } from '../../util';
 import { IDropdownItem } from '../dropdown/dropdown-item';
-import ArrowDropUp from '@material-ui/core/SvgIcon/SvgIcon';
 
 export interface IComboboxInputProps<T> extends ISelectableFormInput<T> {
   search?: boolean;
@@ -48,11 +46,7 @@ export class ComboboxInput<T> extends React.Component<IComboboxInputProps<T>, IS
       }
     };
     const choices: Array<IDropdownItem<T>> = this.state.choices.map(b => b as IDropdownItem<T>);
-    const input = (
-      <>
-        <Dropdown {...this.props} initialValues={choices} onValueSelected={onChange} unselectable={false} onClose={onClose} />
-      </>
-    );
+    const input = <Dropdown {...this.props} initialValues={choices} onValueSelected={onChange} unselectable={false} onClose={onClose} />;
     return formInputGroup(this, input, this.props.required);
   }
 }
