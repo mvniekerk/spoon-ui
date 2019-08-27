@@ -3,3 +3,9 @@
     width: 100%;
   }
 }
+
+.form-group.is-invalid {
+  button.toggle {
+    border: var(--error) solid 0.5px;
+  }
+}
