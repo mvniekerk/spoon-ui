@@ -19,7 +19,7 @@ import { ITranslatedSelectableValue, translatedValue } from 'lib/util';
 import { IValidateAndI18nKey, required, requiredString, stringIsNumber } from 'lib/validation';
 /* tslint:enable:no-submodule-imports */
 
-import Check from '@material-ui/icons/Check';
+import Check from '@material-ui/icons/CheckRounded';
 import PriorityHighRounded from '@material-ui/icons/PriorityHighRounded';
 import CalendarToday from '@material-ui/icons/CalendarToday';
 import PersonOutline from '@material-ui/icons/PersonOutline';
@@ -103,6 +103,7 @@ export default class Forms extends React.Component<{}, IFormsState> {
             helpMessage="This field is required"
             validMessage="Well done"
             validation={[{ func: requiredString, i18n: 'Value is required' }, { func: stringIsNumber, i18n: 'Must be a number' }]}
+            required
           />
         </Col>
       </Row>

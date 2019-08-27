@@ -6,6 +6,7 @@ import { Input } from 'reactstrap';
 
 import Check from '@material-ui/icons/CheckRounded';
 import PriorityHighRounded from '@material-ui/icons/PriorityHighRounded';
+import ArrowDropUp from '@material-ui/icons/ArrowDropUpRounded';
 import {
   IFormInput,
   IFormInputState,
@@ -17,6 +18,7 @@ import {
 
 export interface ITextInputProps extends IDirtyInput<string>, IFormInput<string> {
   enableTicks?: boolean;
+  required?: boolean;
 }
 
 export class TextInput extends React.Component<ITextInputProps, IFormInputState<string>> {
@@ -49,9 +51,15 @@ export class TextInput extends React.Component<ITextInputProps, IFormInputState<
           onBlur={this.props.onMadeDirty}
           valid={this.state.validAndDirty}
           invalid={this.state.invalidAndDirty}
+          className={`${this.props.required ? 'required' : ''}`}
         />
         {isInvalid && this.props.enableTicks && <PriorityHighRounded id="clear" className="material-icons invalid-icon" />}
         {isValid && this.props.enableTicks && <Check id="check" className="material-icons valid-icon" />}
+        {this.props.required && (
+          <div className="required-check">
+            <ArrowDropUp />
+          </div>
+        )}
       </>
     );
     return formInputGroup(this, input);
