@@ -1,4 +1,5 @@
 import './text-input.scss';
+import './form-input.scss';
 import React, { ChangeEvent } from 'react';
 import { IDirtyInput } from '../../util/dirty-input';
 import { translateItem } from '../../util/translation';
@@ -6,7 +7,6 @@ import { Input } from 'reactstrap';
 
 import Check from '@material-ui/icons/CheckRounded';
 import PriorityHighRounded from '@material-ui/icons/PriorityHighRounded';
-import ArrowDropUp from '@material-ui/icons/ArrowDropUpRounded';
 import {
   IFormInput,
   IFormInputState,
@@ -55,13 +55,8 @@ export class TextInput extends React.Component<ITextInputProps, IFormInputState<
         />
         {isInvalid && this.props.enableTicks && <PriorityHighRounded id="clear" className="material-icons invalid-icon" />}
         {isValid && this.props.enableTicks && <Check id="check" className="material-icons valid-icon" />}
-        {this.props.required && (
-          <div className="required-check">
-            <ArrowDropUp />
-          </div>
-        )}
       </>
     );
-    return formInputGroup(this, input);
+    return formInputGroup(this, input, this.props.required);
   }
 }

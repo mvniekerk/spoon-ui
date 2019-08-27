@@ -1,4 +1,5 @@
 import './radio-input.scss';
+import './form-input.scss';
 import React from 'react';
 import {
   checkValidAndErrorState,
@@ -15,6 +16,7 @@ export interface IRadioInputProps<T> extends ISelectableFormInput<T> {
   md?: number;
   lg?: number;
   vertical?: boolean;
+  required?: boolean;
 }
 
 export class RadioInput<T> extends React.Component<IRadioInputProps<T>, ISelectableFormInputState<T>> {
@@ -49,6 +51,6 @@ export class RadioInput<T> extends React.Component<IRadioInputProps<T>, ISelecta
         name={this.props.id}
       />
     );
-    return formInputGroup(this, inputs);
+    return formInputGroup(this, inputs, this.props.required);
   }
 }

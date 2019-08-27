@@ -4,6 +4,7 @@ import { IDirtyInput } from '../../util/dirty-input';
 import { IValidateAndI18nKey, validationErrors } from '../../validation/validate';
 import { FormGroup, Label } from 'reactstrap';
 import { FormError, FormHelp, FormValid } from '../form-feedback/form-feedback';
+import ArrowDropUp from '@material-ui/icons/ArrowDropUpRounded';
 
 export interface IValueDirtyAndValid<T> {
   value: T;
@@ -78,12 +79,10 @@ export type SelectableFormInput<T> = React.Component<ISelectableFormInput<T>, IS
 
 export function checkValidAndErrorState<T>(form: FormInput<T>) {
   if (form.props.dirty) {
-    console.log('Is dirty');
     const errors = validationErrors(form.props.value, form.props.validation);
     const valid = errors.length === 0;
     form.setState({ valid, errors });
   } else {
-    console.log('Not dirty');
     form.setState({ valid: false, errors: [] });
   }
 }
@@ -125,7 +124,7 @@ export function handleSelectableFormDidUpdate<T>(
   }
 }
 
-export function formInputGroup(form: FormInput<any>, children: JSX.Element) {
+export function formInputGroup(form: FormInput<any>, children: JSX.Element, required?: boolean) {
   const isInvalid = form.state.invalidAndDirty;
   const isValid = form.state.validAndDirty;
   const justHelp = form.state.justHelp;
@@ -135,6 +134,11 @@ export function formInputGroup(form: FormInput<any>, children: JSX.Element) {
       {!!form.props.label && <Label for={form.props.id}>{translateItem(form.props.label)}</Label>}
       <div className={`input-group ${className} form-input`}>
         {children}
+        {required && (
+          <div className="required-check">
+            <ArrowDropUp />
+          </div>
+        )}
         {isValid && !!form.props.validMessage && <FormValid {...form.props} />}
         {isInvalid && <FormError errors={form.state.errors} />}
         {justHelp && !!form.props.helpMessage && <FormHelp helpMessage={form.props.helpMessage} />}

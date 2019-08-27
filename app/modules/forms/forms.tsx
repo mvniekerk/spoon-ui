@@ -64,6 +64,8 @@ export default class Forms extends React.Component<{}, IFormsState> {
     multiChoices: () => new Map<string, string>([['one', 'One'], ['two', 'Two'], ['three', 'Three']])
   };
 
+  updateCount = 1;
+
   constructor(props) {
     super(props);
     this.onAddTag = this.onAddTag.bind(this);
@@ -148,7 +150,6 @@ export default class Forms extends React.Component<{}, IFormsState> {
     );
   }
 
-  updateCount = 1;
   get incrementUpdateCount(): number {
     return ++this.updateCount;
   }
@@ -183,6 +184,7 @@ export default class Forms extends React.Component<{}, IFormsState> {
             validation={[isSmart]}
             helpMessage="Try to select a smart animal"
             placeholder="forms.comboInput.placeholder"
+            required
           />
           <Button onClick={onClick}>Simulate update</Button>
         </Col>

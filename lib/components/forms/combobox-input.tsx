@@ -1,4 +1,5 @@
 import './combobox-input.scss';
+import './form-input.scss';
 import React from 'react';
 import {
   checkValidAndErrorState,
@@ -13,9 +14,11 @@ import { Dropdown } from '../dropdown/dropdown';
 import { IRadioInputProps } from './radio-input';
 import { ITranslatedSelectableValue } from '../../util';
 import { IDropdownItem } from '../dropdown/dropdown-item';
+import ArrowDropUp from '@material-ui/core/SvgIcon/SvgIcon';
 
 export interface IComboboxInputProps<T> extends ISelectableFormInput<T> {
   search?: boolean;
+  required?: boolean;
 }
 
 export class ComboboxInput<T> extends React.Component<IComboboxInputProps<T>, ISelectableFormInputState<T>> {
@@ -45,7 +48,11 @@ export class ComboboxInput<T> extends React.Component<IComboboxInputProps<T>, IS
       }
     };
     const choices: Array<IDropdownItem<T>> = this.state.choices.map(b => b as IDropdownItem<T>);
-    const input = <Dropdown {...this.props} initialValues={choices} onValueSelected={onChange} unselectable={false} onClose={onClose} />;
-    return formInputGroup(this, input);
+    const input = (
+      <>
+        <Dropdown {...this.props} initialValues={choices} onValueSelected={onChange} unselectable={false} onClose={onClose} />
+      </>
+    );
+    return formInputGroup(this, input, this.props.required);
   }
 }

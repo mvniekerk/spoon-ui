@@ -24,25 +24,4 @@
       margin-top: 4px;
     }
   }
-  .required-check {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    transform: rotate(45deg);
-    color: var(--gray-lighter);
-  }
-}
-
-.form-group.is-invalid,
-.input-group.is-invalid {
-  .required-check {
-    color: var(--error);
-  }
-}
-
-.form-group.is-valid,
-.input-group.is-valid {
-  .required-check {
-    display: none;
-  }
 }
