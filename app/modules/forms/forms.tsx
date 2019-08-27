@@ -20,7 +20,7 @@ import { IValidateAndI18nKey, required, requiredString, stringIsNumber } from 'l
 /* tslint:enable:no-submodule-imports */
 
 import Check from '@material-ui/icons/Check';
-import Clear from '@material-ui/icons/Clear';
+import PriorityHighRounded from '@material-ui/icons/PriorityHighRounded';
 import CalendarToday from '@material-ui/icons/CalendarToday';
 import PersonOutline from '@material-ui/icons/PersonOutline';
 import Info from '@material-ui/icons/Info';
@@ -230,7 +230,7 @@ export default class Forms extends React.Component<{}, IFormsState> {
             </InputGroup>
             <InputGroup className="is-invalid">
               <Input invalid placeholder="Placeholder" value="Incorrect input" />
-              <Clear className="material-icons invalid-icon" />
+              <PriorityHighRounded className="material-icons invalid-icon" />
             </InputGroup>
             <Input text="Text" value="Disabled" disabled />
           </Col>
@@ -254,7 +254,7 @@ export default class Forms extends React.Component<{}, IFormsState> {
 
             <InputGroup className="is-invalid input-group-icon-left">
               <Input invalid placeholder="Placeholder" value="Incorrect input" />
-              <Clear className="material-icons invalid-icon" />
+              <PriorityHighRounded className="material-icons invalid-icon" />
               <PersonOutline className="material-icons left-icon" />
             </InputGroup>
 
@@ -282,7 +282,7 @@ export default class Forms extends React.Component<{}, IFormsState> {
             </InputGroup>
             <InputGroup className="is-invalid input-group-icon-right">
               <Input invalid placeholder="Placeholder" value="Incorrect input" />
-              <Clear className="material-icons invalid-icon" />
+              <PriorityHighRounded className="material-icons invalid-icon" />
               <PersonOutline className="material-icons right-icon" />
             </InputGroup>
 
