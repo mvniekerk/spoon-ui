@@ -5,6 +5,7 @@ import {
   defaultStateForSelectableFormInput,
   formInputGroup,
   handleFormDidUpdate,
+  handleSelectableFormDidUpdate,
   ISelectableFormInput,
   ISelectableFormInputState
 } from './form-input';
@@ -28,10 +29,7 @@ export class ComboboxInput<T> extends React.Component<IComboboxInputProps<T>, IS
   }
 
   componentDidUpdate(prevProps: Readonly<IRadioInputProps<T>>, prevState: Readonly<ISelectableFormInputState<T>>, snapshot?: any) {
-    handleFormDidUpdate(this, prevProps, prevState);
-    if (this.props.choices !== prevProps.choices) {
-      this.setState(defaultStateForSelectableFormInput(this.props));
-    }
+    handleSelectableFormDidUpdate(this, prevProps, prevState);
   }
 
   render() {

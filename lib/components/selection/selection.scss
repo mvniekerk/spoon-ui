@@ -338,9 +338,27 @@ input:checked + .slider:before {
   }
 }
 
-.dropdown.show .dropdown-menu.show,
-.arrow-up-left {
+@keyframes fade_in_arrow {
+  0% {
+    transform: scaleY(1) translateY(0px);
+    opacity: 0;
+  }
+  90% {
+    transform: scaleY(1) translateY(0px);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scaleY(1) translateY(0px);
+    opacity: 1;
+  }
+}
+
+.dropdown.show .dropdown-menu.show {
   animation: slideOut 200ms ease-out;
+}
+
+.dropdown.show .arrow-up-left {
+  animation: fade_in_arrow 200ms ease-in-out;
 }
 
 .radio-group {

@@ -14,6 +14,10 @@ export interface IValueDirtyAndValid<T> {
 
 export type GetValueInObject<T, U> = (state: U) => IValueDirtyAndValid<T>;
 
+/**
+ * A form that has a label, placeholder, id, value, dirty flag, valid flag and validators
+ * Use with iformInput() to create this using defaults
+ */
 export interface IFormInput<T> extends IDirtyInput<T> {
   label?: TranslatedValueOrKey<T>;
   placeholder?: TranslatedValueOrKey<T>;
@@ -21,6 +25,9 @@ export interface IFormInput<T> extends IDirtyInput<T> {
   value: T;
 }
 
+/**
+ * A specific IFormInput that has a map that goes betwene
+ */
 export interface ISelectableFormInput<T> extends IFormInput<T> {
   choices: () => Map<T, string>;
 }
@@ -37,7 +44,10 @@ export interface ISelectableFormInputState<T> extends IFormInputState<T> {
   choices: Array<ITranslatedSelectableValue<T>>;
 }
 
-export function defaultStateForSelectableFormInput<T>(props: ISelectableFormInput<T>): ISelectableFormInputState<T> {
+export function defaultStateForSelectableFormInput<T>(
+  props: ISelectableFormInput<T>,
+  oldState?: ISelectableFormInputState<T>
+): ISelectableFormInputState<T> {
   const choiceVals = props.choices();
   const choices: Array<ITranslatedSelectableValue<T>> = !!choiceVals
     ? Array.from(choiceVals.keys()).map(k => ({
@@ -46,7 +56,7 @@ export function defaultStateForSelectableFormInput<T>(props: ISelectableFormInpu
         id: `${props.id}_${choiceVals.get(k)}`,
         value: k,
         disabled: false,
-        selected: false,
+        selected: !!oldState && oldState.choices.some(b => b.selected && b.id === `${props.id}_${choiceVals.get(k)}`),
         groupName: props.id
       }))
     : [];
@@ -64,13 +74,16 @@ export function defaultFormInputState<T>(): IFormInputState<T> {
 }
 
 export type FormInput<T> = React.Component<IFormInput<T>, IFormInputState<T>>;
+export type SelectableFormInput<T> = React.Component<ISelectableFormInput<T>, ISelectableFormInputState<T>>;
 
 export function checkValidAndErrorState<T>(form: FormInput<T>) {
   if (form.props.dirty) {
+    console.log('Is dirty');
     const errors = validationErrors(form.props.value, form.props.validation);
     const valid = errors.length === 0;
     form.setState({ valid, errors });
   } else {
+    console.log('Not dirty');
     form.setState({ valid: false, errors: [] });
   }
 }
@@ -93,6 +106,22 @@ export function handleFormDidUpdate<T>(form: FormInput<T>, prevProps: IFormInput
   }
   if (form.state.justHelp !== justHelp) {
     form.setState({ justHelp });
+  }
+}
+
+export function handleSelectableFormDidUpdate<T>(
+  form: SelectableFormInput<T>,
+  prevProps: ISelectableFormInput<T>,
+  prevState: ISelectableFormInputState<T>
+) {
+  if (form.props.choices !== prevProps.choices) {
+    form.setState(defaultStateForSelectableFormInput(form.props, form.state));
+    if (form.props.dirty) {
+      checkValidAndErrorState(form);
+    }
+    handleFormDidUpdate(form, prevProps, prevState);
+  } else {
+    handleFormDidUpdate(form, prevProps, prevState);
   }
 }
 

@@ -85,10 +85,6 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
     }
   }
 
-  constructor(props: IDropdownProps<T>) {
-    super(props);
-  }
-
   componentDidMount() {
     if (this.props.initialValues) {
       this.setState(_ => ({ values: this.props.initialValues }));
@@ -97,7 +93,8 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
 
   componentDidUpdate(oldProps: IDropdownProps<T>, oldState: IDropdownState<T>) {
     if (oldProps.initialValues !== this.props.initialValues) {
-      this.setState(_ => ({ values: this.props.initialValues }));
+      const selection = [...this.props.initialValues.filter(b => b.selected)];
+      this.setState(_ => ({ values: this.props.initialValues, selection }));
     }
   }
 
@@ -241,8 +238,11 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
             <span className="button-text">{showIcon ? <span className="icon-with-text">{displayText}</span> : displayText}</span>
           </DropdownToggle>
           <ArrowUpLeft />
-
-          <DropdownMenu className={menuClassName} flip={false}>
+          <DropdownMenu
+            className={menuClassName}
+            flip={false}
+            modifiers={{ preventOverflow: { enabled: false }, arrow: { enabled: true } }}
+          >
             <div className="top-spacer" />
             {searchBar}
             {selectionBar}

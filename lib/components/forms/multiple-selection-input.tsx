@@ -44,7 +44,7 @@ export class MultipleSelectionInput<T> extends React.Component<IMultipleSelectio
             id: `${this.props.id}_${choiceVals.get(k)}`,
             value: [k],
             disabled: false,
-            selected: false,
+            selected: this.state.choices.some(b => b.selected && b.id === `${this.props.id}_${choiceVals.get(k)}`),
             groupName: this.props.id
           }))
         : [];
