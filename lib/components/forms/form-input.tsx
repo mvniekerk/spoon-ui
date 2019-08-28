@@ -4,6 +4,7 @@ import { IDirtyInput } from '../../util/dirty-input';
 import { IValidateAndI18nKey, validationErrors } from '../../validation/validate';
 import { FormGroup, Label } from 'reactstrap';
 import { FormError, FormHelp, FormValid } from '../form-feedback/form-feedback';
+import ArrowDropUp from '@material-ui/icons/ArrowDropUpRounded';
 
 export interface IValueDirtyAndValid<T> {
   value: T;
@@ -14,6 +15,10 @@ export interface IValueDirtyAndValid<T> {
 
 export type GetValueInObject<T, U> = (state: U) => IValueDirtyAndValid<T>;
 
+/**
+ * A form that has a label, placeholder, id, value, dirty flag, valid flag and validators
+ * Use with iformInput() to create this using defaults
+ */
 export interface IFormInput<T> extends IDirtyInput<T> {
   label?: TranslatedValueOrKey<T>;
   placeholder?: TranslatedValueOrKey<T>;
@@ -21,6 +26,9 @@ export interface IFormInput<T> extends IDirtyInput<T> {
   value: T;
 }
 
+/**
+ * A specific IFormInput that has a map that goes betwene
+ */
 export interface ISelectableFormInput<T> extends IFormInput<T> {
   choices: () => Map<T, string>;
 }
@@ -37,7 +45,10 @@ export interface ISelectableFormInputState<T> extends IFormInputState<T> {
   choices: Array<ITranslatedSelectableValue<T>>;
 }
 
-export function defaultStateForSelectableFormInput<T>(props: ISelectableFormInput<T>): ISelectableFormInputState<T> {
+export function defaultStateForSelectableFormInput<T>(
+  props: ISelectableFormInput<T>,
+  oldState?: ISelectableFormInputState<T>
+): ISelectableFormInputState<T> {
   const choiceVals = props.choices();
   const choices: Array<ITranslatedSelectableValue<T>> = !!choiceVals
     ? Array.from(choiceVals.keys()).map(k => ({
@@ -46,7 +57,7 @@ export function defaultStateForSelectableFormInput<T>(props: ISelectableFormInpu
         id: `${props.id}_${choiceVals.get(k)}`,
         value: k,
         disabled: false,
-        selected: false,
+        selected: !!oldState && oldState.choices.some(b => b.selected && b.id === `${props.id}_${choiceVals.get(k)}`),
         groupName: props.id
       }))
     : [];
@@ -64,6 +75,7 @@ export function defaultFormInputState<T>(): IFormInputState<T> {
 }
 
 export type FormInput<T> = React.Component<IFormInput<T>, IFormInputState<T>>;
+export type SelectableFormInput<T> = React.Component<ISelectableFormInput<T>, ISelectableFormInputState<T>>;
 
 export function checkValidAndErrorState<T>(form: FormInput<T>) {
   if (form.props.dirty) {
@@ -96,7 +108,23 @@ export function handleFormDidUpdate<T>(form: FormInput<T>, prevProps: IFormInput
   }
 }
 
-export function formInputGroup(form: FormInput<any>, children: JSX.Element) {
+export function handleSelectableFormDidUpdate<T>(
+  form: SelectableFormInput<T>,
+  prevProps: ISelectableFormInput<T>,
+  prevState: ISelectableFormInputState<T>
+) {
+  if (form.props.choices !== prevProps.choices) {
+    form.setState(defaultStateForSelectableFormInput(form.props, form.state));
+    if (form.props.dirty) {
+      checkValidAndErrorState(form);
+    }
+    handleFormDidUpdate(form, prevProps, prevState);
+  } else {
+    handleFormDidUpdate(form, prevProps, prevState);
+  }
+}
+
+export function formInputGroup(form: FormInput<any>, children: JSX.Element, required?: boolean) {
   const isInvalid = form.state.invalidAndDirty;
   const isValid = form.state.validAndDirty;
   const justHelp = form.state.justHelp;
@@ -106,6 +134,11 @@ export function formInputGroup(form: FormInput<any>, children: JSX.Element) {
       {!!form.props.label && <Label for={form.props.id}>{translateItem(form.props.label)}</Label>}
       <div className={`input-group ${className} form-input`}>
         {children}
+        {required && (
+          <div className="required-check">
+            <ArrowDropUp />
+          </div>
+        )}
         {isValid && !!form.props.validMessage && <FormValid {...form.props} />}
         {isInvalid && <FormError errors={form.state.errors} />}
         {justHelp && !!form.props.helpMessage && <FormHelp helpMessage={form.props.helpMessage} />}

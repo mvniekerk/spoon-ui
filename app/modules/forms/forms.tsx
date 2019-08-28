@@ -12,14 +12,15 @@ import {
   ComboboxInput,
   IValueDirtyAndValid,
   iformInput,
-  MultipleSelectionInput
+  MultipleSelectionInput,
+  Button
 } from 'lib/components';
 import { ITranslatedSelectableValue, translatedValue } from 'lib/util';
 import { IValidateAndI18nKey, required, requiredString, stringIsNumber } from 'lib/validation';
 /* tslint:enable:no-submodule-imports */
 
-import Check from '@material-ui/icons/Check';
-import Clear from '@material-ui/icons/Clear';
+import Check from '@material-ui/icons/CheckRounded';
+import PriorityHighRounded from '@material-ui/icons/PriorityHighRounded';
 import CalendarToday from '@material-ui/icons/CalendarToday';
 import PersonOutline from '@material-ui/icons/PersonOutline';
 import Info from '@material-ui/icons/Info';
@@ -39,6 +40,8 @@ export interface IFormsState {
   radDirty: boolean;
   comboVal?: IValueDirtyAndValid<IsSmartAnimal>;
   multipleVal?: IValueDirtyAndValid<string[]>;
+  comboChoices: () => Map<IsSmartAnimal, string>;
+  multiChoices: () => Map<string, string>;
 }
 
 export default class Forms extends React.Component<{}, IFormsState> {
@@ -50,8 +53,18 @@ export default class Forms extends React.Component<{}, IFormsState> {
     radInput: '',
     radDirty: false,
     comboVal: { value: undefined },
-    multipleVal: { value: undefined }
+    multipleVal: { value: undefined },
+    comboChoices: () =>
+      new Map([
+        [{ name: 'sheep', smart: false }, 'Sheep'],
+        [{ name: 'dog', smart: true }, 'Dog'],
+        [{ name: 'horse', smart: true }, 'Horse'],
+        [{ name: 'cow', smart: false }, 'Cow']
+      ]),
+    multiChoices: () => new Map<string, string>([['one', 'One'], ['two', 'Two'], ['three', 'Three']])
   };
+
+  updateCount = 1;
 
   constructor(props) {
     super(props);
@@ -92,6 +105,7 @@ export default class Forms extends React.Component<{}, IFormsState> {
             helpMessage="This field is required"
             validMessage="Well done"
             validation={[{ func: requiredString, i18n: 'Value is required' }, { func: stringIsNumber, i18n: 'Must be a number' }]}
+            required
           />
         </Col>
       </Row>
@@ -136,19 +150,27 @@ export default class Forms extends React.Component<{}, IFormsState> {
     );
   }
 
+  get incrementUpdateCount(): number {
+    return ++this.updateCount;
+  }
+
   renderComboboxInput() {
     const comboVals = iformInput(a => a.comboVal, this);
-    const choices = () =>
-      new Map([
-        [{ name: 'sheep', smart: false }, 'Sheep'],
-        [{ name: 'dog', smart: true }, 'Dog'],
-        [{ name: 'horse', smart: true }, 'Horse'],
-        [{ name: 'cow', smart: false }, 'Cow']
-      ]);
+
     const isSmart: IValidateAndI18nKey<IsSmartAnimal> = {
       func: (i18nKey: string, v: IsSmartAnimal) => (!!v && v.smart ? [] : [translatedValue<IsSmartAnimal>('Not a smart animal')]),
       i18n: ''
     };
+    const onClick = () =>
+      this.setState({
+        comboChoices: () =>
+          new Map([
+            [{ name: 'sheep', smart: false }, `Sheep ${this.incrementUpdateCount}`],
+            [{ name: 'dog', smart: true }, `Dog ${this.updateCount}`],
+            [{ name: 'horse', smart: true }, `Horse ${this.updateCount}`],
+            [{ name: 'cow', smart: false }, `Cow ${this.updateCount}`]
+          ])
+      });
     return (
       <Row>
         <Col md="12">
@@ -156,13 +178,15 @@ export default class Forms extends React.Component<{}, IFormsState> {
         </Col>
         <Col md="4">
           <ComboboxInput
-            choices={choices}
+            choices={this.state.comboChoices}
             id="smartAnimal"
             {...comboVals}
             validation={[isSmart]}
             helpMessage="Try to select a smart animal"
             placeholder="forms.comboInput.placeholder"
+            required
           />
+          <Button onClick={onClick}>Simulate update</Button>
         </Col>
       </Row>
     );
@@ -175,14 +199,16 @@ export default class Forms extends React.Component<{}, IFormsState> {
     };
     const requiredVal = { func: required, i18n: 'Please select a value' };
     const vals = iformInput(b => b.multipleVal, this, [requiredVal, only2]);
-    const choices = () => new Map<string, string>([['one', 'One'], ['two', 'Two'], ['three', 'Three']]);
+    const onClick = () =>
+      this.setState({ multiChoices: () => new Map<string, string>([['one', 'One 1'], ['two', 'Two 2'], ['three', 'Three 3']]) });
     return (
       <Row>
         <Col md="12">
           <div className="small-header">Multiple selections with selection bar</div>
         </Col>
         <Col md="4">
-          <MultipleSelectionInput label="Select any 2" {...vals} choices={choices} selectionBar />
+          <MultipleSelectionInput label="Select any 2" {...vals} choices={this.state.multiChoices} selectionBar />
+          <Button onClick={onClick}>Simulate change</Button>
         </Col>
       </Row>
     );
@@ -207,7 +233,7 @@ export default class Forms extends React.Component<{}, IFormsState> {
             </InputGroup>
             <InputGroup className="is-invalid">
               <Input invalid placeholder="Placeholder" value="Incorrect input" />
-              <Clear className="material-icons invalid-icon" />
+              <PriorityHighRounded className="material-icons invalid-icon" />
             </InputGroup>
             <Input text="Text" value="Disabled" disabled />
           </Col>
@@ -228,9 +254,10 @@ export default class Forms extends React.Component<{}, IFormsState> {
               <Check className="material-icons valid-icon" />
               <CalendarToday className="material-icons left-icon" />
             </InputGroup>
+
             <InputGroup className="is-invalid input-group-icon-left">
               <Input invalid placeholder="Placeholder" value="Incorrect input" />
-              <Clear className="material-icons invalid-icon" />
+              <PriorityHighRounded className="material-icons invalid-icon" />
               <PersonOutline className="material-icons left-icon" />
             </InputGroup>
 
@@ -258,7 +285,7 @@ export default class Forms extends React.Component<{}, IFormsState> {
             </InputGroup>
             <InputGroup className="is-invalid input-group-icon-right">
               <Input invalid placeholder="Placeholder" value="Incorrect input" />
-              <Clear className="material-icons invalid-icon" />
+              <PriorityHighRounded className="material-icons invalid-icon" />
               <PersonOutline className="material-icons right-icon" />
             </InputGroup>
 

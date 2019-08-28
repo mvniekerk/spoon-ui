@@ -143,7 +143,8 @@ $selection-color-background: #dfe1e5;
 $selection-color-checked: #50e537;
 $selection-color-checked-darker: #25a20f;
 
-$menu-background-color: #ffffff;
+$menu-background-color-from: #ffffff;
+$menu-background-color-to: #ffffff;
 $menu-item-color: #848c98;
 $menu-item-icon-color: $gray-lighter;
 $menu-border: transparentize($gray-lighter, 0.875);
@@ -198,7 +199,8 @@ $body-background: #d2d8dd;
     selection-color-background: $selection-color-background,
     selection-color-checked: $selection-color-checked,
     selection-color-checked-darker: $selection-color-checked-darker,
-    menu-background-color: $menu-background-color,
+    menu-background-color-from: $menu-background-color-from,
+    menu-background-color-to: $menu-background-color-to,
     menu-item-color: $menu-item-color,
     menu-item-icon-color: $menu-item-icon-color,
     menu-border: $menu-border,

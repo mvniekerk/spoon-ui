@@ -1,0 +1,21 @@
+.input-group.form-input {
+  .required-check {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    transform: rotate(45deg);
+    color: var(--gray-lighter);
+  }
+}
+
+.input-group.is-invalid.form-input {
+  .required-check {
+    color: var(--error);
+  }
+}
+
+.input-group.is-valid.form-input {
+  .required-check {
+    display: none;
+  }
+}

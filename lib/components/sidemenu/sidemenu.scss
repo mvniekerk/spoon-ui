@@ -28,7 +28,7 @@
 
 .side-menu-container {
   z-index: 10000;
-  background-color: var(--menu-background-color);
+  background-image: linear-gradient(to bottom, var(--menu-background-color-from), var(--menu-background-color-to));
   height: calc(100vh - 0px);
   width: 250px;
   min-width: 250px;

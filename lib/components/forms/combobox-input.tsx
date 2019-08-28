@@ -1,10 +1,11 @@
 import './combobox-input.scss';
+import './form-input.scss';
 import React from 'react';
 import {
   checkValidAndErrorState,
   defaultStateForSelectableFormInput,
   formInputGroup,
-  handleFormDidUpdate,
+  handleSelectableFormDidUpdate,
   ISelectableFormInput,
   ISelectableFormInputState
 } from './form-input';
@@ -15,6 +16,7 @@ import { IDropdownItem } from '../dropdown/dropdown-item';
 
 export interface IComboboxInputProps<T> extends ISelectableFormInput<T> {
   search?: boolean;
+  required?: boolean;
 }
 
 export class ComboboxInput<T> extends React.Component<IComboboxInputProps<T>, ISelectableFormInputState<T>> {
@@ -28,10 +30,7 @@ export class ComboboxInput<T> extends React.Component<IComboboxInputProps<T>, IS
   }
 
   componentDidUpdate(prevProps: Readonly<IRadioInputProps<T>>, prevState: Readonly<ISelectableFormInputState<T>>, snapshot?: any) {
-    handleFormDidUpdate(this, prevProps, prevState);
-    if (this.props.choices !== prevProps.choices) {
-      this.setState(defaultStateForSelectableFormInput(this.props));
-    }
+    handleSelectableFormDidUpdate(this, prevProps, prevState);
   }
 
   render() {
@@ -48,6 +47,6 @@ export class ComboboxInput<T> extends React.Component<IComboboxInputProps<T>, IS
     };
     const choices: Array<IDropdownItem<T>> = this.state.choices.map(b => b as IDropdownItem<T>);
     const input = <Dropdown {...this.props} initialValues={choices} onValueSelected={onChange} unselectable={false} onClose={onClose} />;
-    return formInputGroup(this, input);
+    return formInputGroup(this, input, this.props.required);
   }
 }
