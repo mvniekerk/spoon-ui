@@ -9,6 +9,9 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import { IRootState } from './root-reducer';
 import AppRoutes from 'app/routes';
+// tslint:disable-next-line:no-submodule-imports
+import { hot } from 'react-hot-loader/root';
+
 import {
   FontDownload,
   TouchApp,
@@ -21,6 +24,7 @@ import {
   ColorLens
 } from '@material-ui/icons';
 /* tslint:disable:no-submodule-imports */
+import { setLocale } from 'lib/reducers/locale';
 import { SideMenu, Header, Footer, ErrorBoundary, Notification, ActionBanner } from 'lib/components';
 import { getSideMenuState, setSideMenu, MINI, HIDE_MAX, HIDE_MINI, setMenuItems } from 'lib/reducers/side-menu-state';
 import { CurrentRouteAndIcon } from 'lib/reducers/route-position';
@@ -124,6 +128,7 @@ const menus: CurrentRouteAndIcon[] = [
 
 export class App extends React.Component<IAppProps> {
   componentDidMount() {
+    this.props.setLocale('en');
     this.props.getSideMenuState();
     this.props.setMenuItems(menus);
   }
@@ -168,12 +173,14 @@ const mapStateToProps = ({ sideMenuState, locale }: IRootState) => ({
   sideMenu: sideMenuState.current
 });
 
-const mapDispatchToProps = { getSideMenuState, setSideMenu, setMenuItems };
+const mapDispatchToProps = { getSideMenuState, setSideMenu, setMenuItems, setLocale };
 
 type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = typeof mapDispatchToProps;
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default hot(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(App as any)
+);

@@ -46,6 +46,7 @@ module.exports = options => ({
     ],
     modules: ['node_modules'],
     alias: {
+      'react-dom': '@hot-loader/react-dom',
       app: utils.root('app/'),
       lib: utils.root('lib/')
     }
