@@ -1,12 +1,13 @@
 import './sidemenu.scss';
 
 import React from 'react';
-import { SideMenu as SideMenuReducer } from '../../reducers/index';
+import { Locale, SideMenu as SideMenuReducer } from '../../reducers/index';
 import { connect } from 'react-redux';
 import { MenuItem } from './menuitem';
 import { RouteComponentProps, withRouter } from 'react-router';
 import Menu from '@material-ui/icons/Menu';
 import ChevronLeft from '@material-ui/icons/ChevronLeft';
+import ILocaleRootState = Locale.ILocaleRootState;
 
 const { setSideMenu, getSideMenuState, MAX, MINI, TO_MAX, TO_MINI, HIDE_MAX, HIDE_MINI } = SideMenuReducer.sideMenu;
 
@@ -95,9 +96,10 @@ export class SideMenu extends React.Component<ISideMenuProps, {}> {
   }
 }
 
-const mapStateToProps = ({ sideMenuState }: SideMenuReducer.ISideMenuRootState) => ({
+const mapStateToProps = ({ sideMenuState, locale }: SideMenuReducer.ISideMenuRootState & ILocaleRootState) => ({
   sideMenu: sideMenuState.current,
-  menus: sideMenuState.menuItems
+  menus: sideMenuState.menuItems,
+  locale: locale.currentLocale
 });
 
 const mapDispatchToProps = { getSideMenuState, setSideMenu };
