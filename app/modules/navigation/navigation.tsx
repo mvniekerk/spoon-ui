@@ -123,24 +123,30 @@ export default class Navigation extends React.Component {
               <ProgressionItem current>Step 3</ProgressionItem>
             </Progression>
             <Progression>
-              <ProgressionItem current step={1}>
+              <ProgressionItem current step={1} lineAfter>
                 Step 1
               </ProgressionItem>
-              <ProgressionItem step={2}>Step 2</ProgressionItem>
-              <ProgressionItem step={3}>Step 3</ProgressionItem>
+              <ProgressionItem step={2} lineBefore lineAfter>
+                Step 2
+              </ProgressionItem>
+              <ProgressionItem step={3} lineBefore>
+                Step 3
+              </ProgressionItem>
             </Progression>
           </Col>
           <Col md="6">
             <div className="small-header">Progression vertical</div>
             <Progression vertical>
-              <ProgressionItem step={1} current icon={<Edit />}>
+              <ProgressionItem step={1} current icon={<Edit />} lineAfter>
                 Personal Details
               </ProgressionItem>
-              <ProgressionItem step={2} done>
+              <ProgressionItem step={2} done lineBefore lineAfter>
                 Contact Details
               </ProgressionItem>
-              <ProgressionItem step={3}>Client Profile</ProgressionItem>
-              <ProgressionItem step={4} icon={<SubdirectoryArrowRight />}>
+              <ProgressionItem step={3} lineBefore lineAfter>
+                Client Profile
+              </ProgressionItem>
+              <ProgressionItem step={4} icon={<SubdirectoryArrowRight />} lineBefore>
                 Submit for approval
               </ProgressionItem>
             </Progression>

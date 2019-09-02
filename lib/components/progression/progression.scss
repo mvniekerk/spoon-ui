@@ -60,3 +60,8 @@
 .progression-item .counter svg {
   font-size: 13px;
 }
+
+.progression-item.line-below {
+  display: flex;
+  flex-direction: column;
+}
