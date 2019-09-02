@@ -10,6 +10,7 @@ import {
   ISelectableFormInputState
 } from './form-input';
 import { RadioGroup } from '../selection/radiogroup';
+import { Dropdown } from 'lib/components/dropdown';
 
 export interface IRadioInputProps<T> extends ISelectableFormInput<T> {
   xs?: number;
@@ -49,6 +50,7 @@ export class RadioInput<T> extends React.Component<IRadioInputProps<T>, ISelecta
         values={this.state.choices}
         onChanged={onChange}
         name={this.props.id}
+        disabled={this.props.disabled}
       />
     );
     return formInputGroup(this, inputs, this.props.required);

@@ -52,6 +52,7 @@ export class TextInput extends React.Component<ITextInputProps, IFormInputState<
           valid={this.state.validAndDirty}
           invalid={this.state.invalidAndDirty}
           className={`${this.props.required ? 'required' : ''}`}
+          disabled={this.props.disabled}
         />
         {isInvalid && this.props.enableTicks && <PriorityHighRounded id="clear" className="material-icons invalid-icon" />}
         {isValid && this.props.enableTicks && <Check id="check" className="material-icons valid-icon" />}

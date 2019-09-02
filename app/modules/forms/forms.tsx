@@ -36,10 +36,14 @@ export interface IFormsState {
   search?: string;
   numberInput: string;
   numberInputDirty: boolean;
+  numberInputDisabled: boolean;
   radInput: string;
   radDirty: boolean;
+  radDisabled: boolean;
   comboVal?: IValueDirtyAndValid<IsSmartAnimal>;
+  comboDisabled: boolean;
   multipleVal?: IValueDirtyAndValid<string[]>;
+  multipleDisabled: boolean;
   comboChoices: () => Map<IsSmartAnimal, string>;
   multiChoices: () => Map<string, string>;
 }
@@ -50,6 +54,7 @@ export default class Forms extends React.Component<{}, IFormsState> {
     search: '',
     numberInput: '',
     numberInputDirty: false,
+    numberInputDisabled: false,
     radInput: '',
     radDirty: false,
     comboVal: { value: undefined },
@@ -61,7 +66,10 @@ export default class Forms extends React.Component<{}, IFormsState> {
         [{ name: 'horse', smart: true }, 'Horse'],
         [{ name: 'cow', smart: false }, 'Cow']
       ]),
-    multiChoices: () => new Map<string, string>([['one', 'One'], ['two', 'Two'], ['three', 'Three']])
+    multiChoices: () => new Map<string, string>([['one', 'One'], ['two', 'Two'], ['three', 'Three']]),
+    radDisabled: false,
+    comboDisabled: false,
+    multipleDisabled: false
   };
 
   updateCount = 1;
@@ -87,6 +95,7 @@ export default class Forms extends React.Component<{}, IFormsState> {
   renderTextInput() {
     const onNumberInputChange = numberInput => this.setState({ numberInput });
     const onNumberInputMadeDirty = () => this.setState({ numberInputDirty: true });
+    const toggleDisabled = () => this.setState(p => ({ numberInputDisabled: !p.numberInputDisabled }));
     return (
       <Row>
         <Col md="12">
@@ -106,7 +115,9 @@ export default class Forms extends React.Component<{}, IFormsState> {
             validMessage="Well done"
             validation={[{ func: requiredString, i18n: 'Value is required' }, { func: stringIsNumber, i18n: 'Must be a number' }]}
             required
+            disabled={this.state.numberInputDisabled}
           />
+          <Button onClick={toggleDisabled}>{this.state.numberInputDisabled ? 'Enable' : 'Disable'}</Button>
         </Col>
       </Row>
     );
@@ -126,6 +137,8 @@ export default class Forms extends React.Component<{}, IFormsState> {
       i18n: ''
     };
 
+    const toggleDisabled = () => this.setState(p => ({ radDisabled: !p.radDisabled }));
+
     return (
       <Row>
         <Col md="12">
@@ -144,7 +157,9 @@ export default class Forms extends React.Component<{}, IFormsState> {
             helpMessage="Maybe is not allowed"
             validMessage="Some coffee on its way"
             validation={[notMaybe, notNo]}
+            disabled={this.state.radDisabled}
           />
+          <Button onClick={toggleDisabled}>{this.state.radDisabled ? 'Enable' : 'Disable'}</Button>
         </Col>
       </Row>
     );
@@ -171,6 +186,7 @@ export default class Forms extends React.Component<{}, IFormsState> {
             [{ name: 'cow', smart: false }, `Cow ${this.updateCount}`]
           ])
       });
+    const toggleDisabled = () => this.setState(p => ({ comboDisabled: !p.comboDisabled }));
     return (
       <Row>
         <Col md="12">
@@ -185,8 +201,14 @@ export default class Forms extends React.Component<{}, IFormsState> {
             helpMessage="Try to select a smart animal"
             placeholder="forms.comboInput.placeholder"
             required
+            disabled={this.state.comboDisabled}
           />
-          <Button onClick={onClick}>Simulate update</Button>
+          <div style={{ display: 'flex', flexDirection: 'row' }}>
+            <Button style={{ marginRight: '8px' }} onClick={onClick} color="primary">
+              Simulate update
+            </Button>
+            <Button onClick={toggleDisabled}>{this.state.comboDisabled ? 'Enable' : 'Disable'}</Button>
+          </div>
         </Col>
       </Row>
     );
@@ -201,14 +223,28 @@ export default class Forms extends React.Component<{}, IFormsState> {
     const vals = iformInput(b => b.multipleVal, this, [requiredVal, only2]);
     const onClick = () =>
       this.setState({ multiChoices: () => new Map<string, string>([['one', 'One 1'], ['two', 'Two 2'], ['three', 'Three 3']]) });
+
+    const toggleDisabled = () => this.setState(p => ({ multipleDisabled: !p.multipleDisabled }));
+
     return (
       <Row>
         <Col md="12">
           <div className="small-header">Multiple selections with selection bar</div>
         </Col>
         <Col md="4">
-          <MultipleSelectionInput label="Select any 2" {...vals} choices={this.state.multiChoices} selectionBar />
-          <Button onClick={onClick}>Simulate change</Button>
+          <MultipleSelectionInput
+            label="Select any 2"
+            {...vals}
+            choices={this.state.multiChoices}
+            selectionBar
+            disabled={this.state.multipleDisabled}
+          />
+          <div style={{ display: 'flex', flexDirection: 'row' }}>
+            <Button style={{ marginRight: '8px' }} onClick={onClick} color="primary">
+              Simulate change
+            </Button>
+            <Button onClick={toggleDisabled}>{this.state.multipleDisabled ? 'Enable' : 'Disable'}</Button>
+          </div>
         </Col>
       </Row>
     );

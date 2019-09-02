@@ -83,7 +83,16 @@ export class MultipleSelectionInput<T> extends React.Component<IMultipleSelectio
       }
     };
     const choices: Array<IDropdownItem<T[]>> = this.state.choices.map(b => b as IDropdownItem<T[]>);
-    const input = <Dropdown {...this.props} initialValues={choices} multiple onClose={onClose} onSelectionChanged={onChange} />;
+    const input = (
+      <Dropdown
+        {...this.props}
+        initialValues={choices}
+        multiple
+        onClose={onClose}
+        onSelectionChanged={onChange}
+        disabled={this.props.disabled}
+      />
+    );
     return formInputGroup(this, input);
   }
 }
