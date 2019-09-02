@@ -10,7 +10,6 @@ import {
   ISelectableFormInputState
 } from './form-input';
 import { RadioGroup } from '../selection/radiogroup';
-import { Dropdown } from 'lib/components/dropdown';
 
 export interface IRadioInputProps<T> extends ISelectableFormInput<T> {
   xs?: number;
