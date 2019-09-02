@@ -24,6 +24,7 @@ export interface IFormInput<T> extends IDirtyInput<T> {
   placeholder?: TranslatedValueOrKey<T>;
   id?: string;
   value: T;
+  disabled?: boolean;
 }
 
 /**
