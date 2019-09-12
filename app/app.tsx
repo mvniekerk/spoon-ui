@@ -12,17 +12,15 @@ import AppRoutes from 'app/routes';
 // tslint:disable-next-line:no-submodule-imports
 import { hot } from 'react-hot-loader/root';
 
-import {
-  FontDownload,
-  TouchApp,
-  TextFields,
-  ArrowDropDown,
-  CheckCircleOutline,
-  Dashboard,
-  TableChart,
-  Home,
-  ColorLens
-} from '@material-ui/icons';
+import FontDownload from '@material-ui/icons/FontDownload';
+import TouchApp from '@material-ui/icons/TouchApp';
+import TextFields from '@material-ui/icons/TextFields';
+import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
+import CheckCircleOutline from '@material-ui/icons/CheckCircleOutline';
+import Dashboard from '@material-ui/icons/Dashboard';
+import TableChart from '@material-ui/icons/TableChart';
+import Home from '@material-ui/icons/Home';
+import ColorLens from '@material-ui/icons/ColorLens';
 /* tslint:disable:no-submodule-imports */
 import { setLocale } from 'lib/reducers/locale';
 import { SideMenu, Header, Footer, ErrorBoundary, Notification, ActionBanner } from 'lib/components';

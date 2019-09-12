@@ -7,6 +7,7 @@ const SimpleProgressWebpackPlugin = require('simple-progress-webpack-plugin');
 const WebpackNotifierPlugin = require('webpack-notifier');
 const path = require('path');
 const sass = require('sass');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const utils = require('./utils.js');
 const commonConfig = require('./webpack.common.js');
@@ -96,5 +97,6 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
       title: 'spoon-ui',
       contentImage: path.join(__dirname, 'spoon-ui.png')
     })
-  ].filter(Boolean)
+    // new BundleAnalyzerPlugin()
+  ].filter(Boolean),
 });
