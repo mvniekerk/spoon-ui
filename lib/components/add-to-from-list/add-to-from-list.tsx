@@ -1,6 +1,9 @@
 import './add-to-from-list.scss';
 import React from 'react';
-import { Add, ArrowBack, ArrowForward, DeleteRounded } from '@material-ui/icons';
+import Add from '@material-ui/icons/Add';
+import ArrowBack from '@material-ui/icons/ArrowBack';
+import ArrowForward from '@material-ui/icons/ArrowForward';
+import DeleteRounded from '@material-ui/icons/DeleteRounded';
 import SearchBar from '../search-bar/search-bar';
 import { Col } from 'reactstrap';
 import PerfectScrollbar from '@opuscapita/react-perfect-scrollbar';

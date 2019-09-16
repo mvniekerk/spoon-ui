@@ -9,7 +9,6 @@ const path = require('path');
 const sass = require('sass');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-
 const utils = require('./utils.js');
 const commonConfig = require('./webpack.common.js');
 
@@ -79,12 +78,6 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
       filename: 'content/[name].[hash].css',
       chunkFilename: 'content/[name].[hash].css'
     }),
-    new MomentLocalesPlugin({
-      localesToKeep: [
-        'en',
-        'de'
-      ]
-    }),
     new webpack.LoaderOptionsPlugin({
       minimize: true,
       debug: false
@@ -93,6 +86,9 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
       clientsClaim: true,
       skipWaiting: true,
     }),
-    // new BundleAnalyzerPlugin()
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static',
+      openAnalyzer: false
+    })
   ]
 });

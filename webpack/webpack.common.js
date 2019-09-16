@@ -4,6 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const MergeJsonWebpackPlugin = require('merge-jsons-webpack-plugin');
 const path = require('path');
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
+var DuplicatePackageCheckerPlugin = require("duplicate-package-checker-webpack-plugin");
 
 const utils = require('./utils.js');
 
@@ -48,7 +50,8 @@ module.exports = options => ({
     alias: {
       'react-dom': '@hot-loader/react-dom',
       app: utils.root('app/'),
-      lib: utils.root('lib/')
+      lib: utils.root('lib/'),
+      '@opuscapita/react-perfect-scrollbar': '@opuscapita/react-perfect-scrollbar/lib/es'
     }
   },
   module: {
@@ -131,5 +134,12 @@ module.exports = options => ({
                 ]
       }
     }),
+    new MomentLocalesPlugin({
+      localesToKeep: [
+        'en',
+        'de'
+      ]
+    }),
+    new DuplicatePackageCheckerPlugin()
   ]
 });

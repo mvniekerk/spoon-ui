@@ -12,7 +12,13 @@ import Selection from 'app/modules/selection/selection';
 import Navigation from 'app/modules/navigation/navigation';
 import Tables from 'app/modules/tables/tables';
 import { Theme } from 'app/modules/theme/theme';
-import { ArrowDropDown, CheckCircleOutline, Dashboard, FontDownload, TableChart, TextFields, TouchApp } from '@material-ui/icons';
+import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
+import CheckCircleOutline from '@material-ui/icons/CheckCircleOutline';
+import Dashboard from '@material-ui/icons/Dashboard';
+import FontDownload from '@material-ui/icons/FontDownload';
+import TableChart from '@material-ui/icons/TableChart';
+import TextFields from '@material-ui/icons/TextFields';
+import TouchApp from '@material-ui/icons/TouchApp';
 import { CurrentRouteAndIcon } from 'lib/reducers/route-position';
 /* tslint:enable:no-submodule-imports */
 
