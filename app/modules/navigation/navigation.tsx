@@ -7,9 +7,7 @@ import Info from '@material-ui/icons/Info';
 import Edit from '@material-ui/icons/Edit';
 import SubdirectoryArrowRight from '@material-ui/icons/SubdirectoryArrowRight';
 
-/* tslint:disable:no-submodule-imports */
 import { Button, Alert, ItemsPerPage, Pagination, ProgressBar, Progression, ProgressionItem, ContextMenu } from 'lib/components';
-/* tslint:enable:no-submodule-imports */
 
 export default class Navigation extends React.Component {
   render() {

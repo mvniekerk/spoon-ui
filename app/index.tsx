@@ -4,13 +4,11 @@ import { Provider } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { AppContainer } from 'react-hot-loader';
 
-/* tslint:disable:no-submodule-imports */
 import { SideMenu } from 'lib/reducers';
 import reducer from 'app/root-reducer';
 import { ErrorBoundary } from 'lib/components/index';
 import AppComponent from './app';
 import { storeInitialize, translation } from 'lib/config';
-/* tslint:enable:no-submodule-imports */
 
 const store = storeInitialize(reducer);
 translation.registerLocale(store);

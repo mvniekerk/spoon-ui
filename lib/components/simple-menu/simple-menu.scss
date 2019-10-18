@@ -1,0 +1,23 @@
+@import '../../bootstrap-variables';
+
+.simple-menu {
+  padding: 0px;
+  margin: 0px;
+
+  .simple-menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    height: 32px;
+
+    &:hover {
+      background-color: #f1f4f8;
+    }
+  }
+
+  .simple-menu-item-label {
+    margin-left: $margin-base;
+    color: var(--menu-item-color);
+  }
+}

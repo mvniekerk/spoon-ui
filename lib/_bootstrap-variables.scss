@@ -223,3 +223,12 @@ $body-background: #d2d8dd;
 }
 
 $theme-colors: update-theme-colors();
+
+@mixin iconColor() {
+  color: $menu-item-icon-color;
+}
+// Sizes
+
+$base: 4px;
+$padding-base: 2 * $base;
+$margin-base: 2 * $base;

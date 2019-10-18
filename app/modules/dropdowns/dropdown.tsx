@@ -7,11 +7,9 @@ import PersonOutline from '@material-ui/icons/PersonOutline';
 import Settings from '@material-ui/icons/Settings';
 import Place from '@material-ui/icons/Place';
 
-/* tslint:disable:no-submodule-imports */
 import { Dropdown } from 'lib/components';
 import PowerSettingsNew from '@material-ui/icons/PowerSettingsNew';
 
-/* tslint:enable:no-submodule-imports */
 const singleSelection = [
   { display: 'First', value: 'first' },
   { display: 'Second', value: 'second' },

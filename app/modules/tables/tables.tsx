@@ -2,9 +2,7 @@ import './tables.scss';
 
 import React from 'react';
 import { Row, Col, Table, Card } from 'reactstrap';
-/* tslint:disable:no-submodule-imports */
 import { Dropdown, Button, TagButton, TableHeader } from 'lib/components';
-/* tslint:enable:no-submodule-imports */
 import MoreVert from '@material-ui/icons/MoreVert';
 import SaveAltRounded from '@material-ui/icons/SaveAltRounded';
 

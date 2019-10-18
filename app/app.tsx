@@ -9,7 +9,6 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import { IRootState } from './root-reducer';
 import AppRoutes from 'app/routes';
-// tslint:disable-next-line:no-submodule-imports
 import { hot } from 'react-hot-loader/root';
 
 import FontDownload from '@material-ui/icons/FontDownload';
@@ -21,14 +20,12 @@ import Dashboard from '@material-ui/icons/Dashboard';
 import TableChart from '@material-ui/icons/TableChart';
 import Home from '@material-ui/icons/Home';
 import ColorLens from '@material-ui/icons/ColorLens';
-/* tslint:disable:no-submodule-imports */
 import { setLocale } from 'lib/reducers/locale';
 import { SideMenu, Header, Footer, ErrorBoundary, Notification, ActionBanner } from 'lib/components';
 import { getSideMenuState, setSideMenu, MINI, HIDE_MAX, HIDE_MINI, setMenuItems } from 'lib/reducers/side-menu-state';
 import { CurrentRouteAndIcon } from 'lib/reducers/route-position';
 import { AccountMenu } from 'lib/components/header/menus';
 import { downloadThemeScssFile } from 'lib/components/color-theme-editor/color-theme-editor';
-/* tslint:enable:no-submodule-imports */
 
 export interface IAppProps extends StateProps, DispatchProps {}
 
@@ -121,6 +118,34 @@ const menus: CurrentRouteAndIcon[] = [
         onClick: _ => downloadThemeScssFile()
       }
     ]
+  },
+  {
+    name: 'menus.centered-layout',
+    header: 'menus.centered-layout',
+    icon: <Dashboard />,
+    path: '/centered-layout',
+    sideMenu: true
+  },
+  {
+    name: 'menus.containers',
+    header: 'menus.containers',
+    icon: <TableChart />,
+    path: '/containers',
+    sideMenu: true
+  },
+  {
+    name: 'menus.entities',
+    header: 'menus.entities',
+    icon: <TableChart />,
+    path: '/entities',
+    sideMenu: true
+  },
+  {
+    name: 'menus.modals-popovers',
+    header: 'menus.modals-popovers',
+    icon: <TableChart />,
+    path: '/modals-popovers',
+    sideMenu: true
   }
 ];
 
