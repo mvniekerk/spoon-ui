@@ -1,0 +1,11 @@
+// override styles for reactstrap card group
+.card-group {
+  flex-direction: row !important;
+  margin: -8px;
+  margin-bottom: 16px;
+
+  & > .card {
+    border-radius: 4px !important;
+    margin: 8px !important;
+  }
+}

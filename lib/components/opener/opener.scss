@@ -1,0 +1,13 @@
+@import '../../bootstrap-variables';
+
+.opener-icon {
+  @include iconColor();
+  position: absolute;
+
+  // always position at 50% height of container by default
+  top: 50%;
+  transform: translateY(-50%);
+
+  right: 12px;
+  cursor: pointer;
+}

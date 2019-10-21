@@ -1,0 +1,17 @@
+@import '../../bootstrap-variables';
+
+.dropdown-search-bar {
+  .dropdown-search--search-icon {
+    @include iconColor();
+    position: absolute;
+    top: 10px;
+    left: 12px;
+  }
+  .dropdown-search--main-search {
+    padding-left: 36px;
+  }
+
+  &.expandable-container .popover-body {
+    padding: 0px 0px 0px 0px;
+  }
+}

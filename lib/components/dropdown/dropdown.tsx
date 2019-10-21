@@ -4,10 +4,8 @@ import { Dropdown as RDropdown, DropdownToggle, DropdownMenu, FormGroup } from '
 import { DropdownItem, IDropdownItem } from './dropdown-item';
 import { TranslatedValueOrKey, translateItem } from '../../util/translation';
 import PerfectScrollbar from '@opuscapita/react-perfect-scrollbar';
-/* tslint:disable:no-submodule-imports */
 import ExpandMoreRounded from '@material-ui/icons/ExpandMoreRounded';
 import ExpandLessRounded from '@material-ui/icons/ExpandLessRounded';
-/* tslint:enable:no-submodule-imports */
 import Search from '@material-ui/icons/Search';
 import triangle from '../../../static/images/triangle.svg';
 const triangleImage = `url("${triangle}")`;

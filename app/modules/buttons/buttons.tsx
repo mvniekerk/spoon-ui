@@ -1,11 +1,9 @@
 import './buttons.scss';
 
 import React from 'react';
-import { Row, Col } from 'reactstrap';
+import { Row, Col, Label, FormGroup } from 'reactstrap';
 
-/* tslint:disable:no-submodule-imports */
-import { Button } from 'lib/components';
-/* tslint:enable:no-submodule-imports */
+import { Button, ActionIcon } from 'lib/components';
 
 import Send from '@material-ui/icons/Send';
 
@@ -73,6 +71,18 @@ export default class Buttons extends React.Component {
             <Button color="dark" disabled iconRight={<Send />}>
               Text
             </Button>
+          </Col>
+          <Col>
+            <Label>ActionIcon</Label>
+            <FormGroup>
+              {/* tslint:disable:jsx-no-lambda */}
+              <ActionIcon
+                icon={<Send />}
+                onClick={() => {
+                  alert('ActionIcon onClick');
+                }}
+              />
+            </FormGroup>
           </Col>
         </Row>
       </div>
