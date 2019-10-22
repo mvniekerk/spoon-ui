@@ -48,7 +48,7 @@ jobs:
         - attach_workspace:
               at: ~/repo
         - setup_remote_docker:
-              docker_layer_caching: true
+              docker_layer_caching: false
         # build and push Docker image to dockerhub.
         - run: |
               export VERSION=`cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]'`
@@ -81,13 +81,13 @@ jobs:
     vulnerability-test:
         <<: *defaults
         steps:
-        - checkout 
+        - checkout
         - run:
               name: update-npm
               command: 'sudo npm install -g npm@latest'
         - run:
               name: install-snyk
-              command: 'sudo npm install -g snyk'     
+              command: 'sudo npm install -g snyk'
         - run: # run snyk help - test snyk is installed and working
               name: snyk-help
               command: snyk --help
