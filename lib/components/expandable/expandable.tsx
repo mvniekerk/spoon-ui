@@ -1,9 +1,10 @@
 import React, { ReactNode, HTMLAttributes, ReactElement } from 'react';
+import cx from 'classnames';
 import './expandable.scss';
 import { Opener } from '../opener/opener';
 import { Collapse } from '../external';
 
-interface IExpandableProps extends HTMLAttributes<{}> {
+interface IExpandableProps extends HTMLAttributes<HTMLDivElement> {
   mainComponent: ReactElement;
   children: ReactNode;
   openerIcon?: ReactNode;
@@ -45,28 +46,28 @@ export class Expandable extends React.Component<IExpandableProps> {
     });
   };
 
-  renderExpandedBody = () => (
+  renderExpandedBody = children => (
     <Collapse isOpen={this.state.open} className="expandable-section">
-      {this.props.children}
+      {children}
     </Collapse>
   );
 
   render() {
-    const className = `expandable-container` + (this.props.className ? ` ${this.props.className}` : '');
+    const { className, mainComponent, openerIcon, openerOpenIcon, openerCloseIcon, children, ...other } = this.props;
 
     return (
       <>
-        <div ref={this.capture} className={className}>
-          {this.props.mainComponent}
+        <div ref={this.capture} className={cx(`expandable-container`, className)} {...other}>
+          {mainComponent}
           <Opener
             isOpen={this.state.open}
             onOpen={this.handleOpen}
             onClose={this.handleClose}
-            openComponent={this.props.openerIcon || this.props.openerOpenIcon}
-            closeComponent={this.props.openerIcon || this.props.openerCloseIcon}
+            openComponent={openerIcon || openerOpenIcon}
+            closeComponent={openerIcon || openerCloseIcon}
           />
         </div>
-        {this.renderExpandedBody()}
+        {this.renderExpandedBody(children)}
       </>
     );
   }

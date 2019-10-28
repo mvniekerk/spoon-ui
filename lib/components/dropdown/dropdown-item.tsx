@@ -1,7 +1,6 @@
 import './dropdown-item.scss';
 
 import React from 'react';
-import { connect } from 'react-redux';
 import { ITranslatedSelectableValue, translateItem } from '../../util/translation';
 import Check from '@material-ui/icons/Check';
 import Clear from '@material-ui/icons/Clear';
@@ -106,5 +105,3 @@ export class DropdownItem<T> extends React.Component<IDropdownItemProps<T>, IDro
     );
   }
 }
-
-export default connect()(DropdownItem);

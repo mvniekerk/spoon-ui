@@ -39,5 +39,3 @@ export const PrivateRoute = connect<StateProps, undefined, IOwnProps>(
   null,
   { pure: false }
 )(PrivateRouteComponent);
-
-export default PrivateRoute;

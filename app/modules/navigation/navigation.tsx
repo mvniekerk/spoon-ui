@@ -9,7 +9,7 @@ import SubdirectoryArrowRight from '@material-ui/icons/SubdirectoryArrowRight';
 
 import { Button, Alert, ItemsPerPage, Pagination, ProgressBar, Progression, ProgressionItem, ContextMenu } from 'lib/components';
 
-export default class Navigation extends React.Component {
+export class Navigation extends React.Component {
   render() {
     const val = [{ display: 'Your account', value: 'first' }, { display: 'Settings', value: 'second' }, { display: 'Map', value: 'third' }];
     return (

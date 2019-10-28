@@ -1,6 +1,7 @@
 import './dropdown.scss';
 import React, { ChangeEvent } from 'react';
-import { Dropdown as RDropdown, DropdownToggle, DropdownMenu, FormGroup } from 'reactstrap';
+import cx from 'classnames';
+import { Dropdown as RDropdown, DropdownToggle, DropdownMenu, FormGroup, DropdownToggleProps } from 'reactstrap';
 import { DropdownItem, IDropdownItem } from './dropdown-item';
 import { TranslatedValueOrKey, translateItem } from '../../util/translation';
 import PerfectScrollbar from '@opuscapita/react-perfect-scrollbar';
@@ -10,7 +11,7 @@ import Search from '@material-ui/icons/Search';
 import triangle from '../../../static/images/triangle.svg';
 const triangleImage = `url("${triangle}")`;
 
-export interface IDropdownProps<T> {
+export interface IDropdownProps<T> extends Omit<DropdownToggleProps, 'placeholder'> {
   multiple?: boolean;
   search?: boolean;
   searchFunction?: (state: IDropdownState<T>, search: string) => Promise<Array<IDropdownItem<T>>>;
@@ -72,7 +73,7 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
     dropdownOpen: false
   };
 
-  toggle() {
+  toggle = () => {
     const dropdownOpen = !this.state.dropdownOpen;
     this.setState({ dropdownOpen, search: '' });
     if (dropdownOpen && !!this.props.onOpen) {
@@ -81,7 +82,7 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
     if (!dropdownOpen && !!this.props.onClose) {
       this.props.onClose();
     }
-  }
+  };
 
   componentDidMount() {
     if (this.props.initialValues) {
@@ -101,14 +102,37 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
   }
 
   render() {
-    const a = () => this.toggle();
+    const {
+      className,
+      multiple,
+      search,
+      selectionBar,
+      initialValues,
+      initialSelection,
+      iconLeft,
+      iconRight,
+      selectAll,
+      placeholder,
+      tags,
+      onValueSelected,
+      onValueDeselected,
+      onSelectionChanged,
+      disabled,
+      alignRight,
+      disableDeselect,
+      unselectable,
+      onOpen,
+      onClose,
+      ...other
+    } = this.props;
+
     const valSelected = (val: IDropdownItem<T>, sender: DropdownItem<T>) => {
-      if (!this.props.multiple) {
-        a.call([]);
+      if (!multiple) {
+        this.toggle();
         this.state.values.filter(i => i !== val).forEach(i => (i.selected = false));
 
-        if (!!this.props.onSelectionChanged) {
-          this.props.onSelectionChanged([val]);
+        if (!!onSelectionChanged) {
+          onSelectionChanged([val]);
         }
         this.setState(_ => ({ selection: [val] }));
       } else {
@@ -118,46 +142,46 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
             vals.push(val);
           }
 
-          if (!!this.props.onSelectionChanged) {
-            this.props.onSelectionChanged(vals);
+          if (!!onSelectionChanged) {
+            onSelectionChanged(vals);
           }
 
           return { selection: vals };
         });
       }
-      this.props.onValueSelected(val, sender);
+      onValueSelected(val, sender);
     };
 
     const valDeselected = (val: IDropdownItem<T>, sender: DropdownItem<T>) => {
-      if (!this.props.multiple && !this.props.disableDeselect) {
-        a.call([]);
+      if (!multiple && !disableDeselect) {
+        this.toggle();
         this.setState(_ => ({ selection: [] }));
-        this.props.onValueDeselected(val, sender);
+        onValueDeselected(val, sender);
 
-        if (!!this.props.onSelectionChanged) {
-          this.props.onSelectionChanged([]);
+        if (!!onSelectionChanged) {
+          onSelectionChanged([]);
         }
-      } else if (this.props.multiple) {
+      } else if (multiple) {
         this.setState(prevState => {
           const vals = prevState.selection;
           if (vals.includes(val)) {
             vals.splice(vals.indexOf(val), 1);
           }
 
-          if (!!this.props.onSelectionChanged) {
-            this.props.onSelectionChanged(vals);
+          if (!!onSelectionChanged) {
+            onSelectionChanged(vals);
           }
 
           return { selection: vals };
         });
-        this.props.onValueDeselected(val, sender);
+        onValueDeselected(val, sender);
       }
     };
 
-    const showIcon = !this.props.multiple && this.state.selection.length === 1;
-    const mustShowPlaceholder = !this.props.multiple && this.state.selection.length === 0;
+    const showIcon = !multiple && this.state.selection.length === 1;
+    const mustShowPlaceholder = !multiple && this.state.selection.length === 0;
 
-    const dropdownClass = 'toggle caret-right' + (mustShowPlaceholder ? ' placeholder' : '');
+    const dropdownClass = cx('toggle caret-right', className, { placeholder: mustShowPlaceholder });
 
     const items =
       !this.state.searching && !!this.state.values
@@ -175,19 +199,19 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
                 {...this.props}
                 selectable
                 value={sv}
-                key={sv.name}
+                key={sv.name || (sv.value && sv.value.toString())}
                 onSelected={valSelected}
                 onDeselected={valDeselected}
-                tag={this.props.tags}
+                tag={tags}
               />
             ))
         : [];
 
     const displayText = mustShowPlaceholder
-      ? translateItem(this.props.placeholder)
+      ? translateItem(placeholder)
       : this.state.selection.length === 1 && !!this.state.selection[0].value
         ? translateItem(this.state.selection[0])
-        : translateItem(this.props.placeholder);
+        : translateItem(placeholder);
 
     const onSearchChanged = (val: ChangeEvent<HTMLInputElement>) => {
       if (val.target) {
@@ -196,7 +220,7 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
       }
     };
 
-    const searchBar = this.props.search ? (
+    const searchBar = search ? (
       <div className="search-container">
         <div className="search-input-container">
           <Search className="search-icon" />
@@ -205,14 +229,14 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
       </div>
     ) : null;
 
-    const selectionBar = this.props.selectionBar && (
+    const selectionBarComp = selectionBar && (
       <div className="tags-container selected-tags selection-container">
         {this.state.selection.map(v => (
           <DropdownItem
             selectable
             tag
             value={v}
-            // key={!!v.name ? v.name : v.value}
+            key={v.name || (v.value && v.value.toString())}
             onSelected={valSelected}
             onDeselected={valDeselected}
             checkNotCross={false}
@@ -220,18 +244,21 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
         ))}
       </div>
     );
-    const menuClassName =
-      (this.props.multiple ? 'multiple' : '') + (this.props.tags ? ' tags' : '') + (this.props.alignRight ? ' align-right' : '');
+    const menuClassName = cx({
+      multiple,
+      tags,
+      'align-right': alignRight
+    });
 
     const searchingOrItems = this.state.searching ? [<i key="searching">Searching</i>] : items;
     return (
       <FormGroup className="dropdown-form">
         <RDropdown
           isOpen={this.state.dropdownOpen && !!items && items.length > 0}
-          toggle={a}
-          direction={this.props.alignRight ? 'right' : 'down'}
+          toggle={this.toggle}
+          direction={alignRight ? 'right' : 'down'}
         >
-          <DropdownToggle className={dropdownClass} disabled={this.props.disabled}>
+          <DropdownToggle className={dropdownClass} disabled={disabled} {...other}>
             {showIcon && <span className="dropdown-selection-icon">{this.state.selection[0].icon}</span>}
             <span className="button-text">{showIcon ? <span className="icon-with-text">{displayText}</span> : displayText}</span>
           </DropdownToggle>
@@ -243,14 +270,12 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
           >
             <div className="top-spacer" />
             {searchBar}
-            {selectionBar}
-            <PerfectScrollbar>
-              {this.props.tags ? <div className="tags-container">{searchingOrItems}</div> : searchingOrItems}
-            </PerfectScrollbar>
+            {selectionBarComp}
+            <PerfectScrollbar>{tags ? <div className="tags-container">{searchingOrItems}</div> : searchingOrItems}</PerfectScrollbar>
             <div className="bottom-spacer" />
           </DropdownMenu>
-          {!this.state.dropdownOpen && <ExpandMoreRounded className="right-caret" onClick={a} />}
-          {this.state.dropdownOpen && <ExpandLessRounded className="right-caret" onClick={a} />}
+          {!this.state.dropdownOpen && <ExpandMoreRounded className="right-caret" onClick={this.toggle} />}
+          {this.state.dropdownOpen && <ExpandLessRounded className="right-caret" onClick={this.toggle} />}
         </RDropdown>
       </FormGroup>
     );

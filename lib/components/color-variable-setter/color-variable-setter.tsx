@@ -1,5 +1,5 @@
 import React from 'react';
-import ColorPicker from '../color-picker/color-picker';
+import { ColorPicker } from '../color-picker/color-picker';
 import Color from 'color';
 
 export interface IColorVariableSetterProps {
@@ -23,7 +23,7 @@ export function getRootVariable(variable: string, defaultVal = '') {
   return !!val && !!val.trim() ? val.trim() : defaultVal;
 }
 
-class ColorVariableSetter extends React.Component<IColorVariableSetterProps, IColorVariableSetterState> {
+export class ColorVariableSetter extends React.Component<IColorVariableSetterProps, IColorVariableSetterState> {
   state: IColorVariableSetterState = {
     color: '#fff'
   };
@@ -44,5 +44,3 @@ class ColorVariableSetter extends React.Component<IColorVariableSetterProps, ICo
     );
   }
 }
-
-export default ColorVariableSetter;

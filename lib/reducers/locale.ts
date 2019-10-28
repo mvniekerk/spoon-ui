@@ -19,7 +19,7 @@ export interface ILocaleRootState {
   readonly locale: LocaleState;
 }
 
-export default (state: LocaleState = initialState, action): LocaleState => {
+export const reducer = (state: LocaleState = initialState, action): LocaleState => {
   switch (action.type) {
     case REQUEST(ACTION_TYPES.SET_LOCALE):
       return {

@@ -1,8 +1,9 @@
 import React, { ReactNode } from 'react';
-import { CardBody, Card as RCard, CardTitle, CardSubtitle } from 'reactstrap';
+import { CardBody, Card as RCard, CardTitle, CardSubtitle, CardProps } from 'reactstrap';
+import cx from 'classnames';
 import './card.scss';
 
-export interface ICardProps {
+export interface ICardProps extends CardProps {
   image: ReactNode;
   title: string;
   subtitle: string;
@@ -11,17 +12,18 @@ export interface ICardProps {
 
 export class Card extends React.Component<ICardProps> {
   render() {
+    const { image, title, subtitle, actionComponent, className, ...other } = this.props;
     return (
-      <RCard className="base-card">
+      <RCard className={cx('base-card', className)} {...other}>
         <CardBody>
-          <div className="card-image">{this.props.image}</div>
+          <div className="card-image">{image}</div>
           <CardTitle>
-            <h2>{this.props.title}</h2>
+            <h2>{title}</h2>
           </CardTitle>
           <CardSubtitle>
-            <p>{this.props.subtitle}</p>
+            <p>{subtitle}</p>
           </CardSubtitle>
-          {this.props.actionComponent}
+          {actionComponent}
         </CardBody>
       </RCard>
     );

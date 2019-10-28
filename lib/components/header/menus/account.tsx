@@ -40,5 +40,3 @@ export const AccountMenu = ({ isAuthenticated = false }) => (
     <Link to="/">Logout</Link>
   </div>
 );
-
-export default AccountMenu;

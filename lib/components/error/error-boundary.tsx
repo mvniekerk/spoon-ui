@@ -9,7 +9,7 @@ interface IErrorBoundaryState {
   readonly errorInfo: any;
 }
 
-class ErrorBoundary extends React.Component<IErrorBoundaryProps, IErrorBoundaryState> {
+export class ErrorBoundary extends React.Component<IErrorBoundaryProps, IErrorBoundaryState> {
   readonly state: IErrorBoundaryState = { error: undefined, errorInfo: undefined };
 
   componentDidCatch(error, errorInfo) {
@@ -42,5 +42,3 @@ class ErrorBoundary extends React.Component<IErrorBoundaryProps, IErrorBoundaryS
     return this.props.children;
   }
 }
-
-export default ErrorBoundary;

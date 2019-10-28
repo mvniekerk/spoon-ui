@@ -62,5 +62,3 @@ export class ItemsPerPage extends React.Component<IItemsPerPageProps, IItemsPerP
     );
   }
 }
-
-export default ItemsPerPage;

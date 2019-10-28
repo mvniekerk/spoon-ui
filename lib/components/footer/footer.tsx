@@ -4,7 +4,7 @@ import React from 'react';
 import { Translate } from 'react-jhipster';
 import { Col, Row } from 'reactstrap';
 
-const Footer = props => (
+export const Footer = props => (
   <div className="footer page-content">
     <Row>
       <Col md="12">
@@ -15,5 +15,3 @@ const Footer = props => (
     </Row>
   </div>
 );
-
-export default Footer;

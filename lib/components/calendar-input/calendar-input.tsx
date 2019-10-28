@@ -20,13 +20,17 @@ export class CalendarInput extends React.Component<ICalendarInputProps> {
     }
   };
 
-  renderCalendar = () => <Calendar onChange={this.props.onChange} value={this.props.value} />;
+  renderCalendar = () => {
+    const { onChange, value, ...other } = this.props;
+    return <Calendar onChange={onChange} value={value} {...other} />;
+  };
 
   render() {
+    const { value } = this.props;
     return (
       <WithPopover
         className="calendar-input"
-        mainComponent={<Input readOnly value={(this.props.value && this.props.value.toDateString()) || ''} />}
+        mainComponent={<Input readOnly value={(value && value.toDateString()) || ''} />}
         openerIcon={<CalendarIcon />}
         flip
         autoOpen

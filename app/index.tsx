@@ -1,21 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { AppContainer } from 'react-hot-loader';
 
 import { SideMenu } from 'lib/reducers';
-import reducer from 'app/root-reducer';
+import rootReducer from 'app/root-reducer';
 import { ErrorBoundary } from 'lib/components/index';
 import AppComponent from './app';
 import { storeInitialize, translation } from 'lib/config';
 
-const store = storeInitialize(reducer);
+const store = storeInitialize(rootReducer);
 translation.registerLocale(store);
-
-const { getSideMenuState } = SideMenu.sideMenu;
-
-const actions = bindActionCreators({ getSideMenuState }, store.dispatch);
 
 const rootEl = document.getElementById('root');
 

@@ -10,7 +10,7 @@ export interface IProgressionProps {
   onClick?: () => void;
 }
 
-export default class ProgressionItem extends React.Component<IProgressionProps> {
+export class ProgressionItem extends React.Component<IProgressionProps> {
   static defaultProps: IProgressionProps = {
     done: false,
     current: false,

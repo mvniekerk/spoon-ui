@@ -1,15 +1,15 @@
 import React from 'react';
 import { Switch } from 'react-router-dom';
 
-import Home from 'app/modules/home/home';
+import { Home } from 'app/modules/home/home';
 import { ErrorBoundaryRoute } from 'lib/components/index';
-import Typography from 'app/modules/fonts/typography';
-import Buttons from 'app/modules/buttons/buttons';
-import Forms from 'app/modules/forms/forms';
-import DropdownDemo from 'app/modules/dropdowns/dropdown';
-import Selection from 'app/modules/selection/selection';
-import Navigation from 'app/modules/navigation/navigation';
-import Tables from 'app/modules/tables/tables';
+import { Typography } from 'app/modules/fonts/typography';
+import { Buttons } from 'app/modules/buttons/buttons';
+import { Forms } from 'app/modules/forms/forms';
+import { DropdownDemo } from 'app/modules/dropdowns/dropdown';
+import { Selection } from 'app/modules/selection/selection';
+import { Navigation } from 'app/modules/navigation/navigation';
+import { Tables } from 'app/modules/tables/tables';
 import { Theme } from 'app/modules/theme/theme';
 import { CenteredLayoutExample } from 'app/modules/centered-layout/centered-layout';
 import { ContainersExamples } from 'app/modules/containers/containers';
@@ -25,7 +25,7 @@ import TouchApp from '@material-ui/icons/TouchApp';
 import { CurrentRouteAndIcon } from 'lib/reducers/route-position';
 
 // tslint:enable
-const Routes = () => (
+export const AppRoutes = () => (
   <div className="view-routes">
     <Switch>
       <ErrorBoundaryRoute path="/typography" component={Typography} />
@@ -44,5 +44,3 @@ const Routes = () => (
     </Switch>
   </div>
 );
-
-export default Routes;
