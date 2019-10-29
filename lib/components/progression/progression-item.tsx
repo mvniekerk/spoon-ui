@@ -1,6 +1,6 @@
 import './progression.scss';
 import React from 'react';
-import { CheckRounded } from '@material-ui/icons';
+import CheckRounded from '@material-ui/icons/CheckRounded';
 
 export interface IProgressionProps {
   done: boolean;

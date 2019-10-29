@@ -1,0 +1,66 @@
+@import '../../bootstrap-variables';
+
+.entity-card {
+  .entity-card-icon {
+    @include iconColor();
+    margin-right: 2 * $margin-base;
+  }
+
+  &.card {
+    min-width: 300px;
+  }
+
+  &.card > .card-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px;
+
+    .card-title {
+      flex: 1 0;
+      margin: 0px;
+      margin-right: 2 * $margin-base;
+
+      h2 {
+        margin-bottom: 0px;
+      }
+    }
+
+    .body-component {
+      flex: 1 0;
+
+      .form-group {
+        margin: 0px;
+      }
+      .input-group {
+        margin: 0px;
+      }
+    }
+
+    .action-component {
+      margin-left: 2 * $margin-base;
+      flex: 0 0;
+    }
+  }
+
+  &.small {
+    .entity-card-icon {
+      @include iconColor();
+      margin-right: $margin-base;
+    }
+
+    .card-title {
+      margin-right: $margin-base;
+    }
+
+    .action-component {
+      margin-left: $margin-base;
+    }
+  }
+
+  &.card.small {
+    font-size: 100%;
+    min-width: 220px;
+    padding: $padding-base !important;
+  }
+}

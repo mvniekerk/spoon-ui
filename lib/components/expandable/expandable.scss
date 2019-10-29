@@ -1,0 +1,12 @@
+.expandable-container {
+  position: relative;
+
+  // override default bootstrap styles in this context
+  .form-control {
+    margin-bottom: 0px;
+  }
+}
+
+.expandable-section {
+  background: white;
+}

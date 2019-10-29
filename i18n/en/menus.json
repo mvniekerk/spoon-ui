@@ -1,13 +1,17 @@
 {
-  "menus": {
-    "dashboard": "Dashboard",
-    "typography": "Typography",
-    "buttons": "Buttons",
-    "forms": "Forms",
-    "dropdowns": "Dropdowns",
-    "selection": "Selection",
-    "navigation": "Navigation",
-    "tables": "Tables",
-    "theme": "Color theme"
-  }
+	"menus": {
+		"dashboard": "Dashboard",
+		"typography": "Typography",
+		"buttons": "Buttons",
+		"forms": "Forms",
+		"dropdowns": "Dropdowns",
+		"selection": "Selection",
+		"navigation": "Navigation",
+		"tables": "Tables",
+		"theme": "Color theme",
+		"centered-layout": "Centered layout",
+		"containers": "Containers",
+		"entities": "Entities",
+		"modals-popovers": "Modals and popovers"
+	}
 }

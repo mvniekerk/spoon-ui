@@ -6,7 +6,7 @@ import { ITranslatedSelectableValue, translateItem } from '../../util/translatio
 import PerfectScrollbar from '@opuscapita/react-perfect-scrollbar';
 
 import triangle from '../../../static/images/triangle.svg';
-import { MoreVert } from '@material-ui/icons';
+import MoreVert from '@material-ui/icons/MoreVert';
 
 const triangleImage = `url("${triangle}")`;
 

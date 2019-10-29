@@ -1,0 +1,12 @@
+@import '../../bootstrap-variables';
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  padding: $padding-base/2;
+
+  & > * {
+    margin: $margin-base/2;
+  }
+}

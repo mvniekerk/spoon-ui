@@ -3,7 +3,6 @@ import './forms.scss';
 import React from 'react';
 import { Row, Col, Input, InputGroup, FormText, FormFeedback, FormGroup, Label } from 'reactstrap';
 
-/* tslint:disable:no-submodule-imports */
 import {
   TagInput,
   SearchBar,
@@ -13,11 +12,14 @@ import {
   IValueDirtyAndValid,
   iformInput,
   MultipleSelectionInput,
-  Button
+  Button,
+  CalendarInput,
+  Dropdown,
+  DropdownSearchBar,
+  Container
 } from 'lib/components';
 import { ITranslatedSelectableValue, translatedValue } from 'lib/util';
 import { IValidateAndI18nKey, required, requiredString, stringIsNumber } from 'lib/validation';
-/* tslint:enable:no-submodule-imports */
 
 import Check from '@material-ui/icons/CheckRounded';
 import PriorityHighRounded from '@material-ui/icons/PriorityHighRounded';
@@ -46,6 +48,7 @@ export interface IFormsState {
   multipleDisabled: boolean;
   comboChoices: () => Map<IsSmartAnimal, string>;
   multiChoices: () => Map<string, string>;
+  date: Date;
 }
 
 export default class Forms extends React.Component<{}, IFormsState> {
@@ -69,7 +72,8 @@ export default class Forms extends React.Component<{}, IFormsState> {
     multiChoices: () => new Map<string, string>([['one', 'One'], ['two', 'Two'], ['three', 'Three']]),
     radDisabled: false,
     comboDisabled: false,
-    multipleDisabled: false
+    multipleDisabled: false,
+    date: null
   };
 
   updateCount = 1;
@@ -91,6 +95,12 @@ export default class Forms extends React.Component<{}, IFormsState> {
   searchChanged(search: string) {
     this.setState({ search });
   }
+
+  handleDateChange = chosenDate => {
+    this.setState({
+      date: chosenDate
+    });
+  };
 
   renderTextInput() {
     const onNumberInputChange = numberInput => this.setState({ numberInput });
@@ -395,6 +405,30 @@ export default class Forms extends React.Component<{}, IFormsState> {
           </Col>
           <Col md="6">
             <TagInput values={this.state.values} onAddTag={this.onAddTag} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <FormGroup>
+              <Label>CalendarInput</Label>
+              <CalendarInput id="expiry-date-cal" value={this.state.date} onChange={this.handleDateChange} />
+            </FormGroup>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Label>DropdownSearchBar (controlled)</Label>
+            <DropdownSearchBar id="dropdown-search-bar-1" placeholder="Type something" onSearchChanged={this.searchChanged}>
+              <Container>
+                <Row>
+                  <Col>
+                    Custom content goes here:
+                    <Button>Button</Button>
+                    <CalendarInput id="expiry-date-cal" value={this.state.date} onChange={this.handleDateChange} />
+                  </Col>
+                </Row>
+              </Container>
+            </DropdownSearchBar>
           </Col>
         </Row>
       </>
