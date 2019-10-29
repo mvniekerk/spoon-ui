@@ -29,7 +29,7 @@ export interface IDropdownProps<T> extends Omit<DropdownToggleProps, 'placeholde
   disabled: boolean;
   alignRight: boolean;
   disableDeselect: boolean;
-  unselectable: boolean;
+  unselectable: 'on' | 'off';
   onOpen?: () => void;
   onClose?: () => void;
 }
@@ -63,7 +63,7 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
     disabled: false,
     direction: 'down',
     disableDeselect: false,
-    unselectable: true
+    unselectable: 'on'
   };
 
   state: IDropdownState<T> = {

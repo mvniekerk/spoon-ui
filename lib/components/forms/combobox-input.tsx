@@ -52,7 +52,7 @@ export class ComboboxInput<T> extends React.Component<IComboboxInputProps<T>, IS
         {...other}
         initialValues={choices}
         onValueSelected={handleChange}
-        unselectable={false}
+        unselectable="off"
         onClose={onClose}
         disabled={disabled}
       />

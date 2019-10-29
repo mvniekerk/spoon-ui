@@ -21,7 +21,7 @@ export interface IDropdownItemProps<T> {
   iconLeft?: boolean;
   iconRight?: boolean;
   selectable: boolean;
-  unselectable: boolean;
+  unselectable: 'on' | 'off';
   tag: boolean;
   value: IDropdownItem<T>;
   onSelected?: (val: IDropdownItem<T>, sender: DropdownItem<T>) => void;
@@ -38,7 +38,7 @@ export class DropdownItem<T> extends React.Component<IDropdownItemProps<T>, IDro
     selectable: false,
     value: { name: 'Not set', display: '', value: -1 },
     checkNotCross: true,
-    unselectable: true
+    unselectable: 'on'
   };
 
   constructor(props: IDropdownItemProps<T>) {
