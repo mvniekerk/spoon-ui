@@ -6,7 +6,7 @@ import { Dropdown, Button, TagButton, TableHeader } from 'lib/components';
 import MoreVert from '@material-ui/icons/MoreVert';
 import SaveAltRounded from '@material-ui/icons/SaveAltRounded';
 
-export default class Tables extends React.Component {
+export class Tables extends React.Component {
   render() {
     return (
       <Card>
@@ -38,7 +38,7 @@ export default class Tables extends React.Component {
                     <Button color="primary">button</Button>
                   </td>
                   <td>
-                    <Dropdown.Dropdown placeholder="Actions" />
+                    <Dropdown placeholder="Actions" />
                   </td>
                   <td>
                     <SaveAltRounded style={{ color: '#c5d0de' }} />
@@ -60,7 +60,7 @@ export default class Tables extends React.Component {
                     <Button color="primary">button</Button>
                   </td>
                   <td>
-                    <Dropdown.Dropdown placeholder="Actions" />
+                    <Dropdown placeholder="Actions" />
                   </td>
                   <td>
                     <SaveAltRounded style={{ color: '#c5d0de' }} />
@@ -82,7 +82,7 @@ export default class Tables extends React.Component {
                     <Button color="primary">button</Button>
                   </td>
                   <td>
-                    <Dropdown.Dropdown placeholder="Actions" />
+                    <Dropdown placeholder="Actions" />
                   </td>
                   <td>
                     <SaveAltRounded style={{ color: '#c5d0de' }} />

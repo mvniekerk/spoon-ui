@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Row } from 'reactstrap';
-import ColorVariableSetter, { getRootColorVariable } from '../color-variable-setter/color-variable-setter';
+import { ColorVariableSetter, getRootColorVariable } from '../color-variable-setter/color-variable-setter';
 import { translateItem } from '../../util/translation';
 
 export interface IColorGroup {
@@ -118,7 +118,7 @@ export function downloadThemeScssFile(): void {
   URL.revokeObjectURL(objectUrl);
 }
 
-class ColorThemeEditor extends React.Component<IColorThemeEditorProps, {}> {
+export class ColorThemeEditor extends React.Component<IColorThemeEditorProps, {}> {
   static defaultProps: IColorThemeEditorProps = { groups: colorsAllGroups };
 
   render() {
@@ -143,5 +143,3 @@ class ColorThemeEditor extends React.Component<IColorThemeEditorProps, {}> {
     );
   }
 }
-
-export default ColorThemeEditor;

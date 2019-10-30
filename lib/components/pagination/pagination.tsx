@@ -37,5 +37,3 @@ export class Pagination extends React.Component<IPaginationProps> {
     );
   }
 }
-
-export default Pagination;

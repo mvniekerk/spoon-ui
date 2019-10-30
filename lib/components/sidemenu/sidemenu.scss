@@ -2,7 +2,7 @@
   width: 100%;
   align-items: center;
   justify-content: center;
-  height: 53px;
+  flex: 0 0 53px;
   display: flex;
 
   border-bottom: 1px solid var(--menu-border);
@@ -13,8 +13,7 @@
 
   .side-menu-close {
     position: absolute;
-    left: 226px;
-    top: 4px;
+    right: 0px;
     cursor: pointer;
     color: var(--menu-close-color);
   }
@@ -27,9 +26,11 @@
 }
 
 .side-menu-container {
+  display: flex;
+  flex-direction: column;
   z-index: 10000;
   background-image: linear-gradient(to bottom, var(--menu-background-color-from), var(--menu-background-color-to));
-  height: calc(100vh - 0px);
+  height: 100vh;
   width: 250px;
   min-width: 250px;
   padding-right: 0;
@@ -40,6 +41,7 @@
   transition: all 0.15s linear;
   position: fixed;
   ul {
+    overflow-y: auto;
     list-style-type: none;
     margin: 0;
     padding-inline-start: 0;

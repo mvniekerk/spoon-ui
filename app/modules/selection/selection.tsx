@@ -3,9 +3,9 @@ import './selection.scss';
 import React from 'react';
 import { Row, Col, FormGroup, Label, Card } from 'reactstrap';
 import { RadioGroup, Toggle, Checkbox, IRadioButtonValue } from 'lib/components';
-import AddToFromList from 'lib/components/add-to-from-list/add-to-from-list';
+import { AddToFromList } from 'lib/components/add-to-from-list/add-to-from-list';
 
-export default class Selection extends React.Component {
+export class Selection extends React.Component {
   render() {
     const radioGroupVals: Array<IRadioButtonValue<string>> = [
       {

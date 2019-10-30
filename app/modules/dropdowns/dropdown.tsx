@@ -49,7 +49,7 @@ const searchMultipleTooLongSelection = `
   .filter(a => !!a)
   .map((v, i) => ({ display: v, value: `val${i}` }));
 
-export default class DropdownDemo extends React.Component {
+export class DropdownDemo extends React.Component {
   render() {
     return (
       <div>
@@ -58,31 +58,19 @@ export default class DropdownDemo extends React.Component {
             <div className="small-header">Dropdown selects</div>
           </Col>
           <Col md="4">
-            <Dropdown.Dropdown {...this.props} key="dropdown1" placeholder="Single selection" initialValues={singleSelection} />
+            <Dropdown {...this.props} key="dropdown1" placeholder="Single selection" initialValues={singleSelection} />
             <br />
           </Col>
           <Col md="4">
-            <Dropdown.Dropdown
-              {...this.props}
-              key="dropdown1"
-              placeholder="Multiple selection"
-              initialValues={multipleSelection}
-              multiple
-            />
+            <Dropdown {...this.props} key="dropdown1" placeholder="Multiple selection" initialValues={multipleSelection} multiple />
             <br />
           </Col>
           <Col md="4">
-            <Dropdown.Dropdown
-              {...this.props}
-              key="dropdown1"
-              placeholder="Single with icon"
-              initialValues={singleSelectionWithIcon}
-              iconLeft
-            />
+            <Dropdown {...this.props} key="dropdown1" placeholder="Single with icon" initialValues={singleSelectionWithIcon} iconLeft />
             <br />
           </Col>
           <Col md="4">
-            <Dropdown.Dropdown
+            <Dropdown
               {...this.props}
               key="dropdown1"
               placeholder="Multiple with icon"
@@ -93,17 +81,11 @@ export default class DropdownDemo extends React.Component {
             <br />
           </Col>
           <Col md="4">
-            <Dropdown.Dropdown
-              {...this.props}
-              key="dropdown1"
-              placeholder="Single with search"
-              initialValues={searchSingleSelection}
-              search
-            />
+            <Dropdown {...this.props} key="dropdown1" placeholder="Single with search" initialValues={searchSingleSelection} search />
             <br />
           </Col>
           <Col md="4">
-            <Dropdown.Dropdown
+            <Dropdown
               {...this.props}
               key="dropdown1"
               placeholder="Multiple with search"
@@ -114,7 +96,7 @@ export default class DropdownDemo extends React.Component {
             <br />
           </Col>
           <Col md="4">
-            <Dropdown.Dropdown
+            <Dropdown
               {...this.props}
               key="dropdown1"
               placeholder="Multiple, overflow with search"
@@ -131,7 +113,7 @@ export default class DropdownDemo extends React.Component {
             <div className="small-header">Tag selects</div>
           </Col>
           <Col md="12">
-            <Dropdown.Dropdown
+            <Dropdown
               {...this.props}
               key="dropdown1"
               placeholder="Multiple, overflow with search"
@@ -143,7 +125,7 @@ export default class DropdownDemo extends React.Component {
             <br />
           </Col>
           <Col md="4">
-            <Dropdown.Dropdown
+            <Dropdown
               {...this.props}
               key="dropdown1"
               placeholder="Multiple, smaller, overflow with search"

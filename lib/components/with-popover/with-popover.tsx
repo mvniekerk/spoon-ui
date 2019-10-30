@@ -1,4 +1,5 @@
 import React, { ReactNode, ReactElement } from 'react';
+import cx from 'classnames';
 import { Popover, IPopoverProps } from '../popover/popover';
 import { Opener } from '../opener/opener';
 import './with-popover.scss';
@@ -112,7 +113,7 @@ export class WithPopover extends React.Component<IWithPopoverProps, IWithPopover
   );
 
   render() {
-    const className = `with-popover` + (this.props.className ? ` ${this.props.className}` : '');
+    const className = cx('with-popover', this.props.className);
 
     return (
       <div ref={this.captureContainer} className={className}>

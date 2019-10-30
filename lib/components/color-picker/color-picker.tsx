@@ -20,7 +20,7 @@ export interface IColorPickerState {
   offset: number;
 }
 
-class ColorPicker extends React.Component<IColorPickerProps, IColorPickerState> {
+export class ColorPicker extends React.Component<IColorPickerProps, IColorPickerState> {
   static defaultProps: IColorPickerProps = {
     headerText: '',
     onColorSelected: _ => {},
@@ -113,5 +113,3 @@ class ColorPicker extends React.Component<IColorPickerProps, IColorPickerState> 
     );
   }
 }
-
-export default ColorPicker;

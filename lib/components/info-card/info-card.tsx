@@ -1,12 +1,14 @@
 import React, { ReactElement } from 'react';
+import cx from 'classnames';
 import './info-card.scss';
 import { WithPopover } from '../with-popover/with-popover';
 import { Container, Row, Col } from '../layout';
 import { EntityCard } from '../entity-card/entity-card';
-import SearchBar from '../search-bar/search-bar';
+import { SearchBar } from '../search-bar/search-bar';
 
 export interface IInfoCardProps {
   id: string;
+  className?: string;
   title: string;
   popoverContent: ReactElement;
   image?: ReactElement;
@@ -34,17 +36,18 @@ export class InfoCard extends React.Component<IInfoCardProps, IInfoCardState> {
     );
 
   render() {
+    const { className, id, image, title, popoverContent } = this.props;
     return (
       <WithPopover
         autoOpen
         closeOnMainClick
-        className="info-card"
-        target={this.props.id}
-        mainComponent={<EntityCard id={this.props.id} icon={this.props.image} title={this.props.title} />}
+        className={cx('info-card', className)}
+        target={id}
+        mainComponent={<EntityCard id={id} icon={image} title={title} />}
       >
         <Container fluid>
           {this.renderSearch()}
-          {this.props.popoverContent}
+          {popoverContent}
         </Container>
       </WithPopover>
     );

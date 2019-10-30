@@ -1,5 +1,6 @@
 import './button.scss';
 import React from 'react';
+import cx from 'classnames';
 import { Button as RButton, ButtonProps } from 'reactstrap';
 import { Translate } from 'react-jhipster';
 
@@ -21,18 +22,17 @@ export class Button extends React.Component<IButtonProps> {
   };
 
   render() {
+    const { color, disabled, iconRight, iconLeft, name, text, className, children, ...other } = this.props;
     return (
-      <RButton {...this.props} className={'btn-spoon-ui'}>
-        {!!this.props.iconLeft ? <div className="btn-icon icon-left">{this.props.iconLeft}</div> : null}
+      <RButton className={cx('btn-spoon-ui', className)} {...other}>
+        {!!iconLeft ? <div className="btn-icon icon-left">{iconLeft}</div> : null}
         <span className="button-text">
-          {!!this.props.name && <Translate contentKey={this.props.name} />}
-          {!this.props.text ? this.props.text : ''}
-          {this.props.children}
+          {!!name && <Translate contentKey={name} />}
+          {!text ? text : ''}
+          {children}
         </span>
-        {!!this.props.iconRight ? <div className="btn-icon icon-right">{this.props.iconRight}</div> : null}
+        {!!iconRight ? <div className="btn-icon icon-right">{iconRight}</div> : null}
       </RButton>
     );
   }
 }
-
-export default Button;

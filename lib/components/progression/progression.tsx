@@ -5,7 +5,7 @@ export interface IProgression {
   vertical: boolean;
 }
 
-export default class Progression extends React.Component<IProgression> {
+export class Progression extends React.Component<IProgression> {
   static defaultProps: IProgression = {
     vertical: false
   };

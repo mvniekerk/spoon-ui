@@ -1,7 +1,6 @@
 import './dropdown-item.scss';
 
 import React from 'react';
-import { connect } from 'react-redux';
 import { ITranslatedSelectableValue, translateItem } from '../../util/translation';
 import Check from '@material-ui/icons/Check';
 import Clear from '@material-ui/icons/Clear';
@@ -22,7 +21,7 @@ export interface IDropdownItemProps<T> {
   iconLeft?: boolean;
   iconRight?: boolean;
   selectable: boolean;
-  unselectable: boolean;
+  unselectable: 'on' | 'off';
   tag: boolean;
   value: IDropdownItem<T>;
   onSelected?: (val: IDropdownItem<T>, sender: DropdownItem<T>) => void;
@@ -39,7 +38,7 @@ export class DropdownItem<T> extends React.Component<IDropdownItemProps<T>, IDro
     selectable: false,
     value: { name: 'Not set', display: '', value: -1 },
     checkNotCross: true,
-    unselectable: true
+    unselectable: 'on'
   };
 
   constructor(props: IDropdownItemProps<T>) {
@@ -106,5 +105,3 @@ export class DropdownItem<T> extends React.Component<IDropdownItemProps<T>, IDro
     );
   }
 }
-
-export default connect()(DropdownItem);

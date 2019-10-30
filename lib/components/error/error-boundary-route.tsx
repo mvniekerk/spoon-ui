@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, RouteProps } from 'react-router-dom';
-import ErrorBoundary from './error-boundary';
+import { ErrorBoundary } from './error-boundary';
 
 export const ErrorBoundaryRoute = ({ component: Component, ...rest }: RouteProps) => {
   const encloseInErrorBoundary = props => (
@@ -13,5 +13,3 @@ export const ErrorBoundaryRoute = ({ component: Component, ...rest }: RouteProps
 
   return <Route {...rest} render={encloseInErrorBoundary} />;
 };
-
-export default ErrorBoundaryRoute;

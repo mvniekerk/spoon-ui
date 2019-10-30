@@ -1,15 +1,15 @@
 import './selection.scss';
-import React from 'react';
-import { ITranslatedSelectableValue, translateItem } from '../../util/translation';
-import { IOnChange } from '../../util/on-change';
+import React, { HTMLAttributes } from 'react';
+import cx from 'classnames';
+import { translateItem } from '../../util/translation';
+import { IRadioButtonValue } from './radio-button-value';
 
-export interface IRadioButtonValue<T> extends ITranslatedSelectableValue<T>, IOnChange<T> {}
-
+export type IRadioButtonProps<T> = IRadioButtonValue<T> & Omit<HTMLAttributes<HTMLInputElement>, 'onChange'>;
 export interface IRadioState {
   checked: boolean;
 }
 
-export class RadioButton<T> extends React.Component<IRadioButtonValue<T>, IRadioState> {
+export class RadioButton<T> extends React.Component<IRadioButtonProps<T>, IRadioState> {
   state: IRadioState = {
     checked: false
   };
@@ -25,18 +25,20 @@ export class RadioButton<T> extends React.Component<IRadioButtonValue<T>, IRadio
   }
 
   render() {
-    const selected = (this.state && this.state.checked) || this.props.selected;
+    const { id, className, selected, onChange, value, disabled, ...other } = this.props;
+    const isSelected = (this.state && this.state.checked) || selected;
 
     let i = null;
 
     const handleChange = event => {
-      if (!!this.props.onChange) {
-        this.props.onChange(this.props.value);
+      if (!!onChange) {
+        onChange(value);
       }
     };
 
     this.input = (
       <input
+        {...other}
         ref={ii => (i = ii)}
         className="styled-radio"
         id={this.props.id}
@@ -50,21 +52,16 @@ export class RadioButton<T> extends React.Component<IRadioButtonValue<T>, IRadio
 
     const onClick = _ => i.click();
 
-    const dot = selected ? <div className="radio-dot" /> : null;
+    const dot = isSelected ? <div className="radio-dot" /> : null;
 
     return (
-      <div
-        className={'selection-container radiobutton-container' + (selected ? ' selected' : '') + (this.props.disabled ? ' disabled' : '')}
-        onClick={onClick}
-      >
+      <div className={cx(className, 'selection-container radiobutton-container', selected, disabled)} onClick={onClick}>
         {dot}
         {this.input}
-        <label htmlFor={this.props.id} className="selection-text">
+        <label htmlFor={id} className="selection-text">
           {translateItem(this.props)}
         </label>
       </div>
     );
   }
 }
-
-export default RadioButton;

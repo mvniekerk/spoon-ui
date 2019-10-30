@@ -8,21 +8,19 @@ import { connect } from 'react-redux';
 import { Translate } from 'react-jhipster';
 
 import { SideMenu as SideMenuReducer } from '../../reducers';
-import Button from '../button/button';
+import { Button } from '../button/button';
 
-const { setSideMenu, getSideMenuState, MAX } = SideMenuReducer.sideMenu;
+const { MAX } = SideMenuReducer.sideMenu;
 
-export interface IActionBannerProps extends RouteComponentProps<any> {}
+interface IActionBannerProps extends StateProps, RouteComponentProps<any> {}
 
-interface IActionBanner extends StateProps, DispatchProps, IActionBannerProps {}
-
-export interface IHeaderState {
+export interface IActionBannerState {
   menuOpen: boolean;
   width: number;
 }
 
-class ActionBanner extends React.Component<IActionBanner, IHeaderState> {
-  state: IHeaderState = {
+class ActionBanner extends React.Component<IActionBannerProps, IActionBannerState> {
+  state: IActionBannerState = {
     menuOpen: false,
     width: 480
   };
@@ -114,12 +112,8 @@ const mapStateToProps = ({ sideMenuState }: SideMenuReducer.ISideMenuRootState) 
   menuSize: sideMenuState.current
 });
 
-const mapDispatchToProps = { getSideMenuState, setSideMenu };
-
 type StateProps = ReturnType<typeof mapStateToProps>;
-type DispatchProps = typeof mapDispatchToProps;
 
-export default withRouter<IActionBannerProps>(connect<StateProps, DispatchProps>(
-  mapStateToProps,
-  mapDispatchToProps
-)(ActionBanner) as any);
+const component = withRouter(connect<StateProps>(mapStateToProps)(ActionBanner) as any);
+
+export { component as ActionBanner };

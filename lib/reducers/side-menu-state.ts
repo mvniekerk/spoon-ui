@@ -9,7 +9,6 @@ export const HIDE_MINI = 'HIDE_MINI';
 
 export const ACTION_TYPES = {
   SET_SIDEMENU: 'sidemenu/SET_SIDEMENU',
-  GET_SIDEMENU: 'sidemenu/GET_SIDEMENU',
   SET_SIDEMENU_ITEMS: 'sidemenu/SET_SIDEMENU_ITEMS',
   ADD_TO_SIDEMENU_ITEMS: 'sidemenu/ADD_TO_SIDEMENU_ITEMS'
 };
@@ -25,7 +24,7 @@ export interface ISideMenuRootState {
   readonly sideMenuState: SideMenuState;
 }
 
-export default (state: SideMenuState = initialState, action): SideMenuState => {
+export const reducer = (state: SideMenuState = initialState, action): SideMenuState => {
   switch (action.type) {
     case ACTION_TYPES.SET_SIDEMENU:
       const current = state.current;
@@ -51,8 +50,6 @@ export default (state: SideMenuState = initialState, action): SideMenuState => {
         ...state,
         current: toBe
       };
-    case ACTION_TYPES.GET_SIDEMENU:
-      return state;
     case ACTION_TYPES.SET_SIDEMENU_ITEMS:
       const menuItems: CurrentRouteAndIcon[] = action.payload;
       return {
@@ -83,8 +80,4 @@ export const setMenuItems = (s: CurrentRouteAndIcon[]) => ({
 export const setSideMenu = s => ({
   type: ACTION_TYPES.SET_SIDEMENU,
   payload: s
-});
-
-export const getSideMenuState = () => ({
-  type: ACTION_TYPES.GET_SIDEMENU
 });

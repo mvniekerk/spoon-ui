@@ -37,5 +37,3 @@ export class TableHeader extends React.Component<ITableHeaderProps> {
     );
   }
 }
-
-export default TableHeader;

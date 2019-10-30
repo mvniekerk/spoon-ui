@@ -14,7 +14,6 @@ import {
   MultipleSelectionInput,
   Button,
   CalendarInput,
-  Dropdown,
   DropdownSearchBar,
   Container
 } from 'lib/components';
@@ -50,8 +49,7 @@ export interface IFormsState {
   multiChoices: () => Map<string, string>;
   date: Date;
 }
-
-export default class Forms extends React.Component<{}, IFormsState> {
+export class Forms extends React.Component<{}, IFormsState> {
   state: IFormsState = {
     values: [],
     search: '',

@@ -10,10 +10,10 @@ import MoreVert from '@material-ui/icons/MoreVert';
 
 const triangleImage = `url("${triangle}")`;
 
-export interface IDropdownProps {
+export interface IContextMenuProps {
   multiple?: boolean;
   search?: boolean;
-  searchFunction?: (state: IDropdownState, search: string) => Promise<Array<ITranslatedSelectableValue<string>>>;
+  searchFunction?: (state: IContextMenuState, search: string) => Promise<Array<ITranslatedSelectableValue<string>>>;
   initialValues?: Array<ITranslatedSelectableValue<string>>;
   iconLeft?: boolean;
   iconRight?: boolean;
@@ -26,7 +26,7 @@ export interface IDropdownProps {
   alignRight: boolean;
 }
 
-export interface IDropdownState {
+export interface IContextMenuState {
   selection: Array<ITranslatedSelectableValue<string>>;
   searching: boolean;
   values: Array<ITranslatedSelectableValue<string>>;
@@ -34,11 +34,11 @@ export interface IDropdownState {
   search?: string;
 }
 
-export class ContextMenu extends React.Component<IDropdownProps, IDropdownState> {
+export class ContextMenu extends React.Component<IContextMenuProps, IContextMenuState> {
   static defaultProps = {
     multiple: false,
     search: false,
-    searchFunction: (state: IDropdownState, search: string) =>
+    searchFunction: (state: IContextMenuState, search: string) =>
       Promise.resolve(
         state.values
           .map(m => '' + m)
@@ -53,21 +53,21 @@ export class ContextMenu extends React.Component<IDropdownProps, IDropdownState>
     alignRight: false
   };
 
-  state: IDropdownState = {
+  state: IContextMenuState = {
     selection: [],
     searching: false,
     values: [],
     dropdownOpen: false
   };
 
-  toggle() {
+  toggle = () => {
     this.setState(prevState => ({
       dropdownOpen: !prevState.dropdownOpen,
       search: ''
     }));
-  }
+  };
 
-  constructor(props: IDropdownProps) {
+  constructor(props: IContextMenuProps) {
     super(props);
   }
 
@@ -77,7 +77,7 @@ export class ContextMenu extends React.Component<IDropdownProps, IDropdownState>
     }
   }
 
-  componentDidUpdate(oldProps: IDropdownProps, oldState: IDropdownState) {
+  componentDidUpdate(oldProps: IContextMenuProps, oldState: IContextMenuState) {
     if (oldProps.initialValues !== this.props.initialValues) {
       this.setState(_ => ({ values: this.props.initialValues }));
     }
@@ -90,10 +90,9 @@ export class ContextMenu extends React.Component<IDropdownProps, IDropdownState>
   ArrowUpLeft = props => <div className="arrow-up-left" style={{ backgroundImage: triangleImage }} />;
 
   render() {
-    const a = () => this.toggle();
     const valSelected = (val: ITranslatedSelectableValue<string>, sender: DropdownItem<string>) => {
       if (!this.props.multiple) {
-        a.call([]);
+        this.toggle();
         this.state.values.filter(i => i !== val).forEach(i => (i.selected = false));
         this.setState(_ => ({ selection: [val] }));
       } else {
@@ -110,7 +109,7 @@ export class ContextMenu extends React.Component<IDropdownProps, IDropdownState>
 
     const valDeselected = (val: ITranslatedSelectableValue<string>, sender: DropdownItem<string>) => {
       if (!this.props.multiple) {
-        a.call([]);
+        this.toggle();
         this.setState(_ => ({ selection: [] }));
       } else {
         this.setState(prevState => {
@@ -180,7 +179,7 @@ export class ContextMenu extends React.Component<IDropdownProps, IDropdownState>
     const searchingOrItems = this.state.searching ? [<i key="searching">Searching</i>] : items;
     return (
       <div className="context-menu">
-        <RDropdown isOpen={this.state.dropdownOpen} toggle={a} direction={this.props.alignRight ? 'left' : 'down'}>
+        <RDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} direction={this.props.alignRight ? 'left' : 'down'}>
           <DropdownToggle className={dropdownClass} disabled={this.props.disabled} tag="div">
             <button style={{}} className="context-menu-btn">
               <MoreVert />
@@ -203,5 +202,3 @@ export class ContextMenu extends React.Component<IDropdownProps, IDropdownState>
     );
   }
 }
-
-export default ContextMenu;
