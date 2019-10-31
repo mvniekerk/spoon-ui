@@ -1,10 +1,10 @@
 import React, { ReactNode, HTMLAttributes, MouseEvent } from 'react';
 import './simple-menu.scss';
-import { Row, Col } from '../layout';
+import cx from 'classnames';
 import { translateItem } from '../../util/translation';
 import { ActionIcon } from '../action-icon/action-icon';
 
-interface ISimpleMenuProps extends HTMLAttributes<{}> {
+interface ISimpleMenuProps extends HTMLAttributes<HTMLUListElement> {
   items: ISimpleMenuItem[];
 }
 
@@ -16,7 +16,7 @@ export interface ISimpleMenuItem {
 }
 
 export class SimpleMenu extends React.Component<ISimpleMenuProps> {
-  renderItem = item => {
+  renderItem = (item: ISimpleMenuItem) => {
     const text = item.label ? translateItem(item.label) : item.labelText;
 
     return (
@@ -27,9 +27,14 @@ export class SimpleMenu extends React.Component<ISimpleMenuProps> {
     );
   };
 
-  renderItems = () => this.props.items.map(this.renderItem);
+  renderItems = (items: ISimpleMenuItem[]) => items.map(this.renderItem);
 
   render() {
-    return <ul className="simple-menu">{this.renderItems()}</ul>;
+    const { className, items, ...other } = this.props;
+    return (
+      <ul className={cx('simple-menu', className)} {...other}>
+        {this.renderItems(items)}
+      </ul>
+    );
   }
 }

@@ -1,10 +1,10 @@
-.menu-item {
+.sidemenu-item {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 54px;
   cursor: pointer;
-  .menu-item-icon {
+  .sidemenu-item-icon {
     margin: 0;
   }
   p {
@@ -28,20 +28,20 @@
 
   outline: none;
 
-  .menu-item-icon {
+  .sidemenu-item-icon {
     color: var(--menu-item-icon-color);
   }
 }
 
-.menu-item.menu-item-selected .menu-item-icon {
+.sidemenu-item.sidemenu-item-selected .sidemenu-item-icon {
   color: var(--primary);
 }
 
-.menu-item-with-text {
+.sidemenu-item-with-text {
   align-items: center;
   justify-content: left;
 
-  .menu-item-icon {
+  .sidemenu-item-icon {
     margin-left: 30px;
     margin-right: 20px;
   }

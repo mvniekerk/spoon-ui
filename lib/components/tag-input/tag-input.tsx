@@ -200,5 +200,3 @@ export class TagInput extends React.Component<ITagInputProps, ITagInputState> {
     );
   }
 }
-
-export default TagInput;

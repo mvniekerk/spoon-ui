@@ -36,5 +36,3 @@ export class ProgressBar extends React.Component<IProgressBarProps> {
     );
   }
 }
-
-export default ProgressBar;

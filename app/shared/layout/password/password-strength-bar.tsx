@@ -72,5 +72,3 @@ export const PasswordStrengthBar = ({ password }: IPasswordStrengthBarProps) => 
     </div>
   );
 };
-
-export default PasswordStrengthBar;

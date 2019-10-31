@@ -1,5 +1,6 @@
 /* tslint:disable:no-namespace no-empty-interface max-classes-per-file no-shadowed-variable*/
-import sideMenuState, {
+import {
+  reducer as sideMenuState,
   MINI,
   MAX,
   TO_MINI,
@@ -8,11 +9,10 @@ import sideMenuState, {
   HIDE_MINI,
   setMenuItems,
   setSideMenu,
-  getSideMenuState,
   ISideMenuRootState as _ISideMenuRootState
 } from './side-menu-state';
 
-import localeState, { ILocaleRootState as _ILocaleRootState, setLocale } from './locale';
+import { reducer as localeState, ILocaleRootState as _ILocaleRootState, setLocale } from './locale';
 
 import { SUCCESS, FAILURE, REQUEST } from './action-type.util';
 
@@ -39,8 +39,7 @@ export namespace SideMenu {
     HIDE_MAX,
     HIDE_MINI,
     setMenuItems,
-    setSideMenu,
-    getSideMenuState
+    setSideMenu
   };
 }
 

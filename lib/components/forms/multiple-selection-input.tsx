@@ -71,27 +71,21 @@ export class MultipleSelectionInput<T> extends React.Component<IMultipleSelectio
   }
 
   render() {
-    const onChange = (t: Array<ITranslatedSelectableValue<T[]>>) => {
-      this.props.onChange(Array.prototype.concat(...t.map(b => b.value))); // Flatmap doesn't exist
-      if (!!this.props.onMadeDirty) {
-        this.props.onMadeDirty();
+    const { onChange, onMadeDirty, disabled, ...other } = this.props;
+    const handleChange = (t: Array<ITranslatedSelectableValue<T[]>>) => {
+      onChange(Array.prototype.concat(...t.map(b => b.value))); // Flatmap doesn't exist
+      if (!!onMadeDirty) {
+        onMadeDirty();
       }
     };
     const onClose = () => {
-      if (!!this.props.onMadeDirty) {
-        this.props.onMadeDirty();
+      if (!!onMadeDirty) {
+        onMadeDirty();
       }
     };
     const choices: Array<IDropdownItem<T[]>> = this.state.choices.map(b => b as IDropdownItem<T[]>);
     const input = (
-      <Dropdown
-        {...this.props}
-        initialValues={choices}
-        multiple
-        onClose={onClose}
-        onSelectionChanged={onChange}
-        disabled={this.props.disabled}
-      />
+      <Dropdown {...other} initialValues={choices} multiple onClose={onClose} onSelectionChanged={handleChange} disabled={disabled} />
     );
     return formInputGroup(this, input);
   }

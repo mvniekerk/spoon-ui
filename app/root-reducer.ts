@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { loadingBarReducer as loadingBar } from 'react-redux-loading-bar';
 
-import applicationProfile, { ApplicationProfileState } from 'lib/reducers/application-profile';
+import { reducer as applicationProfile, ApplicationProfileState } from 'lib/reducers/application-profile';
 import { SideMenu, sideMenu, Locale, locale } from 'lib/reducers';
 
 // prettier-ignore: sideMenu.sideMenuState

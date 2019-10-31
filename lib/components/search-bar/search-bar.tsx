@@ -1,9 +1,10 @@
 import './search-bar.scss';
 import React, { ChangeEvent } from 'react';
+import cx from 'classnames';
 import SearchRounded from '@material-ui/icons/SearchRounded';
-import { FormGroup, Input } from 'reactstrap';
+import { FormGroup, Input, InputProps } from 'reactstrap';
 
-export interface ISearchBarProps {
+export interface ISearchBarProps extends InputProps {
   onSearchChanged: (search: string) => void;
   disabled?: boolean;
   placeholder?: string;
@@ -13,7 +14,7 @@ export interface ISearchBarState {
   search: string;
 }
 
-class SearchBar extends React.Component<ISearchBarProps, ISearchBarState> {
+export class SearchBar extends React.Component<ISearchBarProps, ISearchBarState> {
   state: ISearchBarState = {
     search: ''
   };
@@ -30,18 +31,19 @@ class SearchBar extends React.Component<ISearchBarProps, ISearchBarState> {
   }
 
   render() {
+    const { className, placeholder, disabled, ...other } = this.props;
     return (
-      <FormGroup className="search-bar">
+      <FormGroup className={cx('search-bar', className)}>
         <Input
-          placeholder={this.props.placeholder}
+          {...other}
+          placeholder={placeholder}
           value={this.state.search}
           onChange={this.onSearchChange}
-          disabled={this.props.disabled}
+          disabled={disabled}
+          type="text"
         />
         <SearchRounded className="search-bar-icon" />
       </FormGroup>
     );
   }
 }
-
-export default SearchBar;

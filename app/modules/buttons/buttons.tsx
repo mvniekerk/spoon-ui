@@ -7,7 +7,7 @@ import { Button, ActionIcon } from 'lib/components';
 
 import Send from '@material-ui/icons/Send';
 
-export default class Buttons extends React.Component {
+export class Buttons extends React.Component {
   render() {
     return (
       <div className="example-buttons">

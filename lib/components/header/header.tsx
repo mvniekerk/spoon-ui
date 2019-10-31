@@ -1,25 +1,16 @@
 import './header.scss';
 
 import React from 'react';
-import { Navbar, Nav, NavbarToggler, Collapse, Row } from 'reactstrap';
-
+import { Navbar, Nav, NavbarToggler, Collapse } from 'reactstrap';
 import LoadingBar from 'react-redux-loading-bar';
-
 import { Brand } from './header-components';
-
-import { SideMenu as SideMenuReducer } from '../../reducers';
-import { connect } from 'react-redux';
-
-const { setSideMenu, getSideMenuState } = SideMenuReducer.sideMenu;
-
-interface IHeader extends StateProps, DispatchProps {}
 
 export interface IHeaderState {
   menuOpen: boolean;
   width: number;
 }
 
-class Header extends React.Component<IHeader, IHeaderState> {
+export class Header extends React.Component<{}, IHeaderState> {
   state: IHeaderState = {
     menuOpen: false,
     width: 480
@@ -74,18 +65,3 @@ class Header extends React.Component<IHeader, IHeaderState> {
     );
   }
 }
-
-const mapStateToProps = ({ sideMenuState }: SideMenuReducer.ISideMenuRootState) => ({
-  menus: sideMenuState.menuItems,
-  menuSize: sideMenuState.current
-});
-
-const mapDispatchToProps = { getSideMenuState, setSideMenu };
-
-type StateProps = ReturnType<typeof mapStateToProps>;
-type DispatchProps = typeof mapDispatchToProps;
-
-export default connect<StateProps, DispatchProps>(
-  mapStateToProps,
-  mapDispatchToProps
-)(Header);

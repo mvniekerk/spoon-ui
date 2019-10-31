@@ -1,9 +1,10 @@
 import './text-input.scss';
 import './form-input.scss';
 import React, { ChangeEvent } from 'react';
+import cx from 'classnames';
 import { IDirtyInput } from '../../util/dirty-input';
 import { translateItem } from '../../util/translation';
-import { Input } from 'reactstrap';
+import { Input, InputProps } from 'reactstrap';
 
 import Check from '@material-ui/icons/CheckRounded';
 import PriorityHighRounded from '@material-ui/icons/PriorityHighRounded';
@@ -16,7 +17,7 @@ import {
   formInputGroup
 } from './form-input';
 
-export interface ITextInputProps extends IDirtyInput<string>, IFormInput<string> {
+export interface ITextInputProps extends Omit<InputProps, 'value' | 'onChange' | 'placeholder'>, IDirtyInput<string>, IFormInput<string> {
   enableTicks?: boolean;
   required?: boolean;
 }
@@ -33,10 +34,12 @@ export class TextInput extends React.Component<ITextInputProps, IFormInputState<
   }
 
   render() {
-    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-      this.props.onChange(e.target.value);
-      if (!!this.props.onMadeDirty) {
-        this.props.onMadeDirty();
+    const { id, className, onMadeDirty, onChange, placeholder, value, required, disabled, enableTicks, ...other } = this.props;
+
+    const onChangeDirty = (e: ChangeEvent<HTMLInputElement>) => {
+      onChange(e.target.value);
+      if (!!onMadeDirty) {
+        onMadeDirty();
       }
     };
     const isInvalid = this.state.invalidAndDirty;
@@ -44,18 +47,19 @@ export class TextInput extends React.Component<ITextInputProps, IFormInputState<
     const input = (
       <>
         <Input
-          id={this.props.id}
-          placeholder={translateItem(this.props.placeholder)}
-          value={this.props.value}
-          onChange={onChange}
-          onBlur={this.props.onMadeDirty}
+          id={id}
+          placeholder={translateItem(placeholder)}
+          value={value}
+          onChange={onChangeDirty}
+          onBlur={onMadeDirty}
           valid={this.state.validAndDirty}
           invalid={this.state.invalidAndDirty}
-          className={`${this.props.required ? 'required' : ''}`}
-          disabled={this.props.disabled}
+          className={cx(className, { required })}
+          disabled={disabled}
+          {...other}
         />
-        {isInvalid && this.props.enableTicks && <PriorityHighRounded id="clear" className="material-icons invalid-icon" />}
-        {isValid && this.props.enableTicks && <Check id="check" className="material-icons valid-icon" />}
+        {isInvalid && enableTicks && <PriorityHighRounded id="clear" className="material-icons invalid-icon" />}
+        {isValid && enableTicks && <Check id="check" className="material-icons valid-icon" />}
       </>
     );
     return formInputGroup(this, input, this.props.required);

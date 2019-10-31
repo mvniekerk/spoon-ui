@@ -1,10 +1,9 @@
 import './typography.scss';
 
 import React from 'react';
-import { connect } from 'react-redux';
 import { Row, Col, Alert, Card } from 'reactstrap';
 
-export default class Typography extends React.Component {
+export class Typography extends React.Component {
   render() {
     return (
       <Card>

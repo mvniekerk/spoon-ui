@@ -14,7 +14,7 @@ const initialState = {
 
 export type ApplicationProfileState = Readonly<typeof initialState>;
 
-export default (state: ApplicationProfileState = initialState, action): ApplicationProfileState => {
+export const reducer = (state: ApplicationProfileState = initialState, action): ApplicationProfileState => {
   switch (action.type) {
     case SUCCESS(ACTION_TYPES.GET_PROFILE):
       const { data } = action.payload;

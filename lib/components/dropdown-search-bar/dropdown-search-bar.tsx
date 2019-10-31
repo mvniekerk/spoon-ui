@@ -1,11 +1,11 @@
 import './dropdown-search-bar.scss';
-import React, { ChangeEvent, ReactNode } from 'react';
+import React, { ChangeEvent, ReactNode, HTMLAttributes } from 'react';
+import cx from 'classnames';
 import { Expandable } from '../expandable/expandable';
 import SearchRounded from '@material-ui/icons/SearchRounded';
-import { FormGroup } from '../layout';
 import { Input } from '../external';
 
-export interface IDropdownSearchBarProps {
+export interface IDropdownSearchBarProps extends HTMLAttributes<HTMLDivElement> {
   id?: string;
   onSearchChanged: (search: string) => void;
   disabled?: boolean;
@@ -34,24 +34,26 @@ export class DropdownSearchBar extends React.Component<IDropdownSearchBarProps, 
   }
 
   render() {
+    const { id, disabled, placeholder, children, className, ...other } = this.props;
     return (
       <Expandable
-        className="dropdown-search-bar"
+        className={cx('dropdown-search-bar', className)}
         mainComponent={
           <div>
             <SearchRounded className="dropdown-search--search-icon" />
             <Input
-              id={this.props.id}
+              id={id}
               className="dropdown-search--main-search"
-              placeholder={this.props.placeholder}
+              placeholder={placeholder}
               value={this.state.search}
               onChange={this.onSearchChange}
-              disabled={this.props.disabled}
+              disabled={disabled}
             />
           </div>
         }
+        {...other}
       >
-        {this.props.children}
+        {children}
       </Expandable>
     );
   }

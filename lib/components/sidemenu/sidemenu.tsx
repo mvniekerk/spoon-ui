@@ -3,13 +3,14 @@ import './sidemenu.scss';
 import React from 'react';
 import { Locale, SideMenu as SideMenuReducer } from '../../reducers/index';
 import { connect } from 'react-redux';
-import { MenuItem } from './menuitem';
+import { SideMenuItem } from './sidemenuitem';
 import { RouteComponentProps, withRouter } from 'react-router';
 import Menu from '@material-ui/icons/Menu';
 import ChevronLeft from '@material-ui/icons/ChevronLeft';
 import ILocaleRootState = Locale.ILocaleRootState;
+import { ScrollableArea } from '../scrollable-area/scrollable-area';
 
-const { setSideMenu, getSideMenuState, MAX, MINI, TO_MAX, TO_MINI, HIDE_MAX, HIDE_MINI } = SideMenuReducer.sideMenu;
+const { setSideMenu, MAX, MINI, TO_MAX, TO_MINI, HIDE_MAX, HIDE_MINI } = SideMenuReducer.sideMenu;
 
 export interface ISideMenuSetableProps extends RouteComponentProps<any> {
   logo?: string;
@@ -17,9 +18,8 @@ export interface ISideMenuSetableProps extends RouteComponentProps<any> {
 
 interface ISideMenuProps extends StateProps, DispatchProps, ISideMenuSetableProps {}
 
-export class SideMenu extends React.Component<ISideMenuProps, {}> {
+class SideMenu extends React.Component<ISideMenuProps, {}> {
   componentDidMount() {
-    this.props.getSideMenuState();
     window.addEventListener('resize', this.updateDimensions);
   }
 
@@ -54,9 +54,9 @@ export class SideMenu extends React.Component<ISideMenuProps, {}> {
     this.props.setSideMenu(MINI);
   };
 
-  SideMenuLogo = props => (
-    <div {...props} className="side-menu-logo">
-      {!!this.props.logo && <img src={this.props.logo} alt="Logo" />}
+  SideMenuLogo = ({ logo }) => (
+    <div className="side-menu-logo">
+      {!!logo && <img src={logo} alt="Logo" />}
       <div className="side-menu-close" onClick={this.menuContract}>
         <ChevronLeft />
       </div>
@@ -64,7 +64,7 @@ export class SideMenu extends React.Component<ISideMenuProps, {}> {
   );
 
   SideMenuHamburger = props => (
-    <div {...props} className="side-menu-logo side-menu-hamburger" onClick={this.menuExpand}>
+    <div className="side-menu-logo side-menu-hamburger" onClick={this.menuExpand}>
       <Menu />
     </div>
   );
@@ -78,10 +78,10 @@ export class SideMenu extends React.Component<ISideMenuProps, {}> {
     const mini = this.props.sideMenu === MINI;
     const toMini = this.props.sideMenu === TO_MINI;
 
-    const logo = max ? <this.SideMenuLogo {...this.props} /> : <this.SideMenuHamburger {...this.props} />;
+    const logo = max ? <this.SideMenuLogo logo={this.props.logo} /> : <this.SideMenuHamburger {...this.props} />;
     const menus = this.props.menus
       .filter(e => e.sideMenu)
-      .map(e => <MenuItem icon={e.icon} currentRoute={e} {...this.props} key={e.name} />);
+      .map(e => <SideMenuItem icon={e.icon} currentRoute={e} {...this.props} key={e.name} />);
     const text = max ? 'Menu' : '';
 
     return (
@@ -102,12 +102,14 @@ const mapStateToProps = ({ sideMenuState, locale }: SideMenuReducer.ISideMenuRoo
   locale: locale.currentLocale
 });
 
-const mapDispatchToProps = { getSideMenuState, setSideMenu };
+const mapDispatchToProps = { setSideMenu };
 
 type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = typeof mapDispatchToProps;
 
-export default withRouter<ISideMenuSetableProps>(connect<StateProps, DispatchProps>(
+const connected = withRouter<ISideMenuSetableProps>(connect<StateProps, DispatchProps>(
   mapStateToProps,
   mapDispatchToProps
 )(SideMenu) as any);
+
+export { connected as SideMenu };

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Col, Row } from 'reactstrap';
-import { RadioButton, IRadioButtonValue } from './radiobutton';
+import { RadioButton } from './radiobutton';
+import { IRadioButtonValue } from './radio-button-value';
 
 export interface IRadioGroupProps<T> {
   values?: Array<IRadioButtonValue<T>>;
@@ -62,5 +63,3 @@ export class RadioGroup<T> extends React.Component<IRadioGroupProps<T>, IRadioGr
     return <div className={`radio-group ${this.props.vertical ? 'vertical' : ''}`}>{this.props.vertical ? vals : <Row>{vals}</Row>}</div>;
   }
 }
-
-export default RadioGroup;

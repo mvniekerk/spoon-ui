@@ -46,5 +46,3 @@ export class Toggle extends React.Component<ITranslatedSelectableValue<boolean>,
     );
   }
 }
-
-export default Toggle;

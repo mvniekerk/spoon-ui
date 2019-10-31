@@ -34,28 +34,29 @@ export class ComboboxInput<T> extends React.Component<IComboboxInputProps<T>, IS
   }
 
   render() {
-    const onChange = (t: ITranslatedSelectableValue<T>) => {
-      this.props.onChange(t.value);
-      if (!!this.props.onMadeDirty) {
-        this.props.onMadeDirty();
+    const { onChange, onMadeDirty, required, disabled, ...other } = this.props;
+    const handleChange = (t: ITranslatedSelectableValue<T>) => {
+      onChange(t.value);
+      if (!!onMadeDirty) {
+        onMadeDirty();
       }
     };
     const onClose = () => {
-      if (!!this.props.onMadeDirty) {
-        this.props.onMadeDirty();
+      if (!!onMadeDirty) {
+        onMadeDirty();
       }
     };
     const choices: Array<IDropdownItem<T>> = this.state.choices.map(b => b as IDropdownItem<T>);
     const input = (
       <Dropdown
-        {...this.props}
+        {...other}
         initialValues={choices}
-        onValueSelected={onChange}
-        unselectable={false}
+        onValueSelected={handleChange}
+        unselectable="off"
         onClose={onClose}
-        disabled={this.props.disabled}
+        disabled={disabled}
       />
     );
-    return formInputGroup(this, input, this.props.required);
+    return formInputGroup(this, input, required);
   }
 }

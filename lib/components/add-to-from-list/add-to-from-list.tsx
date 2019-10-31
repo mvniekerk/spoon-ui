@@ -1,15 +1,15 @@
 import './add-to-from-list.scss';
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import Add from '@material-ui/icons/Add';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import ArrowForward from '@material-ui/icons/ArrowForward';
 import DeleteRounded from '@material-ui/icons/DeleteRounded';
-import SearchBar from '../search-bar/search-bar';
+import { SearchBar } from '../search-bar/search-bar';
 import { Col } from 'reactstrap';
 import PerfectScrollbar from '@opuscapita/react-perfect-scrollbar';
 import { ITranslatedSelectableValue, translateItem } from '../../util/translation';
 
-export interface IAddToFromListProps {
+export interface IAddToFromListProps extends HTMLAttributes<HTMLDivElement> {
   helpText?: string;
   sourceListHeader: string;
   destinationListHeader: string;
@@ -24,7 +24,7 @@ export interface IAddToFromListState {
   selected: Array<ITranslatedSelectableValue<string>>;
 }
 
-class AddToFromList extends React.Component<IAddToFromListProps, IAddToFromListState> {
+export class AddToFromList extends React.Component<IAddToFromListProps, IAddToFromListState> {
   constructor(props: any) {
     super(props);
     this.onSearchChanged = this.onSearchChanged.bind(this);
@@ -56,8 +56,20 @@ class AddToFromList extends React.Component<IAddToFromListProps, IAddToFromListS
 
   render() {
     const height = !!this.props.listHeight ? this.props.listHeight : '300px';
+    const {
+      helpText,
+      sourceListHeader,
+      destinationListHeader,
+      onSearchChanged,
+      listHeight,
+      sourceList,
+      selectedListChanged,
+      selected,
+      ...htmlAttrs
+    } = this.props;
+
     return (
-      <div className="add-to-from-list">
+      <div className="add-to-from-list" {...htmlAttrs}>
         {!!this.props.helpText && <span className="help-text">{this.props.helpText}</span>}
         <div className="middle-box">
           <div className="source-box">
@@ -98,5 +110,3 @@ class AddToFromList extends React.Component<IAddToFromListProps, IAddToFromListS
     );
   }
 }
-
-export default AddToFromList;

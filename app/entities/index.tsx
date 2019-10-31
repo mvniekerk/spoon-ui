@@ -3,7 +3,7 @@ import { Switch } from 'react-router-dom';
 
 // tslint:disable-next-line:no-unused-variable
 
-const Routes = ({ match }) => (
+export const Routes = ({ match }) => (
   <div>
     <Switch>
       {/* prettier-ignore */}
@@ -12,5 +12,3 @@ const Routes = ({ match }) => (
     </Switch>
   </div>
 );
-
-export default Routes;
