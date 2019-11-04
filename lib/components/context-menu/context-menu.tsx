@@ -3,10 +3,10 @@ import React, { ChangeEvent } from 'react';
 import { Dropdown as RDropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
 import { DropdownItem } from '../dropdown/dropdown-item';
 import { ITranslatedSelectableValue, translateItem } from '../../util/translation';
-import PerfectScrollbar from '@opuscapita/react-perfect-scrollbar';
 
 import triangle from '../../../static/images/triangle.svg';
 import MoreVert from '@material-ui/icons/MoreVert';
+import { ScrollableArea } from '../scrollable-area/scrollable-area';
 
 const triangleImage = `url("${triangle}")`;
 
@@ -191,9 +191,9 @@ export class ContextMenu extends React.Component<IContextMenuProps, IContextMenu
             <DropdownMenu className={menuClassName}>
               <div className="top-spacer" />
               {searchBar}
-              <PerfectScrollbar>
+              <ScrollableArea>
                 {this.props.tags ? <div className="tags-container">{searchingOrItems}</div> : searchingOrItems}
-              </PerfectScrollbar>
+              </ScrollableArea>
               <div className="bottom-spacer" />
             </DropdownMenu>
           </div>

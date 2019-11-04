@@ -89,7 +89,7 @@ class SideMenu extends React.Component<ISideMenuProps, {}> {
         <div className={'side-menu-container' + (max ? '' : ' side-menu-container-mini')}>
           {logo}
           <p className="small-header menu-item-header">{text}</p>
-          <ul>{menus}</ul>
+          <ScrollableArea tag="ul">{menus}</ScrollableArea>
         </div>
       </div>
     );
