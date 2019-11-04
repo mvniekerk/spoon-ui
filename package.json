@@ -1,9 +1,11 @@
 {
 	"name": "@grindrodbank/spoon-ui",
-	"version": "0.8.3",
+	"version": "0.8.4",
 	"description": "A set of reusable React UI components and reducers",
 	"license": "MIT",
-	"cacheDirectories": [ "node_modules" ],
+	"cacheDirectories": [
+		"node_modules"
+	],
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/GrindrodBank/spoon-ui"
@@ -150,8 +152,14 @@
 		"node": ">=8.9.0"
 	},
 	"lint-staged": {
-		"app/**/*.{json,ts,tsx,css,scss}": [ "prettier --write", "git add" ],
-		"lib/**/*.{json,ts,tsx,css,scss}": [ "prettier --write", "git add" ]
+		"app/**/*.{json,ts,tsx,css,scss}": [
+			"prettier --write",
+			"git add"
+		],
+		"lib/**/*.{json,ts,tsx,css,scss}": [
+			"prettier --write",
+			"git add"
+		]
 	},
 	"scripts": {
 		"build": "npm run webpack:prod",
