@@ -72,7 +72,6 @@
   color: var(--white-text);
   border-radius: 16px;
   height: 25px;
-  font-size: 16px;
   margin-right: 8px;
 
   display: flex;
@@ -209,7 +208,7 @@
 .dropdown-item-container {
   outline-color: transparent;
   button:focus {
-    outline-color: transparent;
+    @include focusStyle();
   }
 }
 

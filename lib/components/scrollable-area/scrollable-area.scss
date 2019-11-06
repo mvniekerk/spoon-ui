@@ -1,17 +1,4 @@
-// override react-perfect-scrollbar styles
-.oc-scrollbar-container.ps--active-y {
-  .ps__rail-y {
-    opacity: 1;
-    margin-right: 4px;
-    background-color: #e3e6ec;
-    width: 4px;
-    border-radius: 8px;
-    margin-top: 8px;
-    margin-bottom: 8px;
-
-    .ps__thumb-y {
-      width: 4px;
-      margin-right: -2px;
-    }
-  }
+.scrollable-area {
+  overflow-y: auto;
+  height: 100%;
 }

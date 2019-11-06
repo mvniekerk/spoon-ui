@@ -50,8 +50,7 @@ module.exports = options => ({
     alias: {
       'react-dom': '@hot-loader/react-dom',
       app: utils.root('app/'),
-      lib: utils.root('lib/'),
-      '@opuscapita/react-perfect-scrollbar': '@opuscapita/react-perfect-scrollbar/lib/es'
+      lib: utils.root('lib/')
     }
   },
   module: {
