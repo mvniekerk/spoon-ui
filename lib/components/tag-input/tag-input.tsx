@@ -2,13 +2,13 @@ import '../dropdown/dropdown.scss';
 import './tag-input.scss';
 import React, { ChangeEvent } from 'react';
 import { Dropdown, DropdownMenu, DropdownToggle, FormGroup, Input, Label } from 'reactstrap';
-import PerfectScrollbar from '@opuscapita/react-perfect-scrollbar';
 import { ITranslatedSelectableValue, translateItem } from '../../util/translation';
 import { DropdownItem } from '../dropdown/dropdown-item';
 
 import ExpandMoreRounded from '@material-ui/icons/ExpandMoreRounded';
 import ExpandLessRounded from '@material-ui/icons/ExpandLessRounded';
 import triangle from '../../../static/images/triangle.svg';
+import { ScrollableArea } from '../scrollable-area/scrollable-area';
 
 const triangleImage = `url("${triangle}")`;
 
@@ -189,9 +189,9 @@ export class TagInput extends React.Component<ITagInputProps, ITagInputState> {
           <this.ArrowUpLeft />
           <DropdownMenu className="tags multiple">
             <div className="top-spacer" />
-            <PerfectScrollbar>
+            <ScrollableArea>
               <div className="tags-container">{searchingOrItems}</div>
-            </PerfectScrollbar>
+            </ScrollableArea>
             <div className="bottom-spacer" />
           </DropdownMenu>
         </Dropdown>

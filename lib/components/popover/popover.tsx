@@ -1,5 +1,6 @@
-import React, { ReactNode, HTMLAttributes } from 'react';
+import React, { ReactNode, HTMLAttributes, KeyboardEvent } from 'react';
 import { Popover as RPopover, PopoverProps, PopoverBody } from 'reactstrap';
+import keycode from 'keycode';
 import outerClick from 'react-outerclick';
 import './popover.scss';
 
@@ -53,10 +54,20 @@ class Popover extends React.Component<IPopoverProps, IPopoverState> {
     }
   };
 
+  private close = () => {
+    this.setState({ open: false });
+    this.props.onClose && this.props.onClose();
+  };
+
   handleClick = () => {
     if (this.props.onSelfClickClose) {
-      this.setState({ open: false });
-      this.props.onClose && this.props.onClose();
+      this.close();
+    }
+  };
+
+  handleKeyDown = (e: KeyboardEvent<HTMLElement>) => {
+    if (keycode((e as unknown) as Event) === 'esc') {
+      this.close();
     }
   };
 
@@ -65,8 +76,7 @@ class Popover extends React.Component<IPopoverProps, IPopoverState> {
     if (this.props.autoClose && this.state.open) {
       // check that clicked element is not inside the popup
       if (this.popoverEl && !this.popoverEl.contains(e.target)) {
-        this.setState({ open: false });
-        this.props.onClose && this.props.onClose();
+        this.close();
       }
     }
   }
@@ -86,7 +96,7 @@ class Popover extends React.Component<IPopoverProps, IPopoverState> {
           innerRef={this.capturePopover}
           onClick={this.handleClick}
         >
-          <PopoverBody>{this.props.children}</PopoverBody>
+          <PopoverBody onKeyDown={this.handleKeyDown}>{this.props.children}</PopoverBody>
         </RPopover>
       </div>
     );

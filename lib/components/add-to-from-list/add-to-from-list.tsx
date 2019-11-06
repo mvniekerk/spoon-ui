@@ -6,8 +6,8 @@ import ArrowForward from '@material-ui/icons/ArrowForward';
 import DeleteRounded from '@material-ui/icons/DeleteRounded';
 import { SearchBar } from '../search-bar/search-bar';
 import { Col } from 'reactstrap';
-import PerfectScrollbar from '@opuscapita/react-perfect-scrollbar';
 import { ITranslatedSelectableValue, translateItem } from '../../util/translation';
+import { ScrollableArea } from '../scrollable-area/scrollable-area';
 
 export interface IAddToFromListProps extends HTMLAttributes<HTMLDivElement> {
   helpText?: string;
@@ -78,7 +78,7 @@ export class AddToFromList extends React.Component<IAddToFromListProps, IAddToFr
               <SearchBar onSearchChanged={this.onSearchChanged} />
             </Col>
             <div className="items-container" style={{ height }}>
-              <PerfectScrollbar>
+              <ScrollableArea>
                 {!!this.props.sourceList &&
                   this.props.sourceList.filter(b => !this.state.selected.some(bb => bb.value === b.value)).map(b => (
                     <button className="list-item" key={b.name} onClick={this.addSelected.bind(this, b)}>
@@ -86,7 +86,7 @@ export class AddToFromList extends React.Component<IAddToFromListProps, IAddToFr
                       <Add className="list-item-icon" />
                     </button>
                   ))}
-              </PerfectScrollbar>
+              </ScrollableArea>
             </div>
           </div>
           <div className="left-right-icon">
