@@ -53,7 +53,5 @@ The folder structure looks like this:
  </pre>
 
 
-
-
 ## License
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FGrindrodBank%2Fspoon-ui.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FGrindrodBank%2Fspoon-ui?ref=badge_large)
