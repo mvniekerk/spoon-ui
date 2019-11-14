@@ -1,5 +1,6 @@
 [![npm version](https://badge.fury.io/js/%40grindrodbank%2Fspoon-ui.svg)](https://badge.fury.io/js/%40grindrodbank%2Fspoon-ui)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat)](https://github.com/prettier/prettier)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FGrindrodBank%2Fspoon-ui.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FGrindrodBank%2Fspoon-ui?ref=badge_shield)
 # spoon-ui
 React components that are silver and lickable.
 
@@ -52,3 +53,6 @@ The folder structure looks like this:
  </pre>
 
 
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FGrindrodBank%2Fspoon-ui.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FGrindrodBank%2Fspoon-ui?ref=badge_large)
