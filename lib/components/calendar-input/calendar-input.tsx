@@ -25,10 +25,10 @@ export class CalendarInput extends React.Component<ICalendarInputProps, ICalenda
     isPopoverOpen: false
   };
 
-  handleChange = (...args) => {
+  handleChange = date => {
     const { onChange } = this.props;
     if (onChange) {
-      onChange(...args);
+      onChange(date);
       this.setState({
         isPopoverOpen: false
       });
