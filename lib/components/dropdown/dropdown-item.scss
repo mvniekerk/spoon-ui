@@ -27,9 +27,6 @@
   }
 }
 
-.dropdown-item-container {
-}
-
 .dropdown button:hover {
   color: var(--primary);
 }
@@ -66,47 +63,7 @@
   outline: unset;
 }
 
-.dropdown-item-container.tag {
-  min-width: unset;
-  //opacity: 0.5;
-  color: var(--white-text);
-  border-radius: 16px;
-  height: 25px;
-  margin-right: 8px;
-
-  display: flex;
-  flex-direction: row;
-
-  margin-top: 7px;
-
-  button {
-    margin-top: -8px;
-    height: 25px;
-    color: unset;
-    font-size: 13px;
-    text-transform: uppercase;
-    flex-grow: 1;
-    font-weight: normal;
-
-    .select-icon-container {
-      min-width: 32px;
-      text-align: right;
-      padding-right: 8px;
-      margin-bottom: 0;
-    }
-  }
-
-  :-moz-focusring {
-    outline: unset;
-  }
-
-  button:hover,
-  button:focus {
-    background-color: unset;
-  }
-}
-
-.dropdown-item-container.no-tag {
+.dropdown-item-container {
   button {
     flex-grow: 1;
     .button-content {
@@ -115,6 +72,7 @@
   }
   button:active,
   button:focus {
+    @include focusStyle();
     background-color: unset;
     color: unset;
   }
@@ -138,18 +96,11 @@
   }
 }
 
-.dropdown-item-container.tag:hover {
-  color: var(--white-text);
-  border-radius: 16px;
-}
-
 .dropdown-item-container.selected {
   color: var(--primary);
   .select-icon-container {
     text-align: right;
     padding-right: 8px;
-
-    font-size: 16px;
 
     .select-icon {
       color: var(--primary);
@@ -167,64 +118,8 @@
     }
   }
 }
-.dropdown-item-container.selected.no-tag:not(:hover) {
+.dropdown-item-container.selected:not(:hover) {
   .material-icons.dropdown-icon:not(:hover) {
     color: var(--primary);
-  }
-}
-
-.dropdown-item-container.tag.selected {
-  color: var(--white-text);
-  button {
-    color: unset;
-    background-color: unset;
-
-    .button-content {
-      display: flex;
-      flex-grow: 1;
-    }
-
-    .select-icon-container {
-      text-align: right;
-      padding-right: 0;
-      padding-left: 8px;
-      min-width: 24px;
-      margin-bottom: 0;
-      flex-shrink: 1;
-      margin-top: -1px;
-      //top: -2px;
-      position: relative;
-
-      .select-icon {
-        color: var(--white-text);
-        font-size: 20px;
-        font-weight: bold;
-        margin-left: 4px;
-      }
-    }
-  }
-}
-
-.dropdown-item-container {
-  outline-color: transparent;
-  button:focus {
-    @include focusStyle();
-  }
-}
-
-.tags-container.selected-tags {
-  .dropdown-item-container.tag.selected button {
-    margin-top: 0;
-  }
-}
-
-.tags-container.selected-tags.selection-container {
-  .button-content {
-    position: relative;
-    top: -8px;
-  }
-  .select-icon-container {
-    position: relative;
-    top: -10px;
   }
 }

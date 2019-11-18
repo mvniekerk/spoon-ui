@@ -1,10 +1,9 @@
 import './dropdown-item.scss';
 
 import React from 'react';
+import cx from 'classnames';
 import { ITranslatedSelectableValue, translateItem } from '../../util/translation';
 import Check from '@material-ui/icons/Check';
-import Clear from '@material-ui/icons/Clear';
-import { getRootColorVariable } from '../color-variable-setter/color-variable-setter';
 
 export interface IDropdownItem<T> extends ITranslatedSelectableValue<T> {
   icon?: JSX.Element;
@@ -14,7 +13,6 @@ export interface IDropdownItem<T> extends ITranslatedSelectableValue<T> {
 
 export interface IDropdownItemState {
   selected: boolean;
-  color: string;
 }
 
 export interface IDropdownItemProps<T> {
@@ -22,30 +20,22 @@ export interface IDropdownItemProps<T> {
   iconRight?: boolean;
   selectable: boolean;
   unselectable: 'on' | 'off';
-  tag: boolean;
   value: IDropdownItem<T>;
-  onSelected?: (val: IDropdownItem<T>, sender: DropdownItem<T>) => void;
-  onDeselected?: (val: IDropdownItem<T>, sender: DropdownItem<T>) => void;
-  checkNotCross: boolean;
+  onSelected?: (val: IDropdownItem<T>) => void;
+  onDeselected?: (val: IDropdownItem<T>) => void;
 }
-
-export const TAG_CHOICE = [1, 2, 3, 4].map(v => `tags-color-${v}`);
-export const TAG_DESELECTED = '#d8e1e9';
 
 export class DropdownItem<T> extends React.Component<IDropdownItemProps<T>, IDropdownItemState> {
   static defaultProps = {
-    tag: false,
     selectable: false,
     value: { name: 'Not set', display: '', value: -1 },
-    checkNotCross: true,
     unselectable: 'on'
   };
 
   constructor(props: IDropdownItemProps<T>) {
     super(props);
     this.state = {
-      selected: !!props.value && props.value.selected,
-      color: getRootColorVariable(TAG_CHOICE[Math.floor(Math.random() * TAG_CHOICE.length)])
+      selected: !!props.value && props.value.selected
     };
   }
 
@@ -60,36 +50,34 @@ export class DropdownItem<T> extends React.Component<IDropdownItemProps<T>, IDro
       return { selected: false };
     });
     if (isSelected && this.props.onSelected) {
-      this.props.onSelected(this.props.value, this);
+      this.props.onSelected(this.props.value);
     } else if (!isSelected && this.props.onDeselected) {
-      this.props.onDeselected(this.props.value, this);
+      this.props.onDeselected(this.props.value);
     } else {
       console.warn('Ignoring click on ', this);
     }
   };
 
   render() {
-    const className =
-      'dropdown-item' +
-      (this.props.selectable && this.props.value.selected ? ' dropdown-item-selected' : '') +
-      (this.props.iconLeft ? ' has-icon-left' : '') +
-      (this.props.iconRight ? ' has-icon-right' : '') +
-      (this.props.value.splitTop ? ' has-split-top' : '');
-    const handleOnClick = this.handleOnClick;
-    const displayText = translateItem(this.props.value);
-    const itemContainerClass =
-      'dropdown-item-container' + (this.props.value.selected ? ' selected' : '') + (this.props.tag ? ' tag' : ' no-tag');
-    const rightTick = this.props.value.selected ? (
-      this.props.checkNotCross ? (
-        <Check className="material-icons dropdown-icon select-icon" />
-      ) : (
-        <Clear className="material-icons dropdown-icon select-icon" />
-      )
-    ) : null;
-    const color = this.props.tag ? { backgroundColor: this.props.value.selected ? this.state.color : TAG_DESELECTED } : {};
+    const { selectable, iconLeft, iconRight, value } = this.props;
+    const { selected } = this.state;
+
+    const className = cx('dropdown-item', {
+      'dropdown-item-selected': selectable && value.selected,
+      'has-icon-left': iconLeft,
+      'has-icon-right': iconRight,
+      'has-split-top': value.splitTop
+    });
+
+    const displayText = translateItem(value);
+    const itemContainerClass = cx('dropdown-item-container no-tag', {
+      selected: value.selected
+    });
+
+    const rightTick = value.selected ? <Check className="material-icons dropdown-icon select-icon" /> : null;
 
     return (
-      <div className={itemContainerClass} onClick={handleOnClick} style={{ ...color }}>
+      <div className={itemContainerClass} onClick={this.handleOnClick}>
         <div className="button-container">
           <button className={className}>
             {!!this.props.iconLeft ? <div className="material-icons dropdown-icon">{this.props.value.icon}</div> : null}
