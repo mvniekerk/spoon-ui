@@ -38,6 +38,7 @@ export class DropdownSearchBar extends React.Component<IDropdownSearchBarProps, 
     return (
       <Expandable
         className={cx('dropdown-search-bar', className)}
+        disabled={disabled}
         mainComponent={
           <div>
             <SearchRounded className="dropdown-search--search-icon" />

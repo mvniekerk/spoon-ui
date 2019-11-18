@@ -1,3 +1,5 @@
+@import '../../_bootstrap-variables';
+
 button.btn {
   border: 1px;
   box-shadow: 0 0 0 1px #373a3c14 inset;
@@ -97,7 +99,7 @@ button.btn {
 }
 
 button:disabled {
-  background-color: #e9edf1 !important;
+  background-color: $input-disabled-color !important;
   color: var(--gray-lighter) !important;
   //border: #dfe3e9 solid 0.5px !important;
   border-color: #dfe3e9 !important;

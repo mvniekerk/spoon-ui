@@ -2,7 +2,7 @@ import './search-bar.scss';
 import React, { ChangeEvent } from 'react';
 import cx from 'classnames';
 import SearchRounded from '@material-ui/icons/SearchRounded';
-import { FormGroup, Input, InputProps } from 'reactstrap';
+import { Input, InputProps } from 'reactstrap';
 
 export interface ISearchBarProps extends InputProps {
   onSearchChanged: (search: string) => void;
@@ -33,7 +33,7 @@ export class SearchBar extends React.Component<ISearchBarProps, ISearchBarState>
   render() {
     const { className, placeholder, disabled, ...other } = this.props;
     return (
-      <FormGroup className={cx('search-bar', className)}>
+      <div className={cx('search-bar', className)}>
         <Input
           {...other}
           placeholder={placeholder}
@@ -43,7 +43,7 @@ export class SearchBar extends React.Component<ISearchBarProps, ISearchBarState>
           type="text"
         />
         <SearchRounded className="search-bar-icon" />
-      </FormGroup>
+      </div>
     );
   }
 }

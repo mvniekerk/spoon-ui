@@ -54,7 +54,13 @@ export class Checkbox<T> extends React.Component<CheckboxProps<T>, ICheckboxStat
 
     const checkbox = selected ? <Check className="checkbox-check" /> : null;
     return (
-      <div className={cx(className, 'selection-container checkbox-container', selected, disabled)} onClick={onClick}>
+      <div
+        className={cx(className, 'selection-container checkbox-container', {
+          selected,
+          disabled
+        })}
+        onClick={onClick}
+      >
         {checkbox}
         {input}
         <label htmlFor={id} className="selection-text">

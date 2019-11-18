@@ -1,10 +1,12 @@
 import React, { ReactNode, HTMLAttributes, Ref } from 'react';
+import cx from 'classnames';
 import './opener.scss';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 
 interface IOpenerProps extends HTMLAttributes<{}> {
   isOpen: boolean;
+  disabled?: boolean;
   openComponent?: ReactNode;
   closeComponent?: ReactNode;
   onOpen?: () => void;
@@ -17,15 +19,19 @@ interface IOpenerProps extends HTMLAttributes<{}> {
  */
 export class Opener extends React.Component<IOpenerProps> {
   handleOpenClicked = () => {
-    this.props.onOpen && this.props.onOpen();
+    if (!this.props.disabled) {
+      this.props.onOpen && this.props.onOpen();
+    }
   };
 
   handleCloseClicked = () => {
-    this.props.onClose && this.props.onClose();
+    if (!this.props.disabled) {
+      this.props.onClose && this.props.onClose();
+    }
   };
 
   render() {
-    const className = 'opener-icon' + (this.props.className ? ` ${this.props.className}` : '');
+    const className = cx('opener-icon', this.props.className, { disabled: this.props.disabled });
 
     const expand = (
       <div className={className} onClick={this.handleOpenClicked}>

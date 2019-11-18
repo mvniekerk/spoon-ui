@@ -10,6 +10,7 @@ interface IExpandableProps extends HTMLAttributes<HTMLDivElement> {
   openerIcon?: ReactNode;
   openerOpenIcon?: ReactNode;
   openerCloseIcon?: ReactNode;
+  disabled?: boolean;
 }
 
 interface IExpandableState {
@@ -53,13 +54,14 @@ export class Expandable extends React.Component<IExpandableProps> {
   );
 
   render() {
-    const { className, mainComponent, openerIcon, openerOpenIcon, openerCloseIcon, children, ...other } = this.props;
+    const { className, mainComponent, openerIcon, openerOpenIcon, openerCloseIcon, children, disabled, ...other } = this.props;
 
     return (
       <>
         <div ref={this.capture} className={cx(`expandable-container`, className)} {...other}>
           {mainComponent}
           <Opener
+            disabled={disabled}
             isOpen={this.state.open}
             onOpen={this.handleOpen}
             onClose={this.handleClose}

@@ -10,4 +10,8 @@
 
   right: 12px;
   cursor: pointer;
+
+  &.disabled {
+    cursor: default;
+  }
 }
