@@ -22,7 +22,7 @@ export class Button extends React.Component<IButtonProps> {
   };
 
   render() {
-    const { color, disabled, iconRight, iconLeft, name, text, className, children, ...other } = this.props;
+    const { iconRight, iconLeft, name, text, className, children, ...other } = this.props;
     return (
       <RButton className={cx('btn-spoon-ui', className)} {...other}>
         {!!iconLeft ? <div className="btn-icon icon-left">{iconLeft}</div> : null}

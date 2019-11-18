@@ -1,5 +1,10 @@
+@import '../../_bootstrap-variables';
+
 .calendar-input {
   .form-control[readonly] {
     background-color: white;
+  }
+  .form-control:disabled {
+    background-color: $input-disabled-color;
   }
 }

@@ -252,6 +252,7 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
           autoOpen
           autoClose
           closeOnMainClick
+          disabled={this.props.disabled}
           mainComponent={
             <Button block className={dropdownClass} disabled={this.props.disabled} {...other}>
               {showIcon && <span className="dropdown-selection-icon">{this.state.selection[0].icon}</span>}

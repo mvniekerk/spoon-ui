@@ -10,10 +10,37 @@ interface ICalendarInputProps extends CalendarProps {
   id: string;
   value: Date;
   onChange: (date: Date) => void;
+  disabled?: boolean;
+  placeholder?: string;
 }
 
-export class CalendarInput extends React.Component<ICalendarInputProps> {
+interface ICalendarInputState {
+  isPopoverOpen: boolean;
+}
+
+export class CalendarInput extends React.Component<ICalendarInputProps, ICalendarInputState> {
   ref: HTMLElement;
+
+  state = {
+    isPopoverOpen: false
+  };
+
+  handleChange = (...args) => {
+    const { onChange } = this.props;
+    if (onChange) {
+      onChange(...args);
+      this.setState({
+        isPopoverOpen: false
+      });
+    }
+  };
+
+  handleOpen = () => {
+    this.setState({
+      isPopoverOpen: true
+    });
+  };
+
   captureRef = el => {
     if (el) {
       this.ref = el;
@@ -21,22 +48,24 @@ export class CalendarInput extends React.Component<ICalendarInputProps> {
   };
 
   renderCalendar = () => {
-    const { onChange, value, ...other } = this.props;
-    return <Calendar onChange={onChange} value={value} {...other} />;
+    const { value, onChange, ...other } = this.props;
+    return <Calendar onChange={this.handleChange} value={value} {...other} />;
   };
 
   render() {
-    const { value } = this.props;
+    const { value, disabled, placeholder } = this.props;
     return (
       <WithPopover
+        disabled={disabled}
+        isOpen={this.state.isPopoverOpen}
         className="calendar-input"
-        mainComponent={<Input readOnly value={(value && value.toDateString()) || ''} />}
+        mainComponent={<Input readOnly disabled={disabled} placeholder={placeholder} value={(value && value.toDateString()) || ''} />}
         openerIcon={<CalendarIcon />}
         flip
         autoOpen
         autoClose
         closeOnMainClick
-        onSelfClickClose
+        onOpen={this.handleOpen}
       >
         <Container fluid>{this.renderCalendar()}</Container>
       </WithPopover>

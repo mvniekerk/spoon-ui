@@ -55,7 +55,13 @@ export class RadioButton<T> extends React.Component<IRadioButtonProps<T>, IRadio
     const dot = isSelected ? <div className="radio-dot" /> : null;
 
     return (
-      <div className={cx(className, 'selection-container radiobutton-container', selected, disabled)} onClick={onClick}>
+      <div
+        className={cx(className, 'selection-container radiobutton-container', {
+          selected,
+          disabled
+        })}
+        onClick={onClick}
+      >
         {dot}
         {this.input}
         <label htmlFor={id} className="selection-text">
