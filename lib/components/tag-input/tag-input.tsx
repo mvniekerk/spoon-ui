@@ -3,7 +3,7 @@ import './tag-input.scss';
 import React, { ChangeEvent } from 'react';
 import { Dropdown, DropdownMenu, DropdownToggle, FormGroup, Input, Label } from 'reactstrap';
 import { ITranslatedSelectableValue, translateItem } from '../../util/translation';
-import { DropdownItem } from '../dropdown/dropdown-item';
+import { DropdownTag } from '../dropdown/dropdown-tag';
 
 import ExpandMoreRounded from '@material-ui/icons/ExpandMoreRounded';
 import ExpandLessRounded from '@material-ui/icons/ExpandLessRounded';
@@ -106,7 +106,7 @@ export class TagInput extends React.Component<ITagInputProps, ITagInputState> {
     };
 
     const a = () => this.toggle();
-    const valSelected = (val: ITranslatedSelectableValue<string>, sender: DropdownItem<string>) => {
+    const valSelected = (val: ITranslatedSelectableValue<string>) => {
       this.setState(prevState => {
         const vals = prevState.selection;
         if (!vals.includes(val)) {
@@ -116,7 +116,7 @@ export class TagInput extends React.Component<ITagInputProps, ITagInputState> {
       });
     };
 
-    const valDeselected = (val: ITranslatedSelectableValue<string>, sender: DropdownItem<string>) => {
+    const valDeselected = (val: ITranslatedSelectableValue<string>) => {
       val.selected = false;
       this.setState(prevState => {
         const vals = prevState.selection;
@@ -148,30 +148,14 @@ export class TagInput extends React.Component<ITagInputProps, ITagInputState> {
               )
               .map(sv => (
                 <div>
-                  <DropdownItem
-                    {...this.props}
-                    selectable
-                    value={sv}
-                    key={sv.name}
-                    onSelected={valSelected}
-                    onDeselected={valDeselected}
-                    tag
-                  />
+                  <DropdownTag {...this.props} selectable value={sv} key={sv.name} onSelected={valSelected} onDeselected={valDeselected} />
                 </div>
               ))
           ]
         : [];
 
     const selected = this.state.selection.map(v => (
-      <DropdownItem
-        selectable
-        tag
-        value={v}
-        key={!!v.name ? v.name : v.value}
-        onSelected={valSelected}
-        onDeselected={valDeselected}
-        checkNotCross={false}
-      />
+      <DropdownTag value={v} key={!!v.name ? v.name : v.value} onSelected={valSelected} onDeselected={valDeselected} />
     ));
     const searchingOrItems = this.props.searching ? [<i key="searching">Searching</i>] : items;
 

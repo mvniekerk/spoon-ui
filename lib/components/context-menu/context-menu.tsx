@@ -90,7 +90,7 @@ export class ContextMenu extends React.Component<IContextMenuProps, IContextMenu
   ArrowUpLeft = props => <div className="arrow-up-left" style={{ backgroundImage: triangleImage }} />;
 
   render() {
-    const valSelected = (val: ITranslatedSelectableValue<string>, sender: DropdownItem<string>) => {
+    const valSelected = (val: ITranslatedSelectableValue<string>) => {
       if (!this.props.multiple) {
         this.toggle();
         this.state.values.filter(i => i !== val).forEach(i => (i.selected = false));
@@ -104,10 +104,10 @@ export class ContextMenu extends React.Component<IContextMenuProps, IContextMenu
           return { selection: vals };
         });
       }
-      this.props.onValueSelected(val, sender);
+      this.props.onValueSelected(val);
     };
 
-    const valDeselected = (val: ITranslatedSelectableValue<string>, sender: DropdownItem<string>) => {
+    const valDeselected = (val: ITranslatedSelectableValue<string>) => {
       if (!this.props.multiple) {
         this.toggle();
         this.setState(_ => ({ selection: [] }));
@@ -120,7 +120,7 @@ export class ContextMenu extends React.Component<IContextMenuProps, IContextMenu
           return { selection: vals };
         });
       }
-      this.props.onValueDeselected(val, sender);
+      this.props.onValueDeselected(val);
     };
 
     const showIcon = !this.props.multiple && this.state.selection.length === 1;
@@ -140,15 +140,7 @@ export class ContextMenu extends React.Component<IContextMenuProps, IContextMenu
                   .indexOf(this.state.search.toLowerCase()) >= 0
             )
             .map(sv => (
-              <DropdownItem
-                {...this.props}
-                selectable
-                value={sv}
-                key={sv.name}
-                onSelected={valSelected}
-                onDeselected={valDeselected}
-                tag={this.props.tags}
-              />
+              <DropdownItem {...this.props} selectable value={sv} key={sv.name} onSelected={valSelected} onDeselected={valDeselected} />
             ))
         : [];
 
