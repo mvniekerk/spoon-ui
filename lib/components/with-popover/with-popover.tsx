@@ -43,6 +43,16 @@ interface IWithPopoverProps extends Omit<IPopoverProps, 'isOpen' | 'children' | 
    *  If true, the popover will be closed when popover body is clicked.
    */
   onSelfClickClose?: boolean;
+
+  /**
+   * Override the state of the popover from the parent
+   */
+  isOpen?: boolean;
+
+  /**
+   * If true, the popover can not be opened
+   */
+  disabled?: boolean;
 }
 
 interface IWithPopoverState {
@@ -51,12 +61,20 @@ interface IWithPopoverState {
 
 export class WithPopover extends React.Component<IWithPopoverProps, IWithPopoverState> {
   state = {
-    open: false
+    open: this.props.isOpen
   };
 
   containerRef = null;
   targetRef = null;
   targetInnerRef = null;
+
+  componentWillReceiveProps(nextProps: IWithPopoverProps) {
+    if (nextProps.isOpen !== this.state.open) {
+      this.setState({
+        open: nextProps.isOpen
+      });
+    }
+  }
 
   captureContainer = el => {
     if (el) {
@@ -123,6 +141,7 @@ export class WithPopover extends React.Component<IWithPopoverProps, IWithPopover
           onClick: this.handleMainClick
         })}
         <Opener
+          disabled={this.props.disabled}
           isOpen={this.state.open}
           onOpen={this.handleOpen}
           onClose={this.handleClose}

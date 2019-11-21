@@ -566,7 +566,7 @@ a:hover {
 }
 
 .form-control:disabled {
-  background-color: #e9edf1;
+  background-color: $input-disabled-color;
   color: var(--gray-lighter);
   border: #dfe3e9 solid 1px;
   height: 32px;

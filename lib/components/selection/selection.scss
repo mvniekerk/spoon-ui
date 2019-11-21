@@ -92,7 +92,7 @@ input:checked + .slider:before {
 
 .selection-container.disabled {
   .slider {
-    background-color: #e9edf1;
+    background-color: $input-disabled-color;
     box-shadow: unset;
   }
 
@@ -106,7 +106,7 @@ input:checked + .slider:before {
 
   .styled-checkbox {
     & + label:before {
-      background-color: #e9edf1;
+      background-color: $input-disabled-color;
       box-shadow: 0 0 0 1px #dfe3e9 inset;
     }
   }
@@ -114,7 +114,7 @@ input:checked + .slider:before {
 
 .radiobutton-container.disabled {
   .selection-text:before {
-    background-color: #e9edf1;
+    background-color: $input-disabled-color;
     box-shadow: 0 0 0 1px #dfe3e9 inset;
   }
 }
@@ -258,7 +258,7 @@ input:checked + .slider:before {
   //&:checked + label:before {
   label:before {
     background-image: unset;
-    background-color: #e9edf1;
+    background-color: $input-disabled-color;
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
   }
 
@@ -272,7 +272,7 @@ input:checked + .slider:before {
 .radiobutton-container.disabled.selected {
   label:before {
     background-image: unset;
-    background-color: #e9edf1;
+    background-color: $input-disabled-color;
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
   }
 

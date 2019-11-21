@@ -78,8 +78,10 @@
     color: var(--gray-lighter);
   }
 
-  .selected-tags {
-    padding-bottom: 4px;
+  .tags-container {
+    button {
+      min-height: unset;
+    }
   }
 }
 
@@ -89,18 +91,6 @@
 
 .dropdown-options {
   max-height: 40vh;
-}
-
-.dropdown-content,
-.tag-input {
-  .tags-container {
-    display: flex;
-    flex-grow: 1;
-    flex-flow: wrap;
-    padding-left: 4px;
-    padding-right: 4px;
-    width: 100%;
-  }
 }
 
 .dropdown .dropdown-item-container button:hover {

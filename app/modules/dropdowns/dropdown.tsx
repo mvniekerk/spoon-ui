@@ -7,35 +7,35 @@ import PersonOutline from '@material-ui/icons/PersonOutline';
 import Settings from '@material-ui/icons/Settings';
 import Place from '@material-ui/icons/Place';
 
-import { Dropdown } from 'lib/components';
+import { Dropdown, IDropdownItem } from 'lib/components';
 import PowerSettingsNew from '@material-ui/icons/PowerSettingsNew';
 
-const singleSelection = [
+const singleSelection: Array<IDropdownItem<string>> = [
+  { display: 'First', value: 'first', selected: true },
+  { display: 'Second', value: 'second' },
+  { display: 'Third', value: 'third' }
+];
+
+const multipleSelection: Array<IDropdownItem<string>> = [
   { display: 'First', value: 'first' },
   { display: 'Second', value: 'second' },
   { display: 'Third', value: 'third' }
 ];
 
-const multipleSelection = [
-  { display: 'First', value: 'first' },
-  { display: 'Second', value: 'second' },
-  { display: 'Third', value: 'third' }
-];
-
-const singleSelectionWithIcon = [
-  { display: 'Your account', value: 'first', icon: <PersonOutline /> },
-  { display: 'Settings', value: 'second', icon: <Settings /> },
+const singleSelectionWithIcon: Array<IDropdownItem<string>> = [
+  { display: 'Your account', value: 'first', icon: <PersonOutline />, selected: true },
+  { display: 'Settings', value: 'second', icon: <Settings />, selected: true },
   { display: 'Map', value: 'third', icon: <Place /> },
   { display: 'Logout', value: 'logout', icon: <PowerSettingsNew />, splitTop: true }
 ];
 
-const searchSingleSelection = [
+const searchSingleSelection: Array<IDropdownItem<string>> = [
   { display: 'Your account', value: 'first' },
   { display: 'Settings', value: 'second' },
   { display: 'Map', value: 'third' }
 ];
 
-const searchMultipleTooLongSelection = `
+const searchMultipleTooLongSelection: Array<IDropdownItem<string>> = `
     As I was saying the mother of this particular hobbit of Bilbo Baggins that is was the famous Belladonna Took one of the three remarkable daughters of the Old Took head
      of the hobbits who lived across The Water the small river that ran on the foot of The Hill It was often said (in other families) that long ago one of the Took ancestors must
       have taken a fairy wife That was of course, absurd but certainly there was still something not entirely hobbitlike about them and once in a while members of the Took-clan
@@ -48,6 +48,11 @@ const searchMultipleTooLongSelection = `
   .map(a => a.trim())
   .filter(a => !!a)
   .map((v, i) => ({ display: v, value: `val${i}` }));
+
+// initially selected values for tags
+searchMultipleTooLongSelection[0].selected = true;
+searchMultipleTooLongSelection[3].selected = true;
+searchMultipleTooLongSelection[4].selected = true;
 
 export class DropdownDemo extends React.Component {
   render() {
@@ -121,6 +126,7 @@ export class DropdownDemo extends React.Component {
               search
               multiple
               tags
+              selectionBar
             />
             <br />
           </Col>

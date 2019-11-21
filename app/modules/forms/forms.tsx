@@ -387,10 +387,21 @@ export class Forms extends React.Component<{}, IFormsState> {
         </Row>
         <Row>
           <Col md="12">
-            <div className="small-header">Search bar</div>
+            <div className="small-header">Input Bars</div>
           </Col>
           <Col md="8">
+            <Label>SearchBar</Label>
             <SearchBar onSearchChanged={this.searchChanged} />
+            <FormFeedback valid>
+              <Info className="material-icons" />
+              {this.state.search}
+            </FormFeedback>
+          </Col>
+        </Row>
+        <Row>
+          <Col md="8">
+            <Label>SearchBar (disabled)</Label>
+            <SearchBar disabled onSearchChanged={this.searchChanged} />
             <FormFeedback valid>
               <Info className="material-icons" />
               {this.state.search}
@@ -409,7 +420,15 @@ export class Forms extends React.Component<{}, IFormsState> {
           <Col>
             <FormGroup>
               <Label>CalendarInput</Label>
-              <CalendarInput id="expiry-date-cal" value={this.state.date} onChange={this.handleDateChange} />
+              <CalendarInput placeholder="Pick a date" id="expiry-date-cal" value={this.state.date} onChange={this.handleDateChange} />
+            </FormGroup>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <FormGroup>
+              <Label>CalendarInput (disabled)</Label>
+              <CalendarInput id="expiry-date-cal-dis" disabled value={this.state.date} onChange={this.handleDateChange} />
             </FormGroup>
           </Col>
         </Row>
@@ -422,7 +441,23 @@ export class Forms extends React.Component<{}, IFormsState> {
                   <Col>
                     Custom content goes here:
                     <Button>Button</Button>
-                    <CalendarInput id="expiry-date-cal" value={this.state.date} onChange={this.handleDateChange} />
+                    <CalendarInput id="expiry-date-cal-2" value={this.state.date} onChange={this.handleDateChange} />
+                  </Col>
+                </Row>
+              </Container>
+            </DropdownSearchBar>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Label>DropdownSearchBar (disabled)</Label>
+            <DropdownSearchBar id="dropdown-search-bar-1-dis" disabled placeholder="Type something" onSearchChanged={this.searchChanged}>
+              <Container>
+                <Row>
+                  <Col>
+                    Custom content goes here:
+                    <Button>Button</Button>
+                    <CalendarInput id="expiry-date-cal-2-dis" value={this.state.date} onChange={this.handleDateChange} />
                   </Col>
                 </Row>
               </Container>

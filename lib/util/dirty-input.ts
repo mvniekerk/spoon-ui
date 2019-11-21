@@ -6,7 +6,7 @@ export interface IDirtyInput<T> {
   onMadeDirty?: () => void;
   valid?: boolean;
   onValidChange?: (isValid: boolean) => void;
-  onChange: (t: T) => void;
+  onChange?: (t: T) => void;
   validation?: Array<IValidateAndI18nKey<T>>;
   validMessage?: TranslatedValueOrKey<T>;
   helpMessage?: TranslatedValueOrKey<T>;
