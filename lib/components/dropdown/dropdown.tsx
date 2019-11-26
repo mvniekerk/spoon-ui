@@ -76,10 +76,10 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
     return this.state.selection;
   }
 
-  private updateSelection = () => {
+  private updateSelection = (props = this.props) => {
     this.setState(_ => ({
-      values: this.props.initialValues,
-      selection: [...this.props.initialValues.filter(b => b.selected)]
+      values: props.initialValues,
+      selection: [...props.initialValues.filter(b => b.selected)]
     }));
   };
 
@@ -230,7 +230,7 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
       <div className="search-container">
         <div className="search-input-container">
           <Search className="search-icon" />
-          <input type="text" className="search-input" placeholder="Search" onChange={this.onSearchChanged} />
+          <input type="text" className="search-input" value={this.state.search} placeholder="Search" onChange={this.onSearchChanged} />
         </div>
       </div>
     ) : null;

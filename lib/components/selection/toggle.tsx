@@ -1,12 +1,13 @@
 import './selection.scss';
 import React from 'react';
 import { ITranslatedSelectableValue, translateItem } from '../../util/translation';
+import { IOnChange } from '../../util/on-change';
 
 export interface IToggleState {
   checked: boolean;
 }
 
-export class Toggle extends React.Component<ITranslatedSelectableValue<boolean>, IToggleState> {
+export class Toggle extends React.Component<ITranslatedSelectableValue<boolean> & IOnChange<boolean>, IToggleState> {
   state: IToggleState = {
     checked: false
   };
@@ -21,8 +22,18 @@ export class Toggle extends React.Component<ITranslatedSelectableValue<boolean>,
     this.setState(_ => ({ checked: this.props.selected }));
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.selected !== this.props.selected) {
+      this.setState({ checked: this.props.selected });
+    }
+    if (prevProps.value !== this.props.value) {
+      this.setState({ checked: Boolean(this.props.value) });
+    }
+  }
+
   handleChange(event) {
     this.setState({ checked: event.target.checked });
+    this.props.onChange && this.props.onChange(this.state.checked);
   }
 
   render() {

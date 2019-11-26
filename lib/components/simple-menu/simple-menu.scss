@@ -9,15 +9,15 @@
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    height: 32px;
+    min-height: 42px;
+    color: var(--menu-item-color);
 
     &:hover {
-      background-color: #f1f4f8;
+      @include hoverStyle();
     }
   }
 
   .simple-menu-item-label {
     margin-left: $margin-base;
-    color: var(--menu-item-color);
   }
 }

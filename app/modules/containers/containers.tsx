@@ -1,5 +1,5 @@
 import React, { ReactNode, HTMLAttributes } from 'react';
-import { List, Grid, SimpleMenu, ISimpleMenuItem, Row, Col, Label, Expandable, Button } from 'lib/components';
+import { List, Grid, SimpleMenu, ISimpleMenuItem, Row, Col, Label, Expandable, Button, ContextMenu } from 'lib/components';
 import Navigate from '@material-ui/icons/NavigateNextSharp';
 
 import './styles.scss';
@@ -7,6 +7,7 @@ import './styles.scss';
 interface IContainersExamplesState {
   data: any[];
   actions: ISimpleMenuItem[];
+  contextMenuItems: ISimpleMenuItem[];
 }
 
 export class ContainersExamples extends React.Component<any, IContainersExamplesState> {
@@ -35,6 +36,26 @@ export class ContainersExamples extends React.Component<any, IContainersExamples
         label: 'menus.navigation',
         onClick: () => {
           alert('menu item onClick');
+        }
+      }
+    ],
+    contextMenuItems: [
+      {
+        labelText: 'Your account',
+        onClick: () => {
+          alert('Your account clicked');
+        }
+      },
+      {
+        labelText: 'Settings',
+        onClick: () => {
+          alert('Settings clicked');
+        }
+      },
+      {
+        labelText: 'Map',
+        onClick: () => {
+          alert('Map clicked');
         }
       }
     ]
@@ -79,6 +100,10 @@ export class ContainersExamples extends React.Component<any, IContainersExamples
               <Button>Me too</Button>
               <SimpleMenu items={this.state.actions} />
             </Expandable>
+          </Col>
+          <Col md="2">
+            <div className="small-header">Context menu</div>
+            <ContextMenu items={this.state.contextMenuItems} />
           </Col>
         </Row>
       </>

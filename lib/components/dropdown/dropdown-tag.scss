@@ -4,10 +4,13 @@
   border-radius: 4 * $base;
   height: 6 * $base;
 
-  padding-left: 1.5 * $padding-base;
+  display: flex;
+  align-items: center;
+
+  padding: 0 1.5 * $padding-base;
 
   color: var(--white-text);
-  font-size: 13px;
+  font-size: 12px;
   text-transform: uppercase;
   font-weight: normal;
 
@@ -18,7 +21,7 @@
   }
 
   .dropdown-tag-icon {
-    font-size: 13px;
+    font-size: 12px;
     margin-left: $margin-base;
   }
 }

@@ -11,6 +11,7 @@ export interface IDropdownSearchBarProps extends HTMLAttributes<HTMLDivElement> 
   disabled?: boolean;
   placeholder?: string;
   children?: ReactNode;
+  value?: string;
 }
 
 export interface IDropdownSearchBarState {
@@ -25,6 +26,12 @@ export class DropdownSearchBar extends React.Component<IDropdownSearchBarProps, 
   constructor(props: any) {
     super(props);
     this.onSearchChange = this.onSearchChange.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps: IDropdownSearchBarProps) {
+    if (this.props.value !== nextProps.value) {
+      this.setState({ search: nextProps.value });
+    }
   }
 
   onSearchChange(e: ChangeEvent<HTMLInputElement>) {

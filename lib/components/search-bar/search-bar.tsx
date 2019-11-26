@@ -8,6 +8,7 @@ export interface ISearchBarProps extends InputProps {
   onSearchChanged: (search: string) => void;
   disabled?: boolean;
   placeholder?: string;
+  value?: string;
 }
 
 export interface ISearchBarState {
@@ -22,6 +23,13 @@ export class SearchBar extends React.Component<ISearchBarProps, ISearchBarState>
   constructor(props: any) {
     super(props);
     this.onSearchChange = this.onSearchChange.bind(this);
+    this.state.search = this.props.value || '';
+  }
+
+  componentWillReceiveProps(nextProps: ISearchBarProps) {
+    if (nextProps.value !== this.props.value) {
+      this.setState({ search: nextProps.value });
+    }
   }
 
   onSearchChange(e: ChangeEvent<HTMLInputElement>) {

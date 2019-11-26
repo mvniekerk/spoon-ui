@@ -2,10 +2,42 @@ import './selection.scss';
 
 import React from 'react';
 import { Row, Col, FormGroup, Label, Card } from 'reactstrap';
-import { RadioGroup, Toggle, Checkbox, IRadioButtonValue } from 'lib/components';
+import { RadioGroup, Toggle, Checkbox, IRadioButtonValue, RadioButton, Button } from 'lib/components';
 import { AddToFromList } from 'lib/components/add-to-from-list/add-to-from-list';
 
 export class Selection extends React.Component {
+  state = {
+    checkbox: false,
+    radio: false,
+    toggle: false
+  };
+
+  toggle = () => {
+    this.setState({
+      checkbox: !this.state.checkbox,
+      radio: !this.state.radio,
+      toggle: !this.state.toggle
+    });
+  };
+
+  handleCheckbox = () => {
+    this.setState({
+      checkbox: !this.state.checkbox
+    });
+  };
+
+  handleRadio = () => {
+    this.setState({
+      radio: !this.state.radio
+    });
+  };
+
+  handleToggle = () => {
+    this.setState({
+      toggle: !this.state.toggle
+    });
+  };
+
   render() {
     const radioGroupVals: Array<IRadioButtonValue<string>> = [
       {
@@ -13,7 +45,7 @@ export class Selection extends React.Component {
         id: 'option1',
         value: 'value1',
         disabled: false,
-        selected: true
+        selected: false
       },
       {
         display: 'Option 2',
@@ -27,7 +59,7 @@ export class Selection extends React.Component {
         id: 'option3',
         value: 'value3',
         disabled: true,
-        selected: true
+        selected: false
       }
     ];
 
@@ -64,20 +96,27 @@ export class Selection extends React.Component {
             </FormGroup>
           </Col>
           <Col md="4">
-            <div className="small-header">Radio buttons</div>
+            <div className="small-header">RadioGroup buttons</div>
             <FormGroup>
-              <Label for="exampleCheckbox">Radio button label</Label>
+              <Label for="exampleCheckbox">RadioGroup button label</Label>
               <RadioGroup md={6} values={radioGroupVals} name="radGroup1" />
               <RadioGroup md={6} values={lonesomeChecked} name="radGroup2" />
             </FormGroup>
           </Col>
           <Col md="4">
-            <div className="small-header">Radio buttons vertical</div>
+            <div className="small-header">RadioGroup buttons vertical</div>
             <FormGroup>
-              <Label for="exampleCheckbox">Radio button label</Label>
+              <Label for="exampleCheckbox">RadioGroup button label</Label>
               <RadioGroup vertical values={radioGroupVals} name="radGroup1" />
               <RadioGroup vertical values={lonesomeChecked} name="radGroup2" />
             </FormGroup>
+          </Col>
+          <Col md="4">
+            <div className="small-header">Controlled inputs</div>
+            <Checkbox selected={this.state.checkbox} onChange={this.handleCheckbox} />
+            <RadioButton selected={this.state.radio} onChange={this.handleRadio} />
+            <Toggle selected={this.state.toggle} onChange={this.handleToggle} />
+            <Button onClick={this.toggle}>Toggle</Button>
           </Col>
           <Col md="4">
             <div className="small-header">Toggle buttons</div>

@@ -7,11 +7,10 @@ import Info from '@material-ui/icons/Info';
 import Edit from '@material-ui/icons/Edit';
 import SubdirectoryArrowRight from '@material-ui/icons/SubdirectoryArrowRight';
 
-import { Button, Alert, ItemsPerPage, Pagination, ProgressBar, Progression, ProgressionItem, ContextMenu } from 'lib/components';
+import { Button, Alert, ItemsPerPage, Pagination, ProgressBar, Progression, ProgressionItem } from 'lib/components';
 
 export class Navigation extends React.Component {
   render() {
-    const val = [{ display: 'Your account', value: 'first' }, { display: 'Settings', value: 'second' }, { display: 'Map', value: 'third' }];
     return (
       <>
         <Row>
@@ -106,14 +105,6 @@ export class Navigation extends React.Component {
               Pagination
             </div>
             <Pagination />
-          </Col>
-          <Col md="2">
-            <div className="small-header">Context menu</div>
-            <ContextMenu initialValues={val} />
-          </Col>
-          <Col md="2">
-            <div className="small-header">Context menu (right align)</div>
-            <ContextMenu initialValues={val} alignRight />
           </Col>
           <Col md="4">
             <div className="small-header">Progression</div>
