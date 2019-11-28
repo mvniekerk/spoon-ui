@@ -6,8 +6,8 @@ import ArrowForward from '@material-ui/icons/ArrowForward';
 import DeleteRounded from '@material-ui/icons/DeleteRounded';
 import { SearchBar } from '../search-bar/search-bar';
 import { Col } from 'reactstrap';
-import { ITranslatedSelectableValue, translateItem } from '../../util/translation';
 import { ScrollableArea } from '../scrollable-area/scrollable-area';
+import { ITranslatedSelectableValue, translateItem } from '../../util/translation';
 
 export interface IAddToFromListProps extends HTMLAttributes<HTMLDivElement> {
   helpText?: string;

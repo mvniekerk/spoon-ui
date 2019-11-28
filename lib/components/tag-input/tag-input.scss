@@ -1,13 +1,6 @@
 @import '../../bootstrap-variables';
 
 .tag-input {
-  .dropdown.show {
-    .arrow-up-left {
-      position: relative;
-      top: -32px;
-    }
-  }
-
   .tags-container {
     cursor: pointer;
   }
@@ -22,11 +15,7 @@
     }
   }
 
-  .right-caret {
-    position: absolute;
-    right: 20px;
-    margin-top: -40px;
-    color: var(--gray-lighter);
-    cursor: pointer;
+  .popover {
+    width: 100%;
   }
 }

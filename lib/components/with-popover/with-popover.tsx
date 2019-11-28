@@ -20,6 +20,10 @@ interface IWithPopoverProps extends Omit<IPopoverProps, 'isOpen' | 'children' | 
    */
   container?: string | HTMLElement;
 
+  /**
+   * This prop defined whether popover icon should be shown
+   */
+  noOpener?: boolean;
   openerIcon?: ReactNode;
   openerOpenIcon?: ReactNode;
   openerCloseIcon?: ReactNode;
@@ -69,7 +73,7 @@ export class WithPopover extends React.Component<IWithPopoverProps, IWithPopover
   targetInnerRef = null;
 
   componentWillReceiveProps(nextProps: IWithPopoverProps) {
-    if (nextProps.isOpen !== this.state.open) {
+    if (this.props.isOpen !== nextProps.isOpen) {
       this.setState({
         open: nextProps.isOpen
       });
@@ -140,14 +144,16 @@ export class WithPopover extends React.Component<IWithPopoverProps, IWithPopover
           innerRef: this.captureTargetInnerRef,
           onClick: this.handleMainClick
         })}
-        <Opener
-          disabled={this.props.disabled}
-          isOpen={this.state.open}
-          onOpen={this.handleOpen}
-          onClose={this.handleClose}
-          openComponent={this.props.openerIcon || this.props.openerOpenIcon}
-          closeComponent={this.props.openerIcon || this.props.openerCloseIcon}
-        />
+        {this.props.noOpener ? null : (
+          <Opener
+            disabled={this.props.disabled}
+            isOpen={this.state.open}
+            onOpen={this.handleOpen}
+            onClose={this.handleClose}
+            openComponent={this.props.openerIcon || this.props.openerOpenIcon}
+            closeComponent={this.props.openerIcon || this.props.openerCloseIcon}
+          />
+        )}
         {this.renderExpandedBody()}
       </div>
     );

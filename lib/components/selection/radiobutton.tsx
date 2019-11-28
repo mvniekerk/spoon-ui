@@ -24,6 +24,12 @@ export class RadioButton<T> extends React.Component<IRadioButtonProps<T>, IRadio
     this.setState(_ => ({ checked: this.props.selected }));
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.selected !== this.props.selected) {
+      this.setState({ checked: this.props.selected });
+    }
+  }
+
   render() {
     const { id, className, selected, onChange, value, disabled, ...other } = this.props;
     const isSelected = (this.state && this.state.checked) || selected;

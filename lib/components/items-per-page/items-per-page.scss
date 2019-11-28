@@ -17,23 +17,4 @@
     position: relative;
     top: -8px;
   }
-
-  .dropdown {
-    .dropdown-toggle.btn.toggle,
-    .caret-right.btn {
-      min-width: 80px;
-    }
-  }
-  .dropdown-item {
-    min-width: 80px;
-    width: 80px;
-  }
-  .dropdown-item-container {
-    min-width: 80px;
-    width: 80px;
-  }
-  .dropdown-menu {
-    width: 80px;
-    min-width: 80px;
-  }
 }

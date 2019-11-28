@@ -49,38 +49,45 @@ export interface IFormsState {
   multiChoices: () => Map<string, string>;
   date: Date;
 }
-export class Forms extends React.Component<{}, IFormsState> {
-  state: IFormsState = {
-    values: [],
-    search: '',
-    numberInput: '',
-    numberInputDirty: false,
-    numberInputDisabled: false,
-    radInput: '',
-    radDirty: false,
-    comboVal: { value: undefined },
-    multipleVal: { value: undefined },
-    comboChoices: () =>
-      new Map([
-        [{ name: 'sheep', smart: false }, 'Sheep'],
-        [{ name: 'dog', smart: true }, 'Dog'],
-        [{ name: 'horse', smart: true }, 'Horse'],
-        [{ name: 'cow', smart: false }, 'Cow']
-      ]),
-    multiChoices: () => new Map<string, string>([['one', 'One'], ['two', 'Two'], ['three', 'Three']]),
-    radDisabled: false,
-    comboDisabled: false,
-    multipleDisabled: false,
-    date: null
-  };
 
+const defaultValues = {
+  values: [],
+  search: '',
+  numberInput: '',
+  numberInputDirty: false,
+  numberInputDisabled: false,
+  radInput: '',
+  radDirty: false,
+  comboVal: { value: undefined },
+  multipleVal: { value: undefined },
+  comboChoices: () =>
+    new Map([
+      [{ name: 'sheep', smart: false }, 'Sheep'],
+      [{ name: 'dog', smart: true }, 'Dog'],
+      [{ name: 'horse', smart: true }, 'Horse'],
+      [{ name: 'cow', smart: false }, 'Cow']
+    ]),
+  multiChoices: () => new Map<string, string>([['one', 'One'], ['two', 'Two'], ['three', 'Three']]),
+  radDisabled: false,
+  comboDisabled: false,
+  multipleDisabled: false,
+  date: null
+};
+export class Forms extends React.Component<{}, IFormsState> {
+  state = defaultValues;
   updateCount = 1;
 
   constructor(props) {
     super(props);
     this.onAddTag = this.onAddTag.bind(this);
     this.searchChanged = this.searchChanged.bind(this);
+    this.resetValues();
   }
+
+  resetValues = () => {
+    this.updateCount = 1;
+    this.setState(defaultValues);
+  };
 
   onAddTag(a: ITranslatedSelectableValue<string>) {
     if (!!a) {
@@ -261,6 +268,7 @@ export class Forms extends React.Component<{}, IFormsState> {
   render() {
     return (
       <>
+        <Button onClick={this.resetValues}>Reset all values</Button>
         {this.renderTextInput()}
         {this.renderRadioButtonInput()}
         {this.renderComboboxInput()}
@@ -391,7 +399,7 @@ export class Forms extends React.Component<{}, IFormsState> {
           </Col>
           <Col md="8">
             <Label>SearchBar</Label>
-            <SearchBar onSearchChanged={this.searchChanged} />
+            <SearchBar value={this.state.search} onSearchChanged={this.searchChanged} />
             <FormFeedback valid>
               <Info className="material-icons" />
               {this.state.search}
@@ -410,7 +418,7 @@ export class Forms extends React.Component<{}, IFormsState> {
         </Row>
         <Row>
           <Col md="12">
-            <div className="small-header">Async dropdown selection</div>
+            <div className="small-header">Async dropdown selection (TagInput)</div>
           </Col>
           <Col md="6">
             <TagInput values={this.state.values} onAddTag={this.onAddTag} />
@@ -435,7 +443,12 @@ export class Forms extends React.Component<{}, IFormsState> {
         <Row>
           <Col>
             <Label>DropdownSearchBar (controlled)</Label>
-            <DropdownSearchBar id="dropdown-search-bar-1" placeholder="Type something" onSearchChanged={this.searchChanged}>
+            <DropdownSearchBar
+              value={this.state.search}
+              id="dropdown-search-bar-1"
+              placeholder="Type something"
+              onSearchChanged={this.searchChanged}
+            >
               <Container>
                 <Row>
                   <Col>

@@ -25,6 +25,12 @@ export class Checkbox<T> extends React.Component<CheckboxProps<T>, ICheckboxStat
     this.setState(_ => ({ checked: this.props.selected }));
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.selected !== this.props.selected) {
+      this.setState({ checked: this.props.selected });
+    }
+  }
+
   handleChange(event) {
     const checked = event.target.checked;
     if (!!this.props.onChange) {

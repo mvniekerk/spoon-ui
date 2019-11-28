@@ -1,0 +1,17 @@
+@import '../../bootstrap-variables';
+
+.context-menu {
+  .context-menu-icon:hover {
+    color: var(--primary);
+  }
+
+  & > button {
+    border: none;
+    padding: 0;
+    background: none;
+  }
+
+  & > button:focus {
+    @include focusStyle();
+  }
+}

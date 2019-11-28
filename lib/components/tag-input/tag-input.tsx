@@ -2,13 +2,16 @@ import '../dropdown/dropdown.scss';
 import './tag-input.scss';
 import React, { ChangeEvent } from 'react';
 import { Dropdown, DropdownMenu, DropdownToggle, FormGroup, Input, Label } from 'reactstrap';
+import { ScrollableArea } from '../scrollable-area/scrollable-area';
 import { ITranslatedSelectableValue, translateItem } from '../../util/translation';
 import { DropdownTag } from '../dropdown/dropdown-tag';
 
 import ExpandMoreRounded from '@material-ui/icons/ExpandMoreRounded';
 import ExpandLessRounded from '@material-ui/icons/ExpandLessRounded';
 import triangle from '../../../static/images/triangle.svg';
-import { ScrollableArea } from '../scrollable-area/scrollable-area';
+import { Grid } from '../grid/grid';
+import { IDropdownItem } from '../dropdown/dropdown-item';
+import { WithPopover } from '../with-popover/with-popover';
 
 const triangleImage = `url("${triangle}")`;
 
@@ -94,93 +97,109 @@ export class TagInput extends React.Component<ITagInputProps, ITagInputState> {
     }
   }
 
-  ArrowUpLeft = props => <div className="arrow-up-left" style={{ backgroundImage: triangleImage }} />;
+  private valSelected = (val: ITranslatedSelectableValue<string>) => {
+    this.setState(prevState => {
+      const vals = prevState.selection;
+      if (!vals.includes(val)) {
+        vals.push(val);
+      }
+      return { selection: vals };
+    });
+  };
+
+  private valDeselected = (val: ITranslatedSelectableValue<string>) => {
+    val.selected = false;
+    this.setState(prevState => {
+      const vals = prevState.selection;
+      if (vals.includes(val)) {
+        vals.splice(vals.indexOf(val), 1);
+      }
+      return { selection: vals };
+    });
+  };
+
+  private onSearchChanged = (val: ChangeEvent<HTMLInputElement>) => {
+    if (val.target) {
+      const value = val.target.value;
+      // this.searchItem.next(value);
+      this.setState(_ => ({ search: value }));
+    }
+  };
+
+  private dropdownSelected = e => {
+    this.setState(p => ({
+      search: !!p.search ? p.search : ' '
+    }));
+  };
+
+  private renderTag = (item: IDropdownItem<string>) => (
+    <DropdownTag
+      selectable
+      value={item}
+      key={item.name || (item.value && item.value.toString())}
+      onSelected={this.valSelected}
+      onDeselected={this.valDeselected}
+    />
+  );
+
+  private renderSelectionBarItem = v => (
+    <DropdownTag
+      value={v}
+      key={v.name || (v.value && v.value.toString())}
+      onSelected={this.valSelected}
+      onDeselected={this.valDeselected}
+    />
+  );
+
+  private renderSelectionBar = () => (
+    <Grid className="tags-container selected-tags" items={this.state.selection} itemRender={this.renderSelectionBarItem} />
+  );
 
   render() {
-    const onSearchChanged = (val: ChangeEvent<HTMLInputElement>) => {
-      if (val.target) {
-        const value = val.target.value;
-        // this.searchItem.next(value);
-        this.setState(_ => ({ search: value }));
-      }
-    };
-
-    const a = () => this.toggle();
-    const valSelected = (val: ITranslatedSelectableValue<string>) => {
-      this.setState(prevState => {
-        const vals = prevState.selection;
-        if (!vals.includes(val)) {
-          vals.push(val);
-        }
-        return { selection: vals };
-      });
-    };
-
-    const valDeselected = (val: ITranslatedSelectableValue<string>) => {
-      val.selected = false;
-      this.setState(prevState => {
-        const vals = prevState.selection;
-        if (vals.includes(val)) {
-          vals.splice(vals.indexOf(val), 1);
-        }
-        return { selection: vals };
-      });
-    };
-
-    const dropdownSelected = e => {
-      this.setState(p => ({
-        search: !!p.search ? p.search : ' '
-      }));
-    };
-
     const items =
       !this.props.searching && !!this.props.values
-        ? [
-            ...this.props.values
-              .filter(
-                b =>
-                  !this.state.search ||
-                  !this.state.search.trim() ||
-                  ('' + b.value).toLowerCase().indexOf(this.state.search.toLowerCase()) >= 0 ||
-                  translateItem(b)
-                    .toLowerCase()
-                    .indexOf(this.state.search.toLowerCase()) >= 0
-              )
-              .map(sv => (
-                <div>
-                  <DropdownTag {...this.props} selectable value={sv} key={sv.name} onSelected={valSelected} onDeselected={valDeselected} />
-                </div>
-              ))
-          ]
+        ? this.props.values.filter(
+            b =>
+              !this.state.search ||
+              !this.state.search.trim() ||
+              ('' + b.value).toLowerCase().indexOf(this.state.search.toLowerCase()) >= 0 ||
+              translateItem(b)
+                .toLowerCase()
+                .indexOf(this.state.search.toLowerCase()) >= 0
+          )
         : [];
 
-    const selected = this.state.selection.map(v => (
-      <DropdownTag value={v} key={!!v.name ? v.name : v.value} onSelected={valSelected} onDeselected={valDeselected} />
-    ));
-    const searchingOrItems = this.props.searching ? [<i key="searching">Searching</i>] : items;
-
     return (
-      <FormGroup className="tag-input">
-        {!!this.props.message && <Label for="inputwithoutvalidation">{this.props.message}</Label>}
-        <div>
-          <Input placeholder={this.props.placeholder} value={this.state.search} onChange={onSearchChanged} onKeyDown={this.onKeyPressed} />
-          {!this.state.search && <ExpandMoreRounded className="right-caret" onClick={dropdownSelected} />}
-          {!!this.state.search && <ExpandLessRounded className="right-caret" onClick={dropdownSelected} />}
-        </div>
-        <Dropdown isOpen={!!this.state.search && !!this.props.values && this.props.values.length > 0} toggle={this.toggle}>
-          <DropdownToggle style={{ opacity: 0, zIndex: -100, position: 'relative', top: '-38px' }} />
-
-          <this.ArrowUpLeft />
-          <DropdownMenu className="tags multiple">
-            <div className="top-spacer" />
+      <>
+        <WithPopover
+          className="tag-input"
+          autoOpen
+          autoClose
+          closeOnMainClick
+          mainComponent={
+            <div>
+              {!!this.props.message && <Label for="inputwithoutvalidation">{this.props.message}</Label>}
+              <Input
+                placeholder={this.props.placeholder}
+                value={this.state.search}
+                onChange={this.onSearchChanged}
+                onKeyDown={this.onKeyPressed}
+              />
+            </div>
+          }
+        >
+          <div className="tags multiple">
             <ScrollableArea>
-              <div className="tags-container">{searchingOrItems}</div>
+              {this.props.searching ? (
+                <i key="searching">Searching</i>
+              ) : (
+                <Grid className="tags-container" items={items} itemRender={this.renderTag} />
+              )}
             </ScrollableArea>
-            <div className="bottom-spacer" />
-          </DropdownMenu>
-        </Dropdown>
-        <div className="tags-container selected-tags">{selected}</div>
-      </FormGroup>
+          </div>
+        </WithPopover>
+        {this.renderSelectionBar()}
+      </>
     );
   }
 }

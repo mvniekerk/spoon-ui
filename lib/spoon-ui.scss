@@ -802,17 +802,6 @@ nav ul.pagination {
   color: var(--white-text);
 }
 
-.context-menu-btn:hover {
-  background-color: transparent;
-}
-
-.context-menu {
-  .dropdown.show .arrow-up-left {
-    top: -7px;
-    left: 16px;
-  }
-}
-
 #breadcrumb,
 .breadcrumb {
   background-color: unset;

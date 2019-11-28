@@ -41,6 +41,15 @@ export class RadioGroup<T> extends React.Component<IRadioGroupProps<T>, IRadioGr
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.values !== this.props.values) {
+      const v = this.props.values.find(a => a.selected);
+      if (!!v) {
+        this.setState({ selected: v.value });
+      }
+    }
+  }
+
   handleChange(selected: T) {
     this.setState({ selected });
     if (!!this.props.onChanged) {

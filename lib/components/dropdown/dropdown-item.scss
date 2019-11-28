@@ -83,8 +83,7 @@
   }
 
   button:hover.dropdown-item.dropdown-item-selected {
-    background-color: var(--primary);
-    color: var(--white-text);
+    @include hoverStyle();
   }
 
   button:hover {
