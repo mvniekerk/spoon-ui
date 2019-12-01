@@ -1,8 +1,10 @@
-import React, { ReactNode, ComponentType, HTMLAttributes, FC } from 'react';
+import React, { CSSProperties, ComponentType, HTMLAttributes } from 'react';
 
 export interface IAlignmentProps extends React.Props<{}>, HTMLAttributes<{}> {
   justify?: 'start' | 'end' | 'center' | 'between' | 'around';
   align?: 'top' | 'bottom' | 'center' | 'stretch' | 'baseline';
+  basis?: 'auto' | 'content' | string;
+  grow?: '-moz-initial' | 'inherit' | 'initial' | 'revert' | 'unset' | number;
 }
 
 /**
@@ -12,7 +14,8 @@ export interface IAlignmentProps extends React.Props<{}>, HTMLAttributes<{}> {
  */
 export function Align<T>(Comp: ComponentType<T>) {
   return (props: IAlignmentProps & T) => {
-    const { align, justify, ...rest } = props;
+    const { align, justify, basis, grow, ...rest } = props;
+    const style: CSSProperties = {};
 
     let className = props.className || '';
     if (align || justify) {
@@ -59,8 +62,16 @@ export function Align<T>(Comp: ComponentType<T>) {
         break;
     }
 
+    if (basis) {
+      style.flexBasis = basis;
+    }
+
+    if (grow !== undefined && grow !== null) {
+      style.flexGrow = grow;
+    }
+
     return (
-      <Comp {...rest as T} className={className}>
+      <Comp {...rest as T} className={className} style={style}>
         {props.children}
       </Comp>
     );

@@ -19,3 +19,24 @@
   height: 250px;
   width: 200px;
 }
+
+.layout-examples {
+  .row {
+    background-color: #eee;
+  }
+  .col {
+    background-color: rgb(219, 216, 216);
+    border-left: 1px dashed rgb(168, 168, 168);
+    border-right: 1px dashed rgb(168, 168, 168);
+    &:hover {
+      background-color: rgb(228, 187, 187);
+    }
+  }
+}
+
+.col-example {
+  padding: 4px;
+  border: 1px solid grey;
+  border-radius: 4px;
+  height: 32px;
+}

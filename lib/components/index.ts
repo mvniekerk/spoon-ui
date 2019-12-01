@@ -51,3 +51,4 @@ export * from './tag-button/tag-button';
 export * from './tag-input/tag-input';
 export * from './forms/text-input';
 export * from './selection/toggle';
+export * from './file-upload/file-upload';

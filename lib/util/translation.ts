@@ -31,10 +31,7 @@ export function translateItem<T>(i: TranslatedValueOrKey<T>): string {
     } catch (e) {
       console.error('Error with translation', e);
     }
-    displayText =
-      !displayText || typeof displayText !== 'string' || displayText.toString().startsWith('translation-not-found[')
-        ? item.display
-        : displayText;
+    displayText = !displayText || displayText.toString() === '[object Object]' ? item.display : displayText;
   }
   return displayText;
 }
