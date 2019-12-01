@@ -5,12 +5,10 @@ import './file-upload.scss';
 import { translateItem } from 'lib/util';
 
 interface IFileUploadProps extends FilePondProps {
-  server: string;
-
-  onFileUpdated: (fileItems: File[]) => void;
-  onFileRemoved: (file: File) => void;
-  onError: (error: { main: string; sub: string }, file?: File, status?: any) => void;
-  onFileAdded: (error: { main: string; sub: string }, file: File) => void;
+  onFileUpdated?: (fileItems: File[]) => void;
+  onFileRemoved?: (file: File) => void;
+  onError?: (error: { main: string; sub: string }, file?: File, status?: any) => void;
+  onFileAdded?: (error: { main: string; sub: string }, file: File) => void;
 }
 
 interface IFileUploadState {
