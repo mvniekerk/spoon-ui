@@ -15,7 +15,8 @@ import {
   Button,
   CalendarInput,
   DropdownSearchBar,
-  Container
+  Container,
+  FileUpload
 } from 'lib/components';
 import { ITranslatedSelectableValue, translatedValue } from 'lib/util';
 import { IValidateAndI18nKey, required, requiredString, stringIsNumber } from 'lib/validation';
@@ -475,6 +476,12 @@ export class Forms extends React.Component<{}, IFormsState> {
                 </Row>
               </Container>
             </DropdownSearchBar>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Label>FileUpload </Label>
+            <FileUpload id="files" labelIdle="forms.fileUpload.idle" />
           </Col>
         </Row>
       </>

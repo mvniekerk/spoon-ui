@@ -7,6 +7,9 @@
     },
     "comboInput": {
       "placeholder": "Wählen Sie ein intelligentes Tier"
+    },
+    "fileUpload": {
+      "idle": "Drag & Drop your files or click here to Browse"
     }
   }
 }

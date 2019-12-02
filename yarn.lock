@@ -759,6 +759,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-filepond@5.0.5":
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/@types/react-filepond/-/react-filepond-5.0.5.tgz#7f817a7133203ce228cb54fadb42a6c3ef3fa5e5"
+  integrity sha512-yupuboL7Usgz5A4dmtGn5RRj0hartQ4ziwN8Q/+TvTa4XeuGM0xfKBtLfE7SG5tCwa/LISAHIWW28gco57hFWA==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-motion@0.0.28":
   version "0.0.28"
   resolved "https://registry.yarnpkg.com/@types/react-motion/-/react-motion-0.0.28.tgz#c790ec6ae041e41eaad6ff26cddf1982a6efd54f"
@@ -4816,6 +4823,11 @@ filenamify@^2.0.0:
     filename-reserved-regex "^2.0.0"
     strip-outer "^1.0.0"
     trim-repeated "^1.0.0"
+
+filepond@4.7.4:
+  version "4.7.4"
+  resolved "https://registry.yarnpkg.com/filepond/-/filepond-4.7.4.tgz#29dfbf6f4629c6991591017277e2575b8b594411"
+  integrity sha512-dxzocBhVYg8GRfvjK3kXBWsIfSBuPhSmfQOQnUU2wZzdnnz8Mw8xGhODDww0edCkl8gLDyUKLdq9jhBJxaZFZQ==
 
 filesize@^3.6.1:
   version "3.6.1"
@@ -10928,6 +10940,11 @@ react-event-listener@^0.6.2:
     "@babel/runtime" "^7.2.0"
     prop-types "^15.6.0"
     warning "^4.0.1"
+
+react-filepond@7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/react-filepond/-/react-filepond-7.0.1.tgz#caf96526287140884a31a1476b8328d9d6ecdee2"
+  integrity sha512-PitNM44JP0K5hXnkSYV3HRlkObsWbhqaJRWizMrdHpS3pPz9/iyiOGmRpc+4T4ST3vblmiUTLRYq/+1bDcSqQw==
 
 react-hot-loader@4.8.0:
   version "4.8.0"

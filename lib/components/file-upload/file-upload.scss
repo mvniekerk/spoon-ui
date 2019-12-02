@@ -1,0 +1,32 @@
+@import '../../bootstrap-variables';
+
+.filepond--wrapper {
+  background-color: $menu-background-color-from;
+  border-radius: $border-radius;
+  border: var(--gray-lighter) solid 0.1em;
+}
+// override FilePond style in this block
+// https://pqina.nl/filepond/docs/patterns/api/style/
+.filepond--root {
+  margin-bottom: 0;
+
+  .filepond--file-action-button {
+    cursor: pointer;
+  }
+
+  .filepond--panel-root {
+    background-color: transparent;
+    border-radius: 0;
+    border: none;
+  }
+
+  // .filepond--item-panel {
+  //   border-radius: $border-radius;
+  //   border: var(--gray-lighter) solid 0.1em;
+  // }
+
+  .filepond--file-action-button:hover,
+  .filepond--file-action-button:focus {
+    @include focusStyle();
+  }
+}

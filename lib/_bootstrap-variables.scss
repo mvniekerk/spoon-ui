@@ -217,37 +217,29 @@ $body-background: #d2d8dd;
   $theme-colors: map_merge($theme-colors, $added-vals);
   @return $theme-colors;
 }
-
 :root {
   --color-picker-menu-left: 0;
 }
-
 $theme-colors: update-theme-colors();
-
 $input-disabled-color: #e9edf1;
-
 $menu-item-hover-color: var(--primary);
 $menu-item-text-hover-color: var(--white-text);
-
 @mixin iconColor() {
   color: $menu-item-icon-color;
 }
-
 @mixin focusStyle() {
   outline: none;
   border: 1px var(--primary) solid;
 }
-
 @mixin hoverStyle() {
   background-color: $menu-item-hover-color;
   color: $menu-item-text-hover-color;
 }
 // Sizes
-
 $base: 4px;
 $padding-base: 2 * $base;
 $margin-base: 2 * $base;
-
+$border-radius: $base;
 @mixin padding($top: 0, $right: 0, $bottom: 0, $left: 0) {
   padding: $top * $padding-base $right * $padding-base $bottom * $padding-base $left * $padding-base;
 }

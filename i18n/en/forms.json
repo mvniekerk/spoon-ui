@@ -7,6 +7,9 @@
     },
     "comboInput": {
       "placeholder": "Select a smart animal"
+    },
+    "fileUpload": {
+      "idle": "Drag & Drop your files or click here to Browse"
     }
   }
 }
