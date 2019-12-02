@@ -2,7 +2,7 @@ import React from 'react';
 import { FilePond, FilePondProps, File } from 'react-filepond';
 import 'filepond/dist/filepond.min.css';
 import './file-upload.scss';
-import { translateItem } from 'lib/util';
+import { translateItem } from '../../util/translation';
 
 interface IFileUploadProps extends FilePondProps {
   onFileUpdated?: (fileItems: File[]) => void;
