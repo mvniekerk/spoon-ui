@@ -7,7 +7,7 @@ import { translateItem } from '../../util/translation';
 import { Input, InputProps } from 'reactstrap';
 
 import Check from '@material-ui/icons/CheckRounded';
-import PriorityHighRounded from '@material-ui/icons/PriorityHighRounded';
+import ClearIcon from '@material-ui/icons/Clear';
 import {
   IFormInput,
   IFormInputState,
@@ -58,8 +58,8 @@ export class TextInput extends React.Component<ITextInputProps, IFormInputState<
           disabled={disabled}
           {...other}
         />
-        {isInvalid && enableTicks && <PriorityHighRounded id="clear" className="material-icons invalid-icon" />}
-        {isValid && enableTicks && <Check id="check" className="material-icons valid-icon" />}
+        {isInvalid && enableTicks && <ClearIcon id="clear" className={`material-icons invalid-icon disabled-${disabled}`} />}
+        {isValid && enableTicks && <Check id="check" className={`material-icons valid-icon disabled-${disabled}`} />}
       </>
     );
     return formInputGroup(this, input, this.props.required);

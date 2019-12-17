@@ -29,17 +29,17 @@ $green: #4ab55b !default;
 $teal: #20c997 !default;
 $cyan: #1991eb !default;
 
-$primary: #1991eb !default;
+$primary: #289fcf !default;
 $primary-lighter: #36c4f7 !default;
 $primary-active: darken($primary-lighter, 5%);
 $primary-active-lighter: darken($primary, 5%);
 $primary-active-darker: #0097e3;
 
 $secondary: $white !default;
-$success: $green !default;
+$success: #57a75b !default;
 $info: $cyan !default;
 $warning: #f7981c !default;
-$danger: #d22b32 !default;
+$danger: #a52222 !default;
 $light: $white !default;
 $dark: #333f52 !default;
 $dark-darker: darken($dark, 10%) !default;
@@ -50,10 +50,11 @@ $tertiary-darker: #25a20f;
 $tertiary-active: darken($tertiary, 5%);
 $tertiary-active-darker: darken($tertiary-darker, 5%);
 
-//$gbl-color-icon: #c5d0de;
-$gray-darker: #7f8fa4;
-$gray-lighter: #c5d0de;
-$black-text: #354052;
+$color-icon: #93b1d6;
+$gray-darker: #001c44;
+$gray-darker-opacity: rgba(0, 28, 68, 0.5);
+$gray-lighter: #eff0f3;
+$black-text: rgb(6, 6, 7);
 $white-text: #ffffff;
 
 // Body
@@ -186,7 +187,9 @@ $body-background: #d2d8dd;
     dark-lighter: $dark-lighter,
     black-text: $black-text,
     white-text: $white-text,
+    color-icon: $color-icon,
     gray-darker: $gray-darker,
+    gray-darker-opacity: $gray-darker-opacity,
     gray-lighter: $gray-lighter,
     header: $header,
     header-hover: $header-hover,
@@ -221,7 +224,7 @@ $body-background: #d2d8dd;
   --color-picker-menu-left: 0;
 }
 $theme-colors: update-theme-colors();
-$input-disabled-color: #e9edf1;
+$input-disabled-color: rgba(0, 28, 68, 0.2);
 $menu-item-hover-color: var(--primary);
 $menu-item-text-hover-color: var(--white-text);
 @mixin iconColor() {
