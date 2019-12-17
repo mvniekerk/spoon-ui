@@ -344,26 +344,29 @@ http://stackoverflow.com/questions/23436430/bootstrap-3-input-group-100-width */
 h1 {
   font-family: 'Source Sans Pro Bold', sans-serif;
   font-size: 55px;
-  color: var(--black-text);
+  font-weight: bold;
+  color: var(--gray-darker);
 }
 
 h2 {
   font-family: 'Source Sans Pro Bold', sans-serif;
   font-size: 32px;
-  color: var(--black-text);
+  font-weight: bold;
+  color: var(--gray-darker);
 }
 
 h3 {
   font-family: 'Source Sans Pro Bold', sans-serif;
   font-size: 23px;
-  color: var(--black-text);
+  font-weight: bold;
+  color: var(--gray-darker);
 }
 
 p {
   font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 400;
-  line-height: 26px;
-  font-size: 21px;
+  line-height: 29px;
+  font-size: 23px;
+  font-style: italic;
   color: var(--gray-darker);
 }
 
