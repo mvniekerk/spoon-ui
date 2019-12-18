@@ -472,6 +472,9 @@ a:hover {
   border-color: $primary;
   box-shadow: none;
 }
+.form-control:hover {
+  border-color: var(--gray-darker);
+}
 
 .form-control.is-valid:focus {
   box-shadow: none;
