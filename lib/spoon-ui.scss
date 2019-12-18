@@ -22,6 +22,8 @@ body {
   box-sizing: border-box;
   display: inline-flex;
   .view-container {
+    background-color: white;
+    border: 1px solid gray;
     min-width: calc(100vw - 270px);
     width: calc(100vw - 270px);
     overflow-y: auto;
@@ -340,34 +342,31 @@ http://stackoverflow.com/questions/23436430/bootstrap-3-input-group-100-width */
 }
 
 h1 {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 600;
-  line-height: 44px;
-  font-size: 32px;
-  color: var(--black-text);
+  font-family: 'Source Sans Pro Bold', sans-serif;
+  font-size: 55px;
+  font-weight: bold;
+  color: var(--gray-darker);
 }
 
 h2 {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 400;
-  line-height: 32px;
-  font-size: 22px;
-  color: var(--black-text);
+  font-family: 'Source Sans Pro Bold', sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  color: var(--gray-darker);
 }
 
 h3 {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 400;
-  line-height: 28px;
-  font-size: 20px;
-  color: var(--black-text);
+  font-family: 'Source Sans Pro Bold', sans-serif;
+  font-size: 23px;
+  font-weight: bold;
+  color: var(--gray-darker);
 }
 
 p {
   font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 400;
-  line-height: 26px;
-  font-size: 21px;
+  line-height: 29px;
+  font-size: 23px;
+  font-style: italic;
   color: var(--gray-darker);
 }
 
@@ -452,12 +451,13 @@ a:hover {
 }
 
 .form-control {
-  padding: 20px;
+  padding: 15px;
   margin-bottom: 8px;
-  border: var(--gray-lighter) solid 0.1em;
-  color: var(--black-text);
-  font-weight: 600;
-  height: 32px;
+  border: var(--gray-darker-opacity) solid 1px;
+  color: var(--gray-darker);
+  font-size: 18pt;
+  height: 50px;
+  line-height: 23px;
 }
 
 .input-group {
@@ -465,12 +465,15 @@ a:hover {
 }
 
 .form-control::placeholder {
-  color: var(--gray-lighter);
+  color: var(--gray-darker-opacity);
 }
 
 .form-control:focus {
   border-color: $primary;
   box-shadow: none;
+}
+.form-control:hover {
+  border-color: var(--gray-darker);
 }
 
 .form-control.is-valid:focus {
@@ -484,7 +487,7 @@ a:hover {
 }
 
 .form-control {
-  border-radius: 4px;
+  border-radius: 7px;
 }
 
 .input-group > .form-control:not(:last-child) {
@@ -492,20 +495,12 @@ a:hover {
   border-bottom-right-radius: 4px;
 }
 
-.input-group {
-  .material-icons {
-    display: none;
-    position: absolute;
-    top: 8px;
-    color: gray;
-  }
-}
-
 .input-group.is-valid {
   .material-icons.valid-icon {
-    color: green;
+    color: var(--success);
     display: inherit;
-    right: 9px;
+    right: 15px;
+    width: 20px;
   }
 }
 
@@ -513,7 +508,8 @@ a:hover {
   .material-icons.invalid-icon {
     color: var(--error);
     display: inherit;
-    right: 9px;
+    right: 15px;
+    width: 20px;
   }
   .form-control {
     color: var(--error);
@@ -527,13 +523,13 @@ a:hover {
 .input-group-icon-left {
   .material-icons.left-icon {
     display: inherit;
-    left: 8px;
-    color: var(--gray-lighter);
+    left: 15px;
+    color: var(--color-icon);
     z-index: 5;
   }
 
   .form-control {
-    padding-left: 38px;
+    padding-left: 48px;
   }
 }
 
@@ -541,13 +537,13 @@ a:hover {
 .form-group.input-group-icon-right {
   .material-icons.right-icon {
     display: inherit;
-    right: 8px;
-    color: var(--gray-lighter);
+    right: 15px;
+    color: var(--color-icon);
     z-index: 5;
   }
 
   .form-control {
-    padding-right: 38px;
+    padding-right: 48px;
   }
 
   .material-icons.valid-icon {
@@ -565,35 +561,37 @@ a:hover {
   }
 }
 
-.form-control:disabled {
-  background-color: $input-disabled-color;
-  color: var(--gray-lighter);
-  border: #dfe3e9 solid 1px;
-  height: 32px;
+.form-control:disabled,
+.input-group:disabled {
+  background-color: var(--gray-lighter);
+  color: $input-disabled-color;
+  border: $input-disabled-color 1px solid;
+}
+
+.input-group:disabled .material-icons {
+  color: $input-disabled-color;
 }
 
 label {
   padding-top: 8px;
   margin-bottom: 0;
   color: var(--gray-darker);
-  font-weight: 600;
 }
 
 div.valid-feedback,
 small.form-text,
 div.invalid-feedback {
-  font-size: 14px;
-  margin-top: -6px;
+  font-size: 12px;
   vertical-align: middle;
+  text-align: end;
 }
 
 div.valid-feedback,
-div.invalid-feedback,
-small.form-text {
+div.invalid-feedback {
   .material-icons {
-    font-size: 15px;
-    vertical-align: middle;
-    padding-right: 2px;
+    font-size: 19px;
+    vertical-align: top;
+    margin-left: 5px;
   }
 }
 

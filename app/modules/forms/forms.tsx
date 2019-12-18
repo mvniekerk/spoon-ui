@@ -22,11 +22,12 @@ import { ITranslatedSelectableValue, translatedValue } from 'lib/util';
 import { IValidateAndI18nKey, required, requiredString, stringIsNumber } from 'lib/validation';
 
 import Check from '@material-ui/icons/CheckRounded';
-import PriorityHighRounded from '@material-ui/icons/PriorityHighRounded';
+import ClearIcon from '@material-ui/icons/Clear';
 import CalendarToday from '@material-ui/icons/CalendarToday';
 import PersonOutline from '@material-ui/icons/PersonOutline';
 import Info from '@material-ui/icons/Info';
 import Cancel from '@material-ui/icons/Cancel';
+import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 
 interface IsSmartAnimal {
   name: string;
@@ -286,7 +287,7 @@ export class Forms extends React.Component<{}, IFormsState> {
             </InputGroup>
             <InputGroup className="is-invalid">
               <Input invalid placeholder="Placeholder" value="Incorrect input" />
-              <PriorityHighRounded className="material-icons invalid-icon" />
+              <ClearIcon className="material-icons invalid-icon" />
             </InputGroup>
             <Input text="Text" value="Disabled" disabled />
           </Col>
@@ -310,7 +311,7 @@ export class Forms extends React.Component<{}, IFormsState> {
 
             <InputGroup className="is-invalid input-group-icon-left">
               <Input invalid placeholder="Placeholder" value="Incorrect input" />
-              <PriorityHighRounded className="material-icons invalid-icon" />
+              <ClearIcon className="material-icons invalid-icon" />
               <PersonOutline className="material-icons left-icon" />
             </InputGroup>
 
@@ -338,11 +339,11 @@ export class Forms extends React.Component<{}, IFormsState> {
             </InputGroup>
             <InputGroup className="is-invalid input-group-icon-right">
               <Input invalid placeholder="Placeholder" value="Incorrect input" />
-              <PriorityHighRounded className="material-icons invalid-icon" />
+              <ClearIcon className="material-icons invalid-icon" />
               <PersonOutline className="material-icons right-icon" />
             </InputGroup>
 
-            <InputGroup className="input-group-icon-right">
+            <InputGroup disabled className="input-group-icon-right">
               <Input disabled valid placeholder="Placeholder" value="Disabled" />
               <CalendarToday className="material-icons right-icon" />
             </InputGroup>
@@ -362,8 +363,8 @@ export class Forms extends React.Component<{}, IFormsState> {
               <Input id="inputwithoutvalidation" placeholder="Placeholder" />
               <FormText>
                 <span>
-                  <Info className="material-icons" />
                   Example help text that remains unchanged.
+                  <Info className="material-icons" />
                 </span>
               </FormText>
             </FormGroup>
@@ -378,8 +379,8 @@ export class Forms extends React.Component<{}, IFormsState> {
               <Label for="inputwithoutvalidation">With message</Label>
               <Input valid placeholder="Placeholder" value="Correct input" />
               <FormFeedback valid>
-                <Info className="material-icons" />
                 Positive message
+                <CheckCircleRoundedIcon className="material-icons" />
               </FormFeedback>
             </FormGroup>
           </Col>
@@ -388,8 +389,8 @@ export class Forms extends React.Component<{}, IFormsState> {
               <Label for="error">With message</Label>
               <Input invalid id="error" placeholder="Placeholder" value="Correct input" />
               <FormFeedback invalid>
-                <Cancel className="material-icons" />
                 Error notification
+                <Cancel className="material-icons" />
               </FormFeedback>
             </FormGroup>
           </Col>
