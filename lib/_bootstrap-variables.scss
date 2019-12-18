@@ -28,11 +28,14 @@ $yellow: #ffc107 !default;
 $green: #4ab55b !default;
 $teal: #20c997 !default;
 $cyan: #1991eb !default;
+$gray-darker: #001c44;
+$gray-lighter: #eff0f3;
+$gray-darker-opacity: rgba(0, 28, 68, 0.5);
 
-$primary: #289fcf !default;
-$primary-lighter: #36c4f7 !default;
-$primary-active: darken($primary-lighter, 5%);
-$primary-active-lighter: darken($primary, 5%);
+$primary: $gray-darker !default;
+$primary-lighter: $gray-lighter !default;
+$primary-active: $gray-darker-opacity;
+$primary-active-lighter: darken($gray-darker, 5%);
 $primary-active-darker: #0097e3;
 
 $secondary: $white !default;
@@ -51,9 +54,7 @@ $tertiary-active: darken($tertiary, 5%);
 $tertiary-active-darker: darken($tertiary-darker, 5%);
 
 $color-icon: #93b1d6;
-$gray-darker: #001c44;
-$gray-darker-opacity: rgba(0, 28, 68, 0.5);
-$gray-lighter: #eff0f3;
+
 $black-text: rgb(6, 6, 7);
 $white-text: #ffffff;
 

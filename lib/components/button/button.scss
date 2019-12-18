@@ -20,8 +20,8 @@ button.btn {
 }
 
 button.btn:focus {
-  border: 1px;
-  box-shadow: 0 0 0 1px rgba(197, 208, 222, 0.1) inset;
+  // border: none !important;
+  box-shadow: none !important;
 }
 
 button.btn.btn-primary {
@@ -29,11 +29,11 @@ button.btn.btn-primary {
 }
 
 button.btn.btn-primary:hover {
-  background-image: linear-gradient(to bottom, var(--primary-active), var(--primary-active-lighter));
+  background-image: linear-gradient(to bottom, var(--gray-darker), var(--primary-active-lighter));
 }
 
 button.btn.btn-primary:active {
-  background-image: linear-gradient(to bottom, var(--primary-active-lighter), var(--primary-active));
+  background-image: linear-gradient(to bottom, var(--primary-active-lighter), var(--gray-darker));
 }
 
 button.btn-primary:not(:disabled):not(.disabled):active:focus,
@@ -51,8 +51,15 @@ button.btn.btn-secondary:disabled {
   border: none;
 }
 
+button.btn.btn-secondary:hover {
+  background-image: linear-gradient(to bottom, var(--white-text), var(--gray-lighter));
+}
+
 button.btn.btn-secondary:active {
-  background: linear-gradient(to bottom, #f4f5f8, #e4e5e8);
+  background-image: linear-gradient(to bottom, var(--gray-lighter), var(--white-text));
+}
+button.btn.btn-secondary:focus {
+  border: 1px solid var(--gray-darker) !important;
 }
 
 button.btn.btn-green {
