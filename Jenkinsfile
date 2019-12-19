@@ -1,4 +1,5 @@
 def label = "spoon-ui-build-${UUID.randomUUID().toString()}"
+def mergeBranch = "2467-fix-jenkins-pipeline" //TODO: fix at PR - usually master
 
 podTemplate(label: label, containers: [
     containerTemplate(name: 'docker', image: 'docker', command: 'cat', ttyEnabled: true),
@@ -10,8 +11,9 @@ podTemplate(label: label, containers: [
     volumes: [
         hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'),
         hostPathVolume(mountPath: '/root/.m2/repository', hostPath: '/root/.m2/repository'),
-        hostPathVolume(mountPath: '/root/.npm', hostPath: '/root/.npm'),
-        hostPathVolume(mountPath: '/root/.npmrc', hostPath: '/root/.npmrc'),
+        //hostPathVolume(mountPath: '/root/.npm', hostPath: '/root/.npm'),
+        //hostPathVolume(mountPath: '/root/.npmrc', hostPath: '/root/.npmrc'),
+        hostPathVolume(mountPath: '/root', hostPath: "/tmp/root/${label}"),
         hostPathVolume(mountPath: '/tmp', hostPath: "/tmp/${label}")
     ]) {
 
@@ -59,6 +61,7 @@ podTemplate(label: label, containers: [
                 if (GIT_BRANCH == 'master') {
                     def npmrc = ""
                     container('docker') {
+                        sh "pwd; whoami"
                         sh "rm -f ~/.npmrc"
                         withCredentials([usernamePassword(credentialsId: 'Jenkins-Artifactory-Credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                             def cmd = "docker run " +
@@ -110,7 +113,7 @@ podTemplate(label: label, containers: [
 
             stage('Package Helm Charts') {
                 container('helm') {
-                    if (GIT_BRANCH == 'master') {
+                    if (GIT_BRANCH == mergeBranch) {
                         sh 'cat /etc/resolv.conf'
                         sh 'helm init --client-only'
                         helmChartOutput = sh(
@@ -128,7 +131,7 @@ podTemplate(label: label, containers: [
 
             stage('Push Helm Charts') {
                 container('maven') {
-                    if (GIT_BRANCH == 'master') {
+                    if (GIT_BRANCH == mergeBranch) {
                         withCredentials([usernamePassword(credentialsId: 'Jenkins-Artifactory-Credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                             sh "curl -u$USERNAME:$PASSWORD -T /tmp/$helmChartName https://${DOCKER_LOCAL_REPO}gbl/baobab-helm-local/$helmChartName"
                         }
@@ -138,7 +141,7 @@ podTemplate(label: label, containers: [
 
             stage('Clean Temp Packaged Helm Charts') {
                 container('maven') {
-                    if (GIT_BRANCH == 'master') {
+                    if (GIT_BRANCH == mergeBranch) {
                         sh "rm /tmp/$helmChartName"
                     }
                 }
