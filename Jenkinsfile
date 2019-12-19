@@ -87,7 +87,7 @@ podTemplate(label: label, containers: [
             stage('Publish NPM') {
                 if (GIT_BRANCH == mergeBranch) {
                     container('node') {
-                        sh "npm publish dist/"
+                        sh "npm publish --registry https://gbl.jfrog.io/gbl/api/npm/baobab-npm-local/ dist/"
                     }
                 }
             }
