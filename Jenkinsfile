@@ -34,8 +34,32 @@ podTemplate(label: label, containers: [
         echo "NPM Artifactory: $ARTIFACTORY_NPM_LOCAL"
         echo "Docker Artifactory: ${DOCKER_LOCAL_REPO}"
         try {
+
+            stage('Login to Artifactory') {
+                container('docker') {
+                    withCredentials([usernamePassword(credentialsId: 'Jenkins-Artifactory-Credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                        def cmd = "docker run " +
+                            "-e NPM_USER=$USERNAME " +
+                            "-e NPM_PASS=$PASSWORD " +
+                            "-e NPM_EMAIL=mvniekerk@gmail.com " +
+                            "-e NPM_REGISTRY=https://${ARTIFACTORY_NPM_VIRTUAL} " +
+                            "-e NPM_SCOPE=@grindrodbank " +
+                            "bravissimolabs/generate-npm-authtoken > docker/npmrc"
+
+                        npmrc = sh(
+                            script: cmd,
+                            returnStdout: true
+                        ).trim()
+
+                        sh "echo '//${ARTIFACTORY_NPM_VIRTUAL}:always-auth=true' >> docker/npmrc"
+                        sh "cp docker/npmrc .npmrc"
+                    }
+                }
+            }
+
             stage('Build+Unit Test') {
                 container('node') {
+                    sh "npm config set userconfig docker/npmrc"
                     sh "npm install -y"
                     sh "npm test"
                     sh "npm run webpack:prod"
@@ -57,32 +81,12 @@ podTemplate(label: label, containers: [
                 }
             }
 
+
+
+
             stage('Publish NPM') {
                 if (GIT_BRANCH == mergeBranch) {
-                    def npmrc = ""
-                    container('docker') {
-                        sh "pwd; whoami"
-                        sh "rm -f ~/.npmrc"
-                        withCredentials([usernamePassword(credentialsId: 'Jenkins-Artifactory-Credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                            def cmd = "docker run " +
-                                "-e NPM_USER=$USERNAME " +
-                                "-e NPM_PASS=$PASSWORD " +
-                                "-e NPM_EMAIL=mvniekerk@gmail.com " +
-                                "-e NPM_REGISTRY=https://${ARTIFACTORY_NPM_LOCAL} " +
-                                "-e NPM_SCOPE=@bigbaobab " +
-                                "bravissimolabs/generate-npm-authtoken > ~/.npmrc"
-
-                            npmrc = sh(
-                                script: cmd,
-                                returnStdout: true
-                            ).trim()
-
-                            sh "echo '//${ARTIFACTORY_NPM_LOCAL}:always-auth=true' >> ~/.npmrc"
-                        }
-                    }
-
                     container('node') {
-                        sh "cat ~/.npmrc"
                         sh "npm publish dist/"
                     }
                 }
