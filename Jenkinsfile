@@ -58,7 +58,7 @@ podTemplate(label: label, containers: [
             }
 
             stage('Publish NPM') {
-                if (GIT_BRANCH == 'master') {
+                if (GIT_BRANCH == mergeBranch) {
                     def npmrc = ""
                     container('docker') {
                         sh "pwd; whoami"
@@ -102,7 +102,7 @@ podTemplate(label: label, containers: [
 
             stage('Deploy') {
                 container('docker') {
-                    if (GIT_BRANCH == 'master') {
+                    if (GIT_BRANCH == mergeBranch) {
                         withDockerRegistry([credentialsId: 'Jenkins-Artifactory-Credentials', url: "https://${DOCKER_LOCAL_REPO}"]) {
                             sh "docker tag ${DOCKER_LOCAL_REPO}${runImage} ${DOCKER_LOCAL_REPO}${baseImageName}:latest"
                             sh "docker push ${DOCKER_LOCAL_REPO}${baseImageName}:latest"
