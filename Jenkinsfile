@@ -42,7 +42,8 @@ podTemplate(label: label, containers: [
                             "-e NPM_USER=$USERNAME " +
                             "-e NPM_PASS=$PASSWORD " +
                             "-e NPM_EMAIL=mvniekerk@gmail.com " +
-                            "-e NPM_REGISTRY=https://${ARTIFACTORY_NPM_VIRTUAL} " +
+                           // "-e NPM_REGISTRY=https://${ARTIFACTORY_NPM_VIRTUAL} " +
+                            "-e NPM_REGISTRY=https://gbl.jfrog.io/gbl/api/npm/baobab-npm-local/" +
                             "-e NPM_SCOPE=@grindrodbank " +
                             "bravissimolabs/generate-npm-authtoken > docker/npmrc"
 
@@ -51,7 +52,8 @@ podTemplate(label: label, containers: [
                             returnStdout: true
                         ).trim()
 
-                        sh "echo '//${ARTIFACTORY_NPM_VIRTUAL}:always-auth=true' >> docker/npmrc"
+                        //sh "echo '//${ARTIFACTORY_NPM_VIRTUAL}:always-auth=true' >> docker/npmrc"
+                        sh "echo '//gbl.jfrog.io/gbl/api/npm/baobab-npm-local/:always-auth=true' >> docker/npmrc"
                         sh "cp docker/npmrc .npmrc"
                     }
                 }
