@@ -193,7 +193,7 @@
     "reportFile": "TESTS-results-sonar.xml"
   },
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://gbl.jfrog.io/gbl/api/npm/baobab-npm-local/"
   },
   "snyk": true
 }
