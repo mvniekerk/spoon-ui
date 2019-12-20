@@ -43,17 +43,17 @@ export class Buttons extends React.Component {
             </Button>
           </Col>
           <Col md="3">
-            <Button color="green">Text</Button>
-            <Button color="green" iconLeft={<Send />}>
+            <Button color="link">Text</Button>
+            <Button color="link" iconLeft={<Send />}>
               Text
             </Button>
-            <Button color="green" iconRight={<Send />}>
+            <Button color="link" iconRight={<Send />}>
               Text
             </Button>
-            <Button color="green" disabled iconLeft={<Send />}>
+            <Button color="link" disabled iconLeft={<Send />}>
               Text
             </Button>
-            <Button color="green" disabled iconRight={<Send />}>
+            <Button color="link" disabled iconRight={<Send />}>
               Text
             </Button>
           </Col>
