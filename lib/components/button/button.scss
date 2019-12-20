@@ -2,7 +2,7 @@
 
 button.btn {
   border: none;
-  background-color: var(--gray-darker);
+  background-color: transparent;
   border-radius: 25px;
   font-size: 18px;
   padding: 2px;
@@ -20,12 +20,12 @@ button.btn {
 }
 
 button.btn:focus {
-  // border: none !important;
   box-shadow: none !important;
 }
 
 button.btn.btn-primary {
   color: var(--white-text);
+  background-color: var(--gray-darker);
 }
 
 button.btn.btn-primary:hover {
@@ -62,20 +62,16 @@ button.btn.btn-secondary:focus {
   border: 1px solid var(--gray-darker) !important;
 }
 
-button.btn.btn-green {
-  color: var(--white-text);
-  background-image: linear-gradient(to bottom, var(--tertiary), var(--tertiary-darker));
+button.btn.btn-link {
+  min-height: inherit;
+  .btn-icon {
+    color: var(--color-icon);
+  }
 }
 
-button.btn.btn-green:hover {
-  //background-color: var(--tertiary);
-  background-image: linear-gradient(to bottom, var(--tertiary-active), var(--tertiary-active-darker));
-}
-
-button.btn.btn-green:active {
-  background-color: var(--tertiary-darker);
-  background-image: linear-gradient(to bottom, #09a780, #097d5f);
-  transition: background-color 0.3s;
+button.btn.btn-link:disabled {
+  background-color: transparent !important;
+  color: var(--disable-darker) !important;
 }
 
 button.btn.btn-dark {
