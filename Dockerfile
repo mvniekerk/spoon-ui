@@ -3,6 +3,16 @@ FROM node:alpine as build
 #patch
 RUN apk update
 RUN apk upgrade
+RUN apk add --no-cache \
+    autoconf \
+    automake \
+    bash \
+    g++ \
+    libc6-compat \
+    libjpeg-turbo-dev \
+    libpng-dev \
+    make \
+    nasm
 
 COPY ./ /project
 WORKDIR /project
