@@ -258,13 +258,10 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
           onSelfClickClose={!multiple}
           label={this.props.label}
           mainComponent={
-            <>
-              {this.props.label && <Label>{this.props.label}</Label>}
-              <Button block className={dropdownClass} disabled={this.props.disabled} {...other}>
-                {showIcon && <span className="dropdown-selection-icon">{this.state.selection[0].icon}</span>}
-                <span className="button-text">{showIcon ? <span className="icon-with-text">{displayText}</span> : displayText}</span>
-              </Button>
-            </>
+            <Button block className={dropdownClass} disabled={this.props.disabled} {...other}>
+              {showIcon && <span className="dropdown-selection-icon">{this.state.selection[0].icon}</span>}
+              <span className="button-text">{showIcon ? <span className="icon-with-text">{displayText}</span> : displayText}</span>
+            </Button>
           }
         >
           <div className="dropdown-content">
