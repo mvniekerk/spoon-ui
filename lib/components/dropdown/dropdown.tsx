@@ -10,6 +10,7 @@ import { ScrollableArea } from '../scrollable-area/scrollable-area';
 import Search from '@material-ui/icons/Search';
 import { DropdownToggleProps } from 'reactstrap/lib/DropdownToggle';
 import { Grid } from '../grid/grid';
+import Label from 'reactstrap/lib/Label';
 
 export interface IDropdownProps<T> extends Omit<DropdownToggleProps, 'placeholder'> {
   multiple?: boolean;
@@ -30,6 +31,7 @@ export interface IDropdownProps<T> extends Omit<DropdownToggleProps, 'placeholde
   unselectable: 'on' | 'off';
   onOpen?: () => void;
   onClose?: () => void;
+  label?: string;
 }
 
 export interface IDropdownState<T> {
@@ -255,10 +257,13 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
           disabled={this.props.disabled}
           onSelfClickClose={!multiple}
           mainComponent={
-            <Button block className={dropdownClass} disabled={this.props.disabled} {...other}>
-              {showIcon && <span className="dropdown-selection-icon">{this.state.selection[0].icon}</span>}
-              <span className="button-text">{showIcon ? <span className="icon-with-text">{displayText}</span> : displayText}</span>
-            </Button>
+            <>
+              {this.props.label && <Label>{this.props.label}</Label>}
+              <Button block className={dropdownClass} disabled={this.props.disabled} {...other}>
+                {showIcon && <span className="dropdown-selection-icon">{this.state.selection[0].icon}</span>}
+                <span className="button-text">{showIcon ? <span className="icon-with-text">{displayText}</span> : displayText}</span>
+              </Button>
+            </>
           }
         >
           <div className="dropdown-content">

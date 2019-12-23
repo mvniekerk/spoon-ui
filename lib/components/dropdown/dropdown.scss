@@ -3,6 +3,11 @@
 .dropdown {
   width: 100%;
 
+  label {
+    font-size: 18px;
+    line-height: 23px;
+  }
+
   .dropdown-button.btn {
     min-height: 50px;
     border-radius: 7px;
