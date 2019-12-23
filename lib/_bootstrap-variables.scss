@@ -71,8 +71,8 @@ $font-size-base: 1rem !default;
 
 // Dropdowns
 
-$dropdown-link-hover-color: $white !default;
-$dropdown-link-hover-bg: $primary !default;
+$dropdown-selected-color: #e5ebf0;
+$dropdown-hover-color: $color-icon;
 
 // Navs
 
@@ -217,7 +217,9 @@ $body-background: #d2d8dd;
     tags-color-1: $tags-color-1,
     tags-color-2: $tags-color-2,
     tags-color-3: $tags-color-3,
-    tags-color-4: $tags-color-4
+    tags-color-4: $tags-color-4,
+    dropdown-selected-color: $dropdown-selected-color,
+    dropdown-hover-color: $dropdown-hover-color
   );
   $theme-colors: map_merge($theme-colors, $added-vals);
   @return $theme-colors;
