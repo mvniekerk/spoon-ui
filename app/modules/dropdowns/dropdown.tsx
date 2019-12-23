@@ -111,6 +111,10 @@ export class DropdownDemo extends React.Component {
             />
             <br />
           </Col>
+          <Col md="4">
+            <Dropdown {...this.props} disabled key="dropdownDisabled" placeholder="Disabled" initialValues={singleSelection} />
+            <br />
+          </Col>
         </Row>
 
         <Row>

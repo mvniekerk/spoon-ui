@@ -1,6 +1,7 @@
 @import '../../bootstrap-variables';
 
 .opener-icon {
+  @include iconColor();
   position: absolute;
 
   // always position at 50% height of container by default
@@ -12,5 +13,6 @@
 
   &.disabled {
     cursor: default;
+    color: $input-disabled-color;
   }
 }

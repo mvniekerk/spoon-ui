@@ -148,7 +148,7 @@ $selection-color-checked-darker: #25a20f;
 $menu-background-color-from: #ffffff;
 $menu-background-color-to: #ffffff;
 $menu-item-color: #848c98;
-$menu-item-icon-color: $gray-lighter;
+$menu-item-icon-color: $color-icon;
 $menu-border: transparentize($gray-lighter, 0.875);
 $menu-border-opaque: transparentize($gray-lighter, 1);
 $menu-border-opaque-25: transparentize($gray-lighter, 0.75);
@@ -186,6 +186,7 @@ $body-background: #d2d8dd;
     dark: $dark,
     dark-darker: $dark-darker,
     dark-lighter: $dark-lighter,
+    disable-darker: $disable-darker,
     black-text: $black-text,
     white-text: $white-text,
     color-icon: $color-icon,
@@ -232,12 +233,12 @@ $menu-item-text-hover-color: var(--white-text);
   color: $menu-item-icon-color;
 }
 @mixin focusStyle() {
-  outline: none;
-  border: 1px var(--primary) solid;
+  border-color: $primary;
+  box-shadow: none;
 }
 @mixin hoverStyle() {
-  background-color: $menu-item-hover-color;
-  color: $menu-item-text-hover-color;
+  border-color: var(--gray-darker);
+  background: none;
 }
 // Sizes
 $base: 4px;

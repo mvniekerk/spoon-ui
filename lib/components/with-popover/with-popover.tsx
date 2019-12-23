@@ -129,6 +129,7 @@ export class WithPopover extends React.Component<IWithPopoverProps, IWithPopover
       container={this.props.container ? this.props.container : this.containerRef}
       onOpen={this.handleOpen}
       onClose={this.handleClose}
+      placement="bottom-end"
     >
       {this.props.children}
     </Popover>

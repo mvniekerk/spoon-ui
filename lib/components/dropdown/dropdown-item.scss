@@ -41,8 +41,8 @@
 }
 
 .dropdown-item.dropdown-item-selected {
-  color: var(--primary);
-  background-color: #f1f4f8;
+  color: var(--white-text);
+  background-color: var(--disable-darker);
 }
 
 .dropdown-item:disabled {

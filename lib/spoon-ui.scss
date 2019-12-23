@@ -469,11 +469,10 @@ a:hover {
 }
 
 .form-control:focus {
-  border-color: $primary;
-  box-shadow: none;
+  @include focusStyle();
 }
 .form-control:hover {
-  border-color: var(--gray-darker);
+  @include hoverStyle();
 }
 
 .form-control.is-valid:focus {
