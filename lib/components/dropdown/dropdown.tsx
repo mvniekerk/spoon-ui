@@ -1,5 +1,5 @@
 import './dropdown.scss';
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 import cx from 'classnames';
 import { DropdownItem, IDropdownItem } from './dropdown-item';
 import { DropdownTag } from './dropdown-tag';
