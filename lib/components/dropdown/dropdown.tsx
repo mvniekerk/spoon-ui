@@ -1,5 +1,5 @@
 import './dropdown.scss';
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import cx from 'classnames';
 import { DropdownItem, IDropdownItem } from './dropdown-item';
 import { DropdownTag } from './dropdown-tag';
@@ -30,7 +30,7 @@ export interface IDropdownProps<T> extends Omit<DropdownToggleProps, 'placeholde
   unselectable: 'on' | 'off';
   onOpen?: () => void;
   onClose?: () => void;
-  label?: string;
+  label?: TranslatedValueOrKey<T>;
 }
 
 export interface IDropdownState<T> {
@@ -137,8 +137,8 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
     }
   };
 
-  private onSearchChanged = (value: string) => {
-    this.setState(_ => ({ search: value }));
+  private onSearchChanged = (val: string) => {
+    this.setState(_ => ({ search: val }));
   };
 
   private renderSelectionBarItem = v => (
@@ -245,7 +245,7 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
           closeOnMainClick
           disabled={this.props.disabled}
           onSelfClickClose={!multiple}
-          label={this.props.label}
+          label={translateItem(this.props.label)}
           mainComponent={
             <Button block className={dropdownClass} disabled={this.props.disabled} {...other}>
               {showIcon && <span className="dropdown-selection-icon">{this.state.selection[0].icon}</span>}
