@@ -261,6 +261,9 @@ input:checked + .slider:before {
 }
 
 .radiobutton-container.selected {
+  .selection-text {
+    display: initial;
+  }
   .selection-text::after {
     background: unset;
     background-color: #93b1d6;
