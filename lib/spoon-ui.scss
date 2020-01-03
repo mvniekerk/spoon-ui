@@ -22,7 +22,7 @@ body {
   box-sizing: border-box;
   display: inline-flex;
   .view-container {
-    background-color: white;
+    background: linear-gradient(180deg, #d4dee7 0%, #ffffff 100%);
     border: 1px solid gray;
     min-width: calc(100vw - 270px);
     width: calc(100vw - 270px);
