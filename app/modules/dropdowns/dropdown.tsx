@@ -63,15 +63,35 @@ export class DropdownDemo extends React.Component {
             <div className="small-header">Dropdown selects</div>
           </Col>
           <Col md="4">
-            <Dropdown {...this.props} key="dropdown1" placeholder="Single selection" initialValues={singleSelection} />
+            <Dropdown
+              {...this.props}
+              label="Label for dropdown"
+              key="dropdown1"
+              placeholder="Single selection"
+              initialValues={singleSelection}
+            />
             <br />
           </Col>
           <Col md="4">
-            <Dropdown {...this.props} key="dropdown1" placeholder="Multiple selection" initialValues={multipleSelection} multiple />
+            <Dropdown
+              {...this.props}
+              key="dropdown1"
+              label="Label for dropdown"
+              placeholder="Multiple selection"
+              initialValues={multipleSelection}
+              multiple
+            />
             <br />
           </Col>
           <Col md="4">
-            <Dropdown {...this.props} key="dropdown1" placeholder="Single with icon" initialValues={singleSelectionWithIcon} iconLeft />
+            <Dropdown
+              {...this.props}
+              key="dropdown1"
+              label="Label for dropdown"
+              placeholder="Single with icon"
+              initialValues={singleSelectionWithIcon}
+              iconLeft
+            />
             <br />
           </Col>
           <Col md="4">
@@ -109,6 +129,10 @@ export class DropdownDemo extends React.Component {
               search
               multiple
             />
+            <br />
+          </Col>
+          <Col md="4">
+            <Dropdown {...this.props} disabled key="dropdownDisabled" placeholder="Disabled" initialValues={singleSelection} />
             <br />
           </Col>
         </Row>

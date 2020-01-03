@@ -22,7 +22,6 @@ export interface IDropdownTagProps<T> {
 }
 
 export const TAG_CHOICE = [1, 2, 3, 4].map(v => `tags-color-${v}`);
-export const TAG_DESELECTED = '#d8e1e9';
 
 export class DropdownTag<T> extends React.Component<IDropdownTagProps<T>, IDropdownTagState> {
   static defaultProps = {
@@ -63,7 +62,6 @@ export class DropdownTag<T> extends React.Component<IDropdownTagProps<T>, IDropd
   };
 
   render() {
-    const { selectable } = this.props;
     const { selected, color } = this.state;
 
     const className = cx('dropdown-tag', {
@@ -71,19 +69,11 @@ export class DropdownTag<T> extends React.Component<IDropdownTagProps<T>, IDropd
     });
     const displayText = translateItem(this.props.value);
 
-    const rightTick =
-      selectable && selected ? (
-        <Check className="dropdown-tag-icon" />
-      ) : !selectable && selected ? (
-        <Clear className="dropdown-tag-icon" />
-      ) : null;
-
-    const colorStyle = { backgroundColor: selected ? color : TAG_DESELECTED };
+    const colorStyle = { backgroundColor: selected ? color : '' };
 
     return (
       <button className={className} onClick={this.handleOnClick} style={colorStyle}>
         {displayText}
-        {rightTick}
       </button>
     );
   }

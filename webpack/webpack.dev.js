@@ -7,12 +7,16 @@ const SimpleProgressWebpackPlugin = require('simple-progress-webpack-plugin');
 const WebpackNotifierPlugin = require('webpack-notifier');
 const path = require('path');
 const sass = require('sass');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+var DuplicatePackageCheckerPlugin = require("duplicate-package-checker-webpack-plugin");
 
 const utils = require('./utils.js');
 const commonConfig = require('./webpack.common.js');
 
 const ENV = 'development';
+
+module.exports = {
+  plugins: [new DuplicatePackageCheckerPlugin()]
+};
 
 module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
   devtool: 'cheap-module-source-map', // https://reactjs.org/docs/cross-origin-errors.html
@@ -31,9 +35,9 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
       {
         test: /\.(sa|sc|c)ss$/,
         use: ['style-loader', 'css-loader', 'postcss-loader', {
-            loader: 'sass-loader',
-            options: { implementation: sass }
-          }
+          loader: 'sass-loader',
+          options: { implementation: sass }
+        }
         ]
       },
     ]
@@ -54,7 +58,7 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
       secure: false,
       changeOrigin: options.tls,
       headers: { host: 'localhost:9000' }
-    },{
+    }, {
       context: [
         '/websocket'
       ],
@@ -70,8 +74,8 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
     process.env.JHI_DISABLE_WEBPACK_LOGS
       ? null
       : new SimpleProgressWebpackPlugin({
-          format: options.stats === 'minimal' ? 'compact' : 'expanded'
-        }),
+        format: options.stats === 'minimal' ? 'compact' : 'expanded'
+      }),
     new FriendlyErrorsWebpackPlugin(),
     new BrowserSyncPlugin({
       host: 'localhost',

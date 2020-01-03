@@ -3,6 +3,7 @@ import cx from 'classnames';
 import { Popover, IPopoverProps } from '../popover/popover';
 import { Opener } from '../opener/opener';
 import './with-popover.scss';
+import Label from 'reactstrap/lib/Label';
 
 interface IWithPopoverProps extends Omit<IPopoverProps, 'isOpen' | 'children' | 'container' | 'target'> {
   mainComponent: ReactElement;
@@ -57,6 +58,8 @@ interface IWithPopoverProps extends Omit<IPopoverProps, 'isOpen' | 'children' | 
    * If true, the popover can not be opened
    */
   disabled?: boolean;
+
+  label?: string;
 }
 
 interface IWithPopoverState {
@@ -129,6 +132,7 @@ export class WithPopover extends React.Component<IWithPopoverProps, IWithPopover
       container={this.props.container ? this.props.container : this.containerRef}
       onOpen={this.handleOpen}
       onClose={this.handleClose}
+      placement="bottom-end"
     >
       {this.props.children}
     </Popover>
@@ -139,6 +143,7 @@ export class WithPopover extends React.Component<IWithPopoverProps, IWithPopover
 
     return (
       <div ref={this.captureContainer} className={className}>
+        {this.props.label && <Label>{this.props.label}</Label>}
         {React.cloneElement(this.props.mainComponent, {
           ref: this.captureTargetRef,
           innerRef: this.captureTargetInnerRef,
