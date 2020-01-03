@@ -215,6 +215,7 @@ export class Forms extends React.Component<{}, IFormsState> {
             id="smartAnimal"
             {...comboVals}
             validation={[isSmart]}
+            label="Label for ComboboxInput"
             helpMessage="Try to select a smart animal"
             placeholder="forms.comboInput.placeholder"
             required
