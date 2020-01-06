@@ -22,7 +22,7 @@ body {
   box-sizing: border-box;
   display: inline-flex;
   .view-container {
-    background-color: white;
+    background: linear-gradient(180deg, #d4dee7 0%, #ffffff 100%);
     border: 1px solid gray;
     min-width: calc(100vw - 270px);
     width: calc(100vw - 270px);
@@ -469,11 +469,10 @@ a:hover {
 }
 
 .form-control:focus {
-  border-color: $primary;
-  box-shadow: none;
+  @include focusStyle();
 }
 .form-control:hover {
-  border-color: var(--gray-darker);
+  @include hoverStyle();
 }
 
 .form-control.is-valid:focus {
@@ -543,8 +542,8 @@ a:hover {
 }
 
 .form-group label {
-  font-size: 18px;
-  line-height: 23px;
+  font-size: 15px;
+  line-height: 19px;
 }
 
 .input-group.input-group-icon-right,

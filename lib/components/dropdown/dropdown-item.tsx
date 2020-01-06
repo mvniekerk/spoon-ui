@@ -3,7 +3,6 @@ import './dropdown-item.scss';
 import React from 'react';
 import cx from 'classnames';
 import { ITranslatedSelectableValue, translateItem } from '../../util/translation';
-import Check from '@material-ui/icons/Check';
 
 export interface IDropdownItem<T> extends ITranslatedSelectableValue<T> {
   icon?: JSX.Element;
@@ -74,8 +73,6 @@ export class DropdownItem<T> extends React.Component<IDropdownItemProps<T>, IDro
       selected: value.selected
     });
 
-    const rightTick = value.selected ? <Check className="material-icons dropdown-icon select-icon" /> : null;
-
     return (
       <div className={itemContainerClass} onClick={this.handleOnClick}>
         <div className="button-container">
@@ -86,7 +83,6 @@ export class DropdownItem<T> extends React.Component<IDropdownItemProps<T>, IDro
               {this.props.children}
             </div>
             {!!this.props.iconRight ? <div className="material-icons dropdown-icon">{this.props.value.icon}</div> : null}
-            {<div className="select-icon-container">{rightTick}</div>}
           </button>
         </div>
       </div>

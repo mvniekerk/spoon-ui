@@ -1,5 +1,5 @@
 import './dropdown.scss';
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 import cx from 'classnames';
 import { DropdownItem, IDropdownItem } from './dropdown-item';
 import { DropdownTag } from './dropdown-tag';
@@ -7,9 +7,9 @@ import { TranslatedValueOrKey, translateItem } from '../../util/translation';
 import { WithPopover } from '../with-popover/with-popover';
 import { Button } from '../button/button';
 import { ScrollableArea } from '../scrollable-area/scrollable-area';
-import Search from '@material-ui/icons/Search';
 import { DropdownToggleProps } from 'reactstrap/lib/DropdownToggle';
 import { Grid } from '../grid/grid';
+import { SearchBar } from '../search-bar/search-bar';
 
 export interface IDropdownProps<T> extends Omit<DropdownToggleProps, 'placeholder'> {
   multiple?: boolean;
@@ -30,6 +30,7 @@ export interface IDropdownProps<T> extends Omit<DropdownToggleProps, 'placeholde
   unselectable: 'on' | 'off';
   onOpen?: () => void;
   onClose?: () => void;
+  label?: TranslatedValueOrKey<T>;
 }
 
 export interface IDropdownState<T> {
@@ -136,11 +137,8 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
     }
   };
 
-  private onSearchChanged = (val: ChangeEvent<HTMLInputElement>) => {
-    if (val.target) {
-      const value = val.target.value;
-      this.setState(_ => ({ search: value }));
-    }
+  private onSearchChanged = (val: string) => {
+    this.setState(_ => ({ search: val }));
   };
 
   private renderSelectionBarItem = v => (
@@ -226,14 +224,7 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
             .join(', ')
         );
 
-    const searchBarComp = search ? (
-      <div className="search-container">
-        <div className="search-input-container">
-          <Search className="search-icon" />
-          <input type="text" className="search-input" value={this.state.search} placeholder="Search" onChange={this.onSearchChanged} />
-        </div>
-      </div>
-    ) : null;
+    const searchBarComp = search ? <SearchBar value={this.state.search} onSearchChanged={this.onSearchChanged} /> : null;
 
     const selectionBarComp = selectionBar && (
       <Grid className="tags-container selected-tags" items={this.state.selection} itemRender={this.renderSelectionBarItem} />
@@ -254,6 +245,7 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
           closeOnMainClick
           disabled={this.props.disabled}
           onSelfClickClose={!multiple}
+          label={translateItem(this.props.label)}
           mainComponent={
             <Button block className={dropdownClass} disabled={this.props.disabled} {...other}>
               {showIcon && <span className="dropdown-selection-icon">{this.state.selection[0].icon}</span>}

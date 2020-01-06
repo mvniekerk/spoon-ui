@@ -71,8 +71,8 @@ $font-size-base: 1rem !default;
 
 // Dropdowns
 
-$dropdown-link-hover-color: $white !default;
-$dropdown-link-hover-bg: $primary !default;
+$dropdown-selected-color: #e5ebf0;
+$dropdown-hover-color: $color-icon;
 
 // Navs
 
@@ -142,13 +142,13 @@ $header-hover: darken($header, 20%);
 $header-secondary: darken($header, 10%);
 
 $selection-color-background: #dfe1e5;
-$selection-color-checked: #50e537;
-$selection-color-checked-darker: #25a20f;
+$selection-color-checked: #57a75b;
+$selection-color-checked-darker: #ddedde;
 
 $menu-background-color-from: #ffffff;
 $menu-background-color-to: #ffffff;
 $menu-item-color: #848c98;
-$menu-item-icon-color: $gray-lighter;
+$menu-item-icon-color: $color-icon;
 $menu-border: transparentize($gray-lighter, 0.875);
 $menu-border-opaque: transparentize($gray-lighter, 1);
 $menu-border-opaque-25: transparentize($gray-lighter, 0.75);
@@ -161,10 +161,10 @@ $progression-border-color: #e6eaee;
 $progression-current: $black-text;
 $progression-shadow: #373a3c14;
 
-$tags-color-1: #0c5100;
-$tags-color-2: #138100;
-$tags-color-3: #27aa11;
-$tags-color-4: #6fcc5f;
+$tags-color-1: #58a895;
+$tags-color-2: #289fcf;
+$tags-color-3: #58a895;
+$tags-color-4: #289fcf;
 
 $body-background: #d2d8dd;
 
@@ -186,6 +186,7 @@ $body-background: #d2d8dd;
     dark: $dark,
     dark-darker: $dark-darker,
     dark-lighter: $dark-lighter,
+    disable-darker: $disable-darker,
     black-text: $black-text,
     white-text: $white-text,
     color-icon: $color-icon,
@@ -216,7 +217,9 @@ $body-background: #d2d8dd;
     tags-color-1: $tags-color-1,
     tags-color-2: $tags-color-2,
     tags-color-3: $tags-color-3,
-    tags-color-4: $tags-color-4
+    tags-color-4: $tags-color-4,
+    dropdown-selected-color: $dropdown-selected-color,
+    dropdown-hover-color: $dropdown-hover-color
   );
   $theme-colors: map_merge($theme-colors, $added-vals);
   @return $theme-colors;
@@ -232,12 +235,12 @@ $menu-item-text-hover-color: var(--white-text);
   color: $menu-item-icon-color;
 }
 @mixin focusStyle() {
-  outline: none;
-  border: 1px var(--primary) solid;
+  border-color: $primary;
+  box-shadow: none;
 }
 @mixin hoverStyle() {
-  background-color: $menu-item-hover-color;
-  color: $menu-item-text-hover-color;
+  border-color: var(--gray-darker);
+  background: none;
 }
 // Sizes
 $base: 4px;

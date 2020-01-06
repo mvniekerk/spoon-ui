@@ -1,37 +1,34 @@
 @import '../../bootstrap-variables';
 
 .dropdown-tag {
-  border-radius: 4 * $base;
-  height: 6 * $base;
+  border-radius: 10px;
 
   display: flex;
   align-items: center;
 
   padding: 0 1.5 * $padding-base;
 
-  color: var(--white-text);
-  font-size: 12px;
-  text-transform: uppercase;
+  color: var(--gray-darker);
+  font-size: 18px;
   font-weight: normal;
 
   border: 1px solid transparent;
+  background-color: var(--dropdown-selected-color);
 
   :-moz-focusring {
     outline: unset;
   }
-
-  .dropdown-tag-icon {
-    font-size: 12px;
-    margin-left: $margin-base;
-  }
+}
+.dropdown-tag-selected {
+  color: var(--white-text);
 }
 
 // override default bootstrap styles
 .dropdown button.dropdown-tag {
   &:hover,
   &:focus {
-    @include focusStyle();
-    background-color: unset;
+    outline: unset;
+    background-color: var(--disable-darker);
     color: var(--white-text);
   }
 }
