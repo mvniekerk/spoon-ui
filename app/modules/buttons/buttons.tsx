@@ -72,6 +72,9 @@ export class Buttons extends React.Component {
               Text
             </Button>
           </Col>
+          <Col md="3">
+            <Button size="lg">Large Button</Button>
+          </Col>
           <Col>
             <Label>ActionIcon</Label>
             <FormGroup>

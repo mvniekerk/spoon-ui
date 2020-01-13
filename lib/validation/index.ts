@@ -20,7 +20,7 @@ export {
   requiredNumber,
   requiredString,
   // Validate
-  IValidateAndI18nKey,
-  Validate,
   validationErrors
 };
+export type Validate<T> = Validate<T>;
+export type IValidateAndI18nKey<T> = IValidateAndI18nKey<T>;
