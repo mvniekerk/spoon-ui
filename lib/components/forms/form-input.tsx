@@ -132,7 +132,6 @@ export function formInputGroup(form: FormInput<any>, children: JSX.Element, requ
   const className = `${isInvalid ? 'is-invalid' : ''} ${isValid ? 'is-valid' : ''} ${justHelp ? 'just-help' : ''}`;
   return (
     <FormGroup className={className} valid>
-      {!!form.props.label && <Label for={form.props.id}>{translateItem(form.props.label)}</Label>}
       <div className={`input-group ${className} form-input`}>
         {children}
         {required && (
