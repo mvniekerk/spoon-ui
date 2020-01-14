@@ -74,6 +74,9 @@ export class Buttons extends React.Component {
           </Col>
           <Col md="3">
             <Button size="lg">Large Button</Button>
+            <Button color="primary" size="lg">
+              Large Button
+            </Button>
           </Col>
           <Col>
             <Label>ActionIcon</Label>
