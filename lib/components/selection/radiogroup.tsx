@@ -2,7 +2,7 @@ import React from 'react';
 import { Col, Row, Label } from 'reactstrap';
 import { RadioButton } from './radiobutton';
 import { IRadioButtonValue } from './radio-button-value';
-import { TranslatedValueOrKey } from 'lib/util';
+import { TranslatedValueOrKey, translateItem } from 'lib/util';
 
 export interface IRadioGroupProps<T> {
   values?: Array<IRadioButtonValue<T>>;
@@ -73,7 +73,7 @@ export class RadioGroup<T> extends React.Component<IRadioGroupProps<T>, IRadioGr
     ));
     return (
       <>
-        {this.props.label && <Label>{this.props.label}</Label>}
+        {this.props.label && <Label>{translateItem(this.props.label)}</Label>}
         <div className={`radio-group ${this.props.vertical ? 'vertical' : ''}`}>{this.props.vertical ? vals : <Row>{vals}</Row>}</div>
       </>
     );
