@@ -1,5 +1,5 @@
 import './search-bar.scss';
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, MouseEvent } from 'react';
 import cx from 'classnames';
 import SearchRounded from '@material-ui/icons/SearchRounded';
 import { Input, InputProps } from 'reactstrap';
@@ -38,6 +38,10 @@ export class SearchBar extends React.Component<ISearchBarProps, ISearchBarState>
     this.props.onSearchChanged(search);
   }
 
+  onSearchClick(e: MouseEvent<HTMLInputElement>) {
+    e.stopPropagation();
+  }
+
   render() {
     const { className, placeholder, disabled, ...other } = this.props;
     return (
@@ -48,6 +52,7 @@ export class SearchBar extends React.Component<ISearchBarProps, ISearchBarState>
           value={this.state.search}
           onChange={this.onSearchChange}
           disabled={disabled}
+          onClick={this.onSearchClick}
           type="text"
         />
         <SearchRounded className="search-bar-icon" />

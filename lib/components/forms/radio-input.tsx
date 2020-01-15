@@ -50,6 +50,7 @@ export class RadioInput<T> extends React.Component<IRadioInputProps<T>, ISelecta
         onChanged={onChange}
         name={this.props.id}
         disabled={this.props.disabled}
+        label={this.props.label}
       />
     );
     return formInputGroup(this, inputs, this.props.required);
