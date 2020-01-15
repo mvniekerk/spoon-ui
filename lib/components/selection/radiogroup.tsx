@@ -1,11 +1,13 @@
 import React from 'react';
-import { Col, Row } from 'reactstrap';
+import { Col, Row, Label } from 'reactstrap';
 import { RadioButton } from './radiobutton';
 import { IRadioButtonValue } from './radio-button-value';
+import { TranslatedValueOrKey } from 'lib/util';
 
 export interface IRadioGroupProps<T> {
   values?: Array<IRadioButtonValue<T>>;
   name: string;
+  label?: TranslatedValueOrKey<T>;
   onChanged?: (value: any) => void;
   vertical?: boolean;
   xs?: number;
@@ -69,6 +71,11 @@ export class RadioGroup<T> extends React.Component<IRadioGroupProps<T>, IRadioGr
         />
       </Col>
     ));
-    return <div className={`radio-group ${this.props.vertical ? 'vertical' : ''}`}>{this.props.vertical ? vals : <Row>{vals}</Row>}</div>;
+    return (
+      <>
+        {this.props.label && <Label>{this.props.label}</Label>}
+        <div className={`radio-group ${this.props.vertical ? 'vertical' : ''}`}>{this.props.vertical ? vals : <Row>{vals}</Row>}</div>
+      </>
+    );
   }
 }
