@@ -112,7 +112,7 @@ export class WithPopover extends React.Component<IWithPopoverProps, IWithPopover
   };
 
   handleClose = () => {
-    this.props.onClosePopover ? this.props.onClosePopover() : null;
+    this.props.onClosePopover && this.props.onClosePopover();
     this.setState({
       open: false
     });
