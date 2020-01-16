@@ -24,10 +24,10 @@ export interface IDropdownProps<T> extends Omit<DropdownToggleProps, 'placeholde
   onValueSelected?: (v: IDropdownItem<T>) => void;
   onValueDeselected?: (v: IDropdownItem<T>) => void;
   onSelectionChanged?: (selection: Array<IDropdownItem<T>>) => void;
-  disabled: boolean;
-  alignRight: boolean;
-  disableDeselect: boolean;
-  unselectable: 'on' | 'off';
+  disabled?: boolean;
+  alignRight?: boolean;
+  disableDeselect?: boolean;
+  unselectable?: 'on' | 'off';
   onOpen?: () => void;
   onClose?: () => void;
   label?: TranslatedValueOrKey<T>;
@@ -37,14 +37,14 @@ export interface IDropdownState<T> {
   selection: Array<IDropdownItem<T>>;
   searching: boolean;
   values: Array<IDropdownItem<T>>;
-  search?: string;
+  searchValue?: string;
 }
 
 export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownState<T>> {
   static defaultProps = {
     alignRight: false,
     multiple: false,
-    search: false,
+    searchValue: '',
     selectAll: false,
     tags: false,
     onValueSelected: v => {},
@@ -72,6 +72,12 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
       this.updateSelection();
     }
   }
+
+  onClosePopover = () => {
+    this.setState(_ => ({
+      searchValue: ''
+    }));
+  };
 
   public get selection(): Array<IDropdownItem<T>> {
     return this.state.selection;
@@ -138,7 +144,7 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
   };
 
   private onSearchChanged = (val: string) => {
-    this.setState(_ => ({ search: val }));
+    this.setState(_ => ({ searchValue: val }));
   };
 
   private renderSelectionBarItem = v => (
@@ -205,11 +211,11 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
       !this.state.searching && !!this.state.values
         ? this.state.values.filter(
             b =>
-              !this.state.search ||
-              ('' + b.value).toLowerCase().indexOf(this.state.search.toLowerCase()) >= 0 ||
+              !this.state.searchValue ||
+              ('' + b.value).toLowerCase().indexOf(this.state.searchValue.toLowerCase()) >= 0 ||
               translateItem(b)
                 .toLowerCase()
-                .indexOf(this.state.search.toLowerCase()) >= 0
+                .indexOf(this.state.searchValue.toLowerCase()) >= 0
           )
         : [];
 
@@ -224,7 +230,7 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
             .join(', ')
         );
 
-    const searchBarComp = search ? <SearchBar value={this.state.search} onSearchChanged={this.onSearchChanged} /> : null;
+    const searchBarComp = search ? <SearchBar value={this.state.searchValue} onSearchChanged={this.onSearchChanged} /> : null;
 
     const selectionBarComp = selectionBar && (
       <Grid className="tags-container selected-tags" items={this.state.selection} itemRender={this.renderSelectionBarItem} />
@@ -246,6 +252,7 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
           disabled={this.props.disabled}
           onSelfClickClose={!multiple}
           label={translateItem(this.props.label)}
+          onClosePopover={this.onClosePopover}
           mainComponent={
             <Button block className={dropdownClass} disabled={this.props.disabled} {...other}>
               {showIcon && <span className="dropdown-selection-icon">{this.state.selection[0].icon}</span>}

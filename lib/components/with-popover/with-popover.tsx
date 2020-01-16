@@ -60,6 +60,10 @@ interface IWithPopoverProps extends Omit<IPopoverProps, 'isOpen' | 'children' | 
   disabled?: boolean;
 
   label?: string;
+  /**
+   * Function that was called after closing
+   */
+  onClosePopover?: () => void;
 }
 
 interface IWithPopoverState {
@@ -108,6 +112,7 @@ export class WithPopover extends React.Component<IWithPopoverProps, IWithPopover
   };
 
   handleClose = () => {
+    this.props.onClosePopover && this.props.onClosePopover();
     this.setState({
       open: false
     });
