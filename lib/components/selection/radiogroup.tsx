@@ -2,7 +2,7 @@ import React from 'react';
 import { Col, Row, Label } from 'reactstrap';
 import { RadioButton } from './radiobutton';
 import { IRadioButtonValue } from './radio-button-value';
-import { TranslatedValueOrKey, translateItem } from 'lib/util';
+import { TranslatedValueOrKey, translateItem } from '../../util/translation';
 
 export interface IRadioGroupProps<T> {
   values?: Array<IRadioButtonValue<T>>;
