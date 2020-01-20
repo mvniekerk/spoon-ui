@@ -3,7 +3,7 @@ import React, { ChangeEvent } from 'react';
 import cx from 'classnames';
 import { IDirtyInput } from '../../util/dirty-input';
 import { translateItem } from '../../util/translation';
-import { Input, InputProps } from 'reactstrap';
+import { Input, InputProps, Label } from 'reactstrap';
 
 import Check from '@material-ui/icons/CheckRounded';
 import ClearIcon from '@material-ui/icons/Clear';
@@ -33,7 +33,7 @@ export class TextInput extends React.Component<ITextInputProps, IFormInputState<
   }
 
   render() {
-    const { id, className, onMadeDirty, onChange, placeholder, value, required, disabled, enableTicks, ...other } = this.props;
+    const { id, label, className, onMadeDirty, onChange, placeholder, value, required, disabled, enableTicks, ...other } = this.props;
 
     const onChangeDirty = (e: ChangeEvent<HTMLInputElement>) => {
       onChange(e.target.value);
@@ -61,6 +61,11 @@ export class TextInput extends React.Component<ITextInputProps, IFormInputState<
         {isValid && enableTicks && <Check id="check" className={`material-icons valid-icon disabled-${disabled}`} />}
       </>
     );
-    return formInputGroup(this, input, this.props.required);
+    return (
+      <>
+        {this.props.label && <Label>{this.props.label}</Label>}
+        {formInputGroup(this, input, this.props.required)}
+      </>
+    );
   }
 }
