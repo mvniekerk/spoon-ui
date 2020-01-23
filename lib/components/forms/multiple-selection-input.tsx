@@ -60,7 +60,7 @@ export class MultipleSelectionInput<T> extends React.Component<IMultipleSelectio
       ? Array.from(choiceVals.keys()).map(k => ({
           name: choiceVals.get(k),
           display: choiceVals.get(k),
-          id: `${props.id}_${choiceVals.get(k)}`,
+          id: `${props.id}_${choiceVals.get(k)}_${k.toString()}`,
           value: [k],
           disabled: false,
           selected: false,

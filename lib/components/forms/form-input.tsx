@@ -55,7 +55,7 @@ export function defaultStateForSelectableFormInput<T>(
     ? Array.from(choiceVals.keys()).map(k => ({
         name: choiceVals.get(k),
         display: choiceVals.get(k),
-        id: `${props.id}_${choiceVals.get(k)}`,
+        id: `${props.id}_${choiceVals.get(k)}_${k.toString()}`,
         value: k,
         disabled: false,
         selected: !!oldState && oldState.choices.some(b => b.selected && b.id === `${props.id}_${choiceVals.get(k)}`),
