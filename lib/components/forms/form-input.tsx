@@ -59,7 +59,7 @@ export function defaultStateForSelectableFormInput<T>(
         value: k,
         disabled: false,
         selected: props.selectedId
-          ? props.selectedId === JSON.stringify(k)
+          ? props.selectedId === k.toString()
           : !!oldState && oldState.choices.some(b => b.selected && b.id === `${props.id}_${JSON.stringify(k)}`),
         groupName: props.id
       }))
