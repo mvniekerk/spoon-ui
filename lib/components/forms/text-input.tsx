@@ -63,7 +63,7 @@ export class TextInput extends React.Component<ITextInputProps, IFormInputState<
     );
     return (
       <>
-        {this.props.label && <Label>{this.props.label}</Label>}
+        {this.props.label && <Label>{translateItem(this.props.label)}</Label>}
         {formInputGroup(this, input, this.props.required)}
       </>
     );
