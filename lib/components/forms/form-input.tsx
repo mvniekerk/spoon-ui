@@ -1,8 +1,8 @@
 import React from 'react';
-import { ITranslatedSelectableValue, ITranslatedValue, TranslatedValueOrKey, translateItem } from '../../util/translation';
+import { ITranslatedSelectableValue, ITranslatedValue, TranslatedValueOrKey } from '../../util/translation';
 import { IDirtyInput } from '../../util/dirty-input';
 import { IValidateAndI18nKey, validationErrors } from '../../validation/validate';
-import { FormGroup, Label } from 'reactstrap';
+import { FormGroup } from 'reactstrap';
 import { FormError, FormHelp, FormValid } from '../form-feedback/form-feedback';
 import ArrowDropUp from '@material-ui/icons/ArrowDropUpRounded';
 
@@ -54,7 +54,7 @@ export function defaultStateForSelectableFormInput<T>(
   const choices: Array<ITranslatedSelectableValue<T>> = !!choiceVals
     ? Array.from(choiceVals.keys()).map(k => ({
         display: choiceVals.get(k),
-        id: `${props.id}_${choiceVals.get(k)}_${k.toString()}`,
+        id: `${props.id}_${JSON.stringify(k)}`,
         value: k,
         disabled: false,
         selected: !!oldState && oldState.choices.some(b => b.selected && b.id === `${props.id}_${choiceVals.get(k)}`),
