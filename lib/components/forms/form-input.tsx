@@ -53,9 +53,9 @@ export function defaultStateForSelectableFormInput<T>(
   const choiceVals = props.choices();
   const choices: Array<ITranslatedSelectableValue<T>> = !!choiceVals
     ? Array.from(choiceVals.keys()).map(k => ({
-        name: JSON.stringify(k),
+        name: choiceVals.get(k),
         display: choiceVals.get(k),
-        id: `${props.id}_${JSON.stringify(k)}`,
+        id: `${props.id}_${choiceVals.get(k)}`,
         value: k,
         disabled: false,
         selected: !!oldState && oldState.choices.some(b => b.selected && b.id === `${props.id}_${choiceVals.get(k)}`),
