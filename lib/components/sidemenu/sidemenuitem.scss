@@ -4,14 +4,17 @@
   justify-content: center;
   height: 54px;
   cursor: pointer;
+
   .sidemenu-item-icon {
     margin: 0;
   }
+
   p {
     vertical-align: center;
   }
 
   a {
+    font-weight: normal;
     display: flex;
     align-items: center;
     justify-content: left;

@@ -22,8 +22,7 @@ body {
   box-sizing: border-box;
   display: inline-flex;
   .view-container {
-    background: linear-gradient(180deg, #d4dee7 0%, #ffffff 100%);
-    border: 1px solid gray;
+    background: var(--body-background);
     min-width: calc(100vw - 270px);
     width: calc(100vw - 270px);
     overflow-y: auto;
@@ -37,7 +36,6 @@ body {
       min-width: calc(100vw - 20px);
       margin-left: 4px;
     }
-    //background-color: blue;
 
     .card {
       padding: 1rem;
@@ -441,7 +439,8 @@ a:hover {
 .small-header {
   text-transform: uppercase;
   padding-top: 40px;
-  color: var(--gray-darker);
+  color: var(--header);
+  font-style: normal;
 }
 
 //Removes the dotted outline when clicking on a menu
