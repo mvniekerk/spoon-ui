@@ -1,0 +1,134 @@
+.card {
+  border: unset;
+  margin: 0;
+  padding: 0 !important;
+  margin-bottom: 12px;
+  .card-header {
+    cursor: pointer;
+  }
+  // max-width: 768px;
+
+  .expander {
+    flex-grow: 0;
+    padding-top: 8px;
+    color: var(--gray-darker);
+    margin-right: 8px;
+  }
+
+  .status-icon {
+    align-content: center;
+    display: flex;
+    justify-content: center;
+    flex-grow: 0;
+    margin-right: 8px;
+
+    .status-icon-padder {
+      align-content: center;
+      display: flex;
+      justify-content: center;
+      border-radius: 32px;
+      color: var(--light);
+      background-color: var(--gray-darker);
+      max-width: 32px;
+      max-height: 32px;
+      margin-left: 8px;
+      margin-top: 8px;
+      min-width: 32px;
+      min-height: 32px;
+      padding-top: 0;
+
+      svg {
+        margin-top: 3px;
+      }
+    }
+  }
+
+  .status-icon.valid .status-icon-padder {
+    background-color: var(--primary);
+  }
+
+  .accordion-card-header {
+    padding: 4px 4px 4px 8px;
+  }
+}
+
+@keyframes fadeIconIn {
+  0% {
+    transform: scale(0.5);
+  }
+  25% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.5);
+  }
+  75% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.accordion-card-header.closed {
+  background-color: var(--gray-darker);
+  border-color: var(--gray-darker);
+  color: var(--light);
+  h2 {
+    color: var(--light);
+  }
+
+  .status-icon {
+    .status-icon-padder {
+      background-color: var(--light);
+      color: var(--gray-darker);
+    }
+    animation: fadeIconIn 500ms;
+  }
+
+  .expander {
+    color: var(--light);
+  }
+}
+
+@keyframes fadeActiveBannerIn {
+  from {
+    background-color: var(--light);
+    opacity: 0;
+  }
+  to {
+    background-color: var(--primary);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeActiveIconIn {
+  0% {
+    transform: scale(1.2);
+  }
+  25% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.accordion-card-header.closed.valid {
+  background-color: var(--primary);
+  .status-icon {
+    .status-icon-padder {
+      border-color: var(--primary);
+      color: var(--primary);
+      //animation: fadeActiveIconIn 300ms 200ms;
+    }
+    animation: fadeActiveIconIn 500ms;
+  }
+  animation: fadeActiveBannerIn 300ms;
+}
