@@ -13,7 +13,7 @@ export const AccordionHeader = (props: { text: string; valid: boolean; open: boo
     className={'accordion-card-header' + (props.open ? ' open' : ' closed') + (props.valid ? ' valid' : '')}
   >
     <div style={{ display: 'flex', flexDirection: 'row' }}>
-      <h2 style={{ flexGrow: 1, paddingTop: '4px' }}>{props.text}</h2>
+      <h3 style={{ flexGrow: 1, paddingTop: '4px' }}>{props.text}</h3>
 
       <span className={'status-icon' + (props.valid ? ' valid' : '')}>
         <div className="status-icon-padder">
@@ -22,8 +22,8 @@ export const AccordionHeader = (props: { text: string; valid: boolean; open: boo
         </div>
       </span>
       <span className="expander">
-        {props.open && <ExpandLessRounded />}
-        {!props.open && <ExpandMoreRounded />}
+        {props.open && <ExpandLessRounded fontSize="large" />}
+        {!props.open && <ExpandMoreRounded fontSize="large" />}
       </span>
     </div>
   </CardHeader>
