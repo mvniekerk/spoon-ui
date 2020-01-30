@@ -145,10 +145,10 @@ $selection-color-background: #dfe1e5;
 $selection-color-checked: #57a75b;
 $selection-color-checked-darker: #ddedde;
 
-$menu-background-color-from: #289fcf;
-$menu-background-color-to: #001c44;
-$menu-item-color: white;
-$menu-item-icon-color: $white;
+$menu-background-color-from: #ffffff;
+$menu-background-color-to: #ffffff;
+$menu-item-color: #848c98;
+$menu-item-icon-color: $color-icon;
 $menu-border: transparentize($gray-lighter, 0.875);
 $menu-border-opaque: transparentize($gray-lighter, 1);
 $menu-border-opaque-25: transparentize($gray-lighter, 0.75);
