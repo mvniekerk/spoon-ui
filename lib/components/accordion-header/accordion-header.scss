@@ -41,6 +41,11 @@
   .card-body {
     background-color: #ffffff;
     border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+  }
+  :first-child {
+    flex: 1;
   }
 
   .expander {
