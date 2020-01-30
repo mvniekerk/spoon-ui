@@ -19,7 +19,7 @@ export class ProgressionItem extends React.Component<IProgressionProps> {
   };
 
   render() {
-    const counter = ( //icon={<Edit />}
+    const counter = (
       <div className="counter">
         {!!this.props.icon ? this.props.icon : this.props.done ? <CheckRounded /> : this.props.current ? <Edit /> : this.props.step}
       </div>
