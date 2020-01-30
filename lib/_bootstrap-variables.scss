@@ -240,7 +240,7 @@ $menu-item-text-hover-color: var(--white-text);
 }
 @mixin hoverStyle() {
   border-color: var(--primary-active-darker);
-  background: none;
+  // background: none;
 }
 // Sizes
 $base: 4px;

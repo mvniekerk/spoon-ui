@@ -63,6 +63,23 @@ export class Selection extends React.Component {
       }
     ];
 
+    const radioGroupWith2Vals: Array<IRadioButtonValue<string>> = [
+      {
+        display: 'Option 1',
+        id: 'option1',
+        value: 'value1',
+        disabled: false,
+        selected: false
+      },
+      {
+        display: 'Option 2',
+        id: 'option2',
+        value: 'value2',
+        disabled: false,
+        selected: true
+      }
+    ];
+
     const lonesomeChecked: Array<IRadioButtonValue<string>> = [
       {
         display: 'Option 4',
@@ -82,6 +99,11 @@ export class Selection extends React.Component {
     return (
       <>
         <Row>
+          <Col>
+            <FormGroup>
+              <RadioGroup values={radioGroupWith2Vals} name="radGroup1" />
+            </FormGroup>
+          </Col>
           <Col md="4">
             <div className="small-header">Checkboxes</div>
 
