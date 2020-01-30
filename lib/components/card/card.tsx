@@ -17,12 +17,12 @@ export class Card extends React.Component<ICardProps> {
       <RCard className={cx('base-card', className)} {...other}>
         <CardBody>
           <div className="card-image">{image}</div>
-          <CardTitle>
-            <h2>{title}</h2>
-          </CardTitle>
           <CardSubtitle>
             <p>{subtitle}</p>
           </CardSubtitle>
+          <CardTitle>
+            <h3>{title}</h3>
+          </CardTitle>
           {actionComponent}
         </CardBody>
       </RCard>
