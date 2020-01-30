@@ -173,7 +173,7 @@ export class Navigation extends React.Component {
         <Row>
           <Col>
             <Card>
-              <AccordionHeader text="Accordion Header" open={this.state.openPanelFirst} valid={true} onClick={this.switchPanelFirst} />
+              <AccordionHeader text="Accordion Header" open={this.state.openPanelFirst} valid onClick={this.switchPanelFirst} />
               <Collapse isOpen={this.state.openPanelFirst}>
                 <CardBody>Card Body</CardBody>
               </Collapse>
