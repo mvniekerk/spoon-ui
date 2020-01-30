@@ -10,22 +10,26 @@
   }
 
   .card-image {
-    margin-bottom: 15px;
-    color: rgb(197, 208, 222); //var(--gray-lighter)
+    margin-bottom: 35px;
+    color: #93b1d6;
+
+    svg {
+      font-size: 75px;
+    }
   }
 
   .card-title {
-    text-transform: uppercase;
-    padding-bottom: 0.75;
-
+    margin-bottom: 25px;
     h2 {
       line-height: 0.9;
     }
   }
 
   .card-subtitle p {
-    font-size: 16px;
-    line-height: 1;
+    color: #011c4f;
+    font-size: 18px;
+    line-height: 23px;
+    margin-bottom: 0px;
   }
 
   button.btn {

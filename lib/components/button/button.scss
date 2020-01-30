@@ -52,20 +52,13 @@ button.btn-primary:not(:disabled):not(.disabled):active:focus,
 
 button.btn.btn-secondary {
   color: var(--gray-darker);
-  background: var(--white-text);
+  background: transparent;
   border: 1px solid var(--gray-darker);
 }
 button.btn.btn-secondary:disabled {
   border: none;
 }
 
-button.btn.btn-secondary:hover {
-  background-image: linear-gradient(to bottom, var(--white-text), var(--gray-lighter));
-}
-
-button.btn.btn-secondary:active {
-  background-image: linear-gradient(to bottom, var(--gray-lighter), var(--white-text));
-}
 button.btn.btn-secondary:focus {
   border: 1px solid var(--gray-darker) !important;
 }
