@@ -1,6 +1,7 @@
 import './progression.scss';
 import React from 'react';
 import CheckRounded from '@material-ui/icons/CheckRounded';
+import Edit from '@material-ui/icons/Edit';
 
 export interface IProgressionProps {
   done: boolean;
@@ -18,8 +19,10 @@ export class ProgressionItem extends React.Component<IProgressionProps> {
   };
 
   render() {
-    const counter = (
-      <div className="counter">{!!this.props.icon ? this.props.icon : this.props.done ? <CheckRounded /> : this.props.step}</div>
+    const counter = ( //icon={<Edit />}
+      <div className="counter">
+        {!!this.props.icon ? this.props.icon : this.props.done ? <CheckRounded /> : this.props.current ? <Edit /> : this.props.step}
+      </div>
     );
     return (
       <div
