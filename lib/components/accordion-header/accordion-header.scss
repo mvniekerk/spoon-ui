@@ -35,7 +35,7 @@
     &.open {
       border-bottom-left-radius: 0px !important;
       border-bottom-right-radius: 0px !important;
-      border-bottom: 2px solid #93b1d6;
+      border-bottom: 2px solid var(--color-icon);
     }
   }
   .card-body {
@@ -46,7 +46,7 @@
   .expander {
     flex-grow: 0;
     margin-right: 8px;
-    color: #93b1d6;
+    color: var(--color-icon);
   }
 
   .status-icon {

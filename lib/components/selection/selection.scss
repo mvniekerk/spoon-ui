@@ -266,7 +266,7 @@ input:checked + .slider:before {
   }
   .selection-text::after {
     background: unset;
-    background-color: #93b1d6;
+    background-color: var(--color-icon);
     height: 12px;
     width: 12px;
     border-radius: 6px;
