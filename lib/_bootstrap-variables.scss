@@ -156,9 +156,9 @@ $menu-border-opaque-8: transparentize($gray-lighter, 1);
 $menu-list-item-selected-color: $black-text;
 $menu-close-color: $gray-lighter;
 
-$progression-color: #848c98;
+$progression-color: $gray-darker;
 $progression-border-color: #e6eaee;
-$progression-current: $black-text;
+$progression-current: #011b5c;
 $progression-shadow: #373a3c14;
 
 $tags-color-1: #58a895;
