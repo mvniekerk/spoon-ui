@@ -18,6 +18,7 @@ import {
 
 import Info from '@material-ui/icons/Info';
 import Edit from '@material-ui/icons/Edit';
+import DoneAllIcon from '@material-ui/icons/DoneAll';
 import SubdirectoryArrowRight from '@material-ui/icons/SubdirectoryArrowRight';
 
 import { Button, Alert, ItemsPerPage, Pagination, ProgressBar, Progression, ProgressionItem, AccordionHeader } from 'lib/components';
@@ -161,7 +162,7 @@ export class Navigation extends React.Component {
                 Contact Details
               </ProgressionItem>
               <ProgressionItem step={3}>Client Profile</ProgressionItem>
-              <ProgressionItem step={4} icon={<SubdirectoryArrowRight />}>
+              <ProgressionItem step={4} icon={<DoneAllIcon />}>
                 Submit for approval
               </ProgressionItem>
             </Progression>

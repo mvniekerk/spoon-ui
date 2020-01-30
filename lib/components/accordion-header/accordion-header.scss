@@ -1,5 +1,5 @@
 .card {
-  border: unset;
+  border: none !important;
   margin: 0;
   padding: 0 !important;
   margin-bottom: 12px;
@@ -13,6 +13,13 @@
     box-shadow: 1px 1px 50px 10px rgba(0, 37, 80, 0.15);
     color: #001c44;
     background-color: white;
+
+    &.closed {
+      border-left: #a52222 10px solid;
+      &.valid {
+        border-left-color: #57a75b;
+      }
+    }
 
     h3 {
       height: 29px;
