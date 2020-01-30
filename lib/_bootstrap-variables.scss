@@ -235,11 +235,11 @@ $menu-item-text-hover-color: var(--white-text);
   color: $menu-item-icon-color;
 }
 @mixin focusStyle() {
-  border-color: $primary;
+  border-color: $primary-active-darker;
   box-shadow: none;
 }
 @mixin hoverStyle() {
-  border-color: var(--gray-darker);
+  border-color: $primary-active-darker;
   background: none;
 }
 // Sizes
