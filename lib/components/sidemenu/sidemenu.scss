@@ -5,8 +5,8 @@
   flex: 0 0 53px;
   display: flex;
   color: var(--menu-close-color);
-
   border-bottom: 1px solid var(--menu-border);
+
   img {
     margin: 0;
     padding: 0;
@@ -41,21 +41,25 @@
   border-right: 1px solid var(--menu-border);
   transition: all 0.15s linear;
   position: fixed;
+
   ul {
     list-style-type: none;
     margin: 0;
     padding-inline-start: 0;
   }
+
   li {
     border-left: var(--menu-border-opaque) solid 4px;
     border-top: var(--menu-border-opaque) solid 1px;
     border-bottom: var(--menu-border-opaque) solid 1px;
   }
+
   li a {
     transition: all 0.4s linear;
     text-decoration: none;
     opacity: 1;
   }
+
   ul:hover li:not(:hover) a {
     opacity: 0.3;
   }

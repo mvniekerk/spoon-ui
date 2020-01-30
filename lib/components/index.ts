@@ -39,6 +39,7 @@ export * from './sidemenu/sidemenuitem';
 export * from './pagination/pagination';
 export * from './progress-bar/progress-bar';
 export * from './progression/progression-item';
+export * from './accordion-header/accordion-header';
 export * from './progression/progression';
 export * from './selection/radiobutton';
 export * from './selection/radio-button-value';
