@@ -52,7 +52,7 @@
   font-weight: 600;
 
   .counter {
-    background-color: #var(--color-icon);
+    background-color: var(--color-icon);
     font-weight: 600;
     box-shadow: 0 0 0 1px var(--progression-current-shadow) inset;
     border: 1px;
