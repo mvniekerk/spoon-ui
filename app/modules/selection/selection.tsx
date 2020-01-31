@@ -99,11 +99,6 @@ export class Selection extends React.Component {
     return (
       <>
         <Row>
-          <Col>
-            <FormGroup>
-              <RadioGroup values={radioGroupWith2Vals} name="radGroup1" />
-            </FormGroup>
-          </Col>
           <Col md="4">
             <div className="small-header">Checkboxes</div>
 

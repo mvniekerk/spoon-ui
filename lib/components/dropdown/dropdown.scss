@@ -17,6 +17,7 @@
     width: 100%;
     border: var(--gray-darker-opacity) solid 1px;
     color: var(--gray-darker);
+    background-color: white;
 
     &:focus {
       @include focusStyle();
