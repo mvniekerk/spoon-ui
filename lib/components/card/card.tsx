@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import { CardBody, Card as RCard, CardTitle, CardSubtitle, CardProps } from 'reactstrap';
 import cx from 'classnames';
 import './card.scss';
+import { Row } from '../layout';
 
 export interface ICardProps extends CardProps {
   image: ReactNode;
