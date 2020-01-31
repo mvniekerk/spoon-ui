@@ -605,7 +605,11 @@ div.invalid-feedback {
     margin-left: 5px;
     display: unset;
     position: inherit;
-    color: var(--error);
+  }
+  .form-feedback-span:not(.form-help) {
+    .material-icons {
+      color: var(--error);
+    }
   }
 }
 
