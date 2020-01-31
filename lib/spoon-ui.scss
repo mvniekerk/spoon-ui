@@ -606,6 +606,8 @@ div.invalid-feedback {
     display: unset;
     position: inherit;
   }
+}
+div.invalid-feedback {
   .form-feedback-span:not(.form-help) {
     .material-icons {
       color: var(--error);
