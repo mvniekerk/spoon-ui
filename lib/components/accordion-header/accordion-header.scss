@@ -44,9 +44,6 @@
     display: flex;
     flex-direction: column;
   }
-  :first-child {
-    flex: 1;
-  }
 
   .expander {
     flex-grow: 0;
