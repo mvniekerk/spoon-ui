@@ -4,6 +4,7 @@ import { FormFeedback } from 'reactstrap';
 import Cancel from '@material-ui/icons/Cancel';
 import Info from '@material-ui/icons/Info';
 import { ITranslatedValue, TranslatedValueOrKey, translateItem } from '../../util/translation';
+import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 
 export interface IFormErrorProps<T> {
   errors: Array<ITranslatedValue<T>>;
@@ -37,7 +38,7 @@ export function FormValid<T>(props: IFormValidProps<T>) {
           <FormFeedback valid>
             <span className="form-feedback-span">
               {translateItem(props.validMessage)}
-              <Info className="material-icons" />
+              <CheckCircleRoundedIcon className="material-icons" />
             </span>
           </FormFeedback>
         </>
