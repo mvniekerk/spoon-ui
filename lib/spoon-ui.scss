@@ -606,6 +606,11 @@ div.invalid-feedback {
     display: unset;
     position: inherit;
   }
+  .form-feedback-span:not(.form-help) {
+    .material-icons {
+      color: var(--error);
+    }
+  }
 }
 
 .app-container .view-container {
