@@ -1,9 +1,10 @@
 .scrollable-area {
-  div:nth-child(3) {
-    width: 8px !important;
+  & > div:nth-child(3) {
+    min-width: 8px !important;
     border-radius: 4px !important;
     background-color: var(--scroll-background-color);
-    div {
+
+    & > div {
       background-color: var(--scroll-color) !important;
     }
   }

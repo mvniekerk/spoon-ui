@@ -1,7 +1,8 @@
 import React, { HTMLAttributes, ElementType, ReactNode } from 'react';
-import cx from 'classnames';
-import './scrollable-area.scss';
 import { Scrollbars } from 'react-custom-scrollbars';
+import cx from 'classnames';
+
+import './scrollable-area.scss';
 
 export interface IScrollableAreaProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
@@ -9,7 +10,7 @@ export interface IScrollableAreaProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const ScrollableArea: React.FC<IScrollableAreaProps> = ({ children, className, tag: Tag = 'div', ...other }) => (
-  <Scrollbars className="scrollable-area" universal autoHeight={Tag === 'div'}>
+  <Scrollbars className="scrollable-area" universal autoHeight={Tag === 'div'} hideTracksWhenNotNeeded={true}>
     <Tag className={cx('', className)} {...other}>
       {children}
     </Tag>
