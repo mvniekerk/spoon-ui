@@ -10,10 +10,11 @@ import ChevronLeft from '@material-ui/icons/ChevronLeft';
 import ILocaleRootState = Locale.ILocaleRootState;
 import { ScrollableArea } from '../scrollable-area/scrollable-area';
 
-const { setSideMenu, MAX, MINI, TO_MAX, TO_MINI, HIDE_MAX, HIDE_MINI } = SideMenuReducer.sideMenu;
+const { setSideMenu, MAX, MINI, HIDE_MAX, HIDE_MINI } = SideMenuReducer.sideMenu;
 
 export interface ISideMenuSetableProps extends RouteComponentProps<any> {
   logo?: string;
+  title?: string;
 }
 
 interface ISideMenuProps extends StateProps, DispatchProps, ISideMenuSetableProps {}
@@ -74,22 +75,20 @@ class SideMenu extends React.Component<ISideMenuProps, {}> {
       return null;
     }
     const max = this.props.sideMenu === MAX;
-    const toMax = this.props.sideMenu === TO_MAX;
-    const mini = this.props.sideMenu === MINI;
-    const toMini = this.props.sideMenu === TO_MINI;
 
     const logo = max ? <this.SideMenuLogo logo={this.props.logo} /> : <this.SideMenuHamburger {...this.props} />;
     const menus = this.props.menus
       .filter(e => e.sideMenu)
       .map(e => <SideMenuItem icon={e.icon} currentRoute={e} {...this.props} key={e.name} />);
-    const text = max ? 'Menu' : '';
 
     return (
       <div>
         <div className={'side-menu-container' + (max ? '' : ' side-menu-container-mini')}>
           {logo}
-          <p className="small-header menu-item-header">{text}</p>
-          <ScrollableArea tag="ul">{menus}</ScrollableArea>
+          {this.props.title && <p className="small-header menu-item-header">{this.props.title}</p>}
+          <ScrollableArea tag="ul" className={!!this.props.title ? '' : 'without-title'}>
+            {menus}
+          </ScrollableArea>
         </div>
       </div>
     );

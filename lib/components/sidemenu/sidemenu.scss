@@ -51,6 +51,9 @@
     list-style-type: none;
     margin: 0;
     padding-inline-start: 0;
+    &.without-title {
+      padding-top: 40px;
+    }
   }
 
   li {
