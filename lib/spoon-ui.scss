@@ -564,13 +564,6 @@ a:hover {
   }
 }
 
-.input-group.form-input {
-  .dropdown.show .select-icon-container .material-icons {
-    display: unset;
-    position: unset;
-  }
-}
-
 .form-control:disabled,
 .input-group:disabled {
   background-color: var(--gray-lighter);
