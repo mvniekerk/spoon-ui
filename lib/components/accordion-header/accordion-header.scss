@@ -11,20 +11,20 @@
     border-radius: 7px !important;
     border: none;
     box-shadow: 1px 1px 50px 10px rgba(0, 37, 80, 0.15);
-    color: #001c44;
+    color: var(--gray-darker);
     background-color: white;
 
-    &.closed {
-      border-left: #a52222 10px solid;
-      &.valid {
-        border-left-color: #57a75b;
-      }
+    &.closed.invalid {
+      border-left: var(--danger) 10px solid;
+    }
+    &.closed.valid {
+      border-left: var(--success) 10px solid;
     }
 
     h3 {
       height: 29px;
       width: 124px;
-      color: #001c44;
+      color: var(--gray-darker);
       font-family: 'Source Sans Pro';
       font-size: 23px;
       font-weight: bold;
@@ -64,7 +64,7 @@
       justify-content: center;
       border-radius: 32px;
       background-color: #edd3d3;
-      color: #a52222;
+      color: var(--danger);
       max-width: 43px;
       max-height: 44px;
       margin-left: 8px;
@@ -82,7 +82,7 @@
 
   .status-icon.valid .status-icon-padder {
     background-color: #ddedde;
-    color: #57a75b;
+    color: var(--success);
   }
 
   .accordion-card-header {
