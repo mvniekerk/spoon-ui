@@ -10,7 +10,7 @@ export interface IScrollableAreaProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const ScrollableArea: React.FC<IScrollableAreaProps> = ({ children, className, tag: Tag = 'div', ...other }) => (
-  <Scrollbars className="scrollable-area" universal autoHeight={Tag === 'div'} hideTracksWhenNotNeeded={true}>
+  <Scrollbars className="scrollable-area" universal autoHeight={Tag === 'div'} hideTracksWhenNotNeeded>
     <Tag className={cx('', className)} {...other}>
       {children}
     </Tag>
