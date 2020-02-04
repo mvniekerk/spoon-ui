@@ -58,6 +58,9 @@ $color-icon: #93b1d6;
 $black-text: rgb(6, 6, 7);
 $white-text: #ffffff;
 
+$scroll-background-color: #e3e6ec;
+$scroll-color: #b1b4c1;
+
 // Body
 
 $body-bg: #fcfcfc !default;
@@ -71,8 +74,8 @@ $font-size-base: 1rem !default;
 
 // Dropdowns
 
-$dropdown-selected-color: #e5ebf0;
-$dropdown-hover-color: $color-icon;
+$dropdown-selected-color: #e9eff7;
+$dropdown-hover-color: #e5ebf0;
 
 // Navs
 
@@ -189,6 +192,8 @@ $body-background: #ccd2da;
     disable-darker: $disable-darker,
     black-text: $black-text,
     white-text: $white-text,
+    scroll-background-color: $scroll-background-color,
+    scroll-color: $scroll-color,
     color-icon: $color-icon,
     gray-darker: $gray-darker,
     gray-darker-opacity: $gray-darker-opacity,

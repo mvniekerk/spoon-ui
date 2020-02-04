@@ -36,6 +36,7 @@
     "react-addons-css-transition-group": "16.0.0-alpha.3",
     "react-addons-transition-group": "16.0.0-alpha.3",
     "react-calendar": "2.19.2",
+    "react-custom-scrollbars": "^4.2.1",
     "react-filepond": "7.0.1",
     "react-hot-loader": "4.8.0",
     "react-jhipster": "0.9.0",

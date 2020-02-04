@@ -356,12 +356,16 @@ export class Forms extends React.Component<{}, IFormsState> {
           </Col>
           <Col md="4">
             <FormGroup>
-              <Label for="inputwithoutvalidation">Without validation</Label>
-              <Input id="inputwithoutvalidation" placeholder="Placeholder" />
+              <TextInput label="Without validation" placeholder="Placeholder" id="inputwithoutvalidation" value={this.state.numberInput} />
             </FormGroup>
             <FormGroup>
-              <Label for="inputwithoutvalidation">Required field</Label>
-              <Input id="inputwithoutvalidation" placeholder="Placeholder" />
+              <TextInput
+                label="Required validation"
+                placeholder="Placeholder"
+                id="inputwithvalidation"
+                required
+                value={this.state.numberInput}
+              />
               <FormText>
                 <span>
                   Example help text that remains unchanged.

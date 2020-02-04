@@ -1,4 +1,11 @@
 .scrollable-area {
-  overflow-y: auto;
-  height: 100%;
+  & > div:nth-child(3) {
+    min-width: 8px !important;
+    border-radius: 4px !important;
+    background-color: var(--scroll-background-color);
+
+    & > div {
+      background-color: var(--scroll-color) !important;
+    }
+  }
 }
