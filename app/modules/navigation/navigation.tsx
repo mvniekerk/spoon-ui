@@ -185,6 +185,12 @@ export class Navigation extends React.Component {
                 <CardBody>Card Body 2</CardBody>
               </Collapse>
             </Card>
+            <Card>
+              <AccordionHeader text="Simple" open />
+              <Collapse isOpen>
+                <CardBody>Simple Body</CardBody>
+              </Collapse>
+            </Card>
           </Col>
         </Row>
       </>

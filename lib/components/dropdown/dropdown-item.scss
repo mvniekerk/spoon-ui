@@ -49,6 +49,10 @@
 }
 
 .dropdown-item-container {
+  .button-container {
+    padding-right: 8px;
+  }
+
   button {
     flex-grow: 1;
     .button-content {
