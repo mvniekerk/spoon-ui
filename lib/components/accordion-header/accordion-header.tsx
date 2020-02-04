@@ -7,13 +7,11 @@ import ExpandLessRounded from '@material-ui/icons/ExpandLessRounded';
 import CheckRounded from '@material-ui/icons/CheckRounded';
 import PriorityHighRounded from '@material-ui/icons/PriorityHighRounded';
 
-export const AccordionHeader = (props: { text: string; valid?: boolean; open?: boolean; onClick?: () => void }) => (
+export const AccordionHeader = (props: { text: string; valid?: boolean; open: boolean; onClick?: () => void }) => (
   <CardHeader
     onClick={props.onClick}
     className={
-      'accordion-card-header' +
-      (props.open === false ? ' closed' : ' open') +
-      (props.valid ? ' valid' : props.valid === false ? ' invalid' : '')
+      'accordion-card-header' + (props.open ? ' open' : ' closed') + (props.valid ? ' valid' : props.valid === false ? ' invalid' : '')
     }
   >
     <div style={{ display: 'flex', flexDirection: 'row' }}>
