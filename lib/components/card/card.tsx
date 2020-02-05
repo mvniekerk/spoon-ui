@@ -24,7 +24,7 @@ export class Card extends React.Component<ICardProps> {
           <CardTitle>
             <h3>{title}</h3>
           </CardTitle>
-          {actionComponent}
+          <Row justify="center">{actionComponent}</Row>
         </CardBody>
       </RCard>
     );

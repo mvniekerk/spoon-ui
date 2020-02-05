@@ -54,9 +54,24 @@ export class Entities extends React.Component<any, IEntitiesState> {
           <Col>
             <Label>CardGroup</Label>
             <CardGroup>
-              <Card image={<FaceIcon />} title={'Title 1'} subtitle={'Subtitle 1'} actionComponent={<Button>Button</Button>} />
-              <Card image={<WorkIcon />} title={'Title 2'} subtitle={'Subtitle 2'} actionComponent={<Button>Button</Button>} />
-              <Card image={<TextFields />} title={'Title 3'} subtitle={'Subtitle 3'} actionComponent={<Button>Button</Button>} />
+              <Card
+                image={<FaceIcon />}
+                title={'Title 1'}
+                subtitle={'Subtitle 1'}
+                actionComponent={<Button color="primary">Button</Button>}
+              />
+              <Card
+                image={<WorkIcon />}
+                title={'Title 2'}
+                subtitle={'Subtitle 2'}
+                actionComponent={<Button color="primary">Button</Button>}
+              />
+              <Card
+                image={<TextFields />}
+                title={'Title 3'}
+                subtitle={'Subtitle 3'}
+                actionComponent={<Button color="primary">Button</Button>}
+              />
             </CardGroup>
           </Col>
         </Row>
