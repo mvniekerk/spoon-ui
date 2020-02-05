@@ -3,8 +3,7 @@
 .opener-icon {
   @include iconColor();
   position: absolute;
-
-  bottom: 0px;
+  bottom: -10px;
   transform: translateY(-50%);
 
   right: 12px;

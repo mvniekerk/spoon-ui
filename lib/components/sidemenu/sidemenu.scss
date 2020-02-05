@@ -62,22 +62,13 @@
     border-bottom: var(--menu-border-opaque) solid 1px;
   }
 
-  li a {
-    transition: all 0.4s linear;
-    text-decoration: none;
-    opacity: 1;
-  }
-
-  ul:hover li:not(:hover) a {
-    opacity: 0.3;
-  }
-
   ul:hover li:hover {
     transition: all 0.5s linear;
     border-left: var(--menu-close-color) solid 4px;
     background-color: var(--menu-border-opaque-25);
     border-top: var(--menu-border-opaque-8) solid 1px;
     border-bottom: var(--menu-border-opaque-8) solid 1px;
+    opacity: 1;
   }
 
   ul:hover li:not(:hover) {

@@ -4,6 +4,13 @@
   justify-content: center;
   height: 54px;
   cursor: pointer;
+  opacity: 0.3;
+
+  &:hover,
+  a:hover {
+    color: var(--primary);
+    opacity: 1;
+  }
 
   .sidemenu-item-icon {
     margin: 0;
@@ -30,14 +37,16 @@
   color: white;
 
   outline: none;
-
-  .sidemenu-item-icon {
-    color: white;
-  }
 }
 
-.sidemenu-item.sidemenu-item-selected .sidemenu-item-icon {
-  color: var(--primary);
+.sidemenu-item.sidemenu-item-selected {
+  border-left: var(--menu-close-color) solid 4px;
+  background-color: var(--menu-border-opaque-25);
+  border-top: var(--menu-border-opaque-8) solid 1px;
+  border-bottom: var(--menu-border-opaque-8) solid 1px;
+  left: -4px;
+  position: relative;
+  opacity: 1;
 }
 
 .sidemenu-item-with-text {

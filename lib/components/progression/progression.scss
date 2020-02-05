@@ -17,6 +17,7 @@
   display: flex;
   flex-direction: row;
   padding-right: 20px;
+  font-style: italic;
   color: var(--progression-color);
   justify-content: left;
   align-items: center;
@@ -25,6 +26,10 @@
   font-size: 18px;
   letter-spacing: 1px;
   margin: 25px 0px;
+
+  &.disabled {
+    opacity: 0.3;
+  }
 
   .counter {
     min-width: 35px;
@@ -39,6 +44,7 @@
 }
 
 .progression-item.done {
+  font-style: normal;
   .counter {
     background-color: var(--gray-darker);
     border-color: var(--gray-darker);
@@ -48,9 +54,8 @@
 }
 
 .progression-item.current {
-  color: var(--progression-current);
   font-weight: 600;
-
+  font-style: normal;
   .counter {
     background-color: var(--color-icon);
     font-weight: 600;

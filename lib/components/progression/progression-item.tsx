@@ -7,6 +7,7 @@ export interface IProgressionProps {
   done: boolean;
   current: boolean;
   step: number;
+  disabled?: boolean;
   icon?: JSX.Element;
   onClick?: () => void;
 }
@@ -26,7 +27,9 @@ export class ProgressionItem extends React.Component<IProgressionProps> {
     );
     return (
       <div
-        className={`progression-item  ${this.props.done ? 'done' : ''} ${this.props.current ? 'current' : ''}`}
+        className={`progression-item  ${this.props.done ? 'done' : ''} ${this.props.disabled ? 'disabled' : ''} ${
+          this.props.current ? 'current' : ''
+        }`}
         onClick={this.props.onClick}
       >
         {counter}

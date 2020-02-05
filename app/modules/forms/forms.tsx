@@ -40,6 +40,8 @@ export interface IFormsState {
   numberInput: string;
   numberInputDirty: boolean;
   numberInputDisabled: boolean;
+  textRequired1: string;
+  textRequired2: string;
   radInput: string;
   radDirty: boolean;
   radDisabled: boolean;
@@ -56,6 +58,8 @@ const defaultValues = {
   values: [],
   search: '',
   numberInput: '',
+  textRequired1: '',
+  textRequired2: '',
   numberInputDirty: false,
   numberInputDisabled: false,
   radInput: '',
@@ -269,6 +273,8 @@ export class Forms extends React.Component<{}, IFormsState> {
   }
 
   render() {
+    const onInput2Change = textRequired2 => this.setState({ textRequired2 });
+    const onInputChange = textRequired1 => this.setState({ textRequired1 });
     return (
       <>
         <Button onClick={this.resetValues}>Reset all values</Button>
@@ -356,7 +362,13 @@ export class Forms extends React.Component<{}, IFormsState> {
           </Col>
           <Col md="4">
             <FormGroup>
-              <TextInput label="Without validation" placeholder="Placeholder" id="inputwithoutvalidation" value={this.state.numberInput} />
+              <TextInput
+                label="Without validation"
+                placeholder="Placeholder"
+                id="inputwithoutvalidation"
+                value={this.state.textRequired1}
+                onChange={onInputChange}
+              />
             </FormGroup>
             <FormGroup>
               <TextInput
@@ -364,7 +376,8 @@ export class Forms extends React.Component<{}, IFormsState> {
                 placeholder="Placeholder"
                 id="inputwithvalidation"
                 required
-                value={this.state.numberInput}
+                value={this.state.textRequired2}
+                onChange={onInput2Change}
               />
               <FormText>
                 <span>
@@ -376,8 +389,15 @@ export class Forms extends React.Component<{}, IFormsState> {
           </Col>
           <Col md="4">
             <FormGroup>
-              <Label for="inputwithoutvalidation">Correct field</Label>
-              <Input valid placeholder="Placeholder" value="Correct input" />
+              <TextInput
+                label="Valid field"
+                placeholder="Placeholder"
+                id="inputwithvalidation"
+                required
+                valid
+                value={this.state.textRequired2}
+                onChange={onInput2Change}
+              />
             </FormGroup>
 
             <FormGroup>

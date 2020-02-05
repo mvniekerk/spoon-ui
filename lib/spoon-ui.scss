@@ -520,9 +520,9 @@ a:hover {
     color: var(--error);
   }
 
-  .form-control:focus {
-    color: unset;
-  }
+  // .form-control:focus {
+  //   color: unset;
+  // }
 }
 
 .input-group-icon-left {
@@ -539,7 +539,7 @@ a:hover {
 }
 
 .form-group label {
-  font-size: 15px;
+  font-size: 18px;
   line-height: 19px;
 }
 

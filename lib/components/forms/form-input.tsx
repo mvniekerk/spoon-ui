@@ -131,10 +131,13 @@ export function formInputGroup(form: FormInput<any>, children: JSX.Element, requ
   const isInvalid = form.state.invalidAndDirty;
   const isValid = form.state.validAndDirty;
   const justHelp = form.state.justHelp;
-  const className = `${isInvalid ? 'is-invalid' : ''} ${isValid ? 'is-valid' : ''} ${justHelp ? 'just-help' : ''}`;
+  const disabled = form.props.disabled;
+  const className = `${isInvalid ? 'is-invalid' : ''} ${isValid ? 'is-valid' : ''} ${justHelp ? 'just-help' : ''} ${
+    disabled ? 'disabled' : ''
+  }`;
   return (
     <FormGroup className={className} valid>
-      <div className={`input-group ${className} form-input`}>
+      <div className={`input-group ${className} form-input ${form.props.value === '' ? ' empty' : ''}`}>
         {children}
         {required && (
           <div className="required-check">

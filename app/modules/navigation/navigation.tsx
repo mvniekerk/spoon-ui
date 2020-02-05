@@ -162,7 +162,7 @@ export class Navigation extends React.Component {
                 Contact Details
               </ProgressionItem>
               <ProgressionItem step={3}>Client Profile</ProgressionItem>
-              <ProgressionItem step={4} icon={<DoneAllIcon />}>
+              <ProgressionItem step={4} disabled icon={<DoneAllIcon />}>
                 Submit for approval
               </ProgressionItem>
             </Progression>
