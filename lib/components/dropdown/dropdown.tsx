@@ -202,7 +202,7 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
       ...other
     } = this.props;
 
-    const showIcon = !multiple && this.state.selection.length === 1;
+    const showIcon = !multiple && this.state.selection.length === 1 && this.state.selection[0].icon;
     const mustShowPlaceholder = this.state.selection.length === 0;
 
     const dropdownClass = cx('dropdown-button', className, { placeholder: mustShowPlaceholder });

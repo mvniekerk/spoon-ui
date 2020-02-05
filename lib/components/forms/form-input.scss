@@ -4,18 +4,51 @@
     top: -5px;
     right: -5px;
     transform: rotate(45deg);
-    color: inherit !important;
+    color: initial;
+    z-index: 111;
   }
 }
 
-.input-group.is-invalid.form-input {
+.input-group.is-invalid.form-input:not(.disabled) {
   .required-check {
     color: var(--error);
   }
 }
-
-.input-group.is-valid.form-input {
+.input-group.form-input.disabled {
   .required-check {
-    display: none;
+    color: #c4cad4;
   }
 }
+.input-group.form-input.empty {
+  .form-control {
+    border-color: var(--empty-field);
+  }
+  .required-check {
+    color: var(--empty-field);
+  }
+}
+
+.input-group.is-valid.form-input:not(.disabled) {
+  .form-control {
+    border-color: var(--success);
+  }
+  .required-check {
+    color: var(--success);
+  }
+}
+
+.input-group.form-input:hover:not(.disabled),
+.input-group.form-input:focus:not(.disabled) {
+  .form-control {
+    border-color: var(--primary-active-darker);
+  }
+  .required-check {
+    color: var(--primary-active-darker);
+  }
+}
+
+// .input-group.is-valid.form-input {
+//   .required-check {
+//     display: none;
+//   }
+// }

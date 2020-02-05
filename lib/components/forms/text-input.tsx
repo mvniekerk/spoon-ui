@@ -51,8 +51,8 @@ export class TextInput extends React.Component<ITextInputProps, IFormInputState<
           value={value}
           onChange={onChangeDirty}
           onBlur={onMadeDirty}
-          valid={this.state.validAndDirty}
-          invalid={this.state.invalidAndDirty}
+          validAndDirty={isValid}
+          invalid={isInvalid}
           className={cx(className, { required })}
           disabled={disabled}
           {...other}

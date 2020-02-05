@@ -60,6 +60,7 @@ $white-text: #ffffff;
 
 $scroll-background-color: #e3e6ec;
 $scroll-color: #b1b4c1;
+$empty-field: #7f8da1;
 
 // Body
 
@@ -182,6 +183,7 @@ $body-background: #ccd2da;
     primary-active: $primary-active,
     primary-active-lighter: $primary-active-lighter,
     primary-active-darker: $primary-active-darker,
+    empty-field: $empty-field,
     tertiary: $tertiary,
     tertiary-darker: $tertiary-darker,
     tertiary-active: $tertiary-active,
