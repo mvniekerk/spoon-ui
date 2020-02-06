@@ -23,8 +23,8 @@ body {
   display: inline-flex;
   .view-container {
     background: var(--body-background);
-    min-width: calc(100vw - 270px);
-    width: calc(100vw - 270px);
+    min-width: calc(100vw - 250px);
+    width: calc(100vw - 250px);
     overflow-y: auto;
     overflow-x: hidden;
     padding: 1rem;
