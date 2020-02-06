@@ -5,7 +5,15 @@
   margin-bottom: 16px;
 
   & > .card {
-    border-radius: 4px !important;
+    border-radius: 7px !important;
     margin: 8px 15px !important;
+
+    &:first-child {
+      margin-left: 0px !important;
+    }
+
+    &:last-child {
+      margin-right: 0px !important;
+    }
   }
 }
