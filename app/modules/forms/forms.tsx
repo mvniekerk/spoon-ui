@@ -272,13 +272,13 @@ export class Forms extends React.Component<{}, IFormsState> {
   }
 
   render() {
-    // const onInput2Change = textRequired2 => this.setState({ textRequired2 });
-    // const onInputChange = textRequired1 => this.setState({ textRequired1 });
+    const onInput2Change = textRequired2 => this.setState({ textRequired2 });
+    const onInputChange = textRequired1 => this.setState({ textRequired1 });
     return (
       <>
         <Button onClick={this.resetValues}>Reset all values</Button>
         {this.renderTextInput()}
-        {/* {this.renderRadioButtonInput()}
+        {this.renderRadioButtonInput()}
         {this.renderComboboxInput()}
         {this.renderMultipleSelectionInput()}
         <Row>
@@ -508,7 +508,7 @@ export class Forms extends React.Component<{}, IFormsState> {
             <Label>FileUpload </Label>
             <FileUpload id="files" labelIdle="forms.fileUpload.idle" />
           </Col>
-        </Row> */}
+        </Row>
       </>
     );
   }
