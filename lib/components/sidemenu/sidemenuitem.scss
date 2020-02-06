@@ -47,7 +47,11 @@
   left: -4px;
   position: relative;
   opacity: 1;
-  width: 250px;
+}
+.side-menu-container:not(.side-menu-container-mini) {
+  .sidemenu-item.sidemenu-item-selected {
+    width: 250px;
+  }
 }
 
 .sidemenu-item-with-text {
