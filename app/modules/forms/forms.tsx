@@ -87,7 +87,6 @@ export class Forms extends React.Component<{}, IFormsState> {
     super(props);
     this.onAddTag = this.onAddTag.bind(this);
     this.searchChanged = this.searchChanged.bind(this);
-    this.resetValues();
   }
 
   resetValues = () => {

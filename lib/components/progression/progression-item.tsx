@@ -32,6 +32,8 @@ export class ProgressionItem extends React.Component<IProgressionProps> {
         }`}
         onClick={this.props.onClick}
       >
+        <div className="progression-line-top" />
+        <div className="progression-line-bottom" />
         {counter}
         <div className="progression-text">{this.props.children}</div>
       </div>

@@ -10,6 +10,30 @@
 
 .progression.vertical {
   flex-direction: column;
+  .progression-line-top,
+  .progression-line-bottom {
+    position: absolute;
+    height: 25px;
+    width: 1px;
+    left: 17px;
+    background-color: var(--gray-darker);
+  }
+  .progression-line-top {
+    top: 0px;
+  }
+  .progression-line-bottom {
+    bottom: 0px;
+  }
+  .progression-item:first-child {
+    .progression-line-top {
+      display: none;
+    }
+  }
+  .progression-item:last-child {
+    .progression-line-bottom {
+      display: none;
+    }
+  }
 }
 
 .progression-item {
@@ -22,13 +46,16 @@
   justify-content: left;
   align-items: center;
   flex: 1;
-  margin-bottom: 8px;
   font-size: 18px;
   letter-spacing: 1px;
-  margin: 25px 0px;
+  padding: 25px 0px;
+  position: relative;
 
   &.disabled {
-    opacity: 0.3;
+    .progression-text,
+    .counter {
+      opacity: 0.3;
+    }
   }
 
   .counter {
