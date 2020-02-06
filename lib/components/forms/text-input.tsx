@@ -41,8 +41,8 @@ export class TextInput extends React.Component<ITextInputProps, IFormInputState<
         onMadeDirty();
       }
     };
-    const isInvalid = this.state.invalidAndDirty;
-    const isValid = this.state.validAndDirty;
+    const isInvalid = this.state.valid;
+    const isValid = this.state.valid;
     const input = (
       <>
         <Input
