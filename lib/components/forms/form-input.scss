@@ -29,7 +29,7 @@
 }
 
 .input-group.is-valid.form-input:not(.disabled) {
-  .form-control {
+  & > .form-control {
     border-color: var(--success);
   }
   .required-check {

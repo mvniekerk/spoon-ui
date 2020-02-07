@@ -47,6 +47,7 @@
   left: -4px;
   position: relative;
   opacity: 1;
+  width: calc(100% + 4px);
 }
 .side-menu-container:not(.side-menu-container-mini) {
   .sidemenu-item.sidemenu-item-selected {
