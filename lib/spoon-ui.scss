@@ -449,12 +449,12 @@ a:hover {
 }
 
 .form-control {
-  padding: 15px;
+  padding: 12px 13px;
   margin-bottom: 8px;
   border: var(--gray-darker) solid 1px;
   color: var(--gray-darker);
   font-size: 18pt;
-  height: 50px;
+  height: auto;
   line-height: 23px;
 }
 
