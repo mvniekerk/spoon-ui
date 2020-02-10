@@ -2,12 +2,23 @@
 
 .search-bar {
   position: relative;
-}
 
-.search-bar-icon {
-  color: var(--gray-lighter);
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 12px;
+  .search-bar-icon {
+    color: var(--color-icon);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 12px;
+  }
+
+  &.global-search {
+    input {
+      padding: 19px 20px;
+      border: none;
+    }
+
+    .search-bar-icon {
+      font-size: 35px;
+    }
+  }
 }

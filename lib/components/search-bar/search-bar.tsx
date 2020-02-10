@@ -9,6 +9,7 @@ export interface ISearchBarProps extends InputProps {
   disabled?: boolean;
   placeholder?: string;
   value?: string;
+  global?: boolean;
 }
 
 export interface ISearchBarState {
@@ -43,15 +44,16 @@ export class SearchBar extends React.Component<ISearchBarProps, ISearchBarState>
   }
 
   render() {
-    const { className, placeholder, disabled, ...other } = this.props;
+    const { className, placeholder, disabled, global, ...other } = this.props;
     return (
-      <div className={cx('search-bar', className)}>
+      <div className={cx(`search-bar ${global ? ' global-search' : ''}`, className)}>
         <Input
           {...other}
           placeholder={placeholder}
           value={this.state.search}
           onChange={this.onSearchChange}
           disabled={disabled}
+          className={`${this.state.search ? '' : ' empty'}`}
           onClick={this.onSearchClick}
           type="text"
         />

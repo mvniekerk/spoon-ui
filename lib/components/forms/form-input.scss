@@ -27,9 +27,12 @@
     color: var(--empty-field);
   }
 }
+.empty.form-control {
+  border-color: var(--empty-field);
+}
 
 .input-group.is-valid.form-input:not(.disabled) {
-  .form-control {
+  & > .form-control {
     border-color: var(--success);
   }
   .required-check {

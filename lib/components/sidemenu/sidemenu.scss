@@ -64,10 +64,7 @@
 
   ul:hover li:hover {
     transition: all 0.5s linear;
-    border-left: var(--menu-close-color) solid 4px;
     background-color: var(--menu-border-opaque-25);
-    border-top: var(--menu-border-opaque-8) solid 1px;
-    border-bottom: var(--menu-border-opaque-8) solid 1px;
     opacity: 1;
   }
 
@@ -95,7 +92,7 @@
 
 .side-menu-container-mini {
   width: 75px;
-  min-width: 75px;
+  min-width: 70px;
   transition: all 0.15s linear;
 }
 

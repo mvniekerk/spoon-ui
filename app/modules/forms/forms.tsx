@@ -443,6 +443,12 @@ export class Forms extends React.Component<{}, IFormsState> {
           </Col>
         </Row>
         <Row>
+          <Col md="8">
+            <Label>SearchBar Global</Label>
+            <SearchBar global onSearchChanged={this.searchChanged} />
+          </Col>
+        </Row>
+        <Row>
           <Col md="12">
             <div className="small-header">Async dropdown selection (TagInput)</div>
           </Col>
