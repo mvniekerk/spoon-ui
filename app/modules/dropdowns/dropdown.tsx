@@ -67,6 +67,7 @@ export class DropdownDemo extends React.Component {
               {...this.props}
               label="Label for dropdown"
               key="dropdown1"
+              required
               placeholder="Single selection"
               initialValues={singleSelection}
             />
@@ -97,6 +98,7 @@ export class DropdownDemo extends React.Component {
           <Col md="4">
             <Dropdown
               {...this.props}
+              required
               key="dropdown1"
               placeholder="Multiple with icon"
               initialValues={singleSelectionWithIcon}

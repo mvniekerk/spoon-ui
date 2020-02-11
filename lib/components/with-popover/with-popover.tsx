@@ -1,5 +1,6 @@
 import React, { ReactNode, ReactElement } from 'react';
 import cx from 'classnames';
+import ArrowDropUp from '@material-ui/icons/ArrowDropUpRounded';
 import { Popover, IPopoverProps } from '../popover/popover';
 import { Opener } from '../opener/opener';
 import './with-popover.scss';
@@ -60,6 +61,8 @@ interface IWithPopoverProps extends Omit<IPopoverProps, 'isOpen' | 'children' | 
   disabled?: boolean;
 
   label?: string;
+
+  required?: boolean;
   /**
    * Function that was called after closing
    */
@@ -163,6 +166,11 @@ export class WithPopover extends React.Component<IWithPopoverProps, IWithPopover
             openComponent={this.props.openerIcon || this.props.openerOpenIcon}
             closeComponent={this.props.openerIcon || this.props.openerCloseIcon}
           />
+        )}
+        {this.props.required && (
+          <div className="required-check">
+            <ArrowDropUp />
+          </div>
         )}
         {this.renderExpandedBody()}
       </div>

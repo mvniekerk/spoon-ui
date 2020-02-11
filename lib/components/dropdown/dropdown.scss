@@ -3,6 +3,25 @@
 .dropdown {
   width: 100%;
 
+  .required-check {
+    bottom: 28px;
+    color: var(--gray-darker-opacity);
+  }
+
+  &:focus {
+    .dropdown-button.btn {
+      @include focusStyle();
+    }
+  }
+  &:hover {
+    .dropdown-button.btn {
+      @include hoverStyle();
+    }
+    .required-check {
+      color: var(--primary-active-darker);
+    }
+  }
+
   label {
     font-size: 18px;
     line-height: 23px;
@@ -19,16 +38,13 @@
     color: var(--gray-darker);
     background-color: white;
 
-    &:focus {
-      @include focusStyle();
-    }
-    &:hover {
-      @include hoverStyle();
-    }
     &:disabled {
       background-color: var(--gray-lighter) !important;
-      color: $input-disabled-color !important;
-      border: $input-disabled-color 1px solid;
+      color: var(--input-disabled-color) !important;
+      border: var(--input-disabled-color) 1px solid;
+      .required-check {
+        color: var(--input-disabled-color);
+      }
     }
 
     &.placeholder {
