@@ -4,7 +4,6 @@ import ArrowDropUp from '@material-ui/icons/ArrowDropUpRounded';
 import { Popover, IPopoverProps } from '../popover/popover';
 import { Opener } from '../opener/opener';
 import './with-popover.scss';
-import Label from 'reactstrap/lib/Label';
 
 interface IWithPopoverProps extends Omit<IPopoverProps, 'isOpen' | 'children' | 'container' | 'target'> {
   mainComponent: ReactElement;
@@ -151,7 +150,6 @@ export class WithPopover extends React.Component<IWithPopoverProps, IWithPopover
 
     return (
       <div ref={this.captureContainer} className={className}>
-        {this.props.label && <Label>{this.props.label}</Label>}
         {React.cloneElement(this.props.mainComponent, {
           ref: this.captureTargetRef,
           innerRef: this.captureTargetInnerRef,
