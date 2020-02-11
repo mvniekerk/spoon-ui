@@ -42,7 +42,7 @@
 
 .input-group.form-input:hover:not(.disabled),
 .input-group.form-input:focus:not(.disabled) {
-  .form-control {
+  & > .form-control {
     border-color: var(--primary-active-darker);
   }
   .required-check {
@@ -50,8 +50,8 @@
   }
 }
 
-// .input-group.is-valid.form-input {
-//   .required-check {
-//     display: none;
-//   }
-// }
+.input-group.is-valid.form-input {
+  .required-check {
+    display: none;
+  }
+}
