@@ -41,10 +41,10 @@ export class Tables extends React.Component {
                     <Dropdown placeholder="Actions" />
                   </td>
                   <td>
-                    <SaveAltRounded style={{ color: '#c5d0de' }} />
+                    <SaveAltRounded />
                   </td>
                   <td>
-                    <MoreVert style={{ color: '#c5d0de' }} />
+                    <MoreVert />
                   </td>
                 </tr>
                 <tr>
@@ -63,10 +63,10 @@ export class Tables extends React.Component {
                     <Dropdown placeholder="Actions" />
                   </td>
                   <td>
-                    <SaveAltRounded style={{ color: '#c5d0de' }} />
+                    <SaveAltRounded />
                   </td>
                   <td>
-                    <MoreVert style={{ color: '#c5d0de' }} />
+                    <MoreVert />
                   </td>
                 </tr>
                 <tr>
@@ -85,10 +85,10 @@ export class Tables extends React.Component {
                     <Dropdown placeholder="Actions" />
                   </td>
                   <td>
-                    <SaveAltRounded style={{ color: '#c5d0de' }} />
+                    <SaveAltRounded />
                   </td>
                   <td>
-                    <MoreVert style={{ color: '#c5d0de' }} />
+                    <MoreVert />
                   </td>
                 </tr>
               </tbody>

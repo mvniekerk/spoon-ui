@@ -33,7 +33,7 @@ $gray-lighter: #eff0f3;
 $gray-darker-opacity: rgba(0, 28, 68, 0.5);
 
 $primary: $gray-darker !default;
-$primary-lighter: $gray-lighter !default;
+$primary-lighter: #93b1d6;
 $primary-active: $gray-darker-opacity;
 $primary-active-lighter: darken($gray-darker, 5%);
 $primary-active-darker: #0097e3;
@@ -53,7 +53,7 @@ $tertiary-darker: #25a20f;
 $tertiary-active: darken($tertiary, 5%);
 $tertiary-active-darker: darken($tertiary-darker, 5%);
 $disable-darker: #b0b2c3;
-$color-icon: #93b1d6;
+$color-icon: $primary-lighter;
 
 $black-text: rgb(6, 6, 7);
 $white-text: #ffffff;
