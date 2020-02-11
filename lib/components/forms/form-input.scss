@@ -40,18 +40,15 @@
   }
 }
 
-// .input-group.form-input:hover:not(.disabled),
-// .input-group.form-input:focus:not(.disabled) {
-//   .form-control {
-//     border-color: var(--primary-active-darker);
-//   }
-//   .required-check {
-//     color: var(--primary-active-darker);
-//   }
-// }
+.input-group.form-input:hover:not(.disabled),
+.input-group.form-input:focus:not(.disabled) {
+  .required-check {
+    color: var(--primary-active-darker);
+  }
+}
 
-// .input-group.is-valid.form-input {
-//   .required-check {
-//     display: none;
-//   }
-// }
+.input-group.is-valid.form-input {
+  .required-check {
+    display: none;
+  }
+}
