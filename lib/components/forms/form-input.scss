@@ -1,11 +1,16 @@
-.input-group.form-input {
+.input-group.form-input,
+.dropdown {
   .required-check {
     position: absolute;
-    top: -5px;
     right: -5px;
     transform: rotate(45deg);
     color: initial;
     z-index: 111;
+  }
+}
+.input-group.form-input {
+  .required-check {
+    top: -5px;
   }
 }
 

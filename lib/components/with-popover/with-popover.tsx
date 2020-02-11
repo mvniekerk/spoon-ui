@@ -1,9 +1,9 @@
 import React, { ReactNode, ReactElement } from 'react';
 import cx from 'classnames';
+import ArrowDropUp from '@material-ui/icons/ArrowDropUpRounded';
 import { Popover, IPopoverProps } from '../popover/popover';
 import { Opener } from '../opener/opener';
 import './with-popover.scss';
-import Label from 'reactstrap/lib/Label';
 
 interface IWithPopoverProps extends Omit<IPopoverProps, 'isOpen' | 'children' | 'container' | 'target'> {
   mainComponent: ReactElement;
@@ -60,6 +60,8 @@ interface IWithPopoverProps extends Omit<IPopoverProps, 'isOpen' | 'children' | 
   disabled?: boolean;
 
   label?: string;
+
+  required?: boolean;
   /**
    * Function that was called after closing
    */
@@ -148,7 +150,6 @@ export class WithPopover extends React.Component<IWithPopoverProps, IWithPopover
 
     return (
       <div ref={this.captureContainer} className={className}>
-        {this.props.label && <Label>{this.props.label}</Label>}
         {React.cloneElement(this.props.mainComponent, {
           ref: this.captureTargetRef,
           innerRef: this.captureTargetInnerRef,
@@ -163,6 +164,11 @@ export class WithPopover extends React.Component<IWithPopoverProps, IWithPopover
             openComponent={this.props.openerIcon || this.props.openerOpenIcon}
             closeComponent={this.props.openerIcon || this.props.openerCloseIcon}
           />
+        )}
+        {this.props.required && (
+          <div className="required-check">
+            <ArrowDropUp />
+          </div>
         )}
         {this.renderExpandedBody()}
       </div>

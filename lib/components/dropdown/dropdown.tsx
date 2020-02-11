@@ -31,6 +31,7 @@ export interface IDropdownProps<T> extends Omit<DropdownToggleProps, 'placeholde
   onOpen?: () => void;
   onClose?: () => void;
   label?: TranslatedValueOrKey<T>;
+  required?: boolean;
 }
 
 export interface IDropdownState<T> {
@@ -52,7 +53,8 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
     disabled: false,
     direction: 'down',
     disableDeselect: false,
-    unselectable: 'on'
+    unselectable: 'on',
+    required: false
   };
 
   state: IDropdownState<T> = {
@@ -248,6 +250,7 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
           className={menuClassName}
           autoOpen
           autoClose
+          required={this.props.required}
           closeOnMainClick
           disabled={this.props.disabled}
           onSelfClickClose={!multiple}
