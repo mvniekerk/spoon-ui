@@ -42,6 +42,9 @@
 
 .input-group.form-input:hover:not(.disabled),
 .input-group.form-input:focus:not(.disabled) {
+  & > .form-control {
+    border-color: var(--primary-active-darker);
+  }
   .required-check {
     color: var(--primary-active-darker);
   }
