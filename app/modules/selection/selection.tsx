@@ -42,21 +42,21 @@ export class Selection extends React.Component {
     const radioGroupVals: Array<IRadioButtonValue<string>> = [
       {
         display: 'Option 1',
-        id: 'option1',
+        id: 'value1',
         value: 'value1',
         disabled: false,
         selected: false
       },
       {
         display: 'Option 2',
-        id: 'option2',
+        id: 'value2',
         value: 'value2',
         disabled: false,
         selected: true
       },
       {
         display: 'Option 3',
-        id: 'option3',
+        id: 'value3',
         value: 'value3',
         disabled: true,
         selected: false

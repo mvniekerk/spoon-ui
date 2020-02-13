@@ -677,9 +677,11 @@ table.table {
   color: var(--gray-darker);
   tr {
     border: unset;
+
     td,
     th {
       border: unset;
+      padding: 22px;
     }
   }
 

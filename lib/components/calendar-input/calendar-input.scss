@@ -1,6 +1,13 @@
 @import '../../_bootstrap-variables';
 
 .calendar-input {
+  .opener-icon {
+    bottom: 0px;
+  }
+  .required-check {
+    top: -5px;
+  }
+
   .react-calendar__tile--active,
   .react-calendar__tile--active:enabled:hover,
   .react-calendar__tile--active:enabled:focus {
@@ -8,6 +15,9 @@
     border-radius: 25px;
     color: inherit;
     outline: unset;
+    .required-check {
+      color: var(--color-icon);
+    }
   }
   .react-calendar__tile:enabled:hover,
   .react-calendar__tile:enabled:focus {

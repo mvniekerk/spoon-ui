@@ -5,6 +5,7 @@ import { Input } from '../external';
 import { Container } from '../layout';
 import { WithPopover } from '../with-popover/with-popover';
 import CalendarIcon from '@material-ui/icons/CalendarTodayOutlined';
+import ArrowDropUp from '@material-ui/icons/ArrowDropUpRounded';
 
 interface ICalendarInputProps extends CalendarProps {
   id: string;
@@ -12,6 +13,7 @@ interface ICalendarInputProps extends CalendarProps {
   onChange: (date: Date) => void;
   disabled?: boolean;
   placeholder?: string;
+  required?: boolean;
 }
 
 interface ICalendarInputState {
@@ -53,7 +55,7 @@ export class CalendarInput extends React.Component<ICalendarInputProps, ICalenda
   };
 
   render() {
-    const { value, disabled, placeholder } = this.props;
+    const { value, disabled, placeholder, required } = this.props;
     return (
       <WithPopover
         disabled={disabled}
@@ -64,6 +66,7 @@ export class CalendarInput extends React.Component<ICalendarInputProps, ICalenda
         flip
         autoOpen
         autoClose
+        required={required}
         closeOnMainClick
         onOpen={this.handleOpen}
       >

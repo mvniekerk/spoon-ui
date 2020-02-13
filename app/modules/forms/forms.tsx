@@ -170,6 +170,7 @@ export class Forms extends React.Component<{}, IFormsState> {
             choices={choices}
             id="radInput"
             value={this.state.radInput}
+            selectedId="No"
             onChange={onChange}
             dirty={this.state.radDirty}
             onMadeDirty={onDirty}
@@ -460,7 +461,13 @@ export class Forms extends React.Component<{}, IFormsState> {
           <Col>
             <FormGroup>
               <Label>CalendarInput</Label>
-              <CalendarInput placeholder="Pick a date" id="expiry-date-cal" value={this.state.date} onChange={this.handleDateChange} />
+              <CalendarInput
+                placeholder="Pick a date"
+                id="expiry-date-cal"
+                value={this.state.date}
+                onChange={this.handleDateChange}
+                required
+              />
             </FormGroup>
           </Col>
         </Row>

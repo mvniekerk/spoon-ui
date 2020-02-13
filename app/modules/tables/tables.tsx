@@ -16,7 +16,7 @@ export class Tables extends React.Component {
               <thead>
                 <tr>
                   <TableHeader sort={'unsorted'}>Name</TableHeader>
-                  <TableHeader sort={'descending'}>Description</TableHeader>
+                  <TableHeader>Description</TableHeader>
                   <TableHeader sort={'ascending'}>Tag</TableHeader>
                   <th />
                   <th />
@@ -27,7 +27,7 @@ export class Tables extends React.Component {
               <tbody>
                 <tr>
                   <th scope="row">Account Balances</th>
-                  <td>Lorem ipsum doret samet consequat electur…</td>
+                  <td>1 Lorem ipsum doret samet consequat electur…</td>
                   <td>
                     <div style={{ display: 'flex', flexDirection: 'row' }}>
                       <TagButton>Tag name</TagButton>
@@ -49,7 +49,7 @@ export class Tables extends React.Component {
                 </tr>
                 <tr>
                   <th scope="row">Accounts on Notice</th>
-                  <td>Lorem ipsum doret samet consequat electur…</td>
+                  <td>2 Lorem ipsum doret samet consequat electur…</td>
                   <td>
                     <div style={{ display: 'flex', flexDirection: 'row' }}>
                       <TagButton>Tag name</TagButton>
@@ -71,7 +71,7 @@ export class Tables extends React.Component {
                 </tr>
                 <tr>
                   <th scope="row">Agent Capital Balances</th>
-                  <td>Lorem ipsum doret samet consequat electur…</td>
+                  <td>3 Lorem ipsum doret samet consequat electur…</td>
                   <td>
                     <div style={{ display: 'flex', flexDirection: 'row' }}>
                       <TagButton>Tag name</TagButton>
