@@ -170,7 +170,7 @@ export class Forms extends React.Component<{}, IFormsState> {
             choices={choices}
             id="radInput"
             value={this.state.radInput}
-            selectedId="No"
+            selected="No"
             onChange={onChange}
             dirty={this.state.radDirty}
             onMadeDirty={onDirty}
