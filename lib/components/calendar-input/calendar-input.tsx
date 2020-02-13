@@ -5,7 +5,6 @@ import { Input } from '../external';
 import { Container } from '../layout';
 import { WithPopover } from '../with-popover/with-popover';
 import CalendarIcon from '@material-ui/icons/CalendarTodayOutlined';
-import ArrowDropUp from '@material-ui/icons/ArrowDropUpRounded';
 
 interface ICalendarInputProps extends CalendarProps {
   id: string;
