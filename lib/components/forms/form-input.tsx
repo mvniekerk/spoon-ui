@@ -22,7 +22,7 @@ export type GetValueInObject<T, U> = (state: U) => IValueDirtyAndValid<T>;
 export interface IFormInput<T> extends IDirtyInput<T> {
   label?: TranslatedValueOrKey<T>;
   placeholder?: TranslatedValueOrKey<T>;
-  selectedId?: string;
+  selected?: any;
   id?: string;
   value: T;
   disabled?: boolean;
@@ -58,8 +58,8 @@ export function defaultStateForSelectableFormInput<T>(
         id: `${props.id}_${JSON.stringify(k)}`,
         value: k,
         disabled: false,
-        selected: props.selectedId
-          ? props.selectedId === k.toString()
+        selected: props.selected
+          ? props.selected === k
           : !!oldState && oldState.choices.some(b => b.selected && b.id === `${props.id}_${JSON.stringify(k)}`),
         groupName: props.id
       }))
