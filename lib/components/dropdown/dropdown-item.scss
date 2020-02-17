@@ -22,10 +22,8 @@
     color: var(--color-icon);
     font-size: 28px;
     padding-left: 0;
-
-    & {
-      padding-left: 0;
-    }
+    display: inline;
+    position: initial;
   }
 }
 

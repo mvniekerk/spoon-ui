@@ -18,6 +18,10 @@ button.btn {
   font-kerning: normal;
   display: flex;
   align-items: center;
+
+  .button-text {
+    width: 100%;
+  }
   &.btn-lg {
     font-size: 23px !important;
     letter-spacing: 1px;
@@ -54,12 +58,22 @@ button.btn.btn-secondary {
   color: var(--gray-darker);
   background: transparent;
   border: 1px solid var(--gray-darker);
+
+  &.toggle-btn {
+    background-color: transparent;
+    border: none !important;
+
+    &.active {
+      background-color: white;
+      box-shadow: 1px 1px 50px 10px rgba(0, 37, 80, 0.2);
+    }
+  }
 }
 button.btn.btn-secondary:disabled {
   border: none;
 }
 
-button.btn.btn-secondary:focus {
+button.btn.btn-secondary:focus:not(.toggle-btn) {
   border: 1px solid var(--gray-darker) !important;
 }
 
