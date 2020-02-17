@@ -2,7 +2,7 @@ import './buttons.scss';
 
 import React from 'react';
 import { Row, Col, Label, FormGroup } from 'reactstrap';
-
+import { ToggleButtonGroup } from 'lib/components/button/ToggleButtonGroup';
 import { Button, ActionIcon } from 'lib/components';
 
 import Send from '@material-ui/icons/Send';
@@ -94,6 +94,12 @@ export class Buttons extends React.Component {
         <Row>
           <Col>
             <Button block>full button</Button>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Label>Toggle Button Group</Label>
+            <ToggleButtonGroup values={['First', 'Second', 'Third']} />
           </Col>
         </Row>
       </div>
