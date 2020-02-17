@@ -5,6 +5,7 @@ import { ITranslatedValue, translateItem } from 'lib/util';
 
 export interface IToggleButtonGroupProps<T> {
   values: Array<ITranslatedValue<T>>;
+  onChanged?: (value: any) => void;
 }
 
 export interface IToggleButtonGroupState {
@@ -22,6 +23,9 @@ export class ToggleButtonGroup<T> extends React.Component<IToggleButtonGroupProp
 
   onCheckboxBtnClick = selected => {
     this.setState({ toggleId: selected });
+    if (!!this.props.onChanged) {
+      this.props.onChanged(selected);
+    }
   };
 
   render() {

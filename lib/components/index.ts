@@ -19,6 +19,7 @@ export * from './action-banner/action-banner';
 export * from './add-to-from-list/add-to-from-list';
 export * from './alert/alert';
 export * from './button/button';
+export * from './button/toggle-button-group';
 export * from './selection/checkbox';
 export * from './color-picker/color-picker';
 export * from './color-theme-editor/color-theme-editor';
