@@ -91,6 +91,11 @@ export class Buttons extends React.Component {
             </FormGroup>
           </Col>
         </Row>
+        <Row>
+          <Col>
+            <Button block>full button</Button>
+          </Col>
+        </Row>
       </div>
     );
   }

@@ -18,6 +18,10 @@ button.btn {
   font-kerning: normal;
   display: flex;
   align-items: center;
+
+  .button-text {
+    width: 100%;
+  }
   &.btn-lg {
     font-size: 23px !important;
     letter-spacing: 1px;
