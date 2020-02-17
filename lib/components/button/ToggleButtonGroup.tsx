@@ -30,7 +30,7 @@ export class ToggleButtonGroup<T> extends React.Component<IToggleButtonGroupProp
         {this.props.values.map((v, index) => (
           // tslint:disable:jsx-no-lambda
           <Button className="toggle-btn" key={index} active={this.state.toggleId === index} onClick={() => this.onCheckboxBtnClick(index)}>
-            {translateItem(v)}
+            {translateItem(v.value)}
           </Button>
         ))}
       </Row>

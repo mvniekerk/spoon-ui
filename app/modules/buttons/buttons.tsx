@@ -99,7 +99,7 @@ export class Buttons extends React.Component {
         <Row>
           <Col>
             <Label>Toggle Button Group</Label>
-            <ToggleButtonGroup values={['First', 'Second', 'Third']} />
+            <ToggleButtonGroup values={[{ value: 'First' }, { value: 'Second' }, { value: 'Third' }]} />
           </Col>
         </Row>
       </div>
