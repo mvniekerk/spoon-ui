@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from './button';
 import { Row } from 'reactstrap';
 
-export interface IToggleButtonGroupProps<T> {
+export interface IToggleButtonGroupProps {
   values: Array<string>;
 }
 
@@ -10,8 +10,8 @@ export interface IToggleButtonGroupState {
   toggleId: number;
 }
 
-export class ToggleButtonGroup<T> extends React.Component<IToggleButtonGroupProps<T>, IToggleButtonGroupState> {
-  static defaultProps: IToggleButtonGroupProps<any> = {
+export class ToggleButtonGroup extends React.Component<IToggleButtonGroupProps, IToggleButtonGroupState> {
+  static defaultProps: IToggleButtonGroupProps = {
     values: []
   };
 
