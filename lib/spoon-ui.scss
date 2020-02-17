@@ -637,13 +637,24 @@ div.invalid-feedback {
   .tooltip-inner {
     font-size: 16px;
     padding: 8px 16px 11px;
-    background-color: #353c48;
-  }
-
-  span.arrow::before {
-    border-top-color: #353c48;
+    color: white;
+    background-color: var(--danger);
   }
 }
+
+.bs-tooltip-auto[x-placement^='left'] .arrow::before {
+  border-left-color: var(--danger);
+}
+.bs-tooltip-auto[x-placement^='right'] .arrow::before {
+  border-right-color: var(--danger);
+}
+.bs-tooltip-auto[x-placement^='top'] .arrow::before {
+  border-top-color: var(--danger);
+}
+.bs-tooltip-auto[x-placement^='bottom'] .arrow::before {
+  border-bottom-color: var(--danger);
+}
+
 .breadcrumb-item + .breadcrumb-item::before {
   background: transparent url('../static/images/chevron-right.svg');
   background: transparent inline('../static/images/chevron-right.svg');

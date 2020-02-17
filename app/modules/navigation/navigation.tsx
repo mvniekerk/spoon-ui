@@ -72,7 +72,7 @@ export class Navigation extends React.Component {
           <Col md="4">
             <div className="small-header">Tooltips</div>
             <Info id="tooltip1" style={{ color: '#c5d0de' }} />
-            <UncontrolledTooltip target="tooltip1" placement="top">
+            <UncontrolledTooltip target="tooltip1" placement="left">
               Tooltip
             </UncontrolledTooltip>
           </Col>
