@@ -42,8 +42,7 @@
   "include": [
     "app/typing.d.ts",
     "app/**/*",
-    "test/javascript/spec/**/*",
-    "lib/components/button/ToggleButtonGroup.tsx"
+    "test/javascript/spec/**/*"
   ],
   "exclude": [
     "node_modules"

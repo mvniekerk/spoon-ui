@@ -2,7 +2,7 @@ import './buttons.scss';
 
 import React from 'react';
 import { Row, Col, Label, FormGroup } from 'reactstrap';
-import { ToggleButtonGroup } from 'lib/components/button/ToggleButtonGroup';
+import { ToggleButtonGroup } from 'lib/components/button/toggle-button-group';
 import { Button, ActionIcon } from 'lib/components';
 
 import Send from '@material-ui/icons/Send';
