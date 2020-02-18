@@ -10,6 +10,7 @@ import { ScrollableArea } from '../scrollable-area/scrollable-area';
 import { DropdownToggleProps } from 'reactstrap/lib/DropdownToggle';
 import { Grid } from '../grid/grid';
 import { SearchBar } from '../search-bar/search-bar';
+import { Label } from '../layout';
 
 export interface IDropdownProps<T> extends Omit<DropdownToggleProps, 'placeholder'> {
   multiple?: boolean;
@@ -246,6 +247,7 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
 
     return (
       <>
+        {this.props.label && <Label>{translateItem(this.props.label)}</Label>}
         <WithPopover
           className={menuClassName}
           autoOpen
@@ -254,7 +256,6 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
           closeOnMainClick
           disabled={this.props.disabled}
           onSelfClickClose={!multiple}
-          label={translateItem(this.props.label)}
           onClosePopover={this.onClosePopover}
           mainComponent={
             <Button block className={dropdownClass} disabled={this.props.disabled} {...other}>

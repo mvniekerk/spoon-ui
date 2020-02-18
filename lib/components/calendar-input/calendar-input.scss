@@ -4,6 +4,7 @@
   .opener-icon {
     bottom: 0px;
   }
+
   .required-check {
     top: -5px;
   }
@@ -19,6 +20,13 @@
       color: var(--color-icon);
     }
   }
+
+  &.disabled {
+    .required-check {
+      color: var(--disable-darker);
+    }
+  }
+
   .react-calendar__tile:enabled:hover,
   .react-calendar__tile:enabled:focus {
     border-radius: 25px;
@@ -29,7 +37,7 @@
     background-color: white;
   }
   .form-control:disabled {
-    background-color: $input-disabled-color;
+    background-color: var(--gray-lighter);
   }
   .popover {
     box-shadow: 1px 1px 50px 10px rgba(0, 37, 80, 0.2);

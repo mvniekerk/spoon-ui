@@ -141,12 +141,10 @@ export class DropdownDemo extends React.Component {
 
         <Row>
           <Col md="12">
-            <div className="small-header">Tag selects</div>
-          </Col>
-          <Col md="12">
             <Dropdown
               {...this.props}
               key="dropdown1"
+              label="Tag selects"
               placeholder="Multiple, overflow with search"
               initialValues={searchMultipleTooLongSelection}
               search

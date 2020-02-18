@@ -21,7 +21,7 @@ export class ToggleButtonGroup<T> extends React.Component<IToggleButtonGroupProp
     toggleId: undefined
   };
 
-  onCheckboxBtnClick = selected => {
+  onBtnClick = selected => {
     this.setState({ toggleId: selected });
     if (!!this.props.onChanged) {
       this.props.onChanged(selected);
@@ -33,7 +33,7 @@ export class ToggleButtonGroup<T> extends React.Component<IToggleButtonGroupProp
       <Row>
         {this.props.values.map((v, index) => (
           // tslint:disable:jsx-no-lambda
-          <Button className="toggle-btn" key={index} active={this.state.toggleId === index} onClick={() => this.onCheckboxBtnClick(index)}>
+          <Button className="toggle-btn" key={index} active={this.state.toggleId === index} onClick={() => this.onBtnClick(index)}>
             {translateItem(v.value)}
           </Button>
         ))}

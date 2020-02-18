@@ -475,7 +475,7 @@ export class Forms extends React.Component<{}, IFormsState> {
           <Col>
             <FormGroup>
               <Label>CalendarInput (disabled)</Label>
-              <CalendarInput id="expiry-date-cal-dis" disabled value={this.state.date} onChange={this.handleDateChange} />
+              <CalendarInput id="expiry-date-cal-dis" required disabled value={this.state.date} onChange={this.handleDateChange} />
             </FormGroup>
           </Col>
         </Row>

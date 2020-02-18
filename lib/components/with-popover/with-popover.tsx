@@ -59,8 +59,6 @@ interface IWithPopoverProps extends Omit<IPopoverProps, 'isOpen' | 'children' | 
    */
   disabled?: boolean;
 
-  label?: string;
-
   required?: boolean;
   /**
    * Function that was called after closing
@@ -146,7 +144,7 @@ export class WithPopover extends React.Component<IWithPopoverProps, IWithPopover
   );
 
   render() {
-    const className = cx('with-popover', this.props.className);
+    const className = cx('with-popover', this.props.className, this.props.disabled ? 'disabled' : '');
 
     return (
       <div ref={this.captureContainer} className={className}>

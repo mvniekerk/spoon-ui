@@ -21,6 +21,8 @@ body {
 .app-container {
   box-sizing: border-box;
   display: inline-flex;
+  width: 100%;
+
   .view-container {
     background: var(--body-background);
     min-width: calc(100vw - 250px);

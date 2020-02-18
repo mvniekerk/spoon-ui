@@ -62,10 +62,13 @@ button.btn.btn-secondary {
   &.toggle-btn {
     background-color: transparent;
     border: none !important;
+    font-size: 15px;
+    padding-left: 36px;
+    padding-right: 36px;
 
     &.active {
       background-color: white;
-      box-shadow: 1px 1px 50px 10px rgba(0, 37, 80, 0.2) !important;
+      box-shadow: 1px 1px 50px 10px rgba(0, 37, 80, 0.1) !important;
     }
   }
 }
