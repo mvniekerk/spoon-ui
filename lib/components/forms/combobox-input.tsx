@@ -56,6 +56,7 @@ export class ComboboxInput<T> extends React.Component<IComboboxInputProps<T>, IS
         unselectable="off"
         onClose={onClose}
         disabled={disabled}
+        label={undefined}
       />
     );
     return (
