@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from './button';
 import { Row } from 'reactstrap';
-import { ITranslatedValue, translateItem } from 'lib/util';
+import { ITranslatedValue, translateItem } from '../../util/translation';
 
 export interface IToggleButtonGroupProps<T> {
   values: Array<ITranslatedValue<T>>;
