@@ -140,9 +140,6 @@ export class DropdownDemo extends React.Component {
         </Row>
 
         <Row>
-          {/* <Col md="12">
-            <div className="small-header">Tag selects</div>
-          </Col> */}
           <Col md="12">
             <Dropdown
               {...this.props}
