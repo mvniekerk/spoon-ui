@@ -68,6 +68,7 @@ button.btn.btn-secondary {
 
     &.active {
       background-color: white;
+      font-weight: bold;
       box-shadow: 1px 1px 50px 10px rgba(0, 37, 80, 0.1) !important;
     }
   }

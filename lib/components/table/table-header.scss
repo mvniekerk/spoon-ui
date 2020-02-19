@@ -14,3 +14,11 @@ thead th.sortable {
     margin-right: -4px;
   }
 }
+
+.table {
+  td {
+    svg {
+      color: var(--menu-item-icon-color);
+    }
+  }
+}
