@@ -17,12 +17,13 @@
     & > div {
       align-items: center;
     }
+    border-left: var(--white) 10px solid;
 
     &.closed.invalid {
-      border-left: var(--danger) 10px solid;
+      border-left-color: var(--danger);
     }
     &.closed.valid {
-      border-left: var(--success) 10px solid;
+      border-left-color: var(--success);
     }
 
     h3 {

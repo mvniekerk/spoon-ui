@@ -93,7 +93,9 @@ export class Buttons extends React.Component {
         </Row>
         <Row>
           <Col>
-            <Button block>full button</Button>
+            <Button block size="lg">
+              full button
+            </Button>
           </Col>
         </Row>
         <Row>
