@@ -258,6 +258,7 @@ export class Forms extends React.Component<{}, IFormsState> {
             label="Select any 2"
             {...vals}
             choices={this.state.multiChoices}
+            selected={['one', 'two']}
             selectionBar
             disabled={this.state.multipleDisabled}
           />
