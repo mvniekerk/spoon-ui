@@ -39,7 +39,6 @@ export class MultipleSelectionInput<T> extends React.Component<IMultipleSelectio
       const choiceVals = this.props.choices();
       const choices: Array<ITranslatedSelectableValue<T[]>> = !!choiceVals
         ? Array.from(choiceVals.keys()).map(k => {
-            console.log(this.props.selected.some(x => x === k));
             return {
               name: choiceVals.get(k),
               display: choiceVals.get(k),
