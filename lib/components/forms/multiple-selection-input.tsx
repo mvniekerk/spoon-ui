@@ -38,15 +38,20 @@ export class MultipleSelectionInput<T> extends React.Component<IMultipleSelectio
     if (this.props.choices !== prevProps.choices) {
       const choiceVals = this.props.choices();
       const choices: Array<ITranslatedSelectableValue<T[]>> = !!choiceVals
-        ? Array.from(choiceVals.keys()).map(k => ({
-            name: choiceVals.get(k),
-            display: choiceVals.get(k),
-            id: `${this.props.id}_${choiceVals.get(k)}`,
-            value: [k],
-            disabled: false,
-            selected: this.state.choices.some(b => b.selected && b.id === `${this.props.id}_${choiceVals.get(k)}`),
-            groupName: this.props.id
-          }))
+        ? Array.from(choiceVals.keys()).map(k => {
+            console.log(this.props.selected.some(x => x === k));
+            return {
+              name: choiceVals.get(k),
+              display: choiceVals.get(k),
+              id: `${this.props.id}_${choiceVals.get(k)}`,
+              value: [k],
+              disabled: false,
+              selected: this.props.selected
+                ? this.props.selected.some(x => x === k)
+                : this.state.choices.some(b => b.selected && b.id === `${this.props.id}_${choiceVals.get(k)}`),
+              groupName: this.props.id
+            };
+          })
         : [];
       this.setState({ ...defaultFormInputState<T[]>(), choices });
     }
@@ -63,7 +68,7 @@ export class MultipleSelectionInput<T> extends React.Component<IMultipleSelectio
           id: `${props.id}_${choiceVals.get(k)}_${k.toString()}`,
           value: [k],
           disabled: false,
-          selected: false,
+          selected: props.selected && props.selected.some(x => x === k),
           groupName: props.id
         }))
       : [];
