@@ -35,13 +35,13 @@ export class Opener extends React.Component<IOpenerProps> {
 
     const expand = (
       <div className={className} onClick={this.handleOpenClicked}>
-        {this.props.openComponent ? this.props.openComponent : <ExpandMore />}
+        {this.props.openComponent ? this.props.openComponent : <ExpandMore fontSize="large" />}
       </div>
     );
 
     const collapse = (
       <div className={className} onClick={this.handleCloseClicked}>
-        {this.props.closeComponent ? this.props.closeComponent : <ExpandLess />}
+        {this.props.closeComponent ? this.props.closeComponent : <ExpandLess fontSize="large" />}
       </div>
     );
 

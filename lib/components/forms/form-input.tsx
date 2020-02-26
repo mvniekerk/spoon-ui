@@ -1,8 +1,8 @@
 import React from 'react';
-import { ITranslatedSelectableValue, ITranslatedValue, TranslatedValueOrKey, translateItem } from '../../util/translation';
+import { ITranslatedSelectableValue, ITranslatedValue, TranslatedValueOrKey } from '../../util/translation';
 import { IDirtyInput } from '../../util/dirty-input';
 import { IValidateAndI18nKey, validationErrors } from '../../validation/validate';
-import { FormGroup, Label } from 'reactstrap';
+import { FormGroup } from 'reactstrap';
 import { FormError, FormHelp, FormValid } from '../form-feedback/form-feedback';
 import ArrowDropUp from '@material-ui/icons/ArrowDropUpRounded';
 
@@ -22,6 +22,7 @@ export type GetValueInObject<T, U> = (state: U) => IValueDirtyAndValid<T>;
 export interface IFormInput<T> extends IDirtyInput<T> {
   label?: TranslatedValueOrKey<T>;
   placeholder?: TranslatedValueOrKey<T>;
+  selected?: any;
   id?: string;
   value: T;
   disabled?: boolean;
@@ -53,12 +54,13 @@ export function defaultStateForSelectableFormInput<T>(
   const choiceVals = props.choices();
   const choices: Array<ITranslatedSelectableValue<T>> = !!choiceVals
     ? Array.from(choiceVals.keys()).map(k => ({
-        name: choiceVals.get(k),
         display: choiceVals.get(k),
-        id: `${props.id}_${choiceVals.get(k)}`,
+        id: `${props.id}_${JSON.stringify(k)}`,
         value: k,
         disabled: false,
-        selected: !!oldState && oldState.choices.some(b => b.selected && b.id === `${props.id}_${choiceVals.get(k)}`),
+        selected: props.selected
+          ? props.selected === k
+          : !!oldState && oldState.choices.some(b => b.selected && b.id === `${props.id}_${JSON.stringify(k)}`),
         groupName: props.id
       }))
     : [];
@@ -129,11 +131,13 @@ export function formInputGroup(form: FormInput<any>, children: JSX.Element, requ
   const isInvalid = form.state.invalidAndDirty;
   const isValid = form.state.validAndDirty;
   const justHelp = form.state.justHelp;
-  const className = `${isInvalid ? 'is-invalid' : ''} ${isValid ? 'is-valid' : ''} ${justHelp ? 'just-help' : ''}`;
+  const disabled = form.props.disabled;
+  const className = `${isInvalid ? 'is-invalid' : ''} ${isValid ? 'is-valid' : ''} ${justHelp ? 'just-help' : ''} ${
+    disabled ? 'disabled' : ''
+  }`;
   return (
     <FormGroup className={className} valid>
-      {!!form.props.label && <Label for={form.props.id}>{translateItem(form.props.label)}</Label>}
-      <div className={`input-group ${className} form-input`}>
+      <div className={`input-group ${className} form-input ${form.props.value === '' ? ' empty' : ''}`}>
         {children}
         {required && (
           <div className="required-check">

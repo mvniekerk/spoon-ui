@@ -12,9 +12,10 @@ export {
   // On change
   IOnChange,
   // Translation
-  ITranslatedValue,
   translateItem,
-  TranslatedValueOrKey,
-  translatedValue,
-  ITranslatedSelectableValue
+  translatedValue
 };
+
+export type ITranslatedValue<T> = ITranslatedValue<T>;
+export type TranslatedValueOrKey<T> = TranslatedValueOrKey<T>;
+export type ITranslatedSelectableValue<T> = ITranslatedSelectableValue<T>;

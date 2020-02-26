@@ -21,9 +21,12 @@ body {
 .app-container {
   box-sizing: border-box;
   display: inline-flex;
+  width: 100%;
+
   .view-container {
-    min-width: calc(100vw - 270px);
-    width: calc(100vw - 270px);
+    background: var(--body-background);
+    min-width: calc(100vw - 250px);
+    width: calc(100vw - 250px);
     overflow-y: auto;
     overflow-x: hidden;
     padding: 1rem;
@@ -35,7 +38,6 @@ body {
       min-width: calc(100vw - 20px);
       margin-left: 4px;
     }
-    //background-color: blue;
 
     .card {
       padding: 1rem;
@@ -51,7 +53,7 @@ body {
   .view-container-mini-menu {
     min-width: calc(100vw - 90px);
     width: calc(100vw - 90px);
-    margin-left: 70px;
+    margin-left: 75px;
     transition: all 300ms linear;
 
     @media only screen and (max-width: 580px) {
@@ -340,34 +342,31 @@ http://stackoverflow.com/questions/23436430/bootstrap-3-input-group-100-width */
 }
 
 h1 {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 600;
-  line-height: 44px;
-  font-size: 32px;
-  color: var(--black-text);
+  font-family: 'Source Sans Pro Bold', sans-serif;
+  font-size: 55px;
+  font-weight: bold;
+  color: var(--gray-darker);
 }
 
 h2 {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 400;
-  line-height: 32px;
-  font-size: 22px;
-  color: var(--black-text);
+  font-family: 'Source Sans Pro Bold', sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  color: var(--gray-darker);
 }
 
 h3 {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 400;
-  line-height: 28px;
-  font-size: 20px;
-  color: var(--black-text);
+  font-family: 'Source Sans Pro Bold', sans-serif;
+  font-size: 23px;
+  font-weight: bold;
+  color: var(--gray-darker);
 }
 
 p {
   font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 400;
-  line-height: 26px;
-  font-size: 21px;
+  line-height: 29px;
+  font-size: 23px;
+  font-style: italic;
   color: var(--gray-darker);
 }
 
@@ -452,12 +451,13 @@ a:hover {
 }
 
 .form-control {
-  padding: 20px;
+  padding: 12px 13px;
   margin-bottom: 8px;
-  border: var(--gray-lighter) solid 0.1em;
-  color: var(--black-text);
-  font-weight: 600;
-  height: 32px;
+  border: var(--gray-darker) solid 1px;
+  color: var(--gray-darker);
+  font-size: 18pt;
+  height: auto;
+  line-height: 23px;
 }
 
 .input-group {
@@ -465,12 +465,14 @@ a:hover {
 }
 
 .form-control::placeholder {
-  color: var(--gray-lighter);
+  color: var(--gray-darker-opacity);
 }
 
 .form-control:focus {
-  border-color: $primary;
-  box-shadow: none;
+  @include focusStyle();
+}
+.form-control:hover {
+  @include hoverStyle();
 }
 
 .form-control.is-valid:focus {
@@ -484,7 +486,7 @@ a:hover {
 }
 
 .form-control {
-  border-radius: 4px;
+  border-radius: 7px;
 }
 
 .input-group > .form-control:not(:last-child) {
@@ -496,16 +498,16 @@ a:hover {
   .material-icons {
     display: none;
     position: absolute;
-    top: 8px;
-    color: gray;
+    top: 13px;
   }
 }
 
 .input-group.is-valid {
   .material-icons.valid-icon {
-    color: green;
+    color: var(--success);
     display: inherit;
-    right: 9px;
+    right: 15px;
+    width: 20px;
   }
 }
 
@@ -513,41 +515,47 @@ a:hover {
   .material-icons.invalid-icon {
     color: var(--error);
     display: inherit;
-    right: 9px;
+    right: 15px;
+    width: 20px;
   }
   .form-control {
     color: var(--error);
   }
 
-  .form-control:focus {
-    color: unset;
-  }
+  // .form-control:focus {
+  //   color: unset;
+  // }
 }
 
 .input-group-icon-left {
   .material-icons.left-icon {
     display: inherit;
-    left: 8px;
-    color: var(--gray-lighter);
+    left: 15px;
+    color: var(--color-icon);
     z-index: 5;
   }
 
   .form-control {
-    padding-left: 38px;
+    padding-left: 48px;
   }
+}
+
+.form-group label {
+  font-size: 18px;
+  line-height: 19px;
 }
 
 .input-group.input-group-icon-right,
 .form-group.input-group-icon-right {
   .material-icons.right-icon {
     display: inherit;
-    right: 8px;
-    color: var(--gray-lighter);
+    right: 15px;
+    color: var(--color-icon);
     z-index: 5;
   }
 
   .form-control {
-    padding-right: 38px;
+    padding-right: 48px;
   }
 
   .material-icons.valid-icon {
@@ -558,42 +566,48 @@ a:hover {
   }
 }
 
-.input-group.form-input {
-  .dropdown.show .select-icon-container .material-icons {
-    display: unset;
-    position: unset;
-  }
+.form-control:disabled,
+.input-group:disabled {
+  background-color: var(--gray-lighter);
+  color: $input-disabled-color;
+  border: $input-disabled-color 1px solid;
 }
 
-.form-control:disabled {
-  background-color: $input-disabled-color;
-  color: var(--gray-lighter);
-  border: #dfe3e9 solid 1px;
-  height: 32px;
+.input-group:disabled .material-icons {
+  color: $input-disabled-color;
 }
 
 label {
   padding-top: 8px;
   margin-bottom: 0;
   color: var(--gray-darker);
-  font-weight: 600;
+  font-size: 18px;
+  line-height: 19px;
 }
 
 div.valid-feedback,
 small.form-text,
 div.invalid-feedback {
-  font-size: 14px;
-  margin-top: -6px;
+  font-size: 12px;
   vertical-align: middle;
+  text-align: end;
 }
 
 div.valid-feedback,
-div.invalid-feedback,
-small.form-text {
+div.invalid-feedback {
   .material-icons {
-    font-size: 15px;
-    vertical-align: middle;
-    padding-right: 2px;
+    font-size: 19px;
+    vertical-align: top;
+    margin-left: 5px;
+    display: unset;
+    position: inherit;
+  }
+}
+div.invalid-feedback {
+  .form-feedback-span:not(.form-help) {
+    .material-icons {
+      color: var(--error);
+    }
   }
 }
 
@@ -627,13 +641,24 @@ small.form-text {
   .tooltip-inner {
     font-size: 16px;
     padding: 8px 16px 11px;
-    background-color: #353c48;
-  }
-
-  span.arrow::before {
-    border-top-color: #353c48;
+    color: white;
+    background-color: var(--danger);
   }
 }
+
+.bs-tooltip-auto[x-placement^='left'] .arrow::before {
+  border-left-color: var(--danger);
+}
+.bs-tooltip-auto[x-placement^='right'] .arrow::before {
+  border-right-color: var(--danger);
+}
+.bs-tooltip-auto[x-placement^='top'] .arrow::before {
+  border-top-color: var(--danger);
+}
+.bs-tooltip-auto[x-placement^='bottom'] .arrow::before {
+  border-bottom-color: var(--danger);
+}
+
 .breadcrumb-item + .breadcrumb-item::before {
   background: transparent url('../static/images/chevron-right.svg');
   background: transparent inline('../static/images/chevron-right.svg');
@@ -664,13 +689,14 @@ table.table {
   border-collapse: collapse;
   border-radius: 4px;
   border-style: hidden; /* hide standard table (collapsed) border */
-  box-shadow: 0 0 0 1px #dfe2e5; /* this draws the table border  */
   color: var(--gray-darker);
   tr {
     border: unset;
+
     td,
     th {
       border: unset;
+      padding: 22px;
     }
   }
 
@@ -702,11 +728,13 @@ table.table {
   }
 
   tbody tr {
-    border-bottom: 1px #dfe2e5 solid;
+    border-bottom: 2px solid var(--primary-lighter);
   }
 
   thead th {
-    border-bottom: 1px #dfe2e5 solid;
+    border-bottom: 2px solid var(--primary-lighter);
+    font-size: 18px;
+    font-weight: bold;
   }
 
   tr th,
@@ -805,4 +833,8 @@ nav ul.pagination {
 #breadcrumb,
 .breadcrumb {
   background-color: unset;
+}
+.row {
+  margin-right: 0px;
+  margin-left: 0px;
 }

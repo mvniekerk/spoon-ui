@@ -1,5 +1,5 @@
 import './dropdown.scss';
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 import cx from 'classnames';
 import { DropdownItem, IDropdownItem } from './dropdown-item';
 import { DropdownTag } from './dropdown-tag';
@@ -7,9 +7,10 @@ import { TranslatedValueOrKey, translateItem } from '../../util/translation';
 import { WithPopover } from '../with-popover/with-popover';
 import { Button } from '../button/button';
 import { ScrollableArea } from '../scrollable-area/scrollable-area';
-import Search from '@material-ui/icons/Search';
 import { DropdownToggleProps } from 'reactstrap/lib/DropdownToggle';
 import { Grid } from '../grid/grid';
+import { SearchBar } from '../search-bar/search-bar';
+import { Label } from '../layout';
 
 export interface IDropdownProps<T> extends Omit<DropdownToggleProps, 'placeholder'> {
   multiple?: boolean;
@@ -24,26 +25,28 @@ export interface IDropdownProps<T> extends Omit<DropdownToggleProps, 'placeholde
   onValueSelected?: (v: IDropdownItem<T>) => void;
   onValueDeselected?: (v: IDropdownItem<T>) => void;
   onSelectionChanged?: (selection: Array<IDropdownItem<T>>) => void;
-  disabled: boolean;
-  alignRight: boolean;
-  disableDeselect: boolean;
-  unselectable: 'on' | 'off';
+  disabled?: boolean;
+  alignRight?: boolean;
+  disableDeselect?: boolean;
+  unselectable?: 'on' | 'off';
   onOpen?: () => void;
   onClose?: () => void;
+  label?: TranslatedValueOrKey<T>;
+  required?: boolean;
 }
 
 export interface IDropdownState<T> {
   selection: Array<IDropdownItem<T>>;
   searching: boolean;
   values: Array<IDropdownItem<T>>;
-  search?: string;
+  searchValue?: string;
 }
 
 export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownState<T>> {
   static defaultProps = {
     alignRight: false,
     multiple: false,
-    search: false,
+    searchValue: '',
     selectAll: false,
     tags: false,
     onValueSelected: v => {},
@@ -51,7 +54,8 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
     disabled: false,
     direction: 'down',
     disableDeselect: false,
-    unselectable: 'on'
+    unselectable: 'on',
+    required: false
   };
 
   state: IDropdownState<T> = {
@@ -71,6 +75,12 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
       this.updateSelection();
     }
   }
+
+  onClosePopover = () => {
+    this.setState(_ => ({
+      searchValue: ''
+    }));
+  };
 
   public get selection(): Array<IDropdownItem<T>> {
     return this.state.selection;
@@ -136,11 +146,8 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
     }
   };
 
-  private onSearchChanged = (val: ChangeEvent<HTMLInputElement>) => {
-    if (val.target) {
-      const value = val.target.value;
-      this.setState(_ => ({ search: value }));
-    }
+  private onSearchChanged = (val: string) => {
+    this.setState(_ => ({ searchValue: val }));
   };
 
   private renderSelectionBarItem = v => (
@@ -198,7 +205,7 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
       ...other
     } = this.props;
 
-    const showIcon = !multiple && this.state.selection.length === 1;
+    const showIcon = !multiple && this.state.selection.length === 1 && this.state.selection[0].icon;
     const mustShowPlaceholder = this.state.selection.length === 0;
 
     const dropdownClass = cx('dropdown-button', className, { placeholder: mustShowPlaceholder });
@@ -207,11 +214,11 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
       !this.state.searching && !!this.state.values
         ? this.state.values.filter(
             b =>
-              !this.state.search ||
-              ('' + b.value).toLowerCase().indexOf(this.state.search.toLowerCase()) >= 0 ||
+              !this.state.searchValue ||
+              ('' + b.value).toLowerCase().indexOf(this.state.searchValue.toLowerCase()) >= 0 ||
               translateItem(b)
                 .toLowerCase()
-                .indexOf(this.state.search.toLowerCase()) >= 0
+                .indexOf(this.state.searchValue.toLowerCase()) >= 0
           )
         : [];
 
@@ -226,14 +233,7 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
             .join(', ')
         );
 
-    const searchBarComp = search ? (
-      <div className="search-container">
-        <div className="search-input-container">
-          <Search className="search-icon" />
-          <input type="text" className="search-input" value={this.state.search} placeholder="Search" onChange={this.onSearchChanged} />
-        </div>
-      </div>
-    ) : null;
+    const searchBarComp = search ? <SearchBar value={this.state.searchValue} onSearchChanged={this.onSearchChanged} /> : null;
 
     const selectionBarComp = selectionBar && (
       <Grid className="tags-container selected-tags" items={this.state.selection} itemRender={this.renderSelectionBarItem} />
@@ -247,12 +247,16 @@ export class Dropdown<T> extends React.Component<IDropdownProps<T>, IDropdownSta
 
     return (
       <>
+        {this.props.label && <Label>{translateItem(this.props.label)}</Label>}
         <WithPopover
           className={menuClassName}
           autoOpen
           autoClose
+          required={this.props.required}
           closeOnMainClick
           disabled={this.props.disabled}
+          onSelfClickClose={!multiple}
+          onClosePopover={this.onClosePopover}
           mainComponent={
             <Button block className={dropdownClass} disabled={this.props.disabled} {...other}>
               {showIcon && <span className="dropdown-selection-icon">{this.state.selection[0].icon}</span>}

@@ -1,15 +1,46 @@
 import './navigation.scss';
 
 import React from 'react';
-import { Row, Col, Nav, NavItem, NavLink, ButtonGroup, UncontrolledTooltip, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import {
+  Row,
+  Col,
+  Nav,
+  NavItem,
+  NavLink,
+  ButtonGroup,
+  UncontrolledTooltip,
+  Breadcrumb,
+  BreadcrumbItem,
+  CardBody,
+  Collapse,
+  Card
+} from 'reactstrap';
 
 import Info from '@material-ui/icons/Info';
 import Edit from '@material-ui/icons/Edit';
+import DoneAllIcon from '@material-ui/icons/DoneAll';
 import SubdirectoryArrowRight from '@material-ui/icons/SubdirectoryArrowRight';
 
-import { Button, Alert, ItemsPerPage, Pagination, ProgressBar, Progression, ProgressionItem } from 'lib/components';
+import { Button, Alert, ItemsPerPage, Pagination, ProgressBar, Progression, ProgressionItem, AccordionHeader } from 'lib/components';
 
 export class Navigation extends React.Component {
+  state = {
+    openPanelFirst: false,
+    openPanelSecond: false
+  };
+
+  switchPanelFirst = () => {
+    this.setState({
+      openPanelFirst: !this.state.openPanelFirst
+    });
+  };
+
+  switchPanelSecond = () => {
+    this.setState({
+      openPanelSecond: !this.state.openPanelSecond
+    });
+  };
+
   render() {
     return (
       <>
@@ -41,7 +72,7 @@ export class Navigation extends React.Component {
           <Col md="4">
             <div className="small-header">Tooltips</div>
             <Info id="tooltip1" style={{ color: '#c5d0de' }} />
-            <UncontrolledTooltip target="tooltip1" placement="top">
+            <UncontrolledTooltip target="tooltip1" placement="left">
               Tooltip
             </UncontrolledTooltip>
           </Col>
@@ -131,13 +162,35 @@ export class Navigation extends React.Component {
                 Contact Details
               </ProgressionItem>
               <ProgressionItem step={3}>Client Profile</ProgressionItem>
-              <ProgressionItem step={4} icon={<SubdirectoryArrowRight />}>
+              <ProgressionItem step={4} disabled icon={<DoneAllIcon />}>
                 Submit for approval
               </ProgressionItem>
             </Progression>
           </Col>
           <Col md="4">
             <ItemsPerPage defaultPerPage={20} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Card>
+              <AccordionHeader text="Accordion Header" open={this.state.openPanelFirst} valid onClick={this.switchPanelFirst} />
+              <Collapse isOpen={this.state.openPanelFirst}>
+                <CardBody>Card Body</CardBody>
+              </Collapse>
+            </Card>
+            <Card>
+              <AccordionHeader text="Accordion Header 2" open={this.state.openPanelSecond} valid={false} onClick={this.switchPanelSecond} />
+              <Collapse isOpen={this.state.openPanelSecond}>
+                <CardBody>Card Body 2</CardBody>
+              </Collapse>
+            </Card>
+            <Card>
+              <AccordionHeader text="Simple" open />
+              <Collapse isOpen>
+                <CardBody>Simple Body</CardBody>
+              </Collapse>
+            </Card>
           </Col>
         </Row>
       </>

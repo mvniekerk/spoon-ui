@@ -86,6 +86,7 @@ class Popover extends React.Component<IPopoverProps, IPopoverState> {
       // this is needed for outer click to work
       <div>
         <RPopover
+          trigger="legacy"
           delay={this.props.delay}
           placement={this.props.placement || 'bottom'}
           flip={this.props.flip || false}

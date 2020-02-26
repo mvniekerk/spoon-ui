@@ -49,10 +49,6 @@ input:checked + .slider {
   background-color: var(--selection-color-checked);
 }
 
-input:focus + .slider {
-  //box-shadow: 0 0 1px #364458;
-}
-
 input:checked + .slider:before {
   -webkit-transform: translateX(17px);
   -ms-transform: translateX(17px);
@@ -122,6 +118,7 @@ input:checked + .slider:before {
 .selection-container {
   cursor: pointer;
   margin-top: 13px;
+  margin-right: 100px;
 }
 
 .styled-checkbox {
@@ -151,9 +148,8 @@ input:checked + .slider:before {
   //}
 
   & + label:before {
-    background-image: linear-gradient(to bottom, #fefefe, #f4f5f8);
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
     border-radius: 3px;
+    border: 1px solid var(--gray-darker);
   }
 
   // Box focus
@@ -189,20 +185,14 @@ input:checked + .slider:before {
     margin-right: 10px;
     display: inline-block;
     vertical-align: text-top;
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
     background: white;
   }
 
-  // Box hover
-  //&:hover + label:before {
-  //  background: #f35429;
-  //}
-
   & + label:before {
-    background-image: linear-gradient(to bottom, #fefefe, #f4f5f8);
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
-    border-radius: 8px;
+    border: 1px solid var(--gray-darker);
+    border-radius: 10px;
   }
 
   // Box focus
@@ -229,23 +219,13 @@ input:checked + .slider:before {
   }
 }
 
-.radiobutton-container.selected,
-.checkbox-container.selected {
-  // Box checked
-  //&:checked + label:before {
-  label:before {
-    background-image: linear-gradient(to bottom, var(--selection-color-checked), var(--selection-color-checked-darker));
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
-  }
-}
-
 .checkbox-container.selected {
   .checkbox-check {
     position: relative;
     z-index: 100000;
     left: 15px;
     font-size: 14px;
-    color: var(--white-text);
+    color: var(--gray-darker);
     top: -4px;
     font-weight: 800;
   }
@@ -282,16 +262,19 @@ input:checked + .slider:before {
 }
 
 .radiobutton-container.selected {
+  .selection-text {
+    display: initial;
+  }
   .selection-text::after {
     background: unset;
-    background-color: white;
-    height: 6px;
-    width: 6px;
+    background-color: var(--color-icon);
+    height: 12px;
+    width: 12px;
     border-radius: 6px;
     content: '';
     position: absolute;
-    left: 5px;
-    top: 8px;
+    left: 4px;
+    top: 0.3em;
   }
 }
 
@@ -308,7 +291,7 @@ input:checked + .slider:before {
 }
 
 .checkbox-container {
-  height: 18px;
+  height: 20px;
 }
 
 @keyframes fadeIn {

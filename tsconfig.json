@@ -12,17 +12,28 @@
     "suppressImplicitAnyIndexErrors": true,
     "skipLibCheck": true,
     "outDir": "target/www/app",
-    "lib": ["es2015", "es2017", "dom"],
+    "lib": [
+      "es2015",
+      "es2017",
+      "dom"
+    ],
     "typeRoots": [
       "node_modules/@types"
     ],
-    "types": ["webpack-env", "jest"],
+    "types": [
+      "webpack-env",
+      "jest"
+    ],
     "allowJs": true,
     "checkJs": false,
     "baseUrl": "./",
     "paths": {
-        "app/*": ["app/*"],
-        "lib/*": ["lib/*"]
+      "app/*": [
+        "app/*"
+      ],
+      "lib/*": [
+        "lib/*"
+      ]
     },
     "importHelpers": true,
     "esModuleInterop": true,

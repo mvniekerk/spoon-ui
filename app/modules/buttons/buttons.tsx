@@ -2,7 +2,7 @@ import './buttons.scss';
 
 import React from 'react';
 import { Row, Col, Label, FormGroup } from 'reactstrap';
-
+import { ToggleButtonGroup } from 'lib/components/button/toggle-button-group';
 import { Button, ActionIcon } from 'lib/components';
 
 import Send from '@material-ui/icons/Send';
@@ -43,17 +43,17 @@ export class Buttons extends React.Component {
             </Button>
           </Col>
           <Col md="3">
-            <Button color="green">Text</Button>
-            <Button color="green" iconLeft={<Send />}>
+            <Button color="link">Text</Button>
+            <Button color="link" iconLeft={<Send />}>
               Text
             </Button>
-            <Button color="green" iconRight={<Send />}>
+            <Button color="link" iconRight={<Send />}>
               Text
             </Button>
-            <Button color="green" disabled iconLeft={<Send />}>
+            <Button color="link" disabled iconLeft={<Send />}>
               Text
             </Button>
-            <Button color="green" disabled iconRight={<Send />}>
+            <Button color="link" disabled iconRight={<Send />}>
               Text
             </Button>
           </Col>
@@ -72,6 +72,12 @@ export class Buttons extends React.Component {
               Text
             </Button>
           </Col>
+          <Col md="3">
+            <Button size="lg">Large Button</Button>
+            <Button color="primary" size="lg">
+              Large Button
+            </Button>
+          </Col>
           <Col>
             <Label>ActionIcon</Label>
             <FormGroup>
@@ -83,6 +89,19 @@ export class Buttons extends React.Component {
                 }}
               />
             </FormGroup>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Button block size="lg">
+              full button
+            </Button>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Label>Toggle Button Group</Label>
+            <ToggleButtonGroup values={[{ value: 'First' }, { value: 'Second' }, { value: 'Third' }]} />
           </Col>
         </Row>
       </div>

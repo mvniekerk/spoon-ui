@@ -3,9 +3,7 @@
 .opener-icon {
   @include iconColor();
   position: absolute;
-
-  // always position at 50% height of container by default
-  top: 50%;
+  bottom: -10px;
   transform: translateY(-50%);
 
   right: 12px;
@@ -13,5 +11,6 @@
 
   &.disabled {
     cursor: default;
+    color: $input-disabled-color;
   }
 }

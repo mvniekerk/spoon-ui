@@ -63,20 +63,42 @@ export class DropdownDemo extends React.Component {
             <div className="small-header">Dropdown selects</div>
           </Col>
           <Col md="4">
-            <Dropdown {...this.props} key="dropdown1" placeholder="Single selection" initialValues={singleSelection} />
-            <br />
-          </Col>
-          <Col md="4">
-            <Dropdown {...this.props} key="dropdown1" placeholder="Multiple selection" initialValues={multipleSelection} multiple />
-            <br />
-          </Col>
-          <Col md="4">
-            <Dropdown {...this.props} key="dropdown1" placeholder="Single with icon" initialValues={singleSelectionWithIcon} iconLeft />
+            <Dropdown
+              {...this.props}
+              label="Label for dropdown"
+              key="dropdown1"
+              required
+              placeholder="Single selection"
+              initialValues={singleSelection}
+            />
             <br />
           </Col>
           <Col md="4">
             <Dropdown
               {...this.props}
+              key="dropdown1"
+              label="Label for dropdown"
+              placeholder="Multiple selection"
+              initialValues={multipleSelection}
+              multiple
+            />
+            <br />
+          </Col>
+          <Col md="4">
+            <Dropdown
+              {...this.props}
+              key="dropdown1"
+              label="Label for dropdown"
+              placeholder="Single with icon"
+              initialValues={singleSelectionWithIcon}
+              iconLeft
+            />
+            <br />
+          </Col>
+          <Col md="4">
+            <Dropdown
+              {...this.props}
+              required
               key="dropdown1"
               placeholder="Multiple with icon"
               initialValues={singleSelectionWithIcon}
@@ -111,16 +133,18 @@ export class DropdownDemo extends React.Component {
             />
             <br />
           </Col>
+          <Col md="4">
+            <Dropdown {...this.props} disabled key="dropdownDisabled" placeholder="Disabled" initialValues={singleSelection} />
+            <br />
+          </Col>
         </Row>
 
         <Row>
           <Col md="12">
-            <div className="small-header">Tag selects</div>
-          </Col>
-          <Col md="12">
             <Dropdown
               {...this.props}
               key="dropdown1"
+              label="Tag selects"
               placeholder="Multiple, overflow with search"
               initialValues={searchMultipleTooLongSelection}
               search

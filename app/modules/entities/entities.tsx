@@ -3,6 +3,8 @@ import { Card, CardGroup, Row, Col, Label, Button, EntityCard, InfoCard, ActionI
 import TextFields from '@material-ui/icons/TextFields';
 import Person from '@material-ui/icons/Person';
 import Close from '@material-ui/icons/Close';
+import FaceIcon from '@material-ui/icons/Face';
+import WorkIcon from '@material-ui/icons/Work';
 
 interface IEntitiesState {
   data: any[];
@@ -52,9 +54,24 @@ export class Entities extends React.Component<any, IEntitiesState> {
           <Col>
             <Label>CardGroup</Label>
             <CardGroup>
-              <Card image={<TextFields />} title={'Title 1'} subtitle={'Subtitle 1'} actionComponent={<Button>Button</Button>} />
-              <Card image={<TextFields />} title={'Title 2'} subtitle={'Subtitle 2'} actionComponent={<Button>Button</Button>} />
-              <Card image={<TextFields />} title={'Title 3'} subtitle={'Subtitle 3'} actionComponent={<Button>Button</Button>} />
+              <Card
+                image={<FaceIcon />}
+                title={'Title 1'}
+                subtitle={'Subtitle 1'}
+                actionComponent={<Button color="primary">Button</Button>}
+              />
+              <Card
+                image={<WorkIcon />}
+                title={'Title 2'}
+                subtitle={'Subtitle 2'}
+                actionComponent={<Button color="primary">Button</Button>}
+              />
+              <Card
+                image={<TextFields />}
+                title={'Title 3'}
+                subtitle={'Subtitle 3'}
+                actionComponent={<Button color="primary">Button</Button>}
+              />
             </CardGroup>
           </Col>
         </Row>

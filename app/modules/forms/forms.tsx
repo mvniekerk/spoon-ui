@@ -22,11 +22,12 @@ import { ITranslatedSelectableValue, translatedValue } from 'lib/util';
 import { IValidateAndI18nKey, required, requiredString, stringIsNumber } from 'lib/validation';
 
 import Check from '@material-ui/icons/CheckRounded';
-import PriorityHighRounded from '@material-ui/icons/PriorityHighRounded';
+import ClearIcon from '@material-ui/icons/Clear';
 import CalendarToday from '@material-ui/icons/CalendarToday';
 import PersonOutline from '@material-ui/icons/PersonOutline';
 import Info from '@material-ui/icons/Info';
 import Cancel from '@material-ui/icons/Cancel';
+import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 
 interface IsSmartAnimal {
   name: string;
@@ -39,6 +40,8 @@ export interface IFormsState {
   numberInput: string;
   numberInputDirty: boolean;
   numberInputDisabled: boolean;
+  textRequired1: string;
+  textRequired2: string;
   radInput: string;
   radDirty: boolean;
   radDisabled: boolean;
@@ -55,6 +58,8 @@ const defaultValues = {
   values: [],
   search: '',
   numberInput: '',
+  textRequired1: '',
+  textRequired2: '',
   numberInputDirty: false,
   numberInputDisabled: false,
   radInput: '',
@@ -82,7 +87,6 @@ export class Forms extends React.Component<{}, IFormsState> {
     super(props);
     this.onAddTag = this.onAddTag.bind(this);
     this.searchChanged = this.searchChanged.bind(this);
-    this.resetValues();
   }
 
   resetValues = () => {
@@ -166,6 +170,7 @@ export class Forms extends React.Component<{}, IFormsState> {
             choices={choices}
             id="radInput"
             value={this.state.radInput}
+            selected="No"
             onChange={onChange}
             dirty={this.state.radDirty}
             onMadeDirty={onDirty}
@@ -214,6 +219,7 @@ export class Forms extends React.Component<{}, IFormsState> {
             id="smartAnimal"
             {...comboVals}
             validation={[isSmart]}
+            label="Label for ComboboxInput"
             helpMessage="Try to select a smart animal"
             placeholder="forms.comboInput.placeholder"
             required
@@ -252,6 +258,7 @@ export class Forms extends React.Component<{}, IFormsState> {
             label="Select any 2"
             {...vals}
             choices={this.state.multiChoices}
+            selected={['one', 'two']}
             selectionBar
             disabled={this.state.multipleDisabled}
           />
@@ -267,6 +274,8 @@ export class Forms extends React.Component<{}, IFormsState> {
   }
 
   render() {
+    const onInput2Change = textRequired2 => this.setState({ textRequired2 });
+    const onInputChange = textRequired1 => this.setState({ textRequired1 });
     return (
       <>
         <Button onClick={this.resetValues}>Reset all values</Button>
@@ -286,7 +295,7 @@ export class Forms extends React.Component<{}, IFormsState> {
             </InputGroup>
             <InputGroup className="is-invalid">
               <Input invalid placeholder="Placeholder" value="Incorrect input" />
-              <PriorityHighRounded className="material-icons invalid-icon" />
+              <ClearIcon className="material-icons invalid-icon" />
             </InputGroup>
             <Input text="Text" value="Disabled" disabled />
           </Col>
@@ -310,7 +319,7 @@ export class Forms extends React.Component<{}, IFormsState> {
 
             <InputGroup className="is-invalid input-group-icon-left">
               <Input invalid placeholder="Placeholder" value="Incorrect input" />
-              <PriorityHighRounded className="material-icons invalid-icon" />
+              <ClearIcon className="material-icons invalid-icon" />
               <PersonOutline className="material-icons left-icon" />
             </InputGroup>
 
@@ -338,11 +347,11 @@ export class Forms extends React.Component<{}, IFormsState> {
             </InputGroup>
             <InputGroup className="is-invalid input-group-icon-right">
               <Input invalid placeholder="Placeholder" value="Incorrect input" />
-              <PriorityHighRounded className="material-icons invalid-icon" />
+              <ClearIcon className="material-icons invalid-icon" />
               <PersonOutline className="material-icons right-icon" />
             </InputGroup>
 
-            <InputGroup className="input-group-icon-right">
+            <InputGroup disabled className="input-group-icon-right">
               <Input disabled valid placeholder="Placeholder" value="Disabled" />
               <CalendarToday className="material-icons right-icon" />
             </InputGroup>
@@ -354,32 +363,50 @@ export class Forms extends React.Component<{}, IFormsState> {
           </Col>
           <Col md="4">
             <FormGroup>
-              <Label for="inputwithoutvalidation">Without validation</Label>
-              <Input id="inputwithoutvalidation" placeholder="Placeholder" />
+              <TextInput
+                label="Without validation"
+                placeholder="Placeholder"
+                id="inputwithoutvalidation"
+                value={this.state.textRequired1}
+                onChange={onInputChange}
+              />
             </FormGroup>
             <FormGroup>
-              <Label for="inputwithoutvalidation">Required field</Label>
-              <Input id="inputwithoutvalidation" placeholder="Placeholder" />
+              <TextInput
+                label="Required validation"
+                placeholder="Placeholder"
+                id="inputwithvalidation"
+                required
+                value={this.state.textRequired2}
+                onChange={onInput2Change}
+              />
               <FormText>
                 <span>
-                  <Info className="material-icons" />
                   Example help text that remains unchanged.
+                  <Info className="material-icons" />
                 </span>
               </FormText>
             </FormGroup>
           </Col>
           <Col md="4">
             <FormGroup>
-              <Label for="inputwithoutvalidation">Correct field</Label>
-              <Input valid placeholder="Placeholder" value="Correct input" />
+              <TextInput
+                label="Valid field"
+                placeholder="Placeholder"
+                id="inputwithvalidation"
+                required
+                valid
+                value={this.state.textRequired2}
+                onChange={onInput2Change}
+              />
             </FormGroup>
 
             <FormGroup>
               <Label for="inputwithoutvalidation">With message</Label>
               <Input valid placeholder="Placeholder" value="Correct input" />
               <FormFeedback valid>
-                <Info className="material-icons" />
                 Positive message
+                <CheckCircleRoundedIcon className="material-icons" />
               </FormFeedback>
             </FormGroup>
           </Col>
@@ -388,8 +415,8 @@ export class Forms extends React.Component<{}, IFormsState> {
               <Label for="error">With message</Label>
               <Input invalid id="error" placeholder="Placeholder" value="Correct input" />
               <FormFeedback invalid>
-                <Cancel className="material-icons" />
                 Error notification
+                <Cancel className="material-icons" />
               </FormFeedback>
             </FormGroup>
           </Col>
@@ -418,6 +445,12 @@ export class Forms extends React.Component<{}, IFormsState> {
           </Col>
         </Row>
         <Row>
+          <Col md="8">
+            <Label>SearchBar Global</Label>
+            <SearchBar global onSearchChanged={this.searchChanged} />
+          </Col>
+        </Row>
+        <Row>
           <Col md="12">
             <div className="small-header">Async dropdown selection (TagInput)</div>
           </Col>
@@ -429,7 +462,13 @@ export class Forms extends React.Component<{}, IFormsState> {
           <Col>
             <FormGroup>
               <Label>CalendarInput</Label>
-              <CalendarInput placeholder="Pick a date" id="expiry-date-cal" value={this.state.date} onChange={this.handleDateChange} />
+              <CalendarInput
+                placeholder="Pick a date"
+                id="expiry-date-cal"
+                value={this.state.date}
+                onChange={this.handleDateChange}
+                required
+              />
             </FormGroup>
           </Col>
         </Row>
@@ -437,7 +476,7 @@ export class Forms extends React.Component<{}, IFormsState> {
           <Col>
             <FormGroup>
               <Label>CalendarInput (disabled)</Label>
-              <CalendarInput id="expiry-date-cal-dis" disabled value={this.state.date} onChange={this.handleDateChange} />
+              <CalendarInput id="expiry-date-cal-dis" required disabled value={this.state.date} onChange={this.handleDateChange} />
             </FormGroup>
           </Col>
         </Row>

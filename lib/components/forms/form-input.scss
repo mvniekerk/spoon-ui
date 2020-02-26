@@ -1,16 +1,55 @@
+.required-check {
+  position: absolute;
+  right: -5px;
+  transform: rotate(45deg);
+  color: initial;
+  z-index: 111;
+}
+
 .input-group.form-input {
   .required-check {
-    position: absolute;
     top: -5px;
-    right: -5px;
-    transform: rotate(45deg);
-    color: var(--gray-lighter);
   }
 }
 
-.input-group.is-invalid.form-input {
+.input-group.is-invalid.form-input:not(.disabled) {
   .required-check {
     color: var(--error);
+  }
+}
+.input-group.form-input.disabled {
+  .required-check {
+    color: #c4cad4;
+  }
+}
+.input-group.form-input.empty {
+  .form-control {
+    border-color: var(--empty-field);
+  }
+  .required-check {
+    color: var(--empty-field);
+  }
+}
+.empty.form-control {
+  border-color: var(--empty-field);
+}
+
+.input-group.is-valid.form-input:not(.disabled) {
+  & > .form-control {
+    border-color: var(--success);
+  }
+  .required-check {
+    color: var(--success);
+  }
+}
+
+.input-group.form-input:hover:not(.disabled),
+.input-group.form-input:focus:not(.disabled) {
+  & > .form-control {
+    border-color: var(--primary-active-darker);
+  }
+  .required-check {
+    color: var(--primary-active-darker);
   }
 }
 

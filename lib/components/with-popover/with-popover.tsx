@@ -1,5 +1,6 @@
 import React, { ReactNode, ReactElement } from 'react';
 import cx from 'classnames';
+import ArrowDropUp from '@material-ui/icons/ArrowDropUpRounded';
 import { Popover, IPopoverProps } from '../popover/popover';
 import { Opener } from '../opener/opener';
 import './with-popover.scss';
@@ -57,6 +58,12 @@ interface IWithPopoverProps extends Omit<IPopoverProps, 'isOpen' | 'children' | 
    * If true, the popover can not be opened
    */
   disabled?: boolean;
+
+  required?: boolean;
+  /**
+   * Function that was called after closing
+   */
+  onClosePopover?: () => void;
 }
 
 interface IWithPopoverState {
@@ -105,6 +112,7 @@ export class WithPopover extends React.Component<IWithPopoverProps, IWithPopover
   };
 
   handleClose = () => {
+    this.props.onClosePopover && this.props.onClosePopover();
     this.setState({
       open: false
     });
@@ -129,13 +137,14 @@ export class WithPopover extends React.Component<IWithPopoverProps, IWithPopover
       container={this.props.container ? this.props.container : this.containerRef}
       onOpen={this.handleOpen}
       onClose={this.handleClose}
+      placement="bottom-end"
     >
       {this.props.children}
     </Popover>
   );
 
   render() {
-    const className = cx('with-popover', this.props.className);
+    const className = cx('with-popover', this.props.className, this.props.disabled ? 'disabled' : '');
 
     return (
       <div ref={this.captureContainer} className={className}>
@@ -153,6 +162,11 @@ export class WithPopover extends React.Component<IWithPopoverProps, IWithPopover
             openComponent={this.props.openerIcon || this.props.openerOpenIcon}
             closeComponent={this.props.openerIcon || this.props.openerCloseIcon}
           />
+        )}
+        {this.props.required && (
+          <div className="required-check">
+            <ArrowDropUp />
+          </div>
         )}
         {this.renderExpandedBody()}
       </div>

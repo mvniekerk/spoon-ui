@@ -11,8 +11,9 @@ import {
 } from './form-input';
 import { Dropdown } from '../dropdown/dropdown';
 import { IRadioInputProps } from './radio-input';
-import { ITranslatedSelectableValue } from '../../util';
+import { ITranslatedSelectableValue, translateItem } from '../../util';
 import { IDropdownItem } from '../dropdown/dropdown-item';
+import { Label } from '../layout';
 
 export interface IComboboxInputProps<T> extends ISelectableFormInput<T> {
   search?: boolean;
@@ -55,8 +56,14 @@ export class ComboboxInput<T> extends React.Component<IComboboxInputProps<T>, IS
         unselectable="off"
         onClose={onClose}
         disabled={disabled}
+        label={undefined}
       />
     );
-    return formInputGroup(this, input, required);
+    return (
+      <>
+        {this.props.label && <Label>{translateItem(this.props.label)}</Label>}
+        {formInputGroup(this, input, required)}
+      </>
+    );
   }
 }

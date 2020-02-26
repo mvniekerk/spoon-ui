@@ -28,18 +28,21 @@ $yellow: #ffc107 !default;
 $green: #4ab55b !default;
 $teal: #20c997 !default;
 $cyan: #1991eb !default;
+$gray-darker: #001c44;
+$gray-lighter: #eff0f3;
+$gray-darker-opacity: rgba(0, 28, 68, 0.5);
 
-$primary: #1991eb !default;
-$primary-lighter: #36c4f7 !default;
-$primary-active: darken($primary-lighter, 5%);
-$primary-active-lighter: darken($primary, 5%);
+$primary: $gray-darker !default;
+$primary-lighter: #93b1d6;
+$primary-active: $gray-darker-opacity;
+$primary-active-lighter: darken($gray-darker, 5%);
 $primary-active-darker: #0097e3;
 
 $secondary: $white !default;
-$success: $green !default;
+$success: #57a75b !default;
 $info: $cyan !default;
 $warning: #f7981c !default;
-$danger: #d22b32 !default;
+$danger: #a52222 !default;
 $light: $white !default;
 $dark: #333f52 !default;
 $dark-darker: darken($dark, 10%) !default;
@@ -49,12 +52,15 @@ $tertiary: #50e537;
 $tertiary-darker: #25a20f;
 $tertiary-active: darken($tertiary, 5%);
 $tertiary-active-darker: darken($tertiary-darker, 5%);
+$disable-darker: #b0b2c3;
+$color-icon: $primary-lighter;
 
-//$gbl-color-icon: #c5d0de;
-$gray-darker: #7f8fa4;
-$gray-lighter: #c5d0de;
-$black-text: #354052;
+$black-text: rgb(6, 6, 7);
 $white-text: #ffffff;
+
+$scroll-background-color: #e3e6ec;
+$scroll-color: #b1b4c1;
+$empty-field: #7f8da1;
 
 // Body
 
@@ -69,8 +75,8 @@ $font-size-base: 1rem !default;
 
 // Dropdowns
 
-$dropdown-link-hover-color: $white !default;
-$dropdown-link-hover-bg: $primary !default;
+$dropdown-selected-color: #e9eff7;
+$dropdown-hover-color: #e5ebf0;
 
 // Navs
 
@@ -140,13 +146,13 @@ $header-hover: darken($header, 20%);
 $header-secondary: darken($header, 10%);
 
 $selection-color-background: #dfe1e5;
-$selection-color-checked: #50e537;
-$selection-color-checked-darker: #25a20f;
+$selection-color-checked: #57a75b;
+$selection-color-checked-darker: #ddedde;
 
 $menu-background-color-from: #ffffff;
 $menu-background-color-to: #ffffff;
 $menu-item-color: #848c98;
-$menu-item-icon-color: $gray-lighter;
+$menu-item-icon-color: $color-icon;
 $menu-border: transparentize($gray-lighter, 0.875);
 $menu-border-opaque: transparentize($gray-lighter, 1);
 $menu-border-opaque-25: transparentize($gray-lighter, 0.75);
@@ -154,17 +160,17 @@ $menu-border-opaque-8: transparentize($gray-lighter, 1);
 $menu-list-item-selected-color: $black-text;
 $menu-close-color: $gray-lighter;
 
-$progression-color: #848c98;
+$progression-color: $gray-darker;
 $progression-border-color: #e6eaee;
-$progression-current: $black-text;
+$progression-current: #011b5c;
 $progression-shadow: #373a3c14;
 
-$tags-color-1: #0c5100;
-$tags-color-2: #138100;
-$tags-color-3: #27aa11;
-$tags-color-4: #6fcc5f;
+$tags-color-1: #58a895;
+$tags-color-2: #289fcf;
+$tags-color-3: #58a895;
+$tags-color-4: #289fcf;
 
-$body-background: #d2d8dd;
+$body-background: #ccd2da;
 
 @function update-theme-colors($added-vals: ()) {
   $theme-colors: (
@@ -177,6 +183,7 @@ $body-background: #d2d8dd;
     primary-active: $primary-active,
     primary-active-lighter: $primary-active-lighter,
     primary-active-darker: $primary-active-darker,
+    empty-field: $empty-field,
     tertiary: $tertiary,
     tertiary-darker: $tertiary-darker,
     tertiary-active: $tertiary-active,
@@ -184,9 +191,14 @@ $body-background: #d2d8dd;
     dark: $dark,
     dark-darker: $dark-darker,
     dark-lighter: $dark-lighter,
+    disable-darker: $disable-darker,
     black-text: $black-text,
     white-text: $white-text,
+    scroll-background-color: $scroll-background-color,
+    scroll-color: $scroll-color,
+    color-icon: $color-icon,
     gray-darker: $gray-darker,
+    gray-darker-opacity: $gray-darker-opacity,
     gray-lighter: $gray-lighter,
     header: $header,
     header-hover: $header-hover,
@@ -212,7 +224,9 @@ $body-background: #d2d8dd;
     tags-color-1: $tags-color-1,
     tags-color-2: $tags-color-2,
     tags-color-3: $tags-color-3,
-    tags-color-4: $tags-color-4
+    tags-color-4: $tags-color-4,
+    dropdown-selected-color: $dropdown-selected-color,
+    dropdown-hover-color: $dropdown-hover-color
   );
   $theme-colors: map_merge($theme-colors, $added-vals);
   @return $theme-colors;
@@ -221,19 +235,19 @@ $body-background: #d2d8dd;
   --color-picker-menu-left: 0;
 }
 $theme-colors: update-theme-colors();
-$input-disabled-color: #e9edf1;
+$input-disabled-color: rgba(0, 28, 68, 0.2);
 $menu-item-hover-color: var(--primary);
 $menu-item-text-hover-color: var(--white-text);
 @mixin iconColor() {
-  color: $menu-item-icon-color;
+  color: var(--menu-item-icon-color);
 }
 @mixin focusStyle() {
-  outline: none;
-  border: 1px var(--primary) solid;
+  border-color: var(--primary-active-darker);
+  box-shadow: none;
 }
 @mixin hoverStyle() {
-  background-color: $menu-item-hover-color;
-  color: $menu-item-text-hover-color;
+  border-color: var(--primary-active-darker);
+  // background: none;
 }
 // Sizes
 $base: 4px;

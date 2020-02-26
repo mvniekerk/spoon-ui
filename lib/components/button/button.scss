@@ -1,44 +1,51 @@
 @import '../../_bootstrap-variables';
 
 button.btn {
-  border: 1px;
-  box-shadow: 0 0 0 1px #373a3c14 inset;
-  background-color: unset;
-  border-radius: 4px;
+  border: none;
+  background-color: transparent;
+  border-radius: 25px;
   font-size: 18px;
-  font-weight: 600;
   padding: 2px;
   text-decoration: none;
-  min-height: 42px;
+  min-height: 46px;
   margin-bottom: 0;
   min-width: 100px;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 40px;
+  padding-right: 40px;
+  height: fit-content;
 
-  letter-spacing: normal;
+  letter-spacing: 1px;
   font-kerning: normal;
   display: flex;
   align-items: center;
+
+  .button-text {
+    width: 100%;
+  }
+  &.btn-lg {
+    font-size: 23px !important;
+    letter-spacing: 1px;
+    line-height: 29px;
+    padding: 21px 35px;
+    border-radius: 35px;
+  }
 }
 
 button.btn:focus {
-  border: 1px;
-  box-shadow: 0 0 0 1px rgba(197, 208, 222, 0.1) inset;
+  box-shadow: none !important;
 }
 
 button.btn.btn-primary {
-  font-weight: 600;
   color: var(--white-text);
-  border: 1px;
-  background-image: linear-gradient(to bottom, var(--primary-lighter), var(--primary));
+  background-color: var(--gray-darker);
 }
 
 button.btn.btn-primary:hover {
-  background-image: linear-gradient(to bottom, var(--primary-active), var(--primary-active-lighter));
+  background-image: linear-gradient(to bottom, var(--gray-darker), var(--primary-active-lighter));
 }
 
 button.btn.btn-primary:active {
-  background-image: linear-gradient(to bottom, var(--primary-active-lighter), var(--primary-active));
+  background-image: linear-gradient(to bottom, var(--primary-active-lighter), var(--gray-darker));
 }
 
 button.btn-primary:not(:disabled):not(.disabled):active:focus,
@@ -48,35 +55,45 @@ button.btn-primary:not(:disabled):not(.disabled):active:focus,
 }
 
 button.btn.btn-secondary {
-  font-weight: 600;
-  color: var(--black-text);
-  background-image: linear-gradient(to bottom, #fefefe, #f4f5f8);
+  color: var(--gray-darker);
+  background: transparent;
+  border: 1px solid var(--gray-darker);
+
+  &.toggle-btn {
+    background-color: transparent;
+    border: none !important;
+    font-size: 15px;
+    padding-left: 36px;
+    padding-right: 36px;
+
+    &.active {
+      background-color: white;
+      font-weight: bold;
+      box-shadow: 1px 1px 50px 10px rgba(0, 37, 80, 0.1) !important;
+    }
+  }
+}
+button.btn.btn-secondary:disabled {
+  border: none;
 }
 
-button.btn.btn-secondary:active {
-  background-image: linear-gradient(to bottom, #f4f5f8, #e4e5e8);
+button.btn.btn-secondary:focus:not(.toggle-btn) {
+  border: 1px solid var(--gray-darker) !important;
 }
 
-button.btn.btn-green {
-  font-weight: 600;
-  color: var(--white-text);
-  background-image: linear-gradient(to bottom, var(--tertiary), var(--tertiary-darker));
+button.btn.btn-link {
+  min-height: inherit;
+  .btn-icon {
+    color: var(--color-icon);
+  }
 }
 
-button.btn.btn-green:hover {
-  //background-color: var(--tertiary);
-  background-image: linear-gradient(to bottom, var(--tertiary-active), var(--tertiary-active-darker));
-}
-
-button.btn.btn-green:active {
-  background-color: var(--tertiary-darker);
-  background-image: linear-gradient(to bottom, #09a780, #097d5f);
-  transition: background-color 0.3s;
+button.btn.btn-link:disabled {
+  background-color: transparent !important;
+  color: var(--disable-darker) !important;
 }
 
 button.btn.btn-dark {
-  border: 1px solid var(--dark);
-  font-weight: 600;
   color: var(--white-text);
   background-image: linear-gradient(to bottom, var(--dark), var(--dark-darker));
 }
@@ -101,8 +118,6 @@ button.btn {
 button:disabled {
   background-color: $input-disabled-color !important;
   color: var(--gray-lighter) !important;
-  //border: #dfe3e9 solid 0.5px !important;
-  border-color: #dfe3e9 !important;
   background-image: none !important;
 }
 

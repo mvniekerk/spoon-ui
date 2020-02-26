@@ -1,13 +1,12 @@
-import './text-input.scss';
 import './form-input.scss';
 import React, { ChangeEvent } from 'react';
 import cx from 'classnames';
 import { IDirtyInput } from '../../util/dirty-input';
 import { translateItem } from '../../util/translation';
-import { Input, InputProps } from 'reactstrap';
+import { Input, InputProps, Label } from 'reactstrap';
 
 import Check from '@material-ui/icons/CheckRounded';
-import PriorityHighRounded from '@material-ui/icons/PriorityHighRounded';
+import ClearIcon from '@material-ui/icons/Clear';
 import {
   IFormInput,
   IFormInputState,
@@ -34,7 +33,7 @@ export class TextInput extends React.Component<ITextInputProps, IFormInputState<
   }
 
   render() {
-    const { id, className, onMadeDirty, onChange, placeholder, value, required, disabled, enableTicks, ...other } = this.props;
+    const { id, label, className, onMadeDirty, onChange, placeholder, value, required, disabled, enableTicks, ...other } = this.props;
 
     const onChangeDirty = (e: ChangeEvent<HTMLInputElement>) => {
       onChange(e.target.value);
@@ -42,8 +41,8 @@ export class TextInput extends React.Component<ITextInputProps, IFormInputState<
         onMadeDirty();
       }
     };
-    const isInvalid = this.state.invalidAndDirty;
-    const isValid = this.state.validAndDirty;
+    const isInvalid = this.state.valid;
+    const isValid = this.state.valid;
     const input = (
       <>
         <Input
@@ -52,16 +51,21 @@ export class TextInput extends React.Component<ITextInputProps, IFormInputState<
           value={value}
           onChange={onChangeDirty}
           onBlur={onMadeDirty}
-          valid={this.state.validAndDirty}
-          invalid={this.state.invalidAndDirty}
+          validAndDirty={isValid}
+          invalid={isInvalid}
           className={cx(className, { required })}
           disabled={disabled}
           {...other}
         />
-        {isInvalid && enableTicks && <PriorityHighRounded id="clear" className="material-icons invalid-icon" />}
-        {isValid && enableTicks && <Check id="check" className="material-icons valid-icon" />}
+        {isInvalid && enableTicks && <ClearIcon id="clear" className={`material-icons invalid-icon disabled-${disabled}`} />}
+        {isValid && enableTicks && <Check id="check" className={`material-icons valid-icon disabled-${disabled}`} />}
       </>
     );
-    return formInputGroup(this, input, this.props.required);
+    return (
+      <>
+        {this.props.label && <Label>{translateItem(this.props.label)}</Label>}
+        {formInputGroup(this, input, this.props.required)}
+      </>
+    );
   }
 }

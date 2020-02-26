@@ -1,10 +1,91 @@
 @import '../../_bootstrap-variables';
 
 .calendar-input {
+  .opener-icon {
+    bottom: 0px;
+  }
+
+  .required-check {
+    top: -5px;
+  }
+
+  .react-calendar__tile--active,
+  .react-calendar__tile--active:enabled:hover,
+  .react-calendar__tile--active:enabled:focus {
+    background-color: var(--color-icon);
+    border-radius: 25px;
+    color: inherit;
+    outline: unset;
+    .required-check {
+      color: var(--color-icon);
+    }
+  }
+
+  &.disabled {
+    .required-check {
+      color: var(--disable-darker);
+    }
+  }
+
+  .react-calendar__tile:enabled:hover,
+  .react-calendar__tile:enabled:focus {
+    border-radius: 25px;
+    outline: unset;
+  }
+
   .form-control[readonly] {
     background-color: white;
   }
   .form-control:disabled {
-    background-color: $input-disabled-color;
+    background-color: var(--gray-lighter);
+  }
+  .popover {
+    box-shadow: 1px 1px 50px 10px rgba(0, 37, 80, 0.2);
+    border-radius: 7px;
+    max-width: fit-content;
+
+    .container-fluid {
+      padding-right: 0px;
+      padding-left: 0px;
+
+      .react-calendar {
+        border: none;
+
+        .react-calendar__navigation {
+          border-bottom: 1px solid var(--gray-darker);
+          font-size: 18px;
+          line-height: 23px;
+
+          .react-calendar__navigation__arrow {
+            color: var(--color-icon);
+            font-size: 25px;
+          }
+
+          .react-calendar__navigation__label {
+            color: var(--gray-darker);
+          }
+        }
+        .react-calendar__viewContainer {
+          padding: 20px;
+          font-family: 'Source Sans Pro';
+          font-size: 15px;
+          color: var(--gray-darker);
+
+          .react-calendar__month-view__weekdays {
+            font-size: inherit;
+            font-weight: inherit;
+
+            .react-calendar__month-view__weekdays__weekday {
+              padding: 0px;
+              padding-bottom: 0.5em;
+            }
+
+            abbr[title] {
+              text-decoration: none;
+            }
+          }
+        }
+      }
+    }
   }
 }

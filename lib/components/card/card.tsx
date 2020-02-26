@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import { CardBody, Card as RCard, CardTitle, CardSubtitle, CardProps } from 'reactstrap';
 import cx from 'classnames';
 import './card.scss';
+import { Row } from '../layout';
 
 export interface ICardProps extends CardProps {
   image: ReactNode;
@@ -17,13 +18,13 @@ export class Card extends React.Component<ICardProps> {
       <RCard className={cx('base-card', className)} {...other}>
         <CardBody>
           <div className="card-image">{image}</div>
-          <CardTitle>
-            <h2>{title}</h2>
-          </CardTitle>
           <CardSubtitle>
             <p>{subtitle}</p>
           </CardSubtitle>
-          {actionComponent}
+          <CardTitle>
+            <h3>{title}</h3>
+          </CardTitle>
+          <Row justify="center">{actionComponent}</Row>
         </CardBody>
       </RCard>
     );
